@@ -1,0 +1,70 @@
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+body {
+	padding: 0 5%;
+	width: 100%;
+	height: 100vh;
+}
+
+header {
+	padding: 5% 0;
+	display: flex;
+	justify-content: flex-end;
+}
+
+button {
+	border: none;
+	padding: 15px;
+	border-radius: 5px;
+	background-color: #2A3647;
+	color: #fff;
+}
+
+.changeOpaAnimation {
+	animation: changeOpacity;
+	animation-duration: 800ms;
+	animation-delay: 2000ms;
+	animation-fill-mode: forwards;
+	opacity: 0;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+.indexLogo {
+	position: absolute;
+	animation: moveLogo;
+	animation-duration: 800ms;
+	animation-delay: 2000ms;
+	animation-fill-mode: forwards;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(2.2);
+	width: 100px;
+	z-index: 1;
+}
+
+.headerBtnContainer Button:first-child {
+	background: transparent;
+	color: #2A3647;
+}
+
+@keyframes moveLogo {
+	to {
+		top: 75px;
+		left: 75px;
+		transform: scale(1);
+	}
+}
+
+@keyframes changeOpacity {
+	to {
+		opacity: 1;
+	}
+}
+
