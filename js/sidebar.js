@@ -1,17 +1,8 @@
-/**
- * Initialize the site.
- * This function calls several functions that are needed for functionality of the pages.
- */
 async function init() {
     await includeHTML(); // Solange warten, bis alle Dateien nachgeladen wurden
     // und dann erst ausführen, um z.B. auf ein eingefügtes Feld zuzugreifen
 }
 
-
-/**
- * Function for including a separate html file into a main file.
- * Usually for parts of a side like a header or a footer.
- */
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {

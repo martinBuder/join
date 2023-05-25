@@ -1,0 +1,138 @@
+/* Grundeinstellungen Sidebar */
+
+body {
+    height: 100vh;
+}
+.main-navigation {
+    color: white;
+
+    width: 232px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+}
+
+.bg-darkblue {
+    background-color: #2A3647;
+}
+
+
+/* Einstellungen Sidebar in normaler Darstellung */
+
+.navbar-logo {
+    width: 100px;
+}
+
+.navbar-entries {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.navbar-links {
+    width: 100%;
+    padding-top: 20%;
+}
+
+.navbar-entry-row,
+.navbar-links-row {
+    width: 100%;
+    padding-left: 24px;
+    display: flex;
+    gap:20px;
+    align-items: center;
+}
+
+.navbar-entry-row:hover,
+.navbar-links-row:hover {
+    background-color: #091931;
+    cursor: pointer;
+}
+
+.navbar-icon {
+    height: 26px;
+    justify-self: end;
+    margin: 8px 0px 8px 8px;
+    flex: 0 0 30px;
+}
+
+.navbar-icon:hover,
+.navbar-icon-small:hover {
+    filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
+}
+
+.navbar-entry,
+.navbar-link {
+    font-size: 16px;
+    color: #cdcdcd;
+    flex: 0 0 100px;
+}
+
+.navbar-entry:hover,
+.navbar-link:hover {
+    color: white;
+}
+
+.navbar-icon-small {
+    height: 18px;
+    justify-self: end;
+    margin: 8px 0px 8px 8px;
+    flex: 0 0 30px;
+    bottom: 20px;
+}
+
+
+/* Einstellungen Sidebar für mobile Geräte */
+
+.mobile-navigation {
+    display: none;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+
+.navbar-entries-mobile {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-mobile-col {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-icon-mobile {
+    margin: 0;
+}
+
+.navbar-entry-mobile {
+    flex: 0;
+}
+
+
+/* Umschalten für mobile Geräte, bzw. kleine Auflösung */
+
+@media (max-width: 768px) {
+    .main-navigation {
+        display: none;
+    }
+
+    .mobile-navigation {
+        display: block;
+    }
+}
