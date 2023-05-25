@@ -36,12 +36,6 @@ img {
 	height: auto;
 }
 
-.test {
-	background-color: white;
-	width: 100px;
-	height: 100px;
-}
-
 .indexLogo {
 	position: absolute;
 	animation: moveLogo;
@@ -72,5 +66,15 @@ img {
 	to {
 		opacity: 1;
 	}
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inputContainer {
+	display: flex;
 }
 
