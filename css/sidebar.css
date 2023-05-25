@@ -57,17 +57,16 @@ a:hover {
     background-color: #091931;
     cursor: pointer;
 }
+.navbar-entry-row:hover img,
+.navbar-links-row:hover img {
+    filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
+}
 
 .navbar-icon {
     height: 26px;
     justify-self: end;
     margin: 8px 0px 8px 8px;
     flex: 0 0 30px;
-}
-
-.navbar-icon:hover,
-.navbar-icon-small:hover {
-    filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
 }
 
 .navbar-entry,

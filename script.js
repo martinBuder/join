@@ -9,7 +9,7 @@ async function init() {
 
 
 /**
- * Function for including a separate html file into a main file.
+ * Function for including separate html files into a main file.
  * Usually for parts of a side like a header or a footer.
  */
 async function includeHTML() {
