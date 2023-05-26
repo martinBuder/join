@@ -1,4 +1,4 @@
-.flexBody {
+.indexBody {
 	padding: 0 5%;
 	width: 100%;
 	height: 100vh;
@@ -12,51 +12,11 @@
 	width: 100%;
 }
 
-button {
-	border: none;
-	padding: 15px;
-	border-radius: 8px;
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 21px;
-	line-height: 120%;
-	border: 1px solid #2A3647;
-	cursor: pointer;
-}
-
-.focusBtn {
-	background-color: #2A3647;
-	color: #fff;
-}
-
-.focusBtn:hover {
-	background-color: #29ABE2;
-	box-shadow: 0px 6px 8px 1px rgba(0,0,0,0.54);
-	border-color: #29ABE2;
-}
-
-.outFocusBtn {
-	background-color: transparent;
-	color: #2A3647;
-}
-
-.outFocusBtn:hover {
-	box-shadow: 0px 6px 8px 1px rgba(0,0,0,0.54);
-	border-color: #29ABE2;
-	color: #29ABE2;
-}
-
 .justTextBtn {
 	border: none;
 	font-weight: 400;
 	background-color: transparent;
 	color: #2A3647;
-}
-
-h1 {
-	font-size: 61px;
- line-height: 120%;
 }
 
 .changeOpacityAnimation {
@@ -72,9 +32,7 @@ img {
 	height: auto;
 }
 
-input:focus {
-	outline: none;
-}
+
 
 .indexLogo {
 	position: absolute;
@@ -120,29 +78,7 @@ input:focus {
 	height: 513px;
 	box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
 	border-radius: 30px;
-}
-
-.inputContainer {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	padding: 13px 21px;
-	gap: 10px;
-	width: 422px;
-	height: 51px;
-	border: 1px solid #D1D1D1;
-	border-radius: 10px;
-	cursor: pointer;
-}
-
-.inputContainer input {
-	border: none;
-	flex: 1;
-}
-
-.inputContainer img {
-	width: 20px;
-	height: 18px;
+	background-color: #fff;
 }
 
 .blueLine {
@@ -175,18 +111,6 @@ input:focus {
 
 .loginBtnContainer button {
 	flex: 1;
-}
-
-.link {
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 120%;
-	color: #29ABE2;
-	text-decoration: none;
-	cursor: pointer;
-	text-align: center;
 }
 
 @media (max-width: 730px) {

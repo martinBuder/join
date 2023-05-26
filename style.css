@@ -19,3 +19,88 @@ body {
     display: flex;
     background-color: #F5F5F5;
 }
+
+h1 {
+	font-size: 61px;
+ line-height: 120%;
+}
+
+/* *buttons .focusBtn = blau .outFocusBtn = transparent*/
+
+button {
+	border: none;
+	padding: 15px;
+	border-radius: 8px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 21px;
+	line-height: 120%;
+	border: 1px solid #2A3647;
+	cursor: pointer;
+}
+
+.focusBtn {
+	background-color: #2A3647;
+	color: #fff;
+}
+
+.focusBtn:hover {
+	background-color: #29ABE2;
+	box-shadow: 0px 6px 8px 1px rgba(0,0,0,0.54);
+	border-color: #29ABE2;
+}
+
+.outFocusBtn {
+	background-color: transparent;
+	color: #2A3647;
+}
+
+.outFocusBtn:hover {
+	box-shadow: 0px 6px 8px 1px rgba(0,0,0,0.54);
+	border-color: #29ABE2;
+	color: #29ABE2;
+}
+
+/* *inputFelder mit bild */
+
+
+.inputContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 13px 21px;
+	gap: 10px;
+	width: 422px;
+	height: 51px;
+	border: 1px solid #D1D1D1;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.inputContainer input {
+	border: none;
+	flex: 1;
+}
+
+.inputContainer img {
+	width: 20px;
+	height: 18px;
+}
+
+.inputContainer input:focus {
+	outline: none;
+}
+
+/* * links */
+.link {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 120%;
+	color: #29ABE2;
+	text-decoration: none;
+	cursor: pointer;
+	text-align: center;
+}
