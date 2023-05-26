@@ -30,7 +30,7 @@
                 </div>
                 <div class="labelAndField">
                     <label for="taskDescription">Description</label>
-                    <textarea name="Description" id="taskDescription" cols="30" rows="10" class="inputField" placeholder="Enter a description"></textarea>
+                    <textarea name="Description" id="taskDescription" cols="30" rows="3" class="inputField" placeholder="Enter a description"></textarea>
                     <span class="requiredMessage">This field is required</span>
                 </div>
                 <div class="labelAndField">
@@ -51,10 +51,18 @@
                 <div class="labelAndField selectCategory">   
                     <span class="selectionHeader" onclick="toggleSelection('testCategory')">Test Header </span>
                     <ul id="testCategory" class="d-none">
-                        <li>Test <img src="img/i-icon.svg" alt="" class="h12px"></li>
-                        <li>TEst 2</li>
-                        <li>Test 3</li>
-                        <li>Test 4</li>
+                        <li onclick="clickReaction(this)">Test <img src="img/i-icon.svg" alt="" class="h12px"></li>
+                        <li onclick="clickReaction(this)">TEst 2</li>
+                        <li onclick="clickReaction(this)">Test 3</li>
+                        <li onclick="clickReaction(this)">Test 4</li>
+                    </ul>
+                </div>
+                <div class="dropdown-list">
+                    <ul id="dropdownList">
+                        <li onclick="toggleDropdownList()">Bitte hier klicken</li>
+                        <li onclick="clickReaction(this)">Erste Auswahl</li>
+                        <li onclick="clickReaction(this)">Zweite Auswahl</li>
+                        <li onclick="clickReaction(this)">Dritte Auswahl</li>
                     </ul>
                 </div>
             </div>
