@@ -1,0 +1,34 @@
+/* Markierung der Auswahl in der Sidebar */
+#navLinkAddTask,
+#navLinkAddTaskM {
+    background-color: #091931;
+}
+#navLinkAddTask span,
+#navLinkAddTaskM span {
+    color: white;
+}
+#navLinkAddTask img,
+#navLinkAddTaskM img {
+    filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
+}
+/* ENDE Markierung der Auswahl in der Sidebar */
+
+#contentAddTask {
+    margin-left: 123px;
+    margin-top: 82px;
+}
+
+.labelAndField {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputField {
+    padding: 13px 21px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.inputField:focus {
+    outline: none;
+}

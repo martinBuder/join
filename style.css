@@ -4,6 +4,11 @@
     src: url(fonts/Inter-VariableFont_slnt,wght.ttf);
 }
 
+@font-face {
+    font-family: Poppins;
+    src: url(fonts/Poppins-Regular.ttf);
+}
+
 /* ENDE Einbindung der Schriften */
 
 * {

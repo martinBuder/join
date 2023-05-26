@@ -1,3 +1,9 @@
 #navLinkImprint {
     background-color: #091931;
 }
+#navLinkImprint span {
+    color: white;
+}
+#navLinkImprint img {
+    filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
+}

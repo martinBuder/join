@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +9,35 @@
     <script src="script.js"></script>
     <script src="js/storage.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/add_task.css">
 
     <link rel="icon" type="image/png" href="img/join-navicon.png">
     <title>Join</title>
 </head>
-<body>
-    
+
+<body onload="init()">
+    <section w3-include-html="templates/sidebar.html"></section>
+
+    <section id="contentAddTask">
+        <h1>Add Task</h1>
+        <div class="twoColumns">
+            <div class="columnLeft">
+                <div class="labelAndField">
+                    <label for="taskTitle">Title</label>
+                    <input type="text" name="Title" id="taskTitle" class="inputField">
+                </div>
+                <div class="labelAndField">
+                    <label for="taskDescription">Description</label>
+                    <textarea name="Description" id="taskDescription" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+            <div class="columnRight">
+
+            </div>
+        </div>
+
+    </section>
+
 </body>
+
 </html>
