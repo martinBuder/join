@@ -30,6 +30,11 @@ h1 {
  line-height: 120%;
 }
 
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 /* *buttons .focusBtn = blau .outFocusBtn = transparent*/
 
 button {
