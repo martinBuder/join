@@ -82,7 +82,7 @@ body {
     background-color: white;
 }
 
-.statusText {
+.statusText1 {
     font-size: 21px;
     font-weight: 400;
     text-align: center;
@@ -92,4 +92,46 @@ body {
 
 .middle-task {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 580px;
+    height: 150px;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+.middle-task-status {
+    margin-left: 19px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.middle-task img {
+    width: 60px;
+    height: 60px;
+}
+
+.number2 {
+    font-size: 56px;
+    font-weight: 600;
+}
+
+.statusText2 {
+    font-size: 19px;
+    font-weight: 400;
+    color: #2A3647;
+}
+
+.middle-task-date {
+    margin-left: 61px;
+    padding: 18px 0px 18px 61px;
+    border-left: 2px solid #D1D1D1;
+}
+
+.date1 {
+    font-size: 25px;
+    font-weight: 700;
+    padding-bottom: 13px;
 }
