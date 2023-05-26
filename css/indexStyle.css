@@ -65,8 +65,8 @@ h1 {
 
 .changeOpacityAnimation {
 	animation: changeOpacity;
-	animation-duration: 800ms;
-	animation-delay: 2000ms;
+	animation-duration: 600ms;
+	animation-delay: 400ms;
 	animation-fill-mode: forwards;
 	opacity: 0;
 }
@@ -83,8 +83,8 @@ input:focus {
 .indexLogo {
 	position: absolute;
 	animation: moveLogo;
-	animation-duration: 800ms;
-	animation-delay: 2000ms;
+	animation-duration: 600ms;
+	animation-delay: 200ms;
 	animation-fill-mode: forwards;
 	top: 50%;
 	left: 50%;
