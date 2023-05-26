@@ -30,6 +30,11 @@ h1 {
  line-height: 120%;
 }
 
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 /* *buttons .focusBtn = blau .outFocusBtn = transparent*/
 
 button {
@@ -95,6 +100,16 @@ button {
 
 .inputContainer input:focus {
 	outline: none;
+}
+
+input {
+  font-size: 21px;
+}
+
+input::placeholder {
+  font-size: 21px;
+  color: #d1d1d1;
+  font-weight: 400;
 }
 
 /* * links */
