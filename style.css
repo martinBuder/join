@@ -102,6 +102,16 @@ button {
 	outline: none;
 }
 
+input {
+  font-size: 21px;
+}
+
+input::placeholder {
+  font-size: 21px;
+  color: #d1d1d1;
+  font-weight: 400;
+}
+
 /* * links */
 .link {
 	font-family: 'Inter';
