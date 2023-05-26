@@ -13,8 +13,8 @@
     <link rel="icon" type="image/png" href="img/join-navicon.png">
     <title>Join</title>
 </head>
-<body>
-    <header>
+<body class="indexBody" onload="renderLogInWindow()">
+    <header class="indexHeader">
         <div class="indexLogo">
             <img src="img/join-logo.svg" alt="logo">
         </div>
@@ -23,8 +23,8 @@
             <button class="focusBtn">Sign up</button>
         </div>
     </header>
-    <main>
-        <div class="activityContainer changeOpacityAnimation">
+    <main class="indexMain">
+        <div class="activityContainer changeOpacityAnimation" id="indexContent">
             <h1>Log In</h1>
             <div class="blueLine"></div>
             <div class="inputContainer">
@@ -39,7 +39,7 @@
                 </div>    
                 <a href="#" class="link">Forgot my password</a>
             </div>
-            <div class="loginBtnContainer">
+            <div class="twiceBtnContainer">
                 <button class="focusBtn">Log in</button>
                 <button class="outFocusBtn">Guest Log in</button>
             </div>
