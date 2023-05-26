@@ -3,13 +3,19 @@
     font-family: Inter;
     src: url(fonts/Inter-VariableFont_slnt,wght.ttf);
 }
+
 /* ENDE Einbindung der Schriften */
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  transition: all 0.2s ease-in-out;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
 
-  font-family: Inter, Arial, Helvetica, sans-serif;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: #F5F5F5;
 }

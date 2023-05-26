@@ -75,19 +75,29 @@ body {
     border-radius: 30px;
     background-color: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: black;
+}
+
+.top-task:hover {
+    background-color: #293546;
+    color: white;
+}
+
+.top-task:hover .statusText1 {
+    background-color: #293546;
+    color: white;
 }
 
 .number1 {
     font-size: 64px;
     font-weight: 600;
-    background-color: white;
 }
 
 .statusText1 {
     font-size: 21px;
     font-weight: 400;
     text-align: center;
-    background-color: white;
     color: #2A3647;
 }
 
@@ -100,6 +110,14 @@ body {
     border-radius: 30px;
     background-color: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: black;
+}
+
+.middle-task:hover {
+    background-color: #293546;
+    cursor: pointer;
+    color: white !important;
 }
 
 .middle-task-status {
@@ -152,6 +170,14 @@ body {
     border-radius: 30px;
     background-color: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: black;
+}
+
+.todo:hover {
+    background-color: #293546;
+    cursor: pointer;
+    color: white !important;
 }
 
 .todo img {
