@@ -19,14 +19,43 @@ header {
 button {
 	border: none;
 	padding: 15px;
-	border-radius: 5px;
-	background-color: transparent;
-	color: #2A3647;
+	border-radius: 8px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 21px;
+	line-height: 120%;
+	border: 1px solid #2A3647;
+	cursor: pointer;
 }
 
 .focusBtn {
 	background-color: #2A3647;
 	color: #fff;
+}
+
+.focusBtn:hover {
+	background-color: #29ABE2;
+	box-shadow: 0px 6px 8px 1px rgba(0,0,0,0.54);
+	border-color: #29ABE2;
+}
+
+.outFocusBtn {
+	background-color: transparent;
+	color: #2A3647;
+}
+
+.outFocusBtn:hover {
+	box-shadow: 0px 6px 8px 1px rgba(0,0,0,0.54);
+	border-color: #29ABE2;
+	color: #29ABE2;
+}
+
+.justTextBtn {
+	border: none;
+	font-weight: 400;
+	background-color: transparent;
+	color: #2A3647;
 }
 
 h1 {
@@ -47,6 +76,10 @@ img {
 	height: auto;
 }
 
+input:focus {
+	outline: none;
+}
+
 .indexLogo {
 	position: absolute;
 	animation: moveLogo;
@@ -58,11 +91,6 @@ img {
 	transform: translate(-50%, -50%) scale(2.2);
 	width: 100px;
 	z-index: 1;
-}
-
-.headerBtnContainer Button:first-child {
-	background: transparent;
-
 }
 
 @keyframes moveLogo {
@@ -106,6 +134,14 @@ main {
 	gap: 10px;
 	width: 422px;
 	height: 51px;
+	border: 1px solid #D1D1D1;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.inputContainer input {
+	border: none;
+	flex: 1;
 }
 
 .inputContainer img {
@@ -114,15 +150,48 @@ main {
 }
 
 .blueLine {
-	width: 0px;
-	height: 150px;
-	border: 3px solid #29ABE2;
-	transform: rotate(90deg);
+	width: 150px;
+	border: 2px solid #29ABE2;
 }
 
-.loginBtnContainer {
+.loginBtnContainer, .rememberContainer {
 	display: flex;
-	width: 60%;
-	
+	width: 56%;
+	gap: 30px;
+	justify-content: center;
 }
+
+.checkContainer {
+	display: flex;
+	flex: 1;
+	justify-content: space-between;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 120%;
+	padding: 0 8px;
+}
+
+.rememberContainer a {
+	flex: 1;
+}
+
+.loginBtnContainer button {
+	flex: 1;
+}
+
+.link {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 120%;
+	color: #29ABE2;
+	text-decoration: none;
+	cursor: pointer;
+	text-align: center;
+}
+
+
 
