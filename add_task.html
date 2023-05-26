@@ -8,6 +8,7 @@
 
     <script src="script.js"></script>
     <script src="js/storage.js"></script>
+    <script src="js/add_task.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/add_task.css">
 
@@ -24,15 +25,54 @@
             <div class="columnLeft">
                 <div class="labelAndField">
                     <label for="taskTitle">Title</label>
-                    <input type="text" name="Title" id="taskTitle" class="inputField">
+                    <input type="text" name="Title" id="taskTitle" class="inputField" placeholder="Enter a title">
+                    <span class="requiredMessage">This field is required</span>
                 </div>
                 <div class="labelAndField">
                     <label for="taskDescription">Description</label>
-                    <textarea name="Description" id="taskDescription" cols="30" rows="10"></textarea>
+                    <textarea name="Description" id="taskDescription" cols="30" rows="10" class="inputField" placeholder="Enter a description"></textarea>
+                    <span class="requiredMessage">This field is required</span>
+                </div>
+                <div class="labelAndField">
+                    <label for="taskCategory">Category</label>
+                    <!-- <input type="text" name="Category" id="taskCategory" class="inputField" placeholder="Select task category"> -->
+                    <select name="Category" id="taskCategory" class="inputField">
+                        <option value="placeholder">Select task category</option>
+                        <option value="newCategory">New Category</option>
+                        <option value="withButton">Test <img src="img/i-icon.svg" alt="" class="12px"> </option>
+                    </select>
+                    <span class="requiredMessage">This field is required</span>
+                </div>
+                <div class="labelAndField">
+                    <label for="taskAssignedTo">Assigned to</label>
+                    <input type="text" name="Assigned to" id="taskAssignedTo" class="inputField" placeholder="Select contacts to assign">
+                </div>
+                <label for="testCategory">TEST</label>
+                <div class="labelAndField selectCategory">   
+                    <span class="selectionHeader" onclick="toggleSelection('testCategory')">Test Header </span>
+                    <ul id="testCategory" class="d-none">
+                        <li>Test <img src="img/i-icon.svg" alt="" class="h12px"></li>
+                        <li>TEst 2</li>
+                        <li>Test 3</li>
+                        <li>Test 4</li>
+                    </ul>
                 </div>
             </div>
-            <div class="columnRight">
 
+            <div class="columnRight">
+                <div class="labelAndField">
+                    <label for="taskDueDate">Due date</label>
+                    <input type="date" name="due date" id="taskDueDate" class="inputField" placeholder="dd/mm/yyyy">
+                    <span class="requiredMessage">This field is required</span>
+                </div>
+                <div class="labelAndField">
+                    <label for="taskPrio">Prio</label>
+                    <input type="text" name="Prio" id="taskPrio" class="inputField" placeholder="Enter a title">
+                </div>
+                <div class="labelAndField">
+                    <label for="taskSubtasks">Subtasks</label>
+                    <input type="text" name="Subtasks" id="taskSubtasks" class="inputField" placeholder="Enter a title">
+                </div>
             </div>
         </div>
 
