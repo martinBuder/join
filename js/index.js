@@ -1,4 +1,5 @@
 let indexContent;
+let indexHeaderBtn;
 
 /**
  * find element to fill
@@ -6,6 +7,7 @@ let indexContent;
 function renderLogInWindow() {
   indexContent = document.getElementById("indexContent");
   indexContent.innerHTML = returnLogInHtml();
+		renderLogInHeaderButtons();
 }
 
 /**
@@ -26,26 +28,42 @@ function returnLogInHtml() {
   <div class="checkContainer">
    <input type="checkbox" name="remember" id="remember" id="remember"> <p>Remember me</p>
   </div>    
- 	<a href="#" class="link">Forgot my password</a>
+ 	<a href="#" class="link" onclick="renderForgotPassword()">Forgot my password</a>
  </div>
  <div class="twiceBtnContainer">
   <button class="focusBtn">Log in</button>
-  <button class="outFocusBtn">Guest Log in</button>
+  <a href="summary.html"><button class="outFocusBtn">Guest Log in</button></a>
  </div>
 	`;
 }
 
+function deleteHeaderBtn() {
+	indexHeaderBtn.innerHTML = ''; 
+}
+
+function renderLogInHeaderButtons() {
+	indexHeaderBtn = document.getElementById('indexHeaderBtn');
+	indexHeaderBtn.innerHTML = returnHeaderBtnHtml();
+}
+
+function returnHeaderBtnHtml() {
+	return /*html*/`
+		<button class="justTextBtn">Not a Join user?</button>
+  <button class="focusBtn" onclick="renderSignUpWindow()">Sign up</button>
+	`
+}
+
 /**
- * find element to fill
+ * find sign up element to fill
  */
 function renderSignUpWindow() {
-	indexContent = document.getElementById("indexContent");
 	indexContent.innerHTML = returnSignUpHtml();
+	deleteHeaderBtn();
 }
 
 /**
 *
-* @returns html
+* @returns sign up html
 */
 function returnSignUpHtml() {
 return /*html*/ `
@@ -65,4 +83,25 @@ return /*html*/ `
 		<button class="focusBtn">Sign up</button>
 	</div>
 `;
+}
+
+function renderForgotPassword() {
+	indexContent.innerHTML = returnForgotPasswordHtml();
+	deleteHeaderBtn();
+}
+
+function returnForgotPasswordHtml() {
+	return /*html*/`
+	<h1>I forgot my password</h1>
+	<div class="blueLine"></div>
+	<p class="activityText">
+		Don't worry! We will send you an email with the instructions to reset your password.
+	</p>
+	<div class="inputContainer">
+		<input type="email" id="email" placeholder="Email" class="inputField"><img src="img/letter.svg" alt="">
+	</div>
+	<div class="twiceBtnContainer">
+		<button class="focusBtn">Send me the email</button>
+	</div>
+	`
 }
