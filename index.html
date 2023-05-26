@@ -13,32 +13,35 @@
     <link rel="icon" type="image/png" href="img/join-navicon.png">
     <title>Join</title>
 </head>
-<body>
-    <header>
+<body class="indexBody" onload="renderLogInWindow()">
+    <header class="indexHeader">
         <div class="indexLogo">
             <img src="img/join-logo.svg" alt="logo">
         </div>
         <div class="headerBtnContainer changeOpacityAnimation">
-            <button>Not a Join user?</button>
-            <button class="signUpBtn" >Sign up</button>
+            <button class="justTextBtn">Not a Join user?</button>
+            <button class="focusBtn">Sign up</button>
         </div>
     </header>
-    <main>
-        <div class="activityContainer changeOpacityAnimation">
+    <main class="indexMain">
+        <div class="activityContainer changeOpacityAnimation" id="indexContent">
             <h1>Log In</h1>
             <div class="blueLine"></div>
             <div class="inputContainer">
-                <input type="email" id="email" placeholder="Email"><img src="img/letter.svg" alt="">
+                <input type="email" id="email" placeholder="Email" class="inputField"><img src="img/letter.svg" alt="">
             </div>
             <div class="inputContainer">
-             <input type="text" id="password" placeholder="Password"><img src="img/lock.svg" alt="">
+             <input type="text" id="password" placeholder="Password" class="inputField"><img src="img/lock.svg" alt="">
             </div>
             <div class="rememberContainer">
-                <input type="checkbox" name="remember" id="remember" id="remember"> <p>Remember me</p><p>Forgot my password</p>
+                <div class="checkContainer">
+                    <input type="checkbox" name="remember" id="remember" id="remember"> <p>Remember me</p>
+                </div>    
+                <a href="#" class="link">Forgot my password</a>
             </div>
-            <div class="loginBtnContainer">
-                <button>Log in</button>
-                <button>Guest Log in</button>
+            <div class="twiceBtnContainer">
+                <button class="focusBtn">Log in</button>
+                <button class="outFocusBtn">Guest Log in</button>
             </div>
 
         </div>
