@@ -124,3 +124,13 @@ input::placeholder {
 	cursor: pointer;
 	text-align: center;
 }
+
+@media (max-width: 600px) {
+	.inputContainer {
+		width: 90%;;
+	}
+
+	input {
+		min-width: 150px;
+	}
+}

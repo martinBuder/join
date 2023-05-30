@@ -71,14 +71,13 @@ img {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 35px 0px;
+	padding: 35px 115px;
 	gap: 35px;
-	width: 652px;
-	height: 513px;
 	box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
 	border-radius: 30px;
 	background-color: #fff;
 	position: relative;
+	text-align: center;
 }
 
 .blueLine {
@@ -112,6 +111,15 @@ img {
 .loginBtnContainer button {
 	flex: 1;
 }
+
+.backArrow {
+	position: absolute;
+	top: 48px;
+	left: 48px;
+	width: 24.67px;
+	cursor: pointer;
+}
+
 
 @media (max-width: 730px) {
 
@@ -147,14 +155,12 @@ img {
 	.activityContainer {
 		width: 90%;
 		height: min-content;
+		border-radius: 30px;
+		padding: 56px 25px;
 	} 
 
 	.activityContainer h1 {
-		text-align: center;
-	}
-
-	.activityContainer>* {
-		width: 90%;
+		margin-top: 30px;
 	}
 
 	.blueLine {
@@ -178,16 +184,11 @@ img {
 
 	.twiceBtnContainer {
 		flex-direction: column;
-		width: 40%;
+		width: 60%;
 	}
 }
 
-.backArrow {
-	position: absolute;
-	top: 16.67%;
-	left: 16.67%;
-	width: 24.67px;
-	cursor: pointer;
-}
+
+
 
 

@@ -92,6 +92,7 @@ function renderForgotPassword() {
 
 function returnForgotPasswordHtml() {
 	return /*html*/`
+	<img src="img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
 	<h1>I forgot my password</h1>
 	<div class="blueLine"></div>
 	<p class="activityText">
