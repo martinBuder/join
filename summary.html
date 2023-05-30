@@ -8,9 +8,9 @@
 
     <script src="script.js"></script>
     <script src="js/storage.js"></script>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="summary-style.css">
-
     <link rel="icon" type="image/png" href="img/join-navicon.png">
     <title>Join</title>
 
@@ -18,7 +18,10 @@
 
 </head>
 
-<body>
+<body onload="includeHTML()">
+
+    <div w3-include-html="./templates/sidebar.html>"></div>
+
     <div class="summary">
         <div class="summary-head">
             <div class="tool">Kanban Project Management Tool</div>
