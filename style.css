@@ -93,10 +93,21 @@ button {
 	flex: 1;
 }
 
-.inputContainer img {
+.inputContainer img, #passwordImg {
 	width: 20px;
 	height: 18px;
 }
+
+#passwordImg {
+	background-image: url(img/lock.svg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center/center;
+}
+
+input:focus ~ #passwordImg {
+	background-image: url(img/closeEye.svg);
+}	
 
 .inputContainer input:focus {
 	outline: none;
@@ -111,6 +122,8 @@ input::placeholder {
   color: #d1d1d1;
   font-weight: 400;
 }
+
+
 
 /* * links */
 .link {

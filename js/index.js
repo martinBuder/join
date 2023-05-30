@@ -1,5 +1,7 @@
 let indexContent;
 let indexHeaderBtn;
+let passwordImg;
+let passwordField;
 
 /**
  * find element to fill
@@ -19,10 +21,10 @@ function returnLogInHtml() {
 	<h1>Log In</h1>
  <div class="blueLine"></div>
  <div class="inputContainer">
-  <input type="email" id="email" placeholder="Email" class="inputField"><img src="img/letter.svg" alt="">
+  <input type="email" id="email" placeholder="Email" class="inputField" required><img src="img/letter.svg" alt="">
  </div>
  <div class="inputContainer">
-  <input type="text" id="password" placeholder="Password" class="inputField"><img src="img/lock.svg" alt="">
+  <input type="password" id="passwordField" placeholder="Password" class="inputField" autocomplete="current-password" required><div id="passwordImg" onclick="showPassword()"></div>
  </div>
  <div class="rememberContainer">
   <div class="checkContainer">
@@ -31,7 +33,7 @@ function returnLogInHtml() {
  	<a href="#" class="link" onclick="renderForgotPassword()">Forgot my password</a>
  </div>
  <div class="twiceBtnContainer">
-  <button class="focusBtn">Log in</button>
+  <button class="focusBtn" type="submit">Log in</button>
   <a href="summary.html" class="outFocusBtn guestA"><p>Guest Log in</p></a>
  </div>
 	`;
@@ -81,16 +83,17 @@ return /*html*/ `
 	<h1>Sign Up</h1>
 	<div class="blueLine"></div>
 	<div class="inputContainer">
-		<input type="text" id="name" placeholder="Name" class="inputField"><img src="img/person.svg" alt="">
+		<input type="text" id="name" placeholder="Name" class="inputField" required><img src="img/person.svg" alt="">
 	</div>
 	<div class="inputContainer">
-		<input type="email" id="email" placeholder="Email" class="inputField"><img src="img/letter.svg" alt="">
+		<input type="email" id="email" placeholder="Email" class="inputField" required><img src="img/letter.svg" alt="" >
 	</div>
 	<div class="inputContainer">
-		<input type="text" id="password" placeholder="Password" class="inputField"><img src="img/lock.svg" alt="">
-	</div>
+  <input type="password" id="passwordField" placeholder="Password" class="inputField" autocomplete="current-password" required><div id="passwordImg" onclick="showPassword()"></div>
+ </div>
+	<!-- ! function sign up field evtl. wieder weg oder anpassen-->
 	<div class="twiceBtnContainer">
-		<button class="focusBtn">Sign up</button>
+		<button class="focusBtn" type="submit">Sign up</button>
 	</div>
 `;
 }
@@ -116,10 +119,10 @@ function returnForgotPasswordHtml() {
 		Don't worry! We will send you an email with the instructions to reset your password.
 	</p>
 	<div class="inputContainer">
-		<input type="email" id="email" placeholder="Email" class="inputField"><img src="img/letter.svg" alt="">
+		<input type="email" id="email" placeholder="Email" class="inputField" required><img src="img/letter.svg" alt="">
 	</div>
 	<div class="twiceBtnContainer">
-		<button class="focusBtn" onclick="resetPassword()">Send me the email</button>
+		<button class="focusBtn" onclick="resetPassword()" type="submit">Send me the email</button>
 	</div>
 	`
 }
@@ -160,13 +163,13 @@ function returnResetPasswordHtml() {
 		Change your account password.
 	</p>
 	<div class="inputContainer">
-		<input type="text" id="newPassword" placeholder="New password" class="inputField">
+		<input type="text" id="passwordField" autocomplete="new-password" placeholder="Password" class="inputField" minlength="8" required>
 	</div>
 	<div class="inputContainer">
-		<input type="text" id="confirmPassword" placeholder="Confirm password" class="inputField">
+		<input type="text" id="confirmPassword" placeholder="Confirm password" class="inputField" required>
 	</div>
 	<div class="twiceBtnContainer">
-		<button class="focusBtn" onclick="createNewPassword()">Continue</button>
+		<button class="focusBtn" onclick="createNewPassword()" type="submit">Continue</button>
 	</div>
 	`
 }
@@ -207,3 +210,23 @@ function returnSendEmailHtml() {
 </div>
 	`
 }
+
+function showPassword() {
+	passwordImg = document.getElementById('passwordImg');
+	passwordField = document.getElementById('passwordField');
+	passwordImg.style.backgroundImage = "url('img/openEye.svg')";
+	passwordImg.style.backgroundSize = "contain"
+	passwordImg.setAttribute("onClick", "dontShowPassword();");
+	passwordField.setAttribute("type", "text")
+	passwordField.focus();
+
+}
+
+function dontShowPassword() {
+	passwordImg.style="";
+	passwordImg.setAttribute("onClick", "showPassword();");
+	passwordField.setAttribute("type", "password")
+	passwordField.focus();
+}
+
+
