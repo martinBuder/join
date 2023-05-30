@@ -18,6 +18,7 @@ body.indexBody {
 	font-weight: 400;
 	background-color: transparent;
 	color: #2A3647;
+	cursor: auto;
 }
 
 .changeOpacityAnimation {
@@ -44,6 +45,22 @@ img {
 	transform: translate(-50%, -50%) scale(2.2);
 	width: 100px;
 	z-index: 1;
+}
+
+.requiredMessageContainer {
+	position: relative;
+	margin-bottom: 40px;
+}
+
+#requiredMessage {
+	position: absolute;
+	bottom: -25px;
+	left: 0;
+	font-family: Poppins, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: red;
+	font-weight: 100;
+	
 }
 
 @keyframes moveLogo {
@@ -159,6 +176,10 @@ img {
 
 .messageBtn img {
 	width: 15%
+}
+
+input#remember {
+	min-width: max-content;
 }
 
 @media (max-width: 730px) {

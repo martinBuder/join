@@ -93,7 +93,7 @@ return /*html*/ `
  </div>
 	<!-- ! function sign up field evtl. wieder weg oder anpassen-->
 	<div class="twiceBtnContainer">
-		<button class="focusBtn" type="submit">Sign up</button>
+		<button class="focusBtn" onclick="createNewAccount()" type="submit">Sign up</button>
 	</div>
 `;
 }
@@ -165,8 +165,9 @@ function returnResetPasswordHtml() {
 	<div class="inputContainer">
 		<input type="text" id="passwordField" autocomplete="new-password" placeholder="Password" class="inputField" minlength="8" required>
 	</div>
-	<div class="inputContainer">
+	<div class="inputContainer requiredMessageContainer">
 		<input type="text" id="confirmPassword" placeholder="Confirm password" class="inputField" required>
+		<span id="requiredMessage" style="opacity: 0">Make sure the second password you typed matches the first.</span>
 	</div>
 	<div class="twiceBtnContainer">
 		<button class="focusBtn" onclick="createNewPassword()" type="submit">Continue</button>
@@ -178,12 +179,15 @@ function returnResetPasswordHtml() {
 	* 
 	*/
 function createNewPassword() {
-	let newPassword = document.getElementById('newPassword');
+	let newPassword = document.getElementById('passwordField');
 	let confirmPassword = document.getElementById('confirmPassword');
 
 	if(newPassword.value === confirmPassword.value) {
 		indexContent.innerHTML += returnIdentPasswordHtml()
 		setTimeout(renderLogInWindow, 1000);
+	} else {
+		let requiredMessage = document.getElementById('requiredMessage');
+		requiredMessage.style="opacity: 1";
 	}
 }
 
@@ -227,6 +231,10 @@ function dontShowPassword() {
 	passwordImg.setAttribute("onClick", "showPassword();");
 	passwordField.setAttribute("type", "password")
 	passwordField.focus();
+}
+
+function createNewAccount() {
+	renderLogInWindow();
 }
 
 
