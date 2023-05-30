@@ -12,7 +12,7 @@ function renderLogInWindow() {
 
 /**
  *
- * @returns html
+ * @returns to renderLogInWindow()
  */
 function returnLogInHtml() {
  return /*html*/ `
@@ -37,15 +37,25 @@ function returnLogInHtml() {
 	`;
 }
 
+/** delete header buttons
+	* 
+	*/
 function deleteHeaderBtn() {
 	indexHeaderBtn.innerHTML = ''; 
 }
 
+/** fill header buttons
+	* 
+	*/
 function renderLogInHeaderButtons() {
 	indexHeaderBtn = document.getElementById('indexHeaderBtn');
 	indexHeaderBtn.innerHTML = returnHeaderBtnHtml();
 }
 
+/**
+	* 
+	* @returns to renderLogInHeaderButtons()
+	*/
 function returnHeaderBtnHtml() {
 	return /*html*/`
 		<button class="justTextBtn">Not a Join user?</button>
@@ -63,7 +73,7 @@ function renderSignUpWindow() {
 
 /**
 *
-* @returns sign up html
+* @returns to renderSignUpWindow()
 */
 function returnSignUpHtml() {
 return /*html*/ `
@@ -85,11 +95,18 @@ return /*html*/ `
 `;
 }
 
+/** fill forgot password part
+	* 
+	*/
 function renderForgotPassword() {
 	indexContent.innerHTML = returnForgotPasswordHtml();
 	deleteHeaderBtn();
 }
 
+/**
+	* 
+	* @returns to renderForgotPassword()
+	*/
 function returnForgotPasswordHtml() {
 	return /*html*/`
 	<img src="img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
@@ -107,20 +124,33 @@ function returnForgotPasswordHtml() {
 	`
 }
 
+/** fill reset message 
+	* 
+	*/
 function resetPassword() {
 	indexContent.innerHTML += returnSendEmailHtml();
 	setTimeout(resetPasswordStepTwo, 200)
 }
 
+/** information and fill reset password area
+	* 
+	*/
 function resetPasswordStepTwo() {
 	alert('This is just to show the reset site. In the normal way the user get an email with a link. If the user click on this link the follow site will open.');
 	renderResetPassword();
 }
 
+/** fill password html
+	* 
+	*/
 function renderResetPassword() {
 	indexContent.innerHTML = returnResetPasswordHtml();
 }
 
+/** reset Passwort html
+	* 
+	* @returns to renderResetPassword()
+	*/
 function returnResetPasswordHtml() {
 	return /*html*/`
 	<img src="img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
@@ -141,15 +171,23 @@ function returnResetPasswordHtml() {
 	`
 }
 
+/** compare the passworts and show next step
+	* 
+	*/
 function createNewPassword() {
 	let newPassword = document.getElementById('newPassword');
 	let confirmPassword = document.getElementById('confirmPassword');
 
 	if(newPassword.value === confirmPassword.value) {
 		indexContent.innerHTML += returnIdentPasswordHtml()
+		setTimeout(renderLogInWindow, 1000);
 	}
 }
 
+/** message reset password
+	* 
+	* @returns to createNewPassword() --> if
+	*/
 function returnIdentPasswordHtml() {
 	return /*html*/`
 	<div class="messageBtnBackground">
@@ -158,6 +196,10 @@ function returnIdentPasswordHtml() {
 	`
 }
 
+/**  message a email is send
+	* 
+	* @returns
+	*/
 function returnSendEmailHtml() {
 	return /*html*/`
 	<div class="messageBtnBackground">
