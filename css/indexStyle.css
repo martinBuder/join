@@ -80,6 +80,19 @@ img {
 	text-align: center;
 }
 
+.activityContainer .guestA {
+	border: none;
+	padding: 15px;
+	border-radius: 8px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 21px;
+	line-height: 120%;
+	border: 1px solid #2A3647;
+	cursor: pointer;
+}
+
 .blueLine {
 	width: 150px;
 	border: 2px solid #29ABE2;
@@ -87,9 +100,13 @@ img {
 
 .twiceBtnContainer, .rememberContainer {
 	display: flex;
-	width: 56%;
+	width: 90%;
 	gap: 30px;
 	justify-content: center;
+}
+
+.twiceBtnContainer>*{
+	flex: 1;
 }
 
 .checkContainer {
@@ -120,6 +137,29 @@ img {
 	cursor: pointer;
 }
 
+.messageBtnBackground {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(42, 54, 71, 0.2);
+	z-index: 1;
+}
+
+.messageBtn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+	display: flex;
+}
+
+.messageBtn img {
+	width: 15%
+}
 
 @media (max-width: 730px) {
 
@@ -187,6 +227,8 @@ img {
 		width: 60%;
 	}
 }
+
+
 
 
 

@@ -32,7 +32,7 @@ function returnLogInHtml() {
  </div>
  <div class="twiceBtnContainer">
   <button class="focusBtn">Log in</button>
-  <a href="summary.html"><button class="outFocusBtn">Guest Log in</button></a>
+  <a href="summary.html" class="outFocusBtn guestA"><p>Guest Log in</p></a>
  </div>
 	`;
 }
@@ -102,7 +102,66 @@ function returnForgotPasswordHtml() {
 		<input type="email" id="email" placeholder="Email" class="inputField"><img src="img/letter.svg" alt="">
 	</div>
 	<div class="twiceBtnContainer">
-		<button class="focusBtn">Send me the email</button>
+		<button class="focusBtn" onclick="resetPassword()">Send me the email</button>
 	</div>
+	`
+}
+
+function resetPassword() {
+	indexContent.innerHTML += returnSendEmailHtml();
+	setTimeout(resetPasswordStepTwo, 200)
+}
+
+function resetPasswordStepTwo() {
+	alert('This is just to show the reset site. In the normal way the user get an email with a link. If the user click on this link the follow site will open.');
+	renderResetPassword();
+}
+
+function renderResetPassword() {
+	indexContent.innerHTML = returnResetPasswordHtml();
+}
+
+function returnResetPasswordHtml() {
+	return /*html*/`
+	<img src="img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
+	<h1>Reset your password</h1>
+	<div class="blueLine"></div>
+	<p class="activityText">
+		Change your account password.
+	</p>
+	<div class="inputContainer">
+		<input type="text" id="newPassword" placeholder="New password" class="inputField">
+	</div>
+	<div class="inputContainer">
+		<input type="text" id="confirmPassword" placeholder="Confirm password" class="inputField">
+	</div>
+	<div class="twiceBtnContainer">
+		<button class="focusBtn" onclick="createNewPassword()">Continue</button>
+	</div>
+	`
+}
+
+function createNewPassword() {
+	let newPassword = document.getElementById('newPassword');
+	let confirmPassword = document.getElementById('confirmPassword');
+
+	if(newPassword.value === confirmPassword.value) {
+		indexContent.innerHTML += returnIdentPasswordHtml()
+	}
+}
+
+function returnIdentPasswordHtml() {
+	return /*html*/`
+	<div class="messageBtnBackground">
+		<button class="focusBtn messageBtn">You reset your password</button>
+</div>
+	`
+}
+
+function returnSendEmailHtml() {
+	return /*html*/`
+	<div class="messageBtnBackground">
+		<button class="focusBtn messageBtn"><img src="img/sendOk.svg" alt=""> An E-Mail has been sent to you.</button>
+</div>
 	`
 }
