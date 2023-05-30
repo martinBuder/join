@@ -13,6 +13,18 @@
 }
 /* ENDE Markierung der Auswahl in der Sidebar */
 
+.sidebar {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+
+
+body {
+    display: flex;
+}
+
 #contentAddTask {
     margin-left: 123px;
     margin-top: 82px;
@@ -40,7 +52,9 @@
     line-height: 25.2px;
     padding-bottom: 8px;
 }
-
+.taskLabel {
+    margin-bottom: 14px;
+}
 .inputField {
     font-size: 21px;
     padding: 13px 21px;
@@ -64,39 +78,71 @@
 /* TEST */
 .selectionHeader {
     /* border: 1px solid green; */
+    height: 51px;
+    font-size: 21px;
     padding: 8px 13px 8px 13px;
     cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-#testCategory {
-    
+#newCatHeaderField,
+#newCatList li {
+        display: flex;
+    align-items: center;
+    gap: 10px;
 }
-#testCategory li {
+#newCatList {
+    font-size: 21px;
+}
+#newCatList li {
     /* border: 1px solid blue; */
-    padding: 0px 13px 8px 13px;
-    display: list-item;
+    height: 51px;
+    padding: 0px 13px 0px 13px;
+    /* display: list-item; */
     list-style-type: none;
     cursor: pointer;
     overflow: hidden;
 }
-#testCategory li:last-child{
+#newCatList li:last-child{
     border-bottom-left-radius:  9px;
     border-bottom-right-radius: 9px;
 } 
-#testCategory li:hover {
+#newCatList li:hover {
     background-color: #D1D1D1;
 }
-.h12px {
-    height: 12px;
+#newCatColours {
+    display: flex;
+    gap: 21px;
+}
+#newCatColours img:hover {
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.h21px {
+    height: 21px;
 }
 .d-none {
     display: none;
 }
+.opacity-0 {
+    opacity: 0;
+}
 .selectCategory {
     /* padding: 13px 21px; */
-    border: 1px solid #D1D1D1;
+    /* border: 1px solid #D1D1D1; */
     border-radius: 10px;
     background-color: white;
 }
-
-
+.down-arrow {
+    width: 16px;
+    height: 8px;
+}
+.inputFieldIcon {
+    background-color: #D1D1D1;
+    width: 1px;
+    height: 100%;
+}
 
