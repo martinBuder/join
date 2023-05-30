@@ -100,19 +100,3 @@
 
 
 
-
-
-.dropdown-list ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-}
-
-.dropdown-list ul li {
-    display: none;
-}
-
-.dropdown-list ul li:first-child {
-    display: block;
-}
