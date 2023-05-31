@@ -1,3 +1,6 @@
+/**
+ * Globale Variable categories: Enthält die bereits vergebenen Kategorien
+ */
 let categories = [
     {
         name: 'Sales',
@@ -13,13 +16,25 @@ let categories = [
     }
 ];
 
+
+/**
+ * Globale Variablen
+ */
 let selectedColour = '';
 let selectedCategory = '';
 
+
+/**
+ * Startet das Rendern der Add-Task-Seite
+ */
 function initAddTask() {
     addCategories();
 }
 
+
+/**
+ * Lädt die bereits vergebenen Kategorien und fügt diese der Auswahlliste hinzu
+ */
 function addCategories() {
     // Categories laden - erfolgt später aus einer separaten Function aus
 
@@ -40,31 +55,34 @@ function addCategories() {
 }
 
 
-
-function toggleSelection() {
+/**
+ * Schaltet die Sichtbarkeit der Auswahlliste ein oder aus
+ */
+function toggleCatSelection() {
     let test = document.getElementById('newCatList');
     test.classList.toggle('d-none');
 }
 
 
-
-
-
-
-
+/**
+ * Reagiert auf die Auswahl einer Kategorie aus der Liste der Kategorien und reagierte je nach Auswahl
+ * 
+ * @param {object} item - Das ausgewählte Item aus der Liste der Kategorien
+ */
 function selectCategory(item) {
-    console.log('selected category: ' + item.innerHTML);
+    // console.log('selected category: ' + item.innerHTML);
     if (item.textContent == 'New category') {
-        let fieldArray = ['newCatHeader', 'newCatList', 'newCatInput'];
-        for (let i = 0; i < fieldArray.length; i++) {
-            let element = document.getElementById(fieldArray[i]);
-            element.classList.toggle('d-none');
-        }
+        activateNewCatInput();
     } else {
         let newCat = item.textContent;
         let newColour = item.innerHTML.match(/<img.*?src=['"](.*?)['"]/);
-        console.log('newCat: ' + newCat);
-        newColour ? console.log('newColour: ' + newColour[1]) : console.log('newColour: ' + newColour);
+        selectedCategory = newCat;
+        selectedColour = newColour ? newColour[1] : '';
+        // console.log('newCat: ' + newCat);
+        // newColour ? console.log('newColour: ' + newColour[1]) : console.log('newColour: ' + newColour);
+
+        document.getElementById('newCatHeaderField').innerHTML = item.innerHTML;
+        toggleCatSelection();
     }
     let elem = document.getElementById('newCatInputField');
     if (!(elem.classList.contains('d-none'))) {
@@ -72,12 +90,40 @@ function selectCategory(item) {
     }
 }
 
+
+/**
+ * Setzt die globale Variable selectedColour je nach ausgewählter Farbe
+ * 
+ * @param {string} srcColour - Die ausgewählte Farbe zur Kategorie
+ */
 function selectCatColour(srcColour) {
     console.log('selected colour: ' + srcColour);
     selectedColour = 'img/add-task/circle-' + srcColour + '.svg';
 }
 
+
+/**
+ * Aktiviert die Eingabe einer neuen Kategorie
+ */
+function activateNewCatInput() {
+    document.getElementById('newCatColours').style.display = 'flex';
+    toggleNewCatVisibility();
+}
+
+
+/**
+ * Deaktiviert die Eingabe einer neuen Kategorie
+ */
 function cancelNewCatInput() {
+    document.getElementById('newCatColours').style.display = 'none';
+    toggleNewCatVisibility();
+}
+
+
+/**
+ * Wechselt die Sichtbarkeit einiger Elemente, wenn 'new Category' ausgewählt wurde
+ */
+function toggleNewCatVisibility() {
     let fieldArray = ['newCatHeader', 'newCatList', 'newCatInput'];
     for (let i = 0; i < fieldArray.length; i++) {
         let element = document.getElementById(fieldArray[i]);
@@ -85,18 +131,23 @@ function cancelNewCatInput() {
     }
 }
 
+
+/**
+ * Reagiert auf die Eingabe einer neuen Kategorie
+ */
 function selectNewCatInput() {
     let elem = document.getElementById('newCatInputField');
     console.log(elem.value);
+    if (elem.value == '') return '';
     let newCat = {
         name: elem.value,
         img: selectedColour
     }
-    selectedCategory = elem.value;
     categories.push(newCat);
+    selectedCategory = elem.value;
     elem.value = '';
     document.getElementById('newCatHeaderField').innerHTML = `${newCat['name']}<img src="${newCat['img']}" alt="" class="h21px">`;
     addCategories();
     cancelNewCatInput();
-    toggleSelection();
+    toggleCatSelection();
 }
