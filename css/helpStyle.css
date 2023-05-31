@@ -2,3 +2,33 @@
 	display: none;
 }
 
+h2 {
+	margin: 50px 0 10px 0;
+}
+
+.contentWrapper {
+	position: relative;
+}
+
+.contentWrapper a {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+li {
+	margin: 27px;
+	padding-left: 16px;
+}
+
+li::marker {
+	font-size: 27px;
+	font-weight: 700;
+	line-height: 120%;
+}
+
+li span {
+	margin-top: -1000px;
+}
+
+

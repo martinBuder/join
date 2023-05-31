@@ -36,10 +36,12 @@ function showLogOut(){
     let logOutBtn = document.getElementById('logOutBtn');
     display = display === "block" ? "none" : "block"
     logOutBtn.style.display = display;
-
     changeCursorUserImg();
 }
 
+/** change cursor over UserImg from pointer to auto and from auto to pointer
+ * 
+ */
 function changeCursorUserImg() {
     let userImg = document.getElementById('userImg');
     cursor = cursor === "pointer" ? "auto" : "pointer";
