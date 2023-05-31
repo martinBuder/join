@@ -1,3 +1,6 @@
+let display = "none";
+let cursor = "pointer";
+
 /**
  * Initialize the site.
  * This function calls several functions that are needed for functionality of the pages.
@@ -26,7 +29,19 @@ async function includeHTML() {
     }
 }
 
+/** show or dont show the Log out Button
+ * 
+ */
 function showLogOut(){
     let logOutBtn = document.getElementById('logOutBtn');
-    logOutBtn.style.display = "block";
+    display = display === "block" ? "none" : "block"
+    logOutBtn.style.display = display;
+
+    changeCursorUserImg();
+}
+
+function changeCursorUserImg() {
+    let userImg = document.getElementById('userImg');
+    cursor = cursor === "pointer" ? "auto" : "pointer";
+    userImg.style.cursor = cursor
 }
