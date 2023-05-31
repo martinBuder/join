@@ -210,7 +210,7 @@ textarea::placeholder {
 	text-align: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 769px) {
 	.inputContainer {
 		width: 90%;
 		
