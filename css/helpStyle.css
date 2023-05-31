@@ -17,18 +17,21 @@ h2 {
 }
 
 li {
-	margin: 27px;
+	margin: 10px 0 10px 30px;
 	padding-left: 16px;
 }
 
 li::marker {
 	font-size: 27px;
 	font-weight: 700;
-	line-height: 120%;
+	line-height: 54px;
 }
 
 li span {
-	margin-top: -1000px;
+	display: inline-block;
+	vertical-align: top;
+	margin-top: -10px;
 }
+
 
 
