@@ -49,6 +49,7 @@ body {
 
 .headerIconWrapper {
 	display: flex;
+	align-items: center;
 	gap: 36px;
 }
 
