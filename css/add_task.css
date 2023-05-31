@@ -52,6 +52,10 @@ h1 {
 	flex: 1;
 }
 
+.inputContainerTextarea textarea:focus {
+	outline: none;
+}
+
 .taskFieldContainer {
     background-color: white;
     margin-top: 8px;
@@ -100,8 +104,7 @@ h1 {
 }
 
 .requiredMessage {
-    /* margin-top: 8px;
-    margin-bottom: 14px; */
+    margin-top: 8px;
     margin-bottom: 14px;
     font-family: Poppins, Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -112,7 +115,6 @@ h1 {
 
 /* TEST */
 .selectionHeader {
-    /* border: 1px solid green; */
     height: 51px;
     font-size: 21px;
     padding: 8px 13px 8px 13px;
@@ -132,10 +134,9 @@ h1 {
     font-size: 21px;
 }
 #newCatList li {
-    /* border: 1px solid blue; */
     height: 51px;
     padding: 0px 13px 0px 13px;
-    /* display: list-item; */
+    
     list-style-type: none;
     cursor: pointer;
     overflow: hidden;

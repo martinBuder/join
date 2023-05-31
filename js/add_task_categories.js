@@ -1,43 +1,9 @@
 /**
- * Globale Variable categories: Enthält die bereits vergebenen Kategorien
- */
-let categories = [
-    {
-        name: 'Sales',
-        img: 'lightviolet'
-    },
-    {
-        name: 'Backoffice',
-        img: 'turqoise'
-    },
-    {
-        name: 'Testkategorie',
-        img: ''
-    }
-];
-
-
-/**
- * Globale Variablen
- */
-let selectedColour = '';
-let selectedCategory = '';
-
-
-/**
- * Startet das Rendern der Add-Task-Seite
- */
-function initAddTask() {
-    addCategories();
-}
-
-
-/**
  * Lädt die bereits vergebenen Kategorien und fügt diese der Auswahlliste hinzu
  */
 function addCategories() {
     // Categories laden - erfolgt später aus einer separaten Function aus
-    console.log('addCategories gestartet');
+
     // Rendern in das Listenfeld
     document.getElementById('newCatList').innerHTML = '';
     // -- Teil 1: Auswahl 'New category' (Fest vorgegeben)
