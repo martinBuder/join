@@ -25,3 +25,8 @@ async function includeHTML() {
         }
     }
 }
+
+function showLogOut(){
+    let logOutBtn = document.getElementById('logOutBtn');
+    logOutBtn.style.display = "block";
+}

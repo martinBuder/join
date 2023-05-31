@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="script.js"></script>
-    <script src="js/storage.js"></script>
+    <!-- <script src="js/storage.js"></script> -->
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="summary-style.css">
@@ -17,9 +17,10 @@
     <!--erstellt durch Gino Emmel-->
 
 </head>
-    <body onload="init(); initAddTask()">
-        <header w3-include-html="templates/header.html>"></header>
+    <body onload="init()">
+     
         <section w3-include-html="templates/sidebar.html" class="sidebar"></section>
+        <header w3-include-html="templates/header.html" class="header"></header>
 
     <div class="summary">
         <div class="summary-head">
