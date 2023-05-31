@@ -67,6 +67,18 @@ a {
   text-decoration: none;
 }
 
+main {
+	margin-top: 86px;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding: 100px 0;
+}
+
+.contentWrapper {
+	width: 964px;
+}	
+
 /* *buttons .focusBtn = blau .outFocusBtn = transparent*/
 
 button {
