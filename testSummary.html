@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="script.js"></script>
+    <script src="js/storage.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="summary-style.css">
+    <link rel="icon" type="image/png" href="img/join-navicon.png">
+    <title>Join</title>
+
+    <!--erstellt durch Gino Emmel-->
+
+</head>
+    <body onload="init(); initAddTask()">
+        <header w3-include-html="templates/header.html>"></header>
+        <section w3-include-html="templates/sidebar.html" class="sidebar"></section>
+
+    <div class="summary">
+        <div class="summary-head">
+            <div class="tool">Kanban Project Management Tool</div>
+            <div class="summary-headline">Summary</div>
+            <div class="summary-line"></div>
+            <div class="summary-headtext">Everything in a Nutshell!</div>
+        </div>
+        <div class="summary-body">
+            <div class="summary-tasks">
+                <div class="top-tasks">
+                    <a class="top-task" href="https://www.google.de/">
+                        <div class="number1">5</div>
+                        <div class="statusText1">Task in <br> Board</div>
+                    </a>
+                    <a href="https://www.google.de/" class="top-task">
+                        <div class="number1">2</div>
+                        <div class="statusText1">Task in <br> Progress</div>
+                    </a>
+                    <a href="https://www.google.de/" class="top-task">
+                        <div class="number1">2</div>
+                        <div class="statusText1">Awaiting <br> Feedback</div>
+                    </a>
+                </div>
+                <a href="https://www.google.de/" class="middle-task">
+                    <img src="./img/Frame 59.png" alt="">
+                    <div class="middle-task-status">
+                        <div class="number2">1</div>
+                        <div class="statusText2">Urgent</div>
+                    </div>
+                    <div class="middle-task-date">
+                        <div class="date1">October 16, 2022</div>
+                        <div class="statusText2">Upcoming Deadline</div>
+                    </div>
+                </a>
+                <div class="bottom-task">
+                    <a href="https://www.google.de/" class="todo">
+                        <img src="./img/Frame 592.svg" alt="">
+                        <div class="bottom-task-text">
+                            <div class="number1">1</div>
+                            <div class="statusText1">To-do</div>
+                        </div>
+                    </a>
+                    <a href="https://www.google.de/" class="todo">
+                        <img src="./img/Frame 593.svg" alt="">
+                        <div class="bottom-task-text">
+                            <div class="number1">1</div>
+                            <div class="statusText1">Done</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="greeting">
+                <div class="greet">Good morning,</div>
+                <div class="person">Sofia Müller</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
