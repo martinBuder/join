@@ -17,6 +17,7 @@
 </head>
 
 <body onload="init(); initAddTask()">
+    <header w3-include-html="templates/header.html" class="header"></header>
     <section w3-include-html="templates/sidebar.html" class="sidebar"></section>
 
     <section id="contentAddTask">
@@ -34,10 +35,17 @@
                 </div>
 
                 <!-- Field Description -->
-                <div class="labelAndField">
+                <div>
                     <label for="taskDescription">Description</label>
-                    <textarea name="Description" id="taskDescription" cols="30" rows="3" class="inputField" placeholder="Enter a description"></textarea>
+                    <div class="inputContainerTextarea">
+                        <textarea name="Description" id="taskDescription" cols="30" rows="3" placeholder="Enter a description"></textarea>
+                    </div>
                     <span class="requiredMessage">This field is required</span>
+                </div>
+                <div class="labelAndField">
+                    
+                    
+                    
                 </div>
 
                 <!-- Field Category -->
