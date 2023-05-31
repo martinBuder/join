@@ -1,28 +1,28 @@
 /* Einbindung der Schriften */
 @font-face {
-    font-family: Inter;
-    src: url(fonts/Inter-VariableFont_slnt,wght.ttf);
+	font-family: Inter;
+	src: url(fonts/Inter-VariableFont_slnt,wght.ttf);
 }
 
 @font-face {
-    font-family: Poppins;
-    src: url(fonts/Poppins-Regular.ttf);
+	font-family: Poppins;
+	src: url(fonts/Poppins-Regular.ttf);
 }
 
 /* ENDE Einbindung der Schriften */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: all 0.2s ease-in-out;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	transition: all 0.2s ease-in-out;
 
-    font-family: Inter, Arial, Helvetica, sans-serif;
+	font-family: Inter, Arial, Helvetica, sans-serif;
 }
 
 body {
-    display: flex;
-    background-color: #F5F5F5;
+	display: flex;
+	background-color: #F5F5F5;
 }
 
 .header {
@@ -43,7 +43,8 @@ body {
 	position: relative;
 	justify-content: space-between;
 	align-items: center;
-	width: 964px; /* ! hier kommt die weite vom body hin*/
+	width: 964px;
+	/* ! hier kommt die weite vom body hin*/
 }
 
 .headerIconWrapper {
@@ -58,12 +59,12 @@ body {
 
 h1 {
 	font-size: 61px;
- line-height: 120%;
+	line-height: 120%;
 }
 
 a {
-  cursor: pointer;
-  text-decoration: none;
+	cursor: pointer;
+	text-decoration: none;
 }
 
 /* *buttons .focusBtn = blau .outFocusBtn = transparent*/
@@ -91,14 +92,15 @@ button {
 	width: 140px;
 }
 
-.focusBtn, #logOutBtn {
+.focusBtn,
+#logOutBtn {
 	background-color: #2A3647;
 	color: #fff;
 }
 
 .focusBtn:hover {
 	background-color: #29ABE2;
-	box-shadow: 0px 6px 8px 1px rgba(0,0,0,0.54);
+	box-shadow: 0px 6px 8px 1px rgba(0, 0, 0, 0.54);
 	border-color: #29ABE2;
 }
 
@@ -108,7 +110,7 @@ button {
 }
 
 .outFocusBtn:hover {
-	box-shadow: 0px 6px 8px 1px rgba(0,0,0,0.54);
+	box-shadow: 0px 6px 8px 1px rgba(0, 0, 0, 0.54);
 	border-color: #29ABE2;
 	color: #29ABE2;
 }
@@ -134,7 +136,8 @@ button {
 	flex: 1;
 }
 
-.inputContainer img, #passwordImg {
+.inputContainer img,
+#passwordImg {
 	width: 20px;
 	height: 18px;
 }
@@ -146,23 +149,23 @@ button {
 	background-position: center/center;
 }
 
-input:focus ~ #passwordImg {
+input:focus~#passwordImg {
 	background-image: url(img/closeEye.svg);
-}	
+}
 
 .inputContainer input:focus {
 	outline: none;
 }
 
 input {
-  font-size: 21px;
+	font-size: 21px;
 }
 
 input::placeholder,
 textarea::placeholder {
-  font-size: 21px;
-  color: #d1d1d1;
-  font-weight: 400;
+	font-size: 21px;
+	color: #d1d1d1;
+	font-weight: 400;
 }
 
 
@@ -182,7 +185,8 @@ textarea::placeholder {
 
 @media (max-width: 600px) {
 	.inputContainer {
-		width: 90%;;
+		width: 90%;
+		;
 	}
 
 	input {
