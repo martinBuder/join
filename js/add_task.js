@@ -27,15 +27,19 @@ let selectedCategory = '';
 /**
  * Startet das Rendern der Add-Task-Seite
  */
-function initAddTask() {
+async function initAddTask() {
+    await init();
     addCategories();
+    addContacts();
 }
 
 
 /**
  * Lädt die bereits vergebenen Kategorien und fügt diese der Auswahlliste hinzu
+ * 
+ * NOCH NICHT FERTIG - LADEN DER KATEGORIEN FEHLT NOCH
  */
-function addCategories() {
+async function addCategories() {
     // Categories laden - erfolgt später aus einer separaten Function aus
     console.log('addCategories gestartet');
     // Rendern in das Listenfeld
@@ -58,9 +62,14 @@ function addCategories() {
 /**
  * Schaltet die Sichtbarkeit der Auswahlliste ein oder aus
  */
-function toggleCatSelection() {
-    let test = document.getElementById('newCatList');
-    test.classList.toggle('d-none');
+function toggleSelection(selection) {
+    let elem;
+    if (selection == 'category') {
+        elem = document.getElementById('newCatList');
+    } else { // assigned
+        elem = document.getElementById('newAssList');
+    }
+    elem.classList.toggle('d-none');
 }
 
 
@@ -83,7 +92,7 @@ function selectCategory(item) {
         // newColour ? console.log('newColour: ' + newColour[1].replace('img/add-task/circle-', '').replace('.svg', '')) : console.log('newColour: ' + newColour);
 
         document.getElementById('newCatHeaderField').innerHTML = item.innerHTML;
-        toggleCatSelection();
+        toggleSelection('category');
     }
     let elem = document.getElementById('newCatInputField');
     if (!(elem.classList.contains('d-none'))) {
@@ -150,5 +159,5 @@ function selectNewCatInput() {
     document.getElementById('newCatHeaderField').innerHTML = `${newCat['name']}<img src="img/add-task/circle-${newCat['img']}.svg" alt="" class="h21px">`;
     addCategories();
     cancelNewCatInput();
-    toggleCatSelection();
+    toggleSelection('category');
 }

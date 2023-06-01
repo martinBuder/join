@@ -22,40 +22,53 @@
 
             <!-- Field Category -->
             <div>
-                <label for="testCategory">Category</label>
+                <label for="taskCategory">Category</label>
                 <div class="labelAndField selectCategory">
-                    <span class="selectionHeader" id="newCatHeader" onclick="toggleCatSelection('testCategory')">
+                    <span class="selectionHeader" id="newCatHeader" onclick="toggleSelection('category')">
                         <span id="newCatHeaderField">Select task category</span>
-                        <img src="img/down-arrow.svg" alt="Select" class="down-arrow">
+                        <img src="./img/down-arrow.svg" alt="Select" class="down-arrow">
                     </span>
                     <ul id="newCatList" class="d-none">
                         <!-- Generated list of entries -->
                     </ul>
                     <div class="inputContainer d-none no-border" id="newCatInput">
                         <input type="text" id="newCatInputField" placeholder="New category name">
-                        <img src="img/icon-cancel.svg" alt="Cancel" onclick="cancelNewCatInput()">
+                        <img src="./img/icon-cancel.svg" alt="Cancel" onclick="cancelNewCatInput()">
                         <span class="inputFieldIcon"></span>
-                        <img src="img/icon-check.svg" alt="Check" onclick="selectNewCatInput()">
+                        <img src="./img/icon-check.svg" alt="Check" onclick="selectNewCatInput()">
                     </div>
-
                 </div>
                 <div class="d-none" id="newCatColours">
-                    <img src="img/add-task/circle-lightblue.svg" alt="Light Blue" class="h21px" onclick="selectCatColour('lightblue')">
-                    <img src="img/add-task/circle-red.svg" alt="Red" class="h21px" onclick="selectCatColour('red')">
-                    <img src="img/add-task/circle-green.svg" alt="Green" class="h21px" onclick="selectCatColour('green')">
-                    <img src="img/add-task/circle-orange.svg" alt="Orange" class="h21px" onclick="selectCatColour('orange')">
-                    <img src="img/add-task/circle-violet.svg" alt="Violet" class="h21px" onclick="selectCatColour('violet')">
-                    <img src="img/add-task/circle-blue.svg" alt="Blue" class="h21px" onclick="selectCatColour('blue')">
+                    <img src="./img/add-task/circle-lightblue.svg" alt="Light Blue" class="h21px" onclick="selectCatColour('lightblue')">
+                    <img src="./img/add-task/circle-red.svg" alt="Red" class="h21px" onclick="selectCatColour('red')">
+                    <img src="./img/add-task/circle-green.svg" alt="Green" class="h21px" onclick="selectCatColour('green')">
+                    <img src="./img/add-task/circle-orange.svg" alt="Orange" class="h21px" onclick="selectCatColour('orange')">
+                    <img src="./img/add-task/circle-violet.svg" alt="Violet" class="h21px" onclick="selectCatColour('violet')">
+                    <img src="./img/add-task/circle-blue.svg" alt="Blue" class="h21px" onclick="selectCatColour('blue')">
                 </div>
                 <span class="requiredMessage">This field is required</span>
             </div>
 
             <!-- Field Assigned To -->
-            <div class="labelAndField">
+            <div>
                 <label for="taskAssignedTo">Assigned to</label>
-                <input type="text" name="Assigned to" id="taskAssignedTo" class="inputField"
-                    placeholder="Select contacts to assign">
+                <div class="labelAndField selectCategory">
+                    <span class="selectionHeader" id="newAssHeader" onclick="toggleSelection('assigned')">
+                        <span id="newAssHeaderField">Select contacts to assign</span>
+                        <img src="./img/down-arrow.svg" alt="Select" class="down-arrow">
+                    </span>
+                    <ul id="newAssList" class="d-none">
+                        <!-- Generated list of entries -->
+                    </ul>
+                    <div class="inputContainer d-none no-border" id="newAssInput">
+                        <input type="text" id="newAssInputField" placeholder="Contact email">
+                        <img src="./img/icon-cancel.svg" alt="Cancel" onclick="cancelNewAssInput()">
+                        <span class="inputFieldIcon"></span>
+                        <img src="./img/icon-check.svg" alt="Check" onclick="selectNewAssInput()">
+                    </div>
+                </div>
             </div>
+                
         </div> <!-- End of columnLeft -->
 
         <div class="columnRight">

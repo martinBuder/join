@@ -125,15 +125,18 @@ h1 {
     align-items: center;
 }
 #newCatHeaderField,
-#newCatList li {
-        display: flex;
+#newCatList li,
+#newAssList li {
+    display: flex;
     align-items: center;
     gap: 10px;
 }
-#newCatList {
+#newCatList,
+#newAssList {
     font-size: 21px;
 }
-#newCatList li {
+#newCatList li,
+#newAssList li {
     height: 51px;
     padding: 0px 13px 0px 13px;
     
@@ -141,11 +144,13 @@ h1 {
     cursor: pointer;
     overflow: hidden;
 }
-#newCatList li:last-child{
+#newCatList li:last-child,
+#newAssList li:last-child {
     border-bottom-left-radius:  9px;
     border-bottom-right-radius: 9px;
 } 
-#newCatList li:hover {
+#newCatList li:hover,
+#newAssList li:hover {
     background-color: #D1D1D1;
 }
 #newCatColours {
@@ -156,6 +161,13 @@ h1 {
     cursor: pointer;
     border-radius: 50%;
     box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.inviteNewContact img {
+    filter: invert(100%) brightness(0%) saturate(0%) contrast(100%);
+}
+#newAssList li {
+    display: flex;
+    justify-content: space-between;
 }
 .h21px {
     height: 21px;
@@ -181,4 +193,15 @@ h1 {
     width: 1px;
     height: 100%;
 }
+
+
+
+
+
+
+
+
+
+
+
 
