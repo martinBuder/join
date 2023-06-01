@@ -12,6 +12,7 @@ let user = {
 
 function createNewAccount() {
 	getUserInputFields();
+	getUserLogInInfo();
 	changeUserInformation();
 	setItemToRemoteStorage('user', JSON.stringify(user));
 	clearUserInformation();
@@ -32,13 +33,16 @@ function getUserInputFields() {
 	password = document.getElementById('passwordField');
 }
 
+function getUserLogInInfo() {
+	email = email.value;
+	password = password.value; 
+}
+
 function changeUserInformation() {
 	if (username !== null) {
 		user['name'] = username.value;
 	} 
 	user['email'] = email.value;
-	email = email.value;
-	password = password.value; 
 }
 
 async function setItemToRemoteStorage(key, value) {
@@ -47,12 +51,15 @@ async function setItemToRemoteStorage(key, value) {
 	.then(res => res.json());
 }
 
-async function getItemToRemoteStorage(key) {
-	const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+async function getItemFromRemoteStorage(key) {
+	const url = `${STORAGE_URL}?key=${key}&email=${email}&password=${password}&token=${STORAGE_TOKEN}`;
 	return fetch(url).then(res => res.json())
 }
 
 function logIn() {
 	getUserInputFields();
-	changeUserInformation();
+	getUserLogInInfo();
+	getItemFromRemoteStorage(user);
+
+
 }
