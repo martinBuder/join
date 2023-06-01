@@ -97,8 +97,10 @@ function selectNewAssInput() {
         name: elem.value.toLowerCase(),
         email: elem.value.toLowerCase()
     }
-    contacts.push(newContact);
-    selectedContacts.push(elem.value.toLowerCase());
+    contacts.some((e) => e.email == elem.value.toLowerCase()) ? '' : contacts.push(newContact);
+    // contacts.push(newContact);
+    selectedContacts.some((e) => e == elem.value.toLowerCase()) ? '' : selectedContacts.push(elem.value.toLowerCase());
+    // selectedContacts.push(elem.value.toLowerCase());
 
     elem.value = '';
 
