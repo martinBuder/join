@@ -1,3 +1,5 @@
+/*erstellt durch Gino Emmel*/
+
 /**
  * This function change the image by hover.
  */

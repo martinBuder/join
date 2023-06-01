@@ -9,8 +9,8 @@
 }
 
 .summary {
-    margin-left: 123px;
-    margin-top: 171px;
+    position: relative;
+    margin: 171px auto 0;
 }
 
 .summary-head {
@@ -207,73 +207,100 @@
     align-items: center;
 }
 
-@media (max-width: 430px) {
+.headerContainer {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 1090px;
+}
+
+@media (max-width: 1350px) {
+    .main-navigation {
+        width: 200px !important;
+    }
+
+    .header {
+        width: calc(100% - 200px);
+    }
+
+    .headerContainer {
+        width: 700px;
+    }
+
     .summary {
-        margin-left: 33px;
-        margin-top: 82px;
+        width: 700px;
+    }
+
+    .greeting {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .header {
+        width: 100%;
+    }
+
+    .headerContainer {
+        width: 580px;
+    }
+
+    .summary {
+        width: 580px;
+        margin: 120px auto 0;
+    }
+
+    .mobile-navigation {
+        display: block !important;
+        z-index: 1;
+    }
+
+    .main-navigation {
+        display: none !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .headerContainer {
+        width: 280px;
     }
 
     .tool {
         display: block;
-        font-size: 19px;
-        font-weight: 400;
-        margin-top: 35px;
+    }
+
+    .summary {
+        width: 280px;
     }
 
     .summary-head {
-        display: flex;
         flex-direction: column;
-        align-items: baseline;
+        align-items: flex-start;
     }
 
     .summary-headline {
-        font-size: 56px;
-        margin-top: 19px;
-    }
-
-    .summary-line {
-        position: absolute;
-        width: 90px;
-        height: 0;
-        left: 33px;
-        top: 285px;
-        margin: 0;
+        font-size: 50px;
+        margin-top: 5px;
     }
 
     .summary-headtext {
-        font-weight: 400;
-        font-size: 25px;
-        color: #2A3647;
-        margin-top: 20px;
+        font-size: 20px;
     }
 
-    .top-tasks {
-        display: flex;
-        gap: 15px;
+    .summary-line {
+        width: 59px;
+        height: 0px;
+        position: relative;
+        top: 50px;
+        left: -27px;
     }
 
-    .top-task {
-        width: 110px;
-        height: 110px;
-        border-radius: 20px;
-    }
 
-    .number1 {
-        font-size: 47px;
-    }
 
-    .statusText1 {
-        font-size: 14px;
-    }
-
-    .summary-tasks {
-        width: 360px;
-        gap: 24px;
-        margin-right: 0;
-    }
 
     .middle-task {
-        width: 360px;
+        width: 280px;
         height: 110px;
         border-radius: 20px;
     }
@@ -283,17 +310,9 @@
         height: 40px;
     }
 
-    .number2 {
-        font-size: 47px;
-    }
-
-    .statusText2 {
-        font-size: 14px;
-    }
-
     .middle-task-date {
         margin-left: 20px;
-        padding: 11.5px 0px 11.5px 20px;
+        padding: 4px 0px 4px 20px;
     }
 
     .date1 {
@@ -301,23 +320,11 @@
         padding-bottom: 8px;
     }
 
-    .bottom-task {
-        gap: 15px;
+    .statusText2 {
+        font-size: 14px;
     }
 
-    .todo {
-        width: 177.5px;
-        height: 110px;
-        gap: 10px;
-        border-radius: 20px;
-    }
-
-    .todo img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .greeting {
-        display: none;
+    .number2 {
+        font-size: 47px;
     }
 }
