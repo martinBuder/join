@@ -33,7 +33,7 @@ function returnLogInHtml() {
  	<a href="#" class="link" onclick="renderForgotPassword()">Forgot my password</a>
  </div>
  <div class="twiceBtnContainer">
-  <button class="focusBtn" type="submit">Log in</button>
+  <button class="focusBtn" type="submit" onclick="logIn()">Log in</button>
   <a href="summary.html" class="outFocusBtn guestA"><p>Guest Log in</p></a>
  </div>
 	`;
@@ -90,7 +90,7 @@ return /*html*/ `
 		<input type="email" id="email" placeholder="Email" class="inputField" required><img src="img/letter.svg" alt="" >
 	</div>
 	<div class="inputContainer">
-  <input type="password" id="passwordField" placeholder="Password" class="inputField" autocomplete="current-password" required><div id="passwordImg" onclick="showPassword()"></div>
+  <input type="password" id="passwordField" placeholder="Password" class="inputField" autocomplete="current-password" minlength="8" required><div id="passwordImg" onclick="showPassword()"></div>
  </div>
 	<!-- ! function sign up field evtl. wieder weg oder anpassen-->
 	<div class="twiceBtnContainer">
