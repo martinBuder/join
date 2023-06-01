@@ -12,7 +12,7 @@ function renderLogInWindow() {
 		renderLogInHeaderButtons();
 }
 
-/**
+/** 
  *
  * @returns to renderLogInWindow()
  */
@@ -41,6 +41,7 @@ function returnLogInHtml() {
 
 /** delete header buttons
 	* 
+	* @param {HTMLElement} indexHeaderBtn
 	*/
 function deleteHeaderBtn() {
 	indexHeaderBtn.innerHTML = ''; 
@@ -106,7 +107,7 @@ function renderForgotPassword() {
 	deleteHeaderBtn();
 }
 
-/**
+/** generate forgot Passwort Content
 	* 
 	* @returns to renderForgotPassword()
 	*/
@@ -150,7 +151,7 @@ function renderResetPassword() {
 	indexContent.innerHTML = returnResetPasswordHtml();
 }
 
-/** reset Passwort html
+/** generate reset Passwort Content
 	* 
 	* @returns to renderResetPassword()
 	*/
@@ -181,19 +182,34 @@ function returnResetPasswordHtml() {
 function createNewPassword() {
 	let newPassword = document.getElementById('passwordField');
 	let confirmPassword = document.getElementById('confirmPassword');
-
 	if(newPassword.value === confirmPassword.value) {
-		indexContent.innerHTML += returnIdentPasswordHtml()
-		setTimeout(renderLogInWindow, 1000);
+		newPasswordOk()
 	} else {
-		let requiredMessage = document.getElementById('requiredMessage');
-		requiredMessage.style="opacity: 1";
+		newPasswordFalse(confirmPassword);
 	}
 }
 
-/** message reset password
+/** render new password is ok content
 	* 
-	* @returns to createNewPassword() --> if
+	*/
+function newPasswordOk() {
+	indexContent.innerHTML += returnIdentPasswordHtml()
+	setTimeout(renderLogInWindow, 1000);
+}
+
+/**render new password isn't ok content
+	* 
+	* @param {HTMLInputElement} confirmPassword 
+	*/
+function newPasswordFalse(confirmPassword){
+	let requiredMessage = document.getElementById('requiredMessage');
+		requiredMessage.style="opacity: 1";
+		confirmPassword.parentElement.style="border-color: red"
+}
+
+/** generate reset password is ok content
+	* 
+	* @returns to newPasswordOk() 
 	*/
 function returnIdentPasswordHtml() {
 	return /*html*/`
@@ -203,9 +219,9 @@ function returnIdentPasswordHtml() {
 	`
 }
 
-/**  message a email is send
+/**  generate an email is send content
 	* 
-	* @returns
+	* @returns to resetPassword()
 	*/
 function returnSendEmailHtml() {
 	return /*html*/`
@@ -215,6 +231,9 @@ function returnSendEmailHtml() {
 	`
 }
 
+/** make that you see your password while writing
+	* 
+	*/
 function showPassword() {
 	passwordImg = document.getElementById('passwordImg');
 	passwordField = document.getElementById('passwordField');
@@ -223,9 +242,11 @@ function showPassword() {
 	passwordImg.setAttribute("onClick", "dontShowPassword();");
 	passwordField.setAttribute("type", "text")
 	passwordField.focus();
-
 }
 
+/** make that you don't see your password while writing
+	* 
+	*/
 function dontShowPassword() {
 	passwordImg.style="";
 	passwordImg.setAttribute("onClick", "showPassword();");
@@ -233,6 +254,10 @@ function dontShowPassword() {
 	passwordField.focus();
 }
 
+
+/** render the Log In window
+	* 
+	*/
 function createNewAccount() {
 	renderLogInWindow();
 }
