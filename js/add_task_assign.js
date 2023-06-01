@@ -1,20 +1,112 @@
+let contacts = [
+    {
+        name: 'Lothar Zok',
+        email: 'lothar.zok@web.de'
+    },
+    {
+        name: 'Martin Buder',
+        email: 'martinb@test.de'
+    },
+    {
+        name: 'Gino Emmel',
+        email: 'ginoe@test.com'
+    }
+];
+let selectedContacts = [];
+
+// Im Original wird die globale Variable 'user' bei einer Anmeldung mit den Daten gefüllt !!!
+let tmpUser = {
+    name: 'Lothar Zok',
+    email: 'lothar.zok@web.de'
+}
+
 function addContacts() {
-        // Contacts laden - erfolgt später aus einer separaten Function aus
-        console.log('addContacts gestartet');
-        // Rendern in das Listenfeld
-        document.getElementById('newAssList').innerHTML = '';
-        // -- Teil 1: Auswahl 'You' (Fest vorgegeben)
-        let newCode = `<li onclick="selectContact(this)"><span>You</span><img src="./img/add-task/check-button-unchecked.svg" alt="" class="h21px"></li>`;
-        // -- Teil 2: Schleife über Contacts und ergänzen von newCode
-        for (let i = 0; i < categories.length; i++) {
-            let curCat = categories[i];
-            if (curCat['img'] == '') {
-                newCode += `<li onclick="selectCategory(this)">${curCat['name']}</li>`
-            } else {
-                newCode += `<li onclick="selectCategory(this)">${curCat['name']}<img src="./img/add-task/circle-${curCat['img']}.svg" alt="" class="h21px"></li>`
-            }
+    // Contacts laden - erfolgt später aus einer separaten Function aus
+    console.log('addContacts gestartet');
+    // Rendern in das Listenfeld
+    document.getElementById('newAssList').innerHTML = '';
+    let imgId = 0;
+    // Liste Füllen: Auswahl 'You' (Fest vorgegeben) -> Liste der Kontakte -> Auswahl 'New contact' (Fest vorgegeben)
+    document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('lothar.zok@web.de', 'img-${imgId}')"><span>You</span><img src="./img/add-task/check-button-unchecked.svg" alt="" class="h21px" id="img-${imgId}"></li>`;
+    fillContactsSelection();
+    document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('inviteNewContact', '-1')" class="inviteNewContact"><span>Invite new contact</span><img src="./img/contacts-icon.svg" alt="" class="h21px"></li>`;
+}
+
+function fillContactsSelection() {
+    imgId = 1; // 0 ist reserviert für 'You'
+    for (let i = 0; i < contacts.length; i++) {
+        let curContact = contacts[i];
+        let curImage = '';
+        if (selectedContacts.indexOf(curContact.email) > -1) {
+            curImage = './img/add-task/check-button-checked.svg';
+        } else {
+            curImage = './img/add-task/check-button-unchecked.svg';
         }
-        // -- Teil 3: Auswahl 'New contact' (Fest vorgegeben)
-        newCode += `<li onclick="selectContact(this)" class="inviteNewContact"><span>Invite new contact</span><img src="./img/contacts-icon.svg" alt="" class="h21px"></li>`;
-        document.getElementById('newAssList').innerHTML = newCode;
+        // TODO: TMPUSER AUF USER ÄNDERN, SOBALD ANMELDUNG FERTIGGESTELLT IST
+        if (curContact['email'].toLowerCase() != tmpUser['email'].toLowerCase()) {
+            document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('${curContact['email']}', 'img-${imgId}')">${curContact['name']}<img src="${curImage}" alt="" class="h21px" id="img-${imgId}"></li>`
+            imgId++;
+        }
+    }
+}
+
+function selectContact(item, imgId) {
+    console.log(item);  // Item soll nur die email-Adresse sein ODER 'inviteNewContact'
+
+    if (item == 'inviteNewContact') {
+        console.log('Neuer Kontakt !!!');
+        toggleAssVisibility();
+    } else {
+        toggleContactSelection(item, imgId);
+    }
+}
+
+function toggleContactSelection(item, imgId) {
+    let elem = document.getElementById(imgId);
+    if (elem.src.includes('unchecked')) {
+        elem.src = "./img/add-task/check-button-checked.svg"
+        selectedContacts.push(item);
+    } else {
+        elem.src = "./img/add-task/check-button-unchecked.svg";
+        selectedContacts = selectedContacts.filter((tmpItem) => tmpItem != item);
+    }
+    console.log(selectedContacts);
+}
+
+function toggleAssVisibility() {
+    let fieldArray = ['newAssHeader', 'newAssList', 'newAssInput'];
+    for (let i = 0; i < fieldArray.length; i++) {
+        let element = document.getElementById(fieldArray[i]);
+        element.classList.toggle('d-none');
+    }
+}
+
+function cancelNewAssInput() {
+    document.getElementById('newCatColours').style.display = 'none';
+    toggleAssVisibility();
+}
+
+function selectNewAssInput() {
+    // TODO : PER TEXT KANN MEHRFACH DIE GLEICHE EMAIL-ADRESSE EINGEGEBEN WERDEN - VERHINDERN
+    let elem = document.getElementById('newAssInputField');
+    console.log(elem.value);
+    if (elem.value == '') return '';
+    if (!(elem.value.includes('@'))) {showMsgWrongEmailAddress(true); return('');}
+
+    let newContact = {
+        name: elem.value.toLowerCase(),
+        email: elem.value.toLowerCase()
+    }
+    contacts.push(newContact);
+    selectedContacts.push(elem.value.toLowerCase());
+
+    elem.value = '';
+
+    addContacts();
+    cancelNewAssInput();
+    showMsgWrongEmailAddress(false);
+}
+
+function showMsgWrongEmailAddress(toShow) {
+    toShow ? document.getElementById('reqAssignedTo').classList.remove('d-none') : document.getElementById('reqAssignedTo').classList.add('d-none');
 }
