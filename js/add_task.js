@@ -41,7 +41,11 @@ async function initAddTask() {
  */
 async function addCategories() {
     // Categories laden - erfolgt später aus einer separaten Function aus
-    console.log('addCategories gestartet');
+    // console.log('addCategories gestartet');
+
+    // TODO : Kategorien laden
+
+
     // Rendern in das Listenfeld
     document.getElementById('newCatList').innerHTML = '';
     // -- Teil 1: Auswahl 'New category' (Fest vorgegeben)
