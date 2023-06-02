@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="./js/user.js"></script>   
+    <script src="./js/user.js"></script>
     <script src="./script.js"></script>
 
 
@@ -20,7 +20,7 @@
 
 </head>
 
-<body onload="includeHTML(), getUser() ">
+<body onload="init(), getUser() ">
     <header w3-include-html="./templates/header.html" class="header"></header>
     <section w3-include-html="./templates/sidebar.html" class="sidebar"></section>
 
@@ -34,20 +34,20 @@
         <div class="summary-body">
             <div class="summary-tasks">
                 <div class="top-tasks">
-                    <a class="top-task" href="https://www.google.de/">
+                    <a class="top-task" href="./board.html">
                         <div class="number1">5</div>
                         <div class="statusText1">Task in <br> Board</div>
                     </a>
-                    <a href="https://www.google.de/" class="top-task">
+                    <a href="./board.html" class="top-task">
                         <div class="number1">2</div>
                         <div class="statusText1">Task in <br> Progress</div>
                     </a>
-                    <a href="https://www.google.de/" class="top-task">
+                    <a href="./board.html" class="top-task">
                         <div class="number1">2</div>
                         <div class="statusText1">Awaiting <br> Feedback</div>
                     </a>
                 </div>
-                <a href="https://www.google.de/" class="middle-task">
+                <a href="./board.html" class="middle-task">
                     <img src="./img/Frame 59.png" alt="">
                     <div class="middle-task-status">
                         <div class="number2">1</div>
@@ -59,14 +59,14 @@
                     </div>
                 </a>
                 <div class="bottom-task">
-                    <a id="cha1" href="https://www.google.de/" class="todo">
+                    <a id="cha1" href="./board.html" class="todo">
                         <img id="cha1Img" src="./img/Frame 592.svg" alt="">
                         <div class="bottom-task-text">
                             <div class="number1">1</div>
                             <div class="statusText1">To-do</div>
                         </div>
                     </a>
-                    <a id="cha2" href="https://www.google.de/" class="todo">
+                    <a id="cha2" href="./board.html" class="todo">
                         <img id="cha2Img" src="./img/Frame 593.svg" alt="">
                         <div class="bottom-task-text">
                             <div class="number1">1</div>

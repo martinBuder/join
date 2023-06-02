@@ -100,7 +100,7 @@ a:hover {
 
 .mobile-navigation {
     display: none;
-    position: absolute;
+    position: fixed;
     width: 100%;
     bottom: 0px;
 }

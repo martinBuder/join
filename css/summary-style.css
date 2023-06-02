@@ -252,7 +252,7 @@
 
     .summary {
         width: 580px;
-        margin: 120px auto 0;
+        margin: 120px auto 110px;
     }
 
     .mobile-navigation {
@@ -484,6 +484,7 @@
 
     .tool {
         display: block;
+        font-size: 16px;
     }
 
     .summary {
