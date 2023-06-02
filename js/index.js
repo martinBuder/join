@@ -28,7 +28,7 @@ function returnLogInHtml() {
  </div>
  <div class="rememberContainer">
   <div class="checkContainer">
-   <input type="checkbox" name="remember" id="remember" id="remember"> <p>Remember me</p>
+   <input type="checkbox" name="remember" id="remember"> <p>Remember me</p>
   </div>    
  	<a href="#" class="link" onclick="renderForgotPassword()">Forgot my password</a>
  </div>

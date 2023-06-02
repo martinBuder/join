@@ -124,3 +124,19 @@ function saveUser() {
 	let userAsText = JSON.stringify(user); // 
 	localStorage.setItem('user', userAsText);
 }
+
+/** series of functions to log out the user
+	* 
+	*/
+function logOut() {
+	clearUserInformation();
+	saveUser();
+	reloadSite();
+}
+
+/** reload the site
+	* 
+	*/
+function reloadSite() {
+	location.reload();
+}
