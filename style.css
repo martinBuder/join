@@ -1,244 +1,247 @@
 /* Einbindung der Schriften */
 @font-face {
-	font-family: Inter;
-	src: url(fonts/Inter-VariableFont_slnt,wght.ttf);
+    font-family: Inter;
+    src: url(fonts/Inter-VariableFont_slnt,wght.ttf);
 }
 
 @font-face {
-	font-family: Poppins;
-	src: url(fonts/Poppins-Regular.ttf);
+    font-family: Poppins;
+    src: url(fonts/Poppins-Regular.ttf);
 }
 
 /* ENDE Einbindung der Schriften */
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	transition: all 0.2s ease-in-out;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
 
-	font-family: Inter, Arial, Helvetica, sans-serif;
+    font-family: Inter, Arial, Helvetica, sans-serif;
 }
 
 body {
-	display: flex;
-	background-color: #F5F5F5;
+    display: flex;
+    background-color: #F5F5F5;
 }
 
 .header {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: calc(100% - 232px);
-	height: 90px;
-	background: #fff;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 232px);
+    height: 90px;
+    background: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .headerContainer {
-	display: flex;
-	position: relative;
-	justify-content: space-between;
-	align-items: center;
-	width: 964px;
-	/* ! hier kommt die weite vom body hin*/
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 964px;
+    /* ! hier kommt die weite vom body hin*/
 }
 
 .headerIconWrapper {
-	display: flex;
-	align-items: center;
-	gap: 36px;
+    display: flex;
+    align-items: center;
+    gap: 36px;
 }
 
 h1 {
-	font-size: 61px;
-	line-height: 120%;
+    font-size: 61px;
+    line-height: 120%;
 }
 
 h2 {
-	font-size: 27px;
-	line-height: 120%;;
+    font-size: 27px;
+    line-height: 120%;
+    ;
 }
 
 a {
-	cursor: pointer;
-	text-decoration: none;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 main {
-	margin-top: 86px;
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	padding: 100px 0;
+    margin-top: 86px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 100px 0;
 }
 
 .contentWrapper {
-	width: 964px;
-}	
+    width: 964px;
+}
 
 /* *buttons .focusBtn = blau .outFocusBtn = transparent*/
 
 button {
-	border: none;
-	padding: 15px;
-	border-radius: 8px;
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 21px;
-	line-height: 120%;
-	border: 1px solid #2A3647;
-	cursor: pointer;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+    border: 1px solid #2A3647;
+    cursor: pointer;
 }
 
 #logOutBtn {
-	position: absolute;
-	right: 0;
-	top: 72px;
-	border-radius: 16px 0 16px 16px;
-	font-weight: 100;
-	font-size: 16px;
-	width: 140px;
+    position: absolute;
+    right: 0;
+    top: 72px;
+    border-radius: 16px 0 16px 16px;
+    font-weight: 100;
+    font-size: 16px;
+    width: 140px;
 }
 
 .focusBtn,
 #logOutBtn {
-	background-color: #2A3647;
-	color: #fff;
+    background-color: #2A3647;
+    color: #fff;
 }
 
-#logOutBtn a{
-	color: #fff;
-	display: block;
-	line-height: 30px;
+#logOutBtn a {
+    color: #fff;
+    display: block;
+    line-height: 30px;
 }
 
 .focusBtn:hover {
-	background-color: #29ABE2;
-	box-shadow: 0px 6px 8px 1px rgba(0, 0, 0, 0.54);
-	border-color: #29ABE2;
+    background-color: #29ABE2;
+    box-shadow: 0px 6px 8px 1px rgba(0, 0, 0, 0.54);
+    border-color: #29ABE2;
 }
 
 .outFocusBtn {
-	background-color: transparent;
-	color: #2A3647;
+    background-color: transparent;
+    color: #2A3647;
 }
 
 .outFocusBtn:hover {
-	box-shadow: 0px 6px 8px 1px rgba(0, 0, 0, 0.54);
-	border-color: #29ABE2;
-	color: #29ABE2;
+    box-shadow: 0px 6px 8px 1px rgba(0, 0, 0, 0.54);
+    border-color: #29ABE2;
+    color: #29ABE2;
 }
 
 #userImg {
-	border-radius: 50%;
-	border: 3px solid #2A3647;
+    border-radius: 50%;
+    border: 3px solid #2A3647;
 }
 
-#logOutBtn a.smallMenu, .logo{
-	display: none;
+#logOutBtn a.smallMenu,
+.logo {
+    display: none;
 }
 
 /* *inputFelder mit bild */
 
 
 .inputContainer {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	padding: 13px 21px;
-	gap: 10px;
-	width: 422px;
-	height: 51px;
-	border: 1px solid #D1D1D1;
-	border-radius: 10px;
-	cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    gap: 10px;
+    width: 422px;
+    height: 51px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .inputContainer input {
-	border: none;
-	flex: 1;
+    border: none;
+    flex: 1;
 }
 
 .inputContainer img,
 #passwordImg {
-	width: 20px;
-	height: 18px;
+    width: 20px;
+    height: 18px;
 }
 
 #passwordImg {
-	background-image: url(img/lock.svg);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center/center;
+    background-image: url(img/lock.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center/center;
 }
 
 input:focus~#passwordImg {
-	background-image: url(img/closeEye.svg);
+    background-image: url(img/closeEye.svg);
 }
 
 .inputContainer input:focus {
-	outline: none;
+    outline: none;
 }
 
 input,
 textarea {
-	font-size: 21px;
+    font-size: 21px;
 }
 
 input::placeholder,
 textarea::placeholder {
-	font-size: 21px;
-	color: #d1d1d1;
-	font-weight: 400;
+    font-size: 21px;
+    color: #d1d1d1;
+    font-weight: 400;
 }
 
 /* * links */
 .link {
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 120%;
-	color: #29ABE2;
-	text-decoration: none;
-	cursor: pointer;
-	text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    color: #29ABE2;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
 }
 
-@media (max-width: 769px) {
-	.inputContainer {
-		width: 90%;
-		
-	}
+@media (max-width: 760px) {
+    .inputContainer {
+        width: 90%;
 
-	input {
-		min-width: 150px;
-	}
+    }
 
-	.header {
-		left: 0;
-		width: 100%;
-	}
+    input {
+        min-width: 150px;
+    }
 
-	.logo {
-		display: block;
-		width: 50px;
-	}
+    .header {
+        left: 0;
+        width: 100%;
+    }
 
-	.headerContainer {
-		width: 90%;
-	}
+    .logo {
+        display: block;
+        width: 50px;
+    }
 
-	#logOutBtn a.smallMenu {
-		display: block;
-	}
+    .headerContainer {
+        width: 90%;
+    }
 
-	.helpBtn, .header p {
-		display: none;
-	}
+    #logOutBtn a.smallMenu {
+        display: block;
+    }
+
+    .helpBtn,
+    .header p {
+        display: none;
+    }
 }

@@ -215,6 +215,10 @@
     width: 1090px;
 }
 
+.navbar-icon-mobile {
+    margin: 0 0 8px 0 !important;
+}
+
 @media (max-width: 1350px) {
     .main-navigation {
         width: 200px !important;
@@ -263,6 +267,218 @@
 
 @media (max-width: 760px) {
     .headerContainer {
+        width: 420px;
+    }
+
+    .tool {
+        display: block;
+        font-size: 19px;
+    }
+
+    .summary {
+        width: 420px;
+    }
+
+    .summary-headline {
+        font-size: 56px;
+    }
+
+    .summary-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-headtext {
+        font-size: 25px;
+    }
+
+    .summary-line {
+        width: 59px;
+        height: 0px;
+        position: relative;
+        top: 50px;
+        left: -27px;
+    }
+
+    .summary-tasks {
+        gap: 24px;
+    }
+
+    .top-task {
+        width: 123px;
+        height: 123px;
+        border-radius: 20px;
+    }
+
+    .top-tasks {
+        gap: 6%;
+    }
+
+    .number1 {
+        font-size: 56px;
+    }
+
+    .statusText1 {
+        font-size: 17px;
+    }
+
+    .middle-task {
+        width: 420px;
+        height: 123px;
+        border-radius: 20px;
+    }
+
+    .middle-task img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .middle-task-status {
+        margin-left: 12px;
+    }
+
+    .middle-task-date {
+        margin-left: 30px;
+        padding: 4px 0px 4px 30px;
+    }
+
+    .date1 {
+        font-size: 19px;
+        padding-bottom: 8px;
+    }
+
+    .statusText2 {
+        font-size: 17px;
+    }
+
+    .number2 {
+        font-size: 56px;
+    }
+
+    .bottom-task {
+        gap: 6%;
+    }
+
+    .todo {
+        width: 210px;
+        height: 123px;
+        border-radius: 20px;
+    }
+
+    .todo img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 490px) {
+    .headerContainer {
+        width: 360px;
+    }
+
+    .tool {
+        display: block;
+        font-size: 19px;
+    }
+
+    .summary {
+        width: 360px;
+    }
+
+    .summary-headline {
+        font-size: 56px;
+    }
+
+    .summary-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-headtext {
+        font-size: 25px;
+    }
+
+    .summary-line {
+        width: 59px;
+        height: 0px;
+        position: relative;
+        top: 50px;
+        left: -27px;
+    }
+
+    .summary-tasks {
+        gap: 20px;
+    }
+
+    .top-task {
+        width: 110px;
+        height: 110px;
+        border-radius: 20px;
+    }
+
+    .top-tasks {
+        gap: 4%;
+    }
+
+    .number1 {
+        font-size: 56px;
+    }
+
+    .statusText1 {
+        font-size: 14px;
+    }
+
+    .middle-task {
+        width: 360px;
+        height: 110px;
+        border-radius: 20px;
+    }
+
+    .middle-task img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .middle-task-status {
+        margin-left: 12px;
+    }
+
+    .middle-task-date {
+        margin-left: 20px;
+        padding: 4px 0px 4px 20px;
+    }
+
+    .date1 {
+        font-size: 19px;
+        padding-bottom: 8px;
+    }
+
+    .statusText2 {
+        font-size: 17px;
+    }
+
+    .number2 {
+        font-size: 56px;
+    }
+
+    .bottom-task {
+        gap: 4%;
+    }
+
+    .todo {
+        width: 180px;
+        height: 110px;
+        border-radius: 20px;
+    }
+
+    .todo img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 450px) {
+    .headerContainer {
         width: 280px;
     }
 
@@ -296,12 +512,31 @@
         left: -27px;
     }
 
+    .summary-tasks {
+        gap: 20px;
+    }
 
+    .top-task {
+        width: 90px;
+        height: 90px;
+        border-radius: 20px;
+    }
 
+    .top-tasks {
+        gap: 1%;
+    }
+
+    .number1 {
+        font-size: 40px;
+    }
+
+    .statusText1 {
+        font-size: 12px;
+    }
 
     .middle-task {
         width: 280px;
-        height: 110px;
+        height: 90px;
         border-radius: 20px;
     }
 
@@ -310,21 +545,42 @@
         height: 40px;
     }
 
+    .middle-task-status {
+        margin-left: 12px;
+    }
+
     .middle-task-date {
-        margin-left: 20px;
-        padding: 4px 0px 4px 20px;
+        margin-left: 12px;
+        padding: 4px 0px 4px 12px;
     }
 
     .date1 {
-        font-size: 16px;
+        font-size: 14px;
         padding-bottom: 8px;
     }
 
     .statusText2 {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .number2 {
-        font-size: 47px;
+        font-size: 40px;
     }
+
+    .bottom-task {
+        gap: 1%;
+    }
+
+    .todo {
+        width: 140px;
+        height: 90px;
+        border-radius: 20px;
+    }
+
+    .todo img {
+        width: 40px;
+        height: 40px;
+    }
+
+
 }
