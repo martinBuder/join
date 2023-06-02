@@ -33,7 +33,7 @@ function returnLogInHtml() {
  	<a href="#" class="link" onclick="renderForgotPassword()">Forgot my password</a>
  </div>
  <div class="twiceBtnContainer">
-  <button class="focusBtn" type="submit" onclick="logIn()">Log in</button>
+  <button class="focusBtn" type="submit" onclick="logIn(); return false;">Log in</button>
   <a href="summary.html" class="outFocusBtn guestA"><p>Guest Log in</p></a>
  </div>
 	`;

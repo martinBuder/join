@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="./js/user.js"></script>   
     <script src="./script.js"></script>
-    <script src="./js/storage.js"></script>
 
 
 
@@ -20,7 +20,7 @@
 
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(), getUser() ">
     <header w3-include-html="./templates/header.html" class="header"></header>
     <section w3-include-html="./templates/sidebar.html" class="sidebar"></section>
 
