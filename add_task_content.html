@@ -84,10 +84,15 @@
             </div>
 
             <!-- Field Prio -->
-            <label for="taskPrio" class="taskLabel">Prio</label>
-            <div class="inputContainer taskFieldContainer">
-                <input type="text" name="Prio" id="taskPrio" placeholder="Enter a title">
+            <div>
+                <label for="taskPrio" class="taskLabel">Prio</label>
+                <div class="taskPriority">
+                    <button class="btnPriority" id="btnPrioUrgent" onclick="selectPriority('Urgent')">Urgent<img src="./img/add-task/prio-urgent.svg" id="imgUrgent" alt="Priority Urgent"></button>
+                    <button class="btnPriority" id="btnPrioMedium" onclick="selectPriority('Medium')">Medium<img src="./img/add-task/prio-medium.svg" id="imgMedium" alt="Priority Medium"></button>
+                    <button class="btnPriority" id="btnPrioLow" onclick="selectPriority('Low')">Low<img src="./img/add-task/prio-low.svg" id="imgLow" alt="Priority Low"></button>
+                </div>
             </div>
+            
 
             <!-- Field Subtasks -->
             <div class="labelAndField">
@@ -98,4 +103,10 @@
 
     </div> <!-- End of columnRight -->
 
+    <div class="taskButtons">
+        <!-- Buttons -->
+        <button class="btnTaskAdded d-none" id="btnTaskAdded">Task added to board <img src="./img/board-icon.svg" alt="Added to board"></button>
+        <button class="btnTaskFinish btnTaskClear taskButtonsFlex">Clear <img src="./img/icon-cancel.svg" alt="Cancel"></button>
+        <button class="btnTaskFinish btnTaskCreate taskButtonsFlex" onclick="createTask()">Create Task <img src="./img/icon-check.svg" alt="Create Task"></button>
+    </div>
 </section>

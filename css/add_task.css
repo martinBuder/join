@@ -196,11 +196,115 @@ h1 {
 
 
 
+.taskPriority {
+    height: 61px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btnPriority {
+    width: 136px;
+    height: 51px;
+    background-color: white;
+    border-color: #D1D1D1;
+    font-size: 21px;
+    font-weight: 400;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.btnPriority:hover {
+    height: 61px;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.btnSelectedUrgent {
+    border-color: rgb(255, 61, 0);
+    background-color: rgb(255, 61, 0);
+}
+.btnSelectedMedium {
+    border-color: rgb(255, 168, 0);
+    background-color: rgb(255, 168, 0);
+}
+.btnSelectedLow {
+    border-color: rgb(122, 226, 41);
+    background-color: rgb(122, 226, 41);
+}
+.btnSelected {
+    color: white;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.btnSelectedImage {
+    filter: invert(0%) brightness(1000%) saturate(0%) contrast(106%);
+}
 
 
 
 
+.taskButtons {
+    height: 65px;
+    margin: 43px 0 40px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 25px;
+}
+.taskButtonsFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+.btnTaskAdded {
+    height: 65px;
+    border-color: rgb(42, 54, 71);
+    background-color: rgb(42, 54, 71);
+    color: white;
+}
+.btnTaskFinish {
+    height: 55px;
+}
+.btnTaskClear {
+    font-weight: 400;
+    border: 1px solid rgb(42, 54, 71);
+}
+.btnTaskClear:hover {
+    color: rgb(41, 171, 226);
+    border-color: rgb(41, 171, 226);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.btnTaskCreate {
+    background-color: rgb(42, 54, 71);
+    border-color:rgb(42, 54, 71);
+    color: white;
+}
+.btnTaskCreate:hover {
+    background-color: rgb(41, 171, 226);
+    border-color: rgb(41, 171, 226);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.btnTaskAdded img,
+.btnTaskCreate img {
+    filter: invert(100%) brightness(1000%) saturate(0%) contrast(100%);
+}
 
+.w3-animate-bottom {
+    position:relative;
+    animation:animatebottom 0.4s
+}
+@keyframes animatebottom {
+    from{
+        bottom:-300px;
+        opacity:0
+    } 
+    to{
+        bottom:0;
+        opacity:1
+    }
+}
 
 
 
