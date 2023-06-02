@@ -93,11 +93,28 @@
                 </div>
             </div>
             
-
             <!-- Field Subtasks -->
-            <div class="labelAndField">
+            <div>
                 <label for="taskSubtasks">Subtasks</label>
-                <input type="text" name="Subtasks" id="taskSubtasks" class="inputField" placeholder="Enter a title">
+                <div class="labelAndField selectCategory">
+                    <span class="selectionHeader" id="newSubtaskHeader" onclick="selectSubtask()">
+                        <span id="newSubtaskHeaderField" class="likeInput">Add new subtask</span>
+                        <img src="./img/add-task/icon-plus-sign.svg" alt="Select">
+                    </span>
+                    <div class="inputContainer d-none no-border" id="newSubtaskInput">
+                        <input type="text" id="newSubtaskInputField" placeholder="Add new subtask">
+                        <img src="./img/icon-cancel.svg" alt="Cancel" onclick="cancelNewSubtaskInput()">
+                        <span class="inputFieldIcon"></span>
+                        <img src="./img/icon-check.svg" alt="Check" onclick="selectNewSubtaskInput()">
+                    </div>
+                </div>
+                <ul id="newSubtaskList">
+                    <!-- Generated list of entries -->
+                    <li><img src="./img/add-task/check-rectangle-unchecked.svg" alt="">Subtask 1</li>
+                </ul>
+                <img src="./img/add-task/check-rectangle-unchecked.svg" alt="">
+                <img src="./img/add-task/check-rectangle-checked.svg" alt="">
+                
             </div>
         </div>
 
@@ -106,7 +123,7 @@
     <div class="taskButtons">
         <!-- Buttons -->
         <button class="btnTaskAdded d-none" id="btnTaskAdded">Task added to board <img src="./img/board-icon.svg" alt="Added to board"></button>
-        <button class="btnTaskFinish btnTaskClear taskButtonsFlex">Clear <img src="./img/icon-cancel.svg" alt="Cancel"></button>
+        <button class="btnTaskFinish btnTaskClear taskButtonsFlex" onclick="clearTask()">Clear <img src="./img/icon-cancel.svg" alt="Cancel"></button>
         <button class="btnTaskFinish btnTaskCreate taskButtonsFlex" onclick="createTask()">Create Task <img src="./img/icon-check.svg" alt="Create Task"></button>
     </div>
 </section>

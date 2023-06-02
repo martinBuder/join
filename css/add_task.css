@@ -243,6 +243,25 @@ h1 {
 
 
 
+.likeInput {
+    font-size: 21px;
+	color: #d1d1d1;
+    border: none;
+	flex: 1;
+}
+
+
+#newSubtaskList li {
+    font-size: 16px;
+    list-style-type: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
 
 .taskButtons {
     height: 65px;
@@ -275,6 +294,9 @@ h1 {
     color: rgb(41, 171, 226);
     border-color: rgb(41, 171, 226);
     box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.btnTaskClear:hover img {
+    filter: invert(65%) sepia(14%) saturate(6020%) hue-rotate(165deg) brightness(94%) contrast(89%);
 }
 .btnTaskCreate {
     background-color: rgb(42, 54, 71);

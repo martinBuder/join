@@ -69,10 +69,15 @@ async function addCategories() {
  */
 function toggleSelection(selection) {
     let elem;
-    if (selection == 'category') {
-        elem = document.getElementById('newCatList');
-    } else { // assigned
-        elem = document.getElementById('newAssList');
+    switch (selection) {
+        case 'category':
+            elem = document.getElementById('newCatList');
+            break;
+        case 'assigned':
+            elem = document.getElementById('newAssList');
+            break;
+        default:
+            break;
     }
     elem.classList.toggle('d-none');
 }
@@ -186,6 +191,15 @@ function selectPriority(prio) {
     console.log('Prio: ' + selectedPriority);
 }
 
+
+function clearTask() {
+    selectedColour = '';
+    selectedCategory = '';
+    selectedPriority = '';
+    selectedContacts = [];
+
+    initAddTask();
+}
 
 async function createTask() {
     // Save task data

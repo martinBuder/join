@@ -13,6 +13,7 @@ let contacts = [
     }
 ];
 let selectedContacts = [];
+let maxImgId = 0;
 
 // Im Original wird die globale Variable 'user' bei einer Anmeldung mit den Daten gefüllt !!!
 let tmpUser = {
@@ -46,6 +47,7 @@ function fillContactsSelection() {
         if (curContact['email'].toLowerCase() != tmpUser['email'].toLowerCase()) {
             document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('${curContact['email']}', 'img-${imgId}')">${curContact['name']}<img src="${curImage}" alt="" class="h21px" id="img-${imgId}"></li>`
             imgId++;
+            maxImgId = imgId;
         }
     }
 }
@@ -54,7 +56,6 @@ function selectContact(item, imgId) {
     console.log(item);  // Item soll nur die email-Adresse sein ODER 'inviteNewContact'
 
     if (item == 'inviteNewContact') {
-        console.log('Neuer Kontakt !!!');
         toggleAssVisibility();
     } else {
         toggleContactSelection(item, imgId);
@@ -87,9 +88,7 @@ function cancelNewAssInput() {
 }
 
 function selectNewAssInput() {
-    // TODO : PER TEXT KANN MEHRFACH DIE GLEICHE EMAIL-ADRESSE EINGEGEBEN WERDEN - VERHINDERN
     let elem = document.getElementById('newAssInputField');
-    console.log(elem.value);
     if (elem.value == '') return '';
     if (!(elem.value.includes('@'))) {showMsgWrongEmailAddress(true); return('');}
 
@@ -98,10 +97,7 @@ function selectNewAssInput() {
         email: elem.value.toLowerCase()
     }
     contacts.some((e) => e.email == elem.value.toLowerCase()) ? '' : contacts.push(newContact);
-    // contacts.push(newContact);
     selectedContacts.some((e) => e == elem.value.toLowerCase()) ? '' : selectedContacts.push(elem.value.toLowerCase());
-    // selectedContacts.push(elem.value.toLowerCase());
-
     elem.value = '';
 
     addContacts();
@@ -111,4 +107,11 @@ function selectNewAssInput() {
 
 function showMsgWrongEmailAddress(toShow) {
     toShow ? document.getElementById('reqAssignedTo').classList.remove('d-none') : document.getElementById('reqAssignedTo').classList.add('d-none');
+}
+
+function clearAssignments() {
+    for (let i = 0; i < maxImgId; i++) {
+        document.getElementById('img-' + i).src = './img/add-task/check-button-unchecked.svg';
+    }
+    selectedContacts = [];
 }
