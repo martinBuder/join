@@ -18,13 +18,14 @@
     <title>Join</title>
 </head>
 
-<body onload="initAddTask()">
+<body onload="initAddTask(), getUser()">
     <header w3-include-html="templates/header.html" class="header"></header>
     <section w3-include-html="templates/sidebar.html" class="sidebar"></section>
 
     <section w3-include-html="add_task_content.html"></section>
     
     <script src="./script.js"></script>
+    <script src="./js/user.js"></script> 
     <script src="./js/add_task_assign.js"></script>
     <script src="./js/add_task.js"></script>
 
