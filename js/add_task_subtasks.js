@@ -17,7 +17,7 @@ function toggleSubtaskCheck(subtask, imgId) {
     let elem = document.getElementById(imgId);
     if (elem.src.includes('unchecked')) {
         elem.src = "./img/add-task/check-rectangle-checked.svg"
-        // selectedContacts.push(item);
+        selectedSubtasks.push(subtask);
     } else {
         elem.src = "./img/add-task/check-rectangle-unchecked.svg";
         removeSubtask(subtask);
@@ -43,10 +43,10 @@ function selectNewSubtaskInput() {
 
 function removeSubtask(subtask) {
     selectedSubtasks = selectedSubtasks.filter((tmpItem) => tmpItem != subtask);
-    let id = `check-${subtask.replace(' ', '_')}`;
-    let img = document.getElementById(id);
-    let li = img.parentNode;
-    li.parentNode.removeChild(li);
+    // let id = `check-${subtask.replace(' ', '_')}`;
+    // let img = document.getElementById(id);
+    // let li = img.parentNode;
+    // li.parentNode.removeChild(li);
 
     console.log(selectedSubtasks);
 }
