@@ -8,11 +8,14 @@
     <script src="script.js"></script>
     <script src="js/storage.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/contacts.css">
 
     <link rel="icon" type="image/png" href="img/join-navicon.png">
     <title>Join</title>
 </head>
-<body>
+<body onload="includeHTML(), getUser()">
+    <header w3-include-html="templates/header.html" class="header"></header>
+    <section w3-include-html="templates/sidebar.html" class="sidebar"></section>
     
 </body>
 </html>

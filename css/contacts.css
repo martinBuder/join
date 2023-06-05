@@ -1,0 +1,14 @@
+/* Markierung der Auswahl in der Sidebar */
+#navLinkContacts,
+#navLinkContactskM {
+    background-color: #091931;
+}
+#navLinkContacts span,
+#navLinkContactsM span {
+    color: white;
+}
+#navLinkContacts img,
+#navLinkContactsM img {
+    filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
+}
+/* ENDE Markierung der Auswahl in der Sidebar */
