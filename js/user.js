@@ -117,6 +117,10 @@ function goToSummary() {
 	window.location.href = './summary.html';
 }
 
+function goToIndex() {
+	window.location.href = './index.html';
+}
+
 /** save user array in localstorage so the user is on every site (because reload)
 	* 
 	*/
@@ -131,7 +135,7 @@ function saveUser() {
 function logOut() {
 	clearUserInformation();
 	saveUser();
-	reloadSite();
+	goToIndex();
 }
 
 /** reload the site
