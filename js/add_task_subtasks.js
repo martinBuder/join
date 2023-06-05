@@ -22,6 +22,7 @@ function toggleSubtaskVisibility() {
     for (let i = 0; i < fieldArray.length; i++) {
         let element = document.getElementById(fieldArray[i]);
         element.classList.toggle('d-none');
+        fieldArray[i] == 'newSubtaskHeader' ? element.classList.toggle('selectionHeaderFlex') : '';
     }
 }
 
@@ -59,10 +60,11 @@ function cancelNewSubtaskInput() {
  * Fügt der Liste der Subtasks den Eintrag hinzu und wählt ihn gleich aus (setztt den Haken).
  */
 function selectNewSubtaskInput() {
-    let elem = document.getElementById('newSubtaskInputField');
-    selectedSubtasks.push(elem.value);
+    let newValue = document.getElementById('newSubtaskInputField').value.replace("'", "´");
+
+    selectedSubtasks.push(newValue);
     let newCode = `
-        <li onclick="toggleSubtaskCheck('${elem.value}', 'check-${elem.value.replace(' ', '_')}')"><img src="./img/add-task/check-rectangle-checked.svg" alt="" id="check-${elem.value.replace(' ', '_')}">${elem.value}</li>
+        <li onclick="toggleSubtaskCheck('${newValue}', 'check-${newValue.replace(' ', '_')}')"><img src="./img/add-task/check-rectangle-checked.svg" alt="" id="check-${newValue.replace(' ', '_')}">${newValue}</li>
     `;
     document.getElementById('newSubtaskList').innerHTML += newCode;
     console.log(selectedSubtasks);

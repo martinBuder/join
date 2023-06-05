@@ -4,27 +4,26 @@
         <div class="columnLeft">
 
             <!-- Field Title -->
-            <div>
+            <div class="mb-14">
                 <label for="taskTitle" class="taskLabel">Title</label>
-                <div class="inputContainer taskFieldContainer">
+                <div class="inputContainer taskFieldContainer mt-8">
                     <input type="text" name="Title" id="taskTitle" placeholder="Enter a title">
                 </div>
-                <span class="requiredMessage">This field is required</span>
+                <span class="requiredMessage mt-8 opacity-0" id="reqTitle">This field is required</span>
             </div>
 
             <!-- Field Description -->
-            <div class="fieldContainer labelAndField">
+            <div class="fieldContainer labelAndField mb-14">
                 <label for="taskDescription">Description</label>
-                <textarea name="Description" id="taskDescription" cols="30" rows="3" class="inputField"
-                    placeholder="Enter a description"></textarea>
-                <span class="requiredMessage">This field is required</span>
+                <textarea name="Description" id="taskDescription" cols="30" rows="3" class="inputField mt-8" placeholder="Enter a description"></textarea>
+                <span class="requiredMessage mt-8 opacity-0" id="reqDescription">This field is required</span>
             </div>
 
             <!-- Field Category -->
-            <div>
+            <div class="mb-14">
                 <label for="taskCategory">Category</label>
-                <div class="labelAndField selectCategory">
-                    <span class="selectionHeader" id="newCatHeader" onclick="toggleSelection('category')">
+                <div class="labelAndField selectCategory mt-8">
+                    <span class="selectionHeader selectionHeaderFlex" id="newCatHeader" onclick="toggleSelection('category')">
                         <span id="newCatHeaderField">Select task category</span>
                         <img src="./img/down-arrow.svg" alt="Select" class="down-arrow">
                     </span>
@@ -46,14 +45,14 @@
                     <img src="./img/add-task/circle-violet.svg" alt="Violet" class="h21px" onclick="selectCatColour('violet')">
                     <img src="./img/add-task/circle-blue.svg" alt="Blue" class="h21px" onclick="selectCatColour('blue')">
                 </div>
-                <span class="requiredMessage">This field is required</span>
+                <span class="requiredMessage mt-8 opacity-0" id="reqCategory">This field is required</span>
             </div>
 
             <!-- Field Assigned To -->
             <div>
                 <label for="taskAssignedTo">Assigned to</label>
-                <div class="labelAndField selectCategory">
-                    <span class="selectionHeader" id="newAssHeader" onclick="toggleSelection('assigned')">
+                <div class="labelAndField selectCategory mt-8">
+                    <span class="selectionHeader selectionHeaderFlex" id="newAssHeader" onclick="toggleSelection('assigned')">
                         <span id="newAssHeaderField">Select contacts to assign</span>
                         <img src="./img/down-arrow.svg" alt="Select" class="down-arrow">
                     </span>
@@ -67,7 +66,7 @@
                         <img src="./img/icon-check.svg" alt="Check" onclick="selectNewAssInput()">
                     </div>
                 </div>
-                <span class="requiredMessage d-none" id="reqAssignedTo">Please insert a valid email address</span>
+                <span class="requiredMessage mt-8 d-none" id="reqAssignedTo">Please insert a valid email address</span>
             </div>
                 
         </div> <!-- End of columnLeft -->
@@ -75,16 +74,16 @@
         <div class="columnRight">
 
             <!-- Field Due Date -->
-            <div>
+            <div class="mb-14">
                 <label for="taskDueDate" class="taskLabel">Due date</label>
-                <div class="inputContainer taskFieldContainer">
+                <div class="inputContainer taskFieldContainer mt-8">
                     <input type="date" name="due date" id="taskDueDate" placeholder="dd/mm/yyyy">
                 </div>
-                <span class="requiredMessage">This field is required</span>
+                <span class="requiredMessage mt-8 opacity-0" id="reqDueDate">This field is required</span>
             </div>
 
             <!-- Field Prio -->
-            <div>
+            <div class="mb-38">
                 <label for="taskPrio" class="taskLabel">Prio</label>
                 <div class="taskPriority">
                     <button class="btnPriority" id="btnPrioUrgent" onclick="selectPriority('Urgent')">Urgent<img src="./img/add-task/prio-urgent.svg" id="imgUrgent" alt="Priority Urgent"></button>
@@ -96,8 +95,8 @@
             <!-- Field Subtasks -->
             <div>
                 <label for="taskSubtasks">Subtasks</label>
-                <div class="labelAndField selectCategory">
-                    <span class="selectionHeader" id="newSubtaskHeader" onclick="selectSubtask()">
+                <div class="labelAndField selectCategory mt-8">
+                    <span class="selectionHeader selectionHeaderFlex" id="newSubtaskHeader" onclick="selectSubtask()">
                         <span id="newSubtaskHeaderField" class="likeInput">Add new subtask</span>
                         <img src="./img/add-task/icon-plus-sign.svg" alt="Select">
                     </span>
