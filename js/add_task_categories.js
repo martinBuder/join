@@ -1,8 +1,33 @@
 /**
- * Lädt die bereits vergebenen Kategorien und fügt diese der Auswahlliste hinzu
+ * Globale Variable categories: Enthält die bereits vergebenen Kategorien
  */
-function addCategories() {
+let categories = [
+    {
+        name: 'Sales',
+        img: 'lightviolet'
+    },
+    {
+        name: 'Backoffice',
+        img: 'turqoise'
+    },
+    {
+        name: 'Testkategorie',
+        img: ''
+    }
+];
+
+
+/**
+ * Lädt die bereits vergebenen Kategorien und fügt diese der Auswahlliste hinzu
+ * 
+ * NOCH NICHT FERTIG - LADEN DER KATEGORIEN FEHLT NOCH
+ */
+async function addCategories() {
     // Categories laden - erfolgt später aus einer separaten Function aus
+    // console.log('addCategories gestartet');
+
+    // TODO : Kategorien laden
+
 
     // Rendern in das Listenfeld
     document.getElementById('newCatList').innerHTML = '';
@@ -18,15 +43,6 @@ function addCategories() {
         }
     }
     document.getElementById('newCatList').innerHTML = newCode;
-}
-
-
-/**
- * Schaltet die Sichtbarkeit der Auswahlliste ein oder aus
- */
-function toggleCatSelection() {
-    let test = document.getElementById('newCatList');
-    test.classList.toggle('d-none');
 }
 
 
@@ -49,7 +65,7 @@ function selectCategory(item) {
         // newColour ? console.log('newColour: ' + newColour[1].replace('img/add-task/circle-', '').replace('.svg', '')) : console.log('newColour: ' + newColour);
 
         document.getElementById('newCatHeaderField').innerHTML = item.innerHTML;
-        toggleCatSelection();
+        toggleSelection('category');
     }
     let elem = document.getElementById('newCatInputField');
     if (!(elem.classList.contains('d-none'))) {
@@ -116,5 +132,5 @@ function selectNewCatInput() {
     document.getElementById('newCatHeaderField').innerHTML = `${newCat['name']}<img src="img/add-task/circle-${newCat['img']}.svg" alt="" class="h21px">`;
     addCategories();
     cancelNewCatInput();
-    toggleCatSelection();
+    toggleSelection('category');
 }

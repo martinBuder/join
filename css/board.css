@@ -1,0 +1,14 @@
+/* Markierung der Auswahl in der Sidebar */
+#navLinkBoard,
+#navLinkBoardM {
+    background-color: #091931;
+}
+#navLinkBoard span,
+#navLinkBoardM span {
+    color: white;
+}
+#navLinkBoard img,
+#navLinkBoard img {
+    filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
+}
+/* ENDE Markierung der Auswahl in der Sidebar */

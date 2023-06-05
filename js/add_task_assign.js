@@ -15,11 +15,6 @@ let contacts = [
 let selectedContacts = [];
 let maxImgId = 0;
 
-// Im Original wird die globale Variable 'user' bei einer Anmeldung mit den Daten gefüllt !!!
-let tmpUser = {
-    name: 'Lothar Zok',
-    email: 'lothar.zok@web.de'
-}
 
 function addContacts() {
     // Contacts laden - erfolgt später aus einer separaten Function aus
@@ -43,8 +38,8 @@ function fillContactsSelection() {
         } else {
             curImage = './img/add-task/check-button-unchecked.svg';
         }
-        // TODO: TMPUSER AUF USER ÄNDERN, SOBALD ANMELDUNG FERTIGGESTELLT IST
-        if (curContact['email'].toLowerCase() != tmpUser['email'].toLowerCase()) {
+        
+        if (curContact['email'].toLowerCase() != user['email'].toLowerCase()) {
             document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('${curContact['email']}', 'img-${imgId}')">${curContact['name']}<img src="${curImage}" alt="" class="h21px" id="img-${imgId}"></li>`
             imgId++;
             maxImgId = imgId;
