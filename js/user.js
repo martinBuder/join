@@ -1,16 +1,14 @@
 const STORAGE_TOKEN = 'IOGUK15K4QR1H4E6Z8358ZBEFF667PNX3VN95C2Z';
 const STORAGE_URL   = 'https://remote-storage.developerakademie.org/item';
 
+let users = [];
 
 let user = {
 	name: '',
 	email: '',
+	password: '',
 	img: '',
 }
-
-let username;
-let email;
-let password;
 
 /** get the user-Array from localStorage so that user is on every site 
 	* 
@@ -20,20 +18,36 @@ function getUser() {
 	if (userAsText) {
 		user = JSON.parse(userAsText);;
 	}
-	email = localStorage.getItem('email');
-	password = localStorage.getItem('password');
 }
 
 /** a serie of functions to create a account
 	* 
 	*/
-function createNewAccount() {
+async function createNewAccount() {
 	getUserInputFields();
 	getUserLogInInfo();
 	changeUserInformation();
-	setItemToRemoteStorage('user', user);
+	await saveInRemoteStorage()
 	clearUserInformation();
 	renderLogInWindow();
+}
+
+/** get usersArray -> fill userArray --> save userArray  at remote Storage ---> clear userArray on 
+	* 
+	*/
+async function saveInRemoteStorage() {
+	await getItemFromRemoteStorage('users');
+	findUsersArray();
+	pushUserToUsers();
+	await	setItemToRemoteStorage('users', users);
+	clearUsers();
+}
+
+/** push user to users
+	* 
+ */
+function pushUserToUsers() {
+	users.push(user);
 }
 
 /** clear user information in array and clear email and password
@@ -43,8 +57,6 @@ function clearUserInformation() {
 	Object.keys(user).forEach(key => {
   user[key] = '';
 	});
-	email = '';
-	password = '';
 }
 
 /** get the inputfields 
@@ -70,7 +82,9 @@ function getUserLogInInfo() {
 function changeUserInformation() {
 	user['name'] = username.value;
 	user['email'] = email;
-}
+	user['password'] = password;
+	// user['img'] = `${username.value.lowercase().replace(' ', '')}` + `.png`
+};
 
 /**save the user inforamtion in remot storage with token, email and password
 	* 
@@ -79,7 +93,7 @@ function changeUserInformation() {
 	* @returns 
 	*/
 async function setItemToRemoteStorage(key, value) {
-	const payload = {key, value, email, password, token: STORAGE_TOKEN,} //old is key: key & value: value
+	const payload = {key, value, token: STORAGE_TOKEN,} //old is key: key & value: value
 	return fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload) }).then(res => res.json());
 }
 
@@ -88,10 +102,21 @@ async function setItemToRemoteStorage(key, value) {
 	* @param {JsonWebKey} key 
 	*/
 async function getItemFromRemoteStorage(key) {
-	const url = `${STORAGE_URL}?key=${key}&email=${email}&password=${password}&token=${STORAGE_TOKEN}`;
+	const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
 	let res = await fetch(url).catch(errorFunction);
-	userData = await res.json();
-	user = JSON.parse(userData.data.value.replace(/'/g, '"'));
+	users = await res.json();
+}
+
+function findUsersArray() {
+	if (users && users.data && users.data.value) {
+			users = JSON.parse(users.data.value.replace(/'/g, '"'));
+	} else {
+			user = null;
+	}
+}
+
+function findCorrectUser() {
+	user = users.find(u => u.password === password && u.email === email);
 }
 
 /** tell that something goes wrong by fetch
@@ -107,9 +132,16 @@ function errorFunction() {
 async function logIn() {
 	getUserInputFields();
 	getUserLogInInfo();
-	await getItemFromRemoteStorage('user');
+	await getItemFromRemoteStorage('users');
+	findUsersArray();
+	findCorrectUser()
 	saveUser();
+	clearUsers();
 	goToSummary();
+}
+
+function clearUsers() {
+	users = [];
 }
 
 /** go to summery site
@@ -129,8 +161,6 @@ function goToIndex() {
 function saveUser() {
 	let userAsText = JSON.stringify(user); // 
 	localStorage.setItem('user', userAsText);
-	localStorage.setItem('email', email);
-	localStorage.setItem('password', password);
 }
 
 /** series of functions to log out the user
@@ -143,16 +173,5 @@ function logOut() {
 }
 
 
-
-
-// function createNewPassword ()
-//   .then(response => {
-//     // Hier kannst du den Rückgabewert der Anfrage verarbeiten
-//     console.log(response);
-//   })
-//   .catch(error => {
-//     // Hier kannst du Fehler bei der Anfragebehandlung handhaben
-//     console.error(error);
-//   });
 
 
