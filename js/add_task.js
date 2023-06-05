@@ -87,6 +87,8 @@ async function createTask() {
     await getTasksArray();
     console.log(tasksArray);
     return('');
+    tasksArray.push(newJSON);
+    await setItem('tasks', tasksArray);
 
     // TODO - SPEICHERN DES NEUEN TASKS
 
@@ -102,15 +104,11 @@ async function createTask() {
 
 
 async function getTasksArray() {
-    // try {
-    //     let tmpArray = await getItem('tasks');
-    //     tasksArray = tmpArray;
-    //     return true;
-    // } catch (error) {
-    //     tasksArray = [];
-    //     return false;
-    // }
-    tasksArray = await getItem('tasks');
+    let tmpArray = await getItem('tasks');
+    console.log(tmpArray.data.value);
+    tmpArray = await JSON.parse(tmpArray.data.value.replace(/'/g, '"'));
+    console.log(tmpArray);
+    Array.isArray(tmpArray) ? tasksArray = tmpArray : tasksArray =[];
 }
 
 
