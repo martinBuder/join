@@ -4,6 +4,7 @@
 let selectedColour = '';
 let selectedCategory = '';
 let selectedPriority = '';
+let tasksArray = [];
 
 
 /**
@@ -78,12 +79,14 @@ async function createTask() {
 
     // JSON for the new task
     let newJSON = getNewJSON();
-    console.log('storage token: ' + STORAGE_TOKEN);
-    console.log('storage url:   ' + STORAGE_URL);
+    // console.log('storage token: ' + STORAGE_TOKEN);
+    // console.log('storage url:   ' + STORAGE_URL);
     console.log(newJSON);
-    return('');
-
+    
     // Saving the new task to disk
+    await getTasksArray();
+    console.log(tasksArray);
+    return('');
 
     // TODO - SPEICHERN DES NEUEN TASKS
 
@@ -95,6 +98,19 @@ async function createTask() {
     // Wait a second, then open board
     await new Promise(wait => setTimeout(wait, 1000));
     window.open('./board.html', '_self');
+}
+
+
+async function getTasksArray() {
+    // try {
+    //     let tmpArray = await getItem('tasks');
+    //     tasksArray = tmpArray;
+    //     return true;
+    // } catch (error) {
+    //     tasksArray = [];
+    //     return false;
+    // }
+    tasksArray = await getItem('tasks');
 }
 
 
