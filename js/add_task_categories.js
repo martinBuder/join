@@ -47,22 +47,17 @@ async function addCategories() {
 
 
 /**
- * Reagiert auf die Auswahl einer Kategorie aus der Liste der Kategorien und reagierte je nach Auswahl
+ * Reagiert auf die Auswahl einer Kategorie aus der Liste der Kategorien
  * 
  * @param {object} item - Das ausgewählte Item aus der Liste der Kategorien
  */
 function selectCategory(item) {
-    // console.log('selected category: ' + item.innerHTML);
     if (item.textContent == 'New category') {
         activateNewCatInput();
     } else {
-        let newCat = item.textContent;
         let newColour = item.innerHTML.match(/<img.*?src=['"](.*?)['"]/);  // Resultat: img/add-task/circle-<Farbe>.svg
-        // console.log(n_newColour);
-        selectedCategory = newCat;
+        selectedCategory = item.textContent;
         selectedColour = newColour ? newColour[1].replace('img/add-task/circle-', '').replace('.svg', '') : '';
-        // console.log('newCat: ' + newCat);
-        // newColour ? console.log('newColour: ' + newColour[1].replace('img/add-task/circle-', '').replace('.svg', '')) : console.log('newColour: ' + newColour);
 
         document.getElementById('newCatHeaderField').innerHTML = item.innerHTML;
         toggleSelection('category');
@@ -111,6 +106,7 @@ function toggleNewCatVisibility() {
     for (let i = 0; i < fieldArray.length; i++) {
         let element = document.getElementById(fieldArray[i]);
         element.classList.toggle('d-none');
+        fieldArray[i] == 'newCatHeader' ? element.classList.toggle('selectionHeaderFlex') : '';
     }
 }
 

@@ -74,6 +74,7 @@ function toggleAssVisibility() {
     for (let i = 0; i < fieldArray.length; i++) {
         let element = document.getElementById(fieldArray[i]);
         element.classList.toggle('d-none');
+        fieldArray[i] == 'newAssHeader' ? element.classList.toggle('selectionHeaderFlex') : '';
     }
 }
 
