@@ -3,14 +3,17 @@
 #navLinkSummaryM {
     background-color: #091931;
 }
+
 #navLinkSummary span,
 #navLinkSummaryM span {
     color: white;
 }
+
 #navLinkSummary img,
 #navLinkSummaryM img {
     filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
 }
+
 /* ENDE Markierung der Auswahl in der Sidebar */
 
 /*erstellt durch Gino Emmel*/
@@ -26,6 +29,7 @@
 .summary {
     position: relative;
     margin: 171px auto 0;
+    width: 1000px;
 }
 
 .summary-head {
@@ -227,7 +231,7 @@
     position: relative;
     justify-content: space-between;
     align-items: center;
-    width: 1090px;
+    width: 1000px;
 }
 
 .navbar-icon-mobile {
