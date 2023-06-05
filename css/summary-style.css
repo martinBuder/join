@@ -1,3 +1,18 @@
+/* Markierung der Auswahl in der Sidebar */
+#navLinkSummary,
+#navLinkSummaryM {
+    background-color: #091931;
+}
+#navLinkSummary span,
+#navLinkSummaryM span {
+    color: white;
+}
+#navLinkSummary img,
+#navLinkSummaryM img {
+    filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
+}
+/* ENDE Markierung der Auswahl in der Sidebar */
+
 /*erstellt durch Gino Emmel*/
 
 * {

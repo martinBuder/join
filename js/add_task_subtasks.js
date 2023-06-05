@@ -1,10 +1,22 @@
+/**
+ * Globaler Array zum Sammeln der eingetragenen Subtasks
+ */
 let selectedSubtasks = [];
 
+
+/**
+ * Reagiert auf den Klick auf das Subtask-Feld.
+ * Startet den Wechsel der Sichtbarkeite des Eingabefeldes und setzt den Fokus dorthin.
+ */
 function selectSubtask() {
     toggleSubtaskVisibility();
     document.getElementById('newSubtaskInputField').focus();
 }
 
+
+/**
+ * Wechselt die Sichtbarkeit des Subtask Anzeige- und Auswahlfeldes
+ */
 function toggleSubtaskVisibility() {
     let fieldArray = ['newSubtaskHeader', 'newSubtaskInput'];
     for (let i = 0; i < fieldArray.length; i++) {
@@ -13,6 +25,13 @@ function toggleSubtaskVisibility() {
     }
 }
 
+
+/**
+ * Wechselt bei einem Subtask die Graphik, ob der Subtask ausgewählt ist, oder nicht.
+ * 
+ * @param {string} subtask - Name des Subtask
+ * @param {string} imgId - ID der Zeile, in der der Subtask steht
+ */
 function toggleSubtaskCheck(subtask, imgId) {
     let elem = document.getElementById(imgId);
     if (elem.src.includes('unchecked')) {
@@ -25,11 +44,20 @@ function toggleSubtaskCheck(subtask, imgId) {
     console.log(selectedSubtasks);
 }
 
+
+/**
+ * Reagiert auf den Abbruch der Eingabe eines Subtasks.
+ */
 function cancelNewSubtaskInput() {
     toggleSubtaskVisibility();
     document.getElementById('newSubtaskInputField').value = '';
 }
 
+
+/**
+ * Reagiert auf die Bestätigung der Eingabe eines Subtasks.
+ * Fügt der Liste der Subtasks den Eintrag hinzu und wählt ihn gleich aus (setztt den Haken).
+ */
 function selectNewSubtaskInput() {
     let elem = document.getElementById('newSubtaskInputField');
     selectedSubtasks.push(elem.value);
@@ -41,6 +69,12 @@ function selectNewSubtaskInput() {
     cancelNewSubtaskInput();
 }
 
+
+/**
+ * Entfernt den gewählten Subtask aus der Liste der Subtasks.
+ * 
+ * @param {string} subtask - Name des Subtask
+ */
 function removeSubtask(subtask) {
     selectedSubtasks = selectedSubtasks.filter((tmpItem) => tmpItem != subtask);
     // let id = `check-${subtask.replace(' ', '_')}`;
