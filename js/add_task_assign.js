@@ -1,3 +1,6 @@
+/**
+ * Global Variables
+ */
 let contacts = [
     {
         name: 'Lothar Zok',
@@ -16,20 +19,27 @@ let selectedContacts = [];
 let maxImgId = 0;
 
 
+/**
+ * Fills the list of choices of the 'Assign To' field.
+ */
 function addContacts() {
-    // Contacts laden - erfolgt später aus einer separaten Function aus
+    // Load contacts - erfolgt später aus einer separaten Function aus
     console.log('addContacts gestartet');
-    // Rendern in das Listenfeld
+    // Render into the list box
     document.getElementById('newAssList').innerHTML = '';
     let imgId = 0;
-    // Liste Füllen: Auswahl 'You' (Fest vorgegeben) -> Liste der Kontakte -> Auswahl 'New contact' (Fest vorgegeben)
+    // Fill list: Selection 'You' (fixed) -> List of contacts -> Selection 'New contact' (fixed)
     document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('lothar.zok@web.de', 'img-${imgId}')"><span>You</span><img src="./img/add-task/check-button-unchecked.svg" alt="" class="h21px" id="img-${imgId}"></li>`;
     fillContactsSelection();
     document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('inviteNewContact', '-1')" class="inviteNewContact"><span>Invite new contact</span><img src="./img/contacts-icon.svg" alt="" class="h21px"></li>`;
 }
 
+
+/**
+ * Subsection of filling the list of choices. Here for the list of contacts.
+ */
 function fillContactsSelection() {
-    imgId = 1; // 0 ist reserviert für 'You'
+    imgId = 1; // 0 is reserved for 'You'
     for (let i = 0; i < contacts.length; i++) {
         let curContact = contacts[i];
         let curImage = '';
@@ -47,8 +57,15 @@ function fillContactsSelection() {
     }
 }
 
+
+/**
+ * Reacts to the selection of an entry in the list of contacts. Triggers corresponding further functions.
+ * 
+ * @param {string} item - The item that was chosen
+ * @param {string} imgId - The ID of the item that was selected. Corresponds to the ID in the html file.
+ */
 function selectContact(item, imgId) {
-    console.log(item);  // Item soll nur die email-Adresse sein ODER 'inviteNewContact'
+    console.log(item);  // Item should only be the email address OR 'inviteNewContact'.
 
     if (item == 'inviteNewContact') {
         toggleAssVisibility();
@@ -57,6 +74,13 @@ function selectContact(item, imgId) {
     }
 }
 
+
+/**
+ * Toggles the highlighting whether an entry in the list has been selected or not.
+ * 
+ * @param {string} item - The item that was chosen.
+ * @param {string} imgId - The ID of the item that was selected. Corresponds to the ID in the html file.
+ */
 function toggleContactSelection(item, imgId) {
     let elem = document.getElementById(imgId);
     if (elem.src.includes('unchecked')) {
@@ -69,6 +93,10 @@ function toggleContactSelection(item, imgId) {
     console.log(selectedContacts);
 }
 
+
+/**
+ * Changes the visibility when the selection 'inviteNewContact' is chosen.
+ */
 function toggleAssVisibility() {
     let fieldArray = ['newAssHeader', 'newAssList', 'newAssInput'];
     for (let i = 0; i < fieldArray.length; i++) {
@@ -78,11 +106,20 @@ function toggleAssVisibility() {
     }
 }
 
+
+/**
+ * Cancellation of the entry of a new contact.
+ */
 function cancelNewAssInput() {
-    document.getElementById('newCatColours').style.display = 'none';
     toggleAssVisibility();
 }
 
+
+/**
+ * Processes the entry of a new contact. Triggers corresponding further functions.
+ * 
+ * @returns Cancel if the entry does not correspond to the format for email addresses.
+ */
 function selectNewAssInput() {
     let elem = document.getElementById('newAssInputField');
     if (elem.value == '') return '';
@@ -101,10 +138,20 @@ function selectNewAssInput() {
     showMsgWrongEmailAddress(false);
 }
 
+
+/**
+ * Shows or hides the error message for an incorrect email address.
+ * 
+ * @param {boolean} toShow - true or false
+ */
 function showMsgWrongEmailAddress(toShow) {
     toShow ? document.getElementById('reqAssignedTo').classList.remove('d-none') : document.getElementById('reqAssignedTo').classList.add('d-none');
 }
 
+
+/**
+ * Deselects all entries in the list of contacts. Used when deleting all information previously entered in the form.
+ */
 function clearAssignments() {
     for (let i = 0; i < maxImgId; i++) {
         document.getElementById('img-' + i).src = './img/add-task/check-button-unchecked.svg';

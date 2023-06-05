@@ -1,5 +1,5 @@
 /**
- * Globale Variablen
+ * Global Variables
  */
 let selectedColour = '';
 let selectedCategory = '';
@@ -7,7 +7,7 @@ let selectedPriority = '';
 
 
 /**
- * Startet das Rendern der Add-Task-Seite
+ * Starts the rendering of the Add Task page.
  */
 async function initAddTask() {
     await init();
@@ -17,7 +17,7 @@ async function initAddTask() {
 
 
 /**
- * Schaltet die Sichtbarkeit der Auswahlliste ein oder aus
+ * Switches the visibility of the selection list on or off.
  */
 function toggleSelection(selection) {
     switch (selection) {
@@ -34,9 +34,9 @@ function toggleSelection(selection) {
 
 
 /**
- * Reagiert auf die Auswahl einer Priorität und schaltet die entsprechende Markierung ein oder aus.
+ * Responds to the selection of a priority and switches the corresponding marker on or off.
  * 
- * @param {string} prio - Die ausgewählte Priorität
+ * @param {string} prio - The selected priority.
  */
 function selectPriority(prio) {
     selectedPriority == prio ? selectedPriority = '' : selectedPriority = prio;
@@ -57,7 +57,7 @@ function selectPriority(prio) {
 
 
 /**
- * Löscht alle eingetragenen Daten aus dem Formular, schließt es jedoch nicht.
+ * Deletes all entered data from the form, but does not close it.
  */
 function clearTask() {
     selectedColour = '';
@@ -70,39 +70,42 @@ function clearTask() {
 
 
 /**
- * Startet die Speicherung des eingetragenen Task mit allen Subtasks, wenn diese vorhanden sind.
+ * Starts the saving of the entered task with all subtasks, if they exist.
  */
 async function createTask() {
     if (!(checkRequiredFields())) 
             return('');
 
-    // JSON für den Task zusammenstellen
+    // JSON for the new task
     let newJSON = getNewJSON();
+    console.log('storage token: ' + STORAGE_TOKEN);
+    console.log('storage url:   ' + STORAGE_URL);
     console.log(newJSON);
     return('');
 
-    // Speichern des neuen Tasks
+    // Saving the new task to disk
 
-    // TODO - SPEICHERN DER DATEN INKL. STATUS
+    // TODO - SPEICHERN DES NEUEN TASKS
+
     // Start animation of confirmation button
     let btn = document.getElementById('btnTaskAdded');
     btn.classList.add('taskButtonsFlex');
     btn.classList.remove('d-none');
     btn.classList.add('w3-animate-bottom');
-    // Wait a second, than open board
+    // Wait a second, then open board
     await new Promise(wait => setTimeout(wait, 1000));
     window.open('./board.html', '_self');
 }
 
 
 /**
- * Prüft die Angaben auf Vollständigkeit und blendet ggf. entsprechende Fehlermeldungen unter den betroffenen Feldern ein.
+ * Checks the information for completeness and, if necessary, displays corresponding error messages under the fields concerned.
  * 
- * @returns {boolean} true or false - Die Prüfung war in Ordnung (true) oder es fehlen noch Angaben (false)
+ * @returns {boolean} true or false - The check was OK (true) or information is still missing (false).
  */
 function checkRequiredFields() {
     let retValue = true;
-    // Title, Description und Due Date
+    // Title, Description and Due Date
     let fldArray = ['taskTitle', 'taskDescription', 'taskDueDate'];
     let msgArray = ['reqTitle', 'reqDescription', 'reqDueDate'];
     for (let i = 0; i < fldArray.length; i++) {
@@ -113,12 +116,18 @@ function checkRequiredFields() {
             document.getElementById(msgArray[i]).classList.add('opacity-0');
         }
     }
-    // Category wird gesondert behandelt
+    // Category and Priority are treated separately
     if (selectedCategory == '') {
         document.getElementById('reqCategory').classList.remove('opacity-0');
         retValue = false;
     } else {
         document.getElementById('reqCategory').classList.add('opacity-0');
+    }
+    if (selectedPriority == '') {
+        document.getElementById('reqPriority').classList.remove('opacity-0');
+        retValue = false;
+    } else {
+        document.getElementById('reqPriority').classList.add('opacity-0');
     }
 
     return retValue;
@@ -126,9 +135,9 @@ function checkRequiredFields() {
 
 
 /**
- * Stellt ein JSON-Objekt mit den Daten des eingegebenen Tasks zusammen und gibt dieses zurück
+ * Assembles and returns a JSON object with the data of the entered task.
  * 
- * @returns {json} Das JSON-Object mit den Daten des eingegebenen Tasks
+ * @returns {json} The JSON object with the data of the entered task.
  */
 function getNewJSON() {
     let subtasksArray = [];

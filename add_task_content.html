@@ -21,7 +21,7 @@
 
             <!-- Field Category -->
             <div class="mb-14">
-                <label for="taskCategory">Category</label>
+                <label>Category</label>
                 <div class="labelAndField selectCategory mt-8">
                     <span class="selectionHeader selectionHeaderFlex" id="newCatHeader" onclick="toggleSelection('category')">
                         <span id="newCatHeaderField">Select task category</span>
@@ -50,7 +50,7 @@
 
             <!-- Field Assigned To -->
             <div>
-                <label for="taskAssignedTo">Assigned to</label>
+                <label>Assigned to</label>
                 <div class="labelAndField selectCategory mt-8">
                     <span class="selectionHeader selectionHeaderFlex" id="newAssHeader" onclick="toggleSelection('assigned')">
                         <span id="newAssHeaderField">Select contacts to assign</span>
@@ -83,18 +83,19 @@
             </div>
 
             <!-- Field Prio -->
-            <div class="mb-38">
-                <label for="taskPrio" class="taskLabel">Prio</label>
+            <div class="mb-14">
+                <label class="taskLabel">Prio</label>
                 <div class="taskPriority">
                     <button class="btnPriority" id="btnPrioUrgent" onclick="selectPriority('Urgent')">Urgent<img src="./img/add-task/prio-urgent.svg" id="imgUrgent" alt="Priority Urgent"></button>
                     <button class="btnPriority" id="btnPrioMedium" onclick="selectPriority('Medium')">Medium<img src="./img/add-task/prio-medium.svg" id="imgMedium" alt="Priority Medium"></button>
                     <button class="btnPriority" id="btnPrioLow" onclick="selectPriority('Low')">Low<img src="./img/add-task/prio-low.svg" id="imgLow" alt="Priority Low"></button>
                 </div>
+                <span class="requiredMessage mt-8 opacity-0" id="reqPriority">This field is required</span>
             </div>
             
             <!-- Field Subtasks -->
             <div>
-                <label for="taskSubtasks">Subtasks</label>
+                <label>Subtasks</label>
                 <div class="labelAndField selectCategory mt-8">
                     <span class="selectionHeader selectionHeaderFlex" id="newSubtaskHeader" onclick="selectSubtask()">
                         <span id="newSubtaskHeaderField" class="likeInput">Add new subtask</span>

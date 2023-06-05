@@ -1,5 +1,5 @@
 /**
- * Globale Variable categories: Enthält die bereits vergebenen Kategorien
+ * Global variable categories: Contains the already assigned categories
  */
 let categories = [
     {
@@ -18,7 +18,7 @@ let categories = [
 
 
 /**
- * Lädt die bereits vergebenen Kategorien und fügt diese der Auswahlliste hinzu
+ * Loads the already assigned categories and adds them to the selection list
  * 
  * NOCH NICHT FERTIG - LADEN DER KATEGORIEN FEHLT NOCH
  */
@@ -29,11 +29,11 @@ async function addCategories() {
     // TODO : Kategorien laden
 
 
-    // Rendern in das Listenfeld
+    // Render into the list box
     document.getElementById('newCatList').innerHTML = '';
-    // -- Teil 1: Auswahl 'New category' (Fest vorgegeben)
+    // -- Part 1: Selection 'New category' (fixed)
     let newCode = `<li onclick="selectCategory(this)">New category</li>`;
-    // -- Teil 2: Schleife über categories und ergänzen von newCode
+    // -- Part 2: Loop over categories and add newCode
     for (let i = 0; i < categories.length; i++) {
         let curCat = categories[i];
         if (curCat['img'] == '') {
@@ -47,7 +47,7 @@ async function addCategories() {
 
 
 /**
- * Reagiert auf die Auswahl einer Kategorie aus der Liste der Kategorien
+ * Responds to the selection of a category from the list of categories
  * 
  * @param {object} item - Das ausgewählte Item aus der Liste der Kategorien
  */
@@ -55,7 +55,7 @@ function selectCategory(item) {
     if (item.textContent == 'New category') {
         activateNewCatInput();
     } else {
-        let newColour = item.innerHTML.match(/<img.*?src=['"](.*?)['"]/);  // Resultat: img/add-task/circle-<Farbe>.svg
+        let newColour = item.innerHTML.match(/<img.*?src=['"](.*?)['"]/);  // Result: img/add-task/circle-<Farbe>.svg
         selectedCategory = item.textContent;
         selectedColour = newColour ? newColour[1].replace('img/add-task/circle-', '').replace('.svg', '') : '';
 
@@ -70,9 +70,9 @@ function selectCategory(item) {
 
 
 /**
- * Setzt die globale Variable selectedColour je nach ausgewählter Farbe
+ * Sets the global variable selectedColour depending on the selected colour
  * 
- * @param {string} srcColour - Die ausgewählte Farbe zur Kategorie
+ * @param {string} srcColour - The selected colour for the category
  */
 function selectCatColour(srcColour) {
     console.log('selected colour: ' + srcColour);
@@ -81,7 +81,7 @@ function selectCatColour(srcColour) {
 
 
 /**
- * Aktiviert die Eingabe einer neuen Kategorie
+ * Activates the input of a new category
  */
 function activateNewCatInput() {
     document.getElementById('newCatColours').style.display = 'flex';
@@ -90,7 +90,7 @@ function activateNewCatInput() {
 
 
 /**
- * Deaktiviert die Eingabe einer neuen Kategorie
+ * Deactivates the input of a new category
  */
 function cancelNewCatInput() {
     document.getElementById('newCatColours').style.display = 'none';
@@ -99,7 +99,7 @@ function cancelNewCatInput() {
 
 
 /**
- * Wechselt die Sichtbarkeit einiger Elemente, wenn 'new Category' ausgewählt wurde
+ * Changes the visibility of some elements when 'new Category' is selected.
  */
 function toggleNewCatVisibility() {
     let fieldArray = ['newCatHeader', 'newCatList', 'newCatInput'];
@@ -112,7 +112,7 @@ function toggleNewCatVisibility() {
 
 
 /**
- * Reagiert auf die Eingabe einer neuen Kategorie
+ * Reacts to the entry of a new category.
  */
 function selectNewCatInput() {
     let elem = document.getElementById('newCatInputField');

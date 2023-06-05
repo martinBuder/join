@@ -1,12 +1,12 @@
 /**
- * Globaler Array zum Sammeln der eingetragenen Subtasks
+ * Global array for collecting the registered subtasks
  */
 let selectedSubtasks = [];
 
 
 /**
- * Reagiert auf den Klick auf das Subtask-Feld.
- * Startet den Wechsel der Sichtbarkeite des Eingabefeldes und setzt den Fokus dorthin.
+ * Responds to the click on the subtask field.
+ * Starts the change of the visibility of the input field and sets the focus there.
  */
 function selectSubtask() {
     toggleSubtaskVisibility();
@@ -15,7 +15,7 @@ function selectSubtask() {
 
 
 /**
- * Wechselt die Sichtbarkeit des Subtask Anzeige- und Auswahlfeldes
+ * Switches the visibility of the subtask display and selection field
  */
 function toggleSubtaskVisibility() {
     let fieldArray = ['newSubtaskHeader', 'newSubtaskInput'];
@@ -28,10 +28,10 @@ function toggleSubtaskVisibility() {
 
 
 /**
- * Wechselt bei einem Subtask die Graphik, ob der Subtask ausgewählt ist, oder nicht.
+ * Changes the graphic for a subtask, whether the subtask is selected or not.
  * 
- * @param {string} subtask - Name des Subtask
- * @param {string} imgId - ID der Zeile, in der der Subtask steht
+ * @param {string} subtask - Name of the subtask
+ * @param {string} imgId - ID of the line in which the subtask is located
  */
 function toggleSubtaskCheck(subtask, imgId) {
     let elem = document.getElementById(imgId);
@@ -47,7 +47,7 @@ function toggleSubtaskCheck(subtask, imgId) {
 
 
 /**
- * Reagiert auf den Abbruch der Eingabe eines Subtasks.
+ * Reacts to the abortion of the input of a subtask.
  */
 function cancelNewSubtaskInput() {
     toggleSubtaskVisibility();
@@ -56,8 +56,8 @@ function cancelNewSubtaskInput() {
 
 
 /**
- * Reagiert auf die Bestätigung der Eingabe eines Subtasks.
- * Fügt der Liste der Subtasks den Eintrag hinzu und wählt ihn gleich aus (setztt den Haken).
+ * Responds to the confirmation of the input of a subtask.
+ * Adds the entry to the list of subtasks and selects it immediately (sets the check mark).
  */
 function selectNewSubtaskInput() {
     let newValue = document.getElementById('newSubtaskInputField').value.replace("'", "´");
@@ -73,7 +73,7 @@ function selectNewSubtaskInput() {
 
 
 /**
- * Entfernt den gewählten Subtask aus der Liste der Subtasks.
+ * Removes the selected subtask from the list of subtasks.
  * 
  * @param {string} subtask - Name des Subtask
  */
