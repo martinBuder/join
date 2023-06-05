@@ -185,28 +185,6 @@ function returnResetPasswordHtml() {
 	`
 }
 
-/** compare the passworts and show next step
-	* 
-	*/
-function createNewPassword() {
-	let newPassword = document.getElementById('passwordField');
-	let confirmPassword = document.getElementById('confirmPassword');
-	if(newPassword.value === confirmPassword.value) {
-		newPasswordOk()
-	} else {
-		newPasswordFalse(confirmPassword);
-	}
-}
-
-/** render new password is ok content
-	* 
-	*/
-async function newPasswordOk() {
-	await findAccount();
-	alert(`${res}`)
-	indexContent.innerHTML += returnIdentPasswordHtml()
-	setTimeout(renderLogInWindow, 1000);
-}
 
 /**render new password isn't ok content
 	* 

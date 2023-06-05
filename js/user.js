@@ -32,16 +32,21 @@ async function createNewAccount() {
 	renderLogInWindow();
 }
 
+
+
 /** get usersArray -> fill userArray --> save userArray  at remote Storage ---> clear userArray on 
 	* 
 	*/
 async function saveInRemoteStorage() {
 	await getItemFromRemoteStorage('users');
 	findUsersArray();
+	deleteUserfromUsers();
 	pushUserToUsers();
 	await	setItemToRemoteStorage('users', users);
 	clearUsers();
 }
+
+
 
 /** push user to users
 	* 
@@ -140,6 +145,19 @@ async function logIn() {
 	goToSummary();
 }
 
+/** find sam e user in array and delete 
+	* 
+	*/
+function deleteUserfromUsers() {
+	let index = users.findIndex(u => u.email === email);
+	if (index !== -1) {
+			users.splice(index, 1);
+	}
+}
+
+/** clearUsers Array
+	* 
+	*/
 function clearUsers() {
 	users = [];
 }
@@ -172,6 +190,54 @@ function logOut() {
 	goToIndex();
 }
 
+
+/** compare the passworts and show next step
+	* 
+	*/
+	function createNewPassword() {
+		let newPassword = document.getElementById('passwordField');
+		let confirmPassword = document.getElementById('confirmPassword');
+		if(newPassword.value === confirmPassword.value) {
+			newPasswordOk(newPassword)
+		} else {
+			newPasswordFalse(confirmPassword);
+		}
+	}
+	
+	/** create a new password and go to log In Window
+		* password is just given to passwordUser() 
+		* 
+		* @param {string} newPassword 
+		*/
+	async function newPasswordOk(newPassword) {
+		await saveNewPassword(newPassword);
+		
+		indexContent.innerHTML += returnIdentPasswordHtml()
+		setTimeout(renderLogInWindow, 1000);
+	}
+	
+	/** a serie of functions to change password
+		* 
+		* @param {string} newPassword 
+		*/
+	async function saveNewPassword(newPassword) {
+		await getItemFromRemoteStorage('users');
+		findUsersArray();
+		await findPasswordUser(newPassword);
+		deleteUserfromUsers();
+		pushUserToUsers();
+		await	setItemToRemoteStorage('users', users);
+		clearUsers();
+	}
+	
+	/** function found the userAccount who forgot the passwort and change with the new one
+		* 
+		* @param {string} newPassword 
+		*/
+	async function findPasswordUser(newPassword) {
+		user = users.find(u => u.email === email);
+		user['password'] = newPassword.value;
+	}
 
 
 
