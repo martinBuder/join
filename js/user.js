@@ -20,6 +20,8 @@ function getUser() {
 	if (userAsText) {
 		user = JSON.parse(userAsText);;
 	}
+	email = localStorage.getItem('email');
+	password = localStorage.getItem('password');
 }
 
 /** a serie of functions to create a account
@@ -127,6 +129,8 @@ function goToIndex() {
 function saveUser() {
 	let userAsText = JSON.stringify(user); // 
 	localStorage.setItem('user', userAsText);
+	localStorage.setItem('email', email);
+	localStorage.setItem('password', password);
 }
 
 /** series of functions to log out the user
@@ -138,9 +142,17 @@ function logOut() {
 	goToIndex();
 }
 
-/** reload the site
-	* 
-	*/
-function reloadSite() {
-	location.reload();
-}
+
+
+
+// function createNewPassword ()
+//   .then(response => {
+//     // Hier kannst du den Rückgabewert der Anfrage verarbeiten
+//     console.log(response);
+//   })
+//   .catch(error => {
+//     // Hier kannst du Fehler bei der Anfragebehandlung handhaben
+//     console.error(error);
+//   });
+
+

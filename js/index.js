@@ -138,6 +138,7 @@ function returnForgotPasswordHtml() {
 	* 
 	*/
 function resetPassword() {
+	email = document.getElementById('email').value;
 	indexContent.innerHTML += returnSendEmailHtml();
 	setTimeout(resetPasswordStepTwo, 200)
 }
@@ -200,7 +201,9 @@ function createNewPassword() {
 /** render new password is ok content
 	* 
 	*/
-function newPasswordOk() {
+async function newPasswordOk() {
+	await findAccount();
+	alert(`${res}`)
 	indexContent.innerHTML += returnIdentPasswordHtml()
 	setTimeout(renderLogInWindow, 1000);
 }
@@ -269,5 +272,6 @@ function dontShowPassword() {
 function createNewAccount() {
 	renderLogInWindow();
 }
+
 
 
