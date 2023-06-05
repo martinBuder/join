@@ -27,3 +27,15 @@ document.getElementById('cha2').onmouseover = function changeImg1() {
 document.getElementById('cha2').onmouseout = function changeImgBack1() {
     document.getElementById('cha2Img').src = './img/Frame 593.svg'
 }
+
+let userAsText = localStorage.getItem('user');
+let userName = '';
+if (userAsText) {
+    userName = JSON.parse(userAsText);
+}
+document.getElementById('person').innerHTML = '';
+if (userName == 0) {
+    document.getElementById('person').innerHTML += `Guest`;
+} else {
+    document.getElementById('person').innerHTML += userName['name'];
+}
