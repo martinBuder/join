@@ -17,8 +17,9 @@ function getUser() {
 	let userAsText = localStorage.getItem('user');
 	if (userAsText) {
 		user = JSON.parse(userAsText);
+		changeUserImg();
 	}
-	changeUserImg();
+	
 }
 
 /** change user img
@@ -26,7 +27,7 @@ function getUser() {
 	*/
 function changeUserImg() {
 	let userImg = document.getElementById('userImg')
-	if (`./img/${username.value.toLowerCase().replace(' ', '')}.png` == 0) {
+	if (`./img/${username.value.toLowerCase().replace(' ', '')}.png`) {
 		userImg.src = './img/person.png'
 	} else {
 	userImg.src= user['img']
