@@ -75,7 +75,7 @@ function clearTask() {
  */
 async function createTask() {
     if (!(checkRequiredFields())) 
-            return('');
+        return('');
 
     // JSON for the new task
     let newJSON = getNewJSON();
@@ -105,10 +105,10 @@ async function createTask() {
 
 async function getTasksArray() {
     let tmpArray = await getItem('tasks');
-    console.log(tmpArray.data.value);
+    // console.log(tmpArray.data.value);
     tmpArray = await JSON.parse(tmpArray.data.value.replace(/'/g, '"'));
-    console.log(tmpArray);
-    Array.isArray(tmpArray) ? tasksArray = tmpArray : tasksArray =[];
+    // console.log(tmpArray);
+    Array.isArray(tmpArray) ? tasksArray = tmpArray : tasksArray = [];
 }
 
 
@@ -120,29 +120,16 @@ async function getTasksArray() {
 function checkRequiredFields() {
     let retValue = true;
     // Title, Description and Due Date
-    let fldArray = ['taskTitle', 'taskDescription', 'taskDueDate'];
-    let msgArray = ['reqTitle', 'reqDescription', 'reqDueDate'];
-    for (let i = 0; i < fldArray.length; i++) {
-        if (document.getElementById(fldArray[i]).value == ''){
-            document.getElementById(msgArray[i]).classList.remove('opacity-0');
-            retValue = false;
-        } else {
-            document.getElementById(msgArray[i]).classList.add('opacity-0');
-        }
+    let fldArray = ['taskTitle', 'reqTitle', 'taskDescription', 'reqDescription', 'taskDueDate', 'reqDueDate'];
+    for (let i = 0; i < fldArray.length; i += 2) {
+        (document.getElementById(fldArray[i]).value == '') ? document.getElementById(fldArray[i+1]).classList.remove('opacity-0') : document.getElementById(fldArray[i+1]).classList.add('opacity-0');
+        (document.getElementById(fldArray[i]).value == '') ? retValue = false : '';
     }
     // Category and Priority are treated separately
-    if (selectedCategory == '') {
-        document.getElementById('reqCategory').classList.remove('opacity-0');
-        retValue = false;
-    } else {
-        document.getElementById('reqCategory').classList.add('opacity-0');
-    }
-    if (selectedPriority == '') {
-        document.getElementById('reqPriority').classList.remove('opacity-0');
-        retValue = false;
-    } else {
-        document.getElementById('reqPriority').classList.add('opacity-0');
-    }
+    (selectedCategory == '') ? document.getElementById('reqCategory').classList.remove('opacity-0') : document.getElementById('reqCategory').classList.add('opacity-0');
+    (selectedCategory == '') ? retValue = false : '';
+    (selectedPriority == '') ? document.getElementById('reqPriority').classList.remove('opacity-0') : document.getElementById('reqPriority').classList.add('opacity-0');
+    (selectedPriority == '') ? retValue = false : '';
 
     return retValue;
 }
