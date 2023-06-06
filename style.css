@@ -48,6 +48,12 @@
 .bgColor0000FF {
     background-color: #0000FF;
 }
+.bgColorBlack {
+    background-color: black;
+}
+.bgColorGrey {
+    background-color: grey;
+}
 
 
 * {

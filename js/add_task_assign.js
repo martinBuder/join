@@ -4,15 +4,18 @@
 let contacts = [
     {
         name: 'Lothar Zok',
-        email: 'lothar.zok@web.de'
+        email: 'lothar.zok@web.de',
+        color: 'bgColor019623'
     },
     {
         name: 'Martin Buder',
-        email: 'martinb@test.de'
+        email: 'martinb@test.de',
+        color: 'bgColor0190E0'
     },
     {
         name: 'Gino Emmel',
-        email: 'ginoe@test.com'
+        email: 'ginoe@test.com',
+        color: 'bgColorAF1616'
     }
 ];
 let selectedContacts = [];
@@ -24,18 +27,18 @@ let maxImgId = 0;
  */
 function addContacts() {
     // TEST
-    for (let i = 0; i < bgColorArray.length; i++) {
-        let newCode = `<div class="assBadge ${bgColorArray[i]}">${i+1}</div>`;
-        document.getElementById('assBadges').innerHTML += newCode;
-    }
+    // for (let i = 0; i < bgColorArray.length; i++) {
+    //     let newCode = `<div class="assBadge ${bgColorArray[i]}">${i+1}</div>`;
+    //     document.getElementById('assBadges').innerHTML += newCode;
+    // }
     // END TEST
     // Load contacts - erfolgt später aus einer separaten Function aus
-    console.log('addContacts gestartet');
+    
     // Render into the list box
     document.getElementById('newAssList').innerHTML = '';
     let imgId = 0;
     // Fill list: Selection 'You' (fixed) -> List of contacts -> Selection 'New contact' (fixed)
-    document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('lothar.zok@web.de', 'img-${imgId}')"><span>You</span><img src="./img/add-task/check-button-unchecked.svg" alt="" class="h21px" id="img-${imgId}"></li>`;
+    document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('${user.email}', 'img-${imgId}')"><span>You</span><img src="./img/add-task/check-button-unchecked.svg" alt="" class="h21px" id="img-${imgId}"></li>`;
     fillContactsSelection();
     document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('inviteNewContact', '-1')" class="inviteNewContact"><span>Invite new contact</span><img src="./img/contacts-icon.svg" alt="" class="h21px"></li>`;
 }
@@ -71,8 +74,7 @@ function fillContactsSelection() {
  * @param {string} imgId - The ID of the item that was selected. Corresponds to the ID in the html file.
  */
 function selectContact(item, imgId) {
-    console.log(item);  // Item should only be the email address OR 'inviteNewContact'.
-
+    // Item should only be the email address OR 'inviteNewContact'.
     if (item == 'inviteNewContact') {
         toggleAssVisibility();
     } else {
@@ -88,15 +90,50 @@ function selectContact(item, imgId) {
  * @param {string} imgId - The ID of the item that was selected. Corresponds to the ID in the html file.
  */
 function toggleContactSelection(item, imgId) {
+    console.log(item);
     let elem = document.getElementById(imgId);
     if (elem.src.includes('unchecked')) {
         elem.src = "./img/add-task/check-button-checked.svg"
         selectedContacts.push(item);
+        addInitialsBadge(getInitialsAndColor(item));
     } else {
         elem.src = "./img/add-task/check-button-unchecked.svg";
         selectedContacts = selectedContacts.filter((tmpItem) => tmpItem != item);
     }
-    console.log(selectedContacts);
+    // console.log(selectedContacts);
+}
+
+
+function addInitialsBadge(srcArray) {
+        let newCode = `<div class="assBadge ${srcArray[1]}">${srcArray[0]}</div>`;
+        document.getElementById('assBadges').innerHTML += newCode;
+}
+
+function getInitialsAndColor(item) {
+    let retArray = [];
+    for (let i = 0; i < contacts.length; i++) {
+        const elem = contacts[i];
+        if (elem.email == item) {
+            retArray.push(getInitials(elem.name));
+            retArray.push(elem.color);
+        }
+    }
+    console.log(retArray);
+    return retArray;
+}
+
+
+function getInitials(name) {
+    console.log(name);
+    let nameArray = name.split(' ');
+    console.log(nameArray);
+    let initial = '';
+    if (nameArray.length == 1) {
+        initial = nameArray[0].substr(0, 2);
+    } else {
+        initial = nameArray[0].substr(0, 1) + nameArray[1].substr(0, 1);
+    }
+    return initial;
 }
 
 
