@@ -26,19 +26,15 @@ let maxImgId = 0;
  * Fills the list of choices of the 'Assign To' field.
  */
 function addContacts() {
-    // TEST
-    // for (let i = 0; i < bgColorArray.length; i++) {
-    //     let newCode = `<div class="assBadge ${bgColorArray[i]}">${i+1}</div>`;
-    //     document.getElementById('assBadges').innerHTML += newCode;
-    // }
-    // END TEST
     // Load contacts - erfolgt später aus einer separaten Function aus
+    // TODO - LOAD CONTACTS FROM SERVER
     
     // Render into the list box
     document.getElementById('newAssList').innerHTML = '';
     let imgId = 0;
     // Fill list: Selection 'You' (fixed) -> List of contacts -> Selection 'New contact' (fixed)
-    document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('${user.email}', 'img-${imgId}')"><span>You</span><img src="./img/add-task/check-button-unchecked.svg" alt="" class="h21px" id="img-${imgId}"></li>`;
+    let curImage = (selectedContacts.indexOf(user.email.toLowerCase()) > -1) ? 'checked' : 'unchecked';
+    document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('${user.email}', 'img-${imgId}')"><span>You</span><img src="./img/add-task/check-button-${curImage}.svg" alt="" class="h21px" id="img-${imgId}"></li>`;
     fillContactsSelection();
     document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('inviteNewContact', '-1')" class="inviteNewContact"><span>Invite new contact</span><img src="./img/contacts-icon.svg" alt="" class="h21px"></li>`;
 }
@@ -51,12 +47,13 @@ function fillContactsSelection() {
     imgId = 1; // 0 is reserved for 'You'
     for (let i = 0; i < contacts.length; i++) {
         let curContact = contacts[i];
-        let curImage = '';
-        if (selectedContacts.indexOf(curContact.email) > -1) {
-            curImage = './img/add-task/check-button-checked.svg';
-        } else {
-            curImage = './img/add-task/check-button-unchecked.svg';
-        }
+        // let curImage = '';
+        // if (selectedContacts.indexOf(curContact.email) > -1) {
+        //     curImage = './img/add-task/check-button-checked.svg';
+        // } else {
+        //     curImage = './img/add-task/check-button-unchecked.svg';
+        // }
+        let curImage = (selectedContacts.indexOf(curContact.email.toLowerCase()) > -1) ? './img/add-task/check-button-checked.svg' : './img/add-task/check-button-unchecked.svg';
         
         if (curContact['email'].toLowerCase() != user['email'].toLowerCase()) {
             document.getElementById('newAssList').innerHTML += `<li onclick="selectContact('${curContact['email']}', 'img-${imgId}')">${curContact['name']}<img src="${curImage}" alt="" class="h21px" id="img-${imgId}"></li>`
@@ -80,7 +77,7 @@ function selectContact(item, imgId) {
     } else {
         toggleContactSelection(item, imgId);
     }
-    addInitialBadges();
+    showInitialBadges();
 }
 
 
@@ -100,12 +97,13 @@ function toggleContactSelection(item, imgId) {
         elem.src = "./img/add-task/check-button-unchecked.svg";
         selectedContacts = selectedContacts.filter((tmpItem) => tmpItem != item);
     }
-    // console.log(selectedContacts);
-    // addInitialBadges();
 }
 
 
-function addInitialBadges() {
+/**
+ * Shows the coloured badges with initials in it for every selected contact.
+ */
+function showInitialBadges() {
     document.getElementById('assBadges').innerHTML = '';
     let elemArray = document.getElementById('newAssList').childNodes;
     for (let i = 0; i < elemArray.length; i++) {
@@ -118,28 +116,45 @@ function addInitialBadges() {
     }
 }
 
+
+/**
+ * Adds the code for a badge with initials to the according div.
+ * 
+ * @param {array} srcArray - An array of two string: The initals of a contact and its assigned colour
+ */
 function addInitialsBadge(srcArray) {
         let newCode = `<div class="assBadge ${srcArray[1]}">${srcArray[0]}</div>`;
         document.getElementById('assBadges').innerHTML += newCode;
 }
 
-function getInitialsAndColor(item) {
+
+/**
+ * Returns the initials (via function getInitials) and colours for a given contact.
+ * 
+ * @param {string} name - The name of the contact whose initials and colours should be returned.
+ * @returns An array consisting of the initials and the assigned colour of a contact.
+ */
+function getInitialsAndColor(name) {
     let retArray = [];
     for (let i = 0; i < contacts.length; i++) {
         const elem = contacts[i];
-        if (elem.name == item) {
+        if (elem.name == name) {
             retArray.push(getInitials(elem.name));
             retArray.push(elem.color);
         }
     }
-    // console.log(retArray);
     return retArray;
 }
 
+
+/**
+ * Returns the initials of a given name. If the name, hence the parameter, is only one word, the first two letters are taken for the initials.
+ * 
+ * @param {string} name - The name whose initials should be returned
+ * @returns A string with the initials for a name in uppercase letters
+ */
 function getInitials(name) {
-    // console.log(name);
     let nameArray = name.split(' ');
-    // console.log(nameArray);
     let initial = '';
     nameArray.length == 1 ? initial = nameArray[0].substr(0, 2) : initial = nameArray[0].substr(0, 1) + nameArray[1].substr(0, 1);
     return initial.toUpperCase();
@@ -163,6 +178,7 @@ function toggleAssVisibility() {
  * Cancellation of the entry of a new contact.
  */
 function cancelNewAssInput() {
+    showMsgWrongEmailAddress(false);
     toggleAssVisibility();
 }
 
@@ -170,7 +186,7 @@ function cancelNewAssInput() {
 /**
  * Processes the entry of a new contact. Triggers corresponding further functions.
  * 
- * @returns Cancel if the entry does not correspond to the format for email addresses.
+ * @returns Cancel if the entry does not correspond to the format for email addresses or if no value was given.
  */
 function selectNewAssInput() {
     let elem = document.getElementById('newAssInputField');
@@ -180,7 +196,7 @@ function selectNewAssInput() {
     let newContact = {
         name: elem.value.toLowerCase(),
         email: elem.value.toLowerCase(),
-        color: 'bgColorGrey'
+        color: getColor()
     }
     contacts.some((e) => e.email == elem.value.toLowerCase()) ? '' : contacts.push(newContact);
     selectedContacts.some((e) => e == elem.value.toLowerCase()) ? '' : selectedContacts.push(elem.value.toLowerCase());
@@ -189,6 +205,7 @@ function selectNewAssInput() {
     addContacts();
     cancelNewAssInput();
     showMsgWrongEmailAddress(false);
+    showInitialBadges();
 }
 
 
@@ -210,4 +227,23 @@ function clearAssignments() {
         document.getElementById('img-' + i).src = './img/add-task/check-button-unchecked.svg';
     }
     selectedContacts = [];
+}
+
+
+/**
+ * Selects a random color from the array of colors, filtered for those who are not already used.
+ * 
+ * @returns The new color (e.g. 'bgColor0190E0') that can be used as class for a background color
+ */
+function getColor() {
+    // Filter out already used colors
+    let newArray = bgColorArray;
+    for (let i = 0; i < contacts.length; i++) {
+        let curColor = contacts[i].color;
+        newArray = newArray.filter(e => e !== curColor);
+    }
+    newArray.length == 0 ? newArray = bgColorArray : ''; // If all colors are already in use, select from all
+    // Now select a random color from those who are not used
+    let newColor = newArray[Math.floor(Math.random() * newArray.length)];
+    return newColor;
 }
