@@ -138,6 +138,8 @@ button {
 #userImg {
     border-radius: 50%;
     border: 3px solid #2A3647;
+    aspect-ratio: 1/1;
+    width: 50px;
 }
 
 #logOutBtn a.smallMenu,

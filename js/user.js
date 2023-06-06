@@ -7,7 +7,7 @@ let user = {
 	name: '',
 	email: '',
 	password: '',
-	img: '',
+	img: './img/person.svg',
 }
 
 /** get the user-Array from localStorage so that user is on every site 
@@ -16,8 +16,17 @@ let user = {
 function getUser() {
 	let userAsText = localStorage.getItem('user');
 	if (userAsText) {
-		user = JSON.parse(userAsText);;
+		user = JSON.parse(userAsText);
 	}
+	changeUserImg();
+}
+
+/** change user img
+	* 
+	*/
+function changeUserImg() {
+	let userImg = document.getElementById('userImg')
+	userImg.src= user['img']
 }
 
 /** a serie of functions to create a account
@@ -32,8 +41,6 @@ async function createNewAccount() {
 	renderLogInWindow();
 }
 
-
-
 /** get usersArray -> fill userArray --> save userArray  at remote Storage ---> clear userArray on 
 	* 
 	*/
@@ -45,8 +52,6 @@ async function saveInRemoteStorage() {
 	await	setItemToRemoteStorage('users', users);
 	clearUsers();
 }
-
-
 
 /** push user to users
 	* 
@@ -88,7 +93,7 @@ function changeUserInformation() {
 	user['name'] = username.value;
 	user['email'] = email;
 	user['password'] = password;
-	// user['img'] = `${username.value.lowercase().replace(' ', '')}` + `.png`
+	user['img'] = `./img/${username.value.toLowerCase().replace(' ', '')}.png`
 };
 
 /**save the user inforamtion in remot storage with token, email and password
@@ -169,6 +174,9 @@ function goToSummary() {
 	window.location.href = './summary.html';
 }
 
+/** go to index.html
+	* 
+	*/
 function goToIndex() {
 	window.location.href = './index.html';
 }
@@ -238,6 +246,8 @@ function logOut() {
 		user = users.find(u => u.email === email);
 		user['password'] = newPassword.value;
 	}
+
+	
 
 
 

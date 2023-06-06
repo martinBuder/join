@@ -8,6 +8,7 @@ let cursor = "pointer";
 async function init() {
     await includeHTML(); // Solange warten, bis alle Dateien nachgeladen wurden
     // und dann erst ausführen, um z.B. auf ein eingefügtes Feld zuzugreifen
+    getUser()
 }
 
 
@@ -43,7 +44,7 @@ function showLogOut(){
  * 
  */
 function changeCursorUserImg() {
-    let userImg = document.getElementById('userImg');
+    userImg = document.getElementById('userImg');
     cursor = cursor === "pointer" ? "auto" : "pointer";
     userImg.style.cursor = cursor
 }
