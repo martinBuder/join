@@ -204,14 +204,15 @@ h1 {
 
 
 #assBadges {
+    max-width: 422px;
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 }
 .assBadge {
     font-size: 21px;
     width: 45px;
     height: 45px;
-    background-color: blue;
     color: white;
     border-radius: 50%;
     margin-top: 22px;
