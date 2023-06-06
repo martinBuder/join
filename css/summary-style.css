@@ -82,7 +82,7 @@
 }
 
 .person {
-    font-size: 77px;
+    font-size: 70px;
     font-weight: 700;
     color: #29ABE2;
 }
@@ -272,6 +272,10 @@
     .summary {
         width: 580px;
         margin: 120px auto 110px;
+    }
+
+    .summary-headtext {
+        font-size: 28px;
     }
 
     .mobile-navigation {

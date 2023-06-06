@@ -3,12 +3,82 @@
 #navLinkBoardM {
     background-color: #091931;
 }
+
 #navLinkBoard span,
 #navLinkBoardM span {
     color: white;
 }
+
 #navLinkBoard img,
 #navLinkBoard img {
     filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
 }
+
 /* ENDE Markierung der Auswahl in der Sidebar */
+
+.headerContainer {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 1000px;
+}
+
+.navbar-icon-mobile {
+    margin: 0 0 8px 0 !important;
+}
+
+@media (max-width: 1350px) {
+    .headerContainer {
+        width: 700px;
+    }
+
+    .main-navigation {
+        width: 200px !important;
+    }
+
+    .header {
+        width: calc(100% - 200px);
+    }
+}
+
+@media (max-width: 1000px) {
+    .headerContainer {
+        width: 580px;
+    }
+
+    .header {
+        width: 100%;
+    }
+
+    .main-navigation {
+        width: 200px !important;
+    }
+
+    .mobile-navigation {
+        display: block !important;
+        z-index: 1;
+    }
+
+    .main-navigation {
+        display: none !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .headerContainer {
+        width: 420px;
+    }
+}
+
+@media (max-width: 490px) {
+    .headerContainer {
+        width: 360px;
+    }
+}
+
+@media (max-width: 450px) {
+    .headerContainer {
+        width: 280px;
+    }
+}
