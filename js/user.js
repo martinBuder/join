@@ -4,7 +4,7 @@ const STORAGE_URL   = 'https://remote-storage.developerakademie.org/item';
 let users = [];
 
 let user = {
-	name: '',
+	name: 'person',
 	email: '',
 	password: '',
 	img: './img/person.svg',
@@ -18,19 +18,23 @@ function getUser() {
 	if (userAsText) {
 		user = JSON.parse(userAsText);
 	}
-
+	changeUserImg();
 }
 
 /** change user img
 	* 
 	*/
 function changeUserImg() {
-	let userImg = document.getElementById('userImg')
-	if (`./img/${username.value.toLowerCase().replace(' ', '')}.png` == 0 ) {
-		userImg.src = './img/person.png'
-	} else {
-	userImg.src= user['img']
-	}
+	let userImg = document.getElementById('userImg');
+	if (user['name'] == '' || userImg.onerror) {
+		userImg.src = './img/person.svg';
+	}else{
+		try {
+	 userImg.src = user['img'];
+		userImg.onerror = function() {userImg.src = './img/person.svg';
+		return true;}
+	 }catch(e){}
+ }
 }
 
 /** a serie of functions to create a account
@@ -117,9 +121,14 @@ async function setItemToRemoteStorage(key, value) {
 	*/
 async function getItemFromRemoteStorage(key) {
 	const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-	let res = await fetch(url).catch(errorFunction);
+	let res = await fetch(url).catch(alert('The email or password you used is not correct!'));
 	users = await res.json();
 }
+
+// function errorFunction(e){
+// 	alert('The email or password you used is not correct!');
+// 	alert(`${e}`)
+// }
 
 function findUsersArray() {
 	if (users && users.data && users.data.value) {
@@ -150,7 +159,6 @@ async function logIn() {
 	findUsersArray();
 	findCorrectUser()
 	saveUser();
-	clearUsers();
 	goToSummary();
 }
 
