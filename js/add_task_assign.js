@@ -80,6 +80,7 @@ function selectContact(item, imgId) {
     } else {
         toggleContactSelection(item, imgId);
     }
+    addInitialBadges();
 }
 
 
@@ -95,14 +96,27 @@ function toggleContactSelection(item, imgId) {
     if (elem.src.includes('unchecked')) {
         elem.src = "./img/add-task/check-button-checked.svg"
         selectedContacts.push(item);
-        addInitialsBadge(getInitialsAndColor(item));
     } else {
         elem.src = "./img/add-task/check-button-unchecked.svg";
         selectedContacts = selectedContacts.filter((tmpItem) => tmpItem != item);
     }
     // console.log(selectedContacts);
+    // addInitialBadges();
 }
 
+
+function addInitialBadges() {
+    document.getElementById('assBadges').innerHTML = '';
+    let elemArray = document.getElementById('newAssList').childNodes;
+    for (let i = 0; i < elemArray.length; i++) {
+        let elem = elemArray[i];
+        if (elem.innerHTML.includes('-checked.svg')) {
+            let curName = elem.innerText;
+            curName == 'You' ? curName = user.name : '';
+            addInitialsBadge(getInitialsAndColor(curName));
+        }
+    }
+}
 
 function addInitialsBadge(srcArray) {
         let newCode = `<div class="assBadge ${srcArray[1]}">${srcArray[0]}</div>`;
@@ -113,27 +127,22 @@ function getInitialsAndColor(item) {
     let retArray = [];
     for (let i = 0; i < contacts.length; i++) {
         const elem = contacts[i];
-        if (elem.email == item) {
+        if (elem.name == item) {
             retArray.push(getInitials(elem.name));
             retArray.push(elem.color);
         }
     }
-    console.log(retArray);
+    // console.log(retArray);
     return retArray;
 }
 
-
 function getInitials(name) {
-    console.log(name);
+    // console.log(name);
     let nameArray = name.split(' ');
-    console.log(nameArray);
+    // console.log(nameArray);
     let initial = '';
-    if (nameArray.length == 1) {
-        initial = nameArray[0].substr(0, 2);
-    } else {
-        initial = nameArray[0].substr(0, 1) + nameArray[1].substr(0, 1);
-    }
-    return initial;
+    nameArray.length == 1 ? initial = nameArray[0].substr(0, 2) : initial = nameArray[0].substr(0, 1) + nameArray[1].substr(0, 1);
+    return initial.toUpperCase();
 }
 
 
@@ -170,7 +179,8 @@ function selectNewAssInput() {
 
     let newContact = {
         name: elem.value.toLowerCase(),
-        email: elem.value.toLowerCase()
+        email: elem.value.toLowerCase(),
+        color: 'bgColorGrey'
     }
     contacts.some((e) => e.email == elem.value.toLowerCase()) ? '' : contacts.push(newContact);
     selectedContacts.some((e) => e == elem.value.toLowerCase()) ? '' : selectedContacts.push(elem.value.toLowerCase());
