@@ -74,40 +74,29 @@ function clearTask() {
  * Starts the saving of the entered task with all subtasks, if they exist.
  */
 async function createTask() {
-    if (!(checkRequiredFields())) 
+    if (!(checkRequiredFields()))
         return('');
 
     // JSON for the new task
     let newJSON = getNewJSON();
-    // console.log('storage token: ' + STORAGE_TOKEN);
-    // console.log('storage url:   ' + STORAGE_URL);
-    console.log(newJSON);
     
     // Saving the new task to disk
     await getTasksArray();
-    console.log(tasksArray);
-    return('');
+    // return('');
     tasksArray.push(newJSON);
     await setItem('tasks', tasksArray);
 
-    // TODO - SPEICHERN DES NEUEN TASKS
-
-    // Start animation of confirmation button
-    let btn = document.getElementById('btnTaskAdded');
-    btn.classList.add('taskButtonsFlex');
-    btn.classList.remove('d-none');
-    btn.classList.add('w3-animate-bottom');
-    // Wait a second, then open board
-    await new Promise(wait => setTimeout(wait, 1000));
-    window.open('./board.html', '_self');
+    // Open Board
+    openBoardWhenSaved();
 }
 
 
+/**
+ * Returns an array of already saved tasks. Used to push in a new task and then save it.
+ */
 async function getTasksArray() {
     let tmpArray = await getItem('tasks');
-    // console.log(tmpArray.data.value);
     tmpArray = await JSON.parse(tmpArray.data.value.replace(/'/g, '"'));
-    // console.log(tmpArray);
     Array.isArray(tmpArray) ? tasksArray = tmpArray : tasksArray = [];
 }
 
@@ -119,6 +108,7 @@ async function getTasksArray() {
  */
 function checkRequiredFields() {
     let retValue = true;
+
     // Title, Description and Due Date
     let fldArray = ['taskTitle', 'reqTitle', 'taskDescription', 'reqDescription', 'taskDueDate', 'reqDueDate'];
     for (let i = 0; i < fldArray.length; i += 2) {
@@ -161,4 +151,19 @@ function getNewJSON() {
         assignedto: selectedContacts
     }
     return newJSON;
+}
+
+
+/**
+ * Starts a small animation with a confirmation message (a button) and waits a second to open the board.
+ */
+async function openBoardWhenSaved() {
+    // Start animation of confirmation button
+    let btn = document.getElementById('btnTaskAdded');
+    btn.classList.add('taskButtonsFlex');
+    btn.classList.remove('d-none');
+    btn.classList.add('w3-animate-bottom');
+    // Wait a second, then open board
+    await new Promise(wait => setTimeout(wait, 1000));
+    window.open('./board.html', '_self');
 }
