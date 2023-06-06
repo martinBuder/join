@@ -8,7 +8,7 @@ let cursor = "pointer";
 /**
  * Colour codes
  */
-let bgColorArray = ['bgColor0190E0', 'bgColorEE00D6', 'bgColor02CF2F', 'bgColorFF7A00', 'bgColor9327FF', 'bgColor29ABE2', 'bgColorFC71FF', 'bgColorAF1616', 'bgColor0190E0', 'bgColor019623', 'bgColorFF0000', 'bgColor0000FF'];
+let bgColorArray = ['bgColor0190E0', 'bgColorEE00D6', 'bgColor02CF2F', 'bgColorFF7A00', 'bgColor9327FF', 'bgColor69C4EB', 'bgColorFC71FF', 'bgColorAF1616', 'bgColor462F8A', 'bgColor019623', 'bgColorFF0000', 'bgColor0000FF'];
 
 
 /**
