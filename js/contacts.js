@@ -118,20 +118,42 @@ function fillContactList() {
 	contactList.innerHTML = '';
 	for (let i = 0; i < contacts.length; i++) {
 		let contact = contacts[i];
-		contactList.innerHTML += returnContactListHtml(contact);		
+		contactList.innerHTML += returnContactListHtml(contact, i);		
 	}
 }
 
-function returnContactListHtml(contact) {
+function returnContactListHtml(contact, i) {
 	return /*html*/`
-		<div class="contactWrapper" onclick="renderFullContact(${contact})">
+		<div class="contactWrapper" onclick="renderFullContact(${i})">
 			<div class="intials" style="background: ${contact['color']}">${contact['initials']}</div>
 			<div class="contactBox">
-				<h4>${contact['name']}</h4>
+				<h3>${contact['name']}</h3>
 				<a href="mailto:${contact['email']}" class="link">${contact['email']}</a>
 			</div>
 		</div>
 
+	`
+}
+
+function renderFullContact(i) {
+	let showFullContact = document.getElementById('showFullContact');
+	showFullContact.innerHTML = returnFullContactHtml(i);
+}
+
+function returnFullContactHtml(i) {
+	return /*html*/`
+		<div class="fullContactHeader">
+			<div class="intials" style="background: ${contacts[i]['color']}">${contacts[i]['initials']}</div>
+			<div class="fullContactHeaderName">
+				<h2>${contacts[i]['name']}</h2>
+				<p onclick="contactAddTask()">+ Add Task</p>
+			</div>			
+		</div>
+		<h3>Contact Information</h3>
+		<h4>Email</h4>
+		<a href="mailto:${contacts[i]['email']}">${contacts[i]['email']}</a>
+		<h4>Phone</h4>
+		<a href="tel:${contacts[i]['phonenumber']}">${contacts[i]['phonenumber']}</a>
 	`
 }
 
