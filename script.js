@@ -1,5 +1,15 @@
+/**
+ * Global variables
+ */
 let display = "none";
 let cursor = "pointer";
+
+
+/**
+ * Colour codes
+ */
+let bgColorArray = ['bgColor0190E0', 'bgColorEE00D6', 'bgColor02CF2F', 'bgColorFF7A00', 'bgColor9327FF', 'bgColor29ABE2', 'bgColorFC71FF', 'bgColorAF1616', 'bgColor0190E0', 'bgColor019623', 'bgColorFF0000', 'bgColor0000FF'];
+
 
 /**
  * Initialize the site.
