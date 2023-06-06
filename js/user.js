@@ -26,7 +26,11 @@ function getUser() {
 	*/
 function changeUserImg() {
 	let userImg = document.getElementById('userImg')
+	if (`./img/${username.value.toLowerCase().replace(' ', '')}.png` == 0) {
+		userImg.src = './img/person.png'
+	} else {
 	userImg.src= user['img']
+	}
 }
 
 /** a serie of functions to create a account
