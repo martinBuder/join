@@ -12,3 +12,58 @@
     filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
 }
 /* ENDE Markierung der Auswahl in der Sidebar */
+
+body {
+    height: 100vh;
+}
+
+.contactBody main {
+    justify-content: flex-start;
+    margin: 0;
+    padding: 90px 0 0 0;
+    height: 100vh;
+}
+
+.contactsList {
+    background-color: #fff;
+    width: 450px;
+    height: calc(100vh - 90px)
+}
+
+.contactWindow {
+    flex: 1;
+    display: flex;
+    margin-top: 86px;
+    position: relative;
+    flex-direction: column;
+}
+
+.btnRightBottomPosition {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+}
+
+.btnWithImg {
+    display: flex;
+    gap: 15px;
+}
+
+.contactWrapper {
+    display: flex;
+    gap: 15px;
+    margin: 20px 20px;
+    
+}
+
+.intials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 10px;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+}
+
