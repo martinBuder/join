@@ -121,7 +121,7 @@ async function setItemToRemoteStorage(key, value) {
 	*/
 async function getItemFromRemoteStorage(key) {
 	const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-	let res = await fetch(url).catch(alert('The email or password you used is not correct!'));
+	let res = await fetch(url).catch();
 	users = await res.json();
 }
 
@@ -135,11 +135,19 @@ function findUsersArray() {
 			users = JSON.parse(users.data.value.replace(/'/g, '"'));
 	} else {
 			user = null;
+			
 	}
 }
 
 function findCorrectUser() {
 	user = users.find(u => u.password === password && u.email === email);
+	if (user === undefined) {
+		alert('The email or password you used is not correct!');
+		goToIndex();
+	}else{
+			saveUser();
+			goToSummary();
+	}
 }
 
 /** tell that something goes wrong by fetch
@@ -158,8 +166,6 @@ async function logIn() {
 	await getItemFromRemoteStorage('users');
 	findUsersArray();
 	findCorrectUser()
-	saveUser();
-	goToSummary();
 }
 
 /** find sam e user in array and delete 
