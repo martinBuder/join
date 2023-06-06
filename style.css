@@ -8,8 +8,47 @@
     font-family: Poppins;
     src: url(fonts/Poppins-Regular.ttf);
 }
-
 /* ENDE Einbindung der Schriften */
+
+
+/* Background Colour codes */
+.bgColor0190E0 {
+    background-color: #0190E0;
+}
+.bgColorEE00D6 {
+    background-color: #EE00D6;
+}
+.bgColor02CF2F {
+    background-color: #02CF2F;
+}
+.bgColorFF7A00 {
+    background-color: #FF7A00;
+}
+.bgColor9327FF {
+    background-color: #9327FF;
+}
+.bgColor69C4EB {
+    background-color: #69C4EB;
+}
+.bgColorFC71FF {
+    background-color: #FC71FF;
+}
+.bgColorAF1616 {
+    background-color: #AF1616;
+}
+.bgColor462F8A {
+    background-color: #462F8A;
+}
+.bgColor019623 {
+    background-color: #019623;
+}
+.bgColorFF0000 {
+    background-color: #FF0000;
+}
+.bgColor0000FF {
+    background-color: #0000FF;
+}
+
 
 * {
     margin: 0;

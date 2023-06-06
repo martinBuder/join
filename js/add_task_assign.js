@@ -23,6 +23,12 @@ let maxImgId = 0;
  * Fills the list of choices of the 'Assign To' field.
  */
 function addContacts() {
+    // TEST
+    for (let i = 0; i < bgColorArray.length; i++) {
+        let newCode = `<div class="assBadge ${bgColorArray[i]}">${i+1}</div>`;
+        document.getElementById('assBadges').innerHTML += newCode;
+    }
+    // END TEST
     // Load contacts - erfolgt später aus einer separaten Function aus
     console.log('addContacts gestartet');
     // Render into the list box
