@@ -26,14 +26,15 @@ function getUser() {
 	*/
 function changeUserImg() {
 	let userImg = document.getElementById('userImg');
-	if (user['name'] == '' || userImg.onerror) {
+	if (user['name'] == '') {
 		userImg.src = './img/person.svg';
 	}else{
 		try {
 	 userImg.src = user['img'];
-		userImg.onerror = function() {userImg.src = './img/person.svg';
-		return true;}
-	 }catch(e){}
+		userImg.onerror = function() {userImg.src = './img/person.svg';}
+	 }catch(e) {
+			return true;
+		}
  }
 }
 
@@ -43,10 +44,17 @@ function changeUserImg() {
 async function createNewAccount() {
 	getUserInputFields();
 	getUserLogInInfo();
+	await checkUser()
+	isUserDouble();
+}
+
+/**
+	* check is user in users
+	*/
+async function checkUser() {
 	await getItemFromRemoteStorage('users');
 	findUsersArray();
 	await findEmailUser();
-	isUserDouble();
 }
 
 /**
@@ -264,6 +272,26 @@ function logOut() {
 		indexContent.innerHTML += returnIdentPasswordHtml()
 		setTimeout(renderLogInWindow, 1000);
 	}
+
+	/**
+	* check: have the user an account
+	*/
+function noUserFound() {
+	if(user == undefined ) {
+		alert(`This user hasn't an account!`)
+		renderForgotPassword(); 
+	}else{
+		goToChangePassword();
+	}
+}
+
+/**
+	* go forward to change password
+	*/
+function goToChangePassword() {
+	indexContent.innerHTML += returnSendEmailHtml();
+	setTimeout(resetPasswordStepTwo, 200)
+}
 	
 	/** a serie of functions to change password
 		* 

@@ -137,10 +137,10 @@ function returnForgotPasswordHtml() {
 /** fill reset message 
 	* 
 	*/
-function resetPassword() {
+async function resetPassword() {
 	email = document.getElementById('email').value;
-	indexContent.innerHTML += returnSendEmailHtml();
-	setTimeout(resetPasswordStepTwo, 200)
+	await checkUser();
+	noUserFound();
 }
 
 /** information and fill reset password area
