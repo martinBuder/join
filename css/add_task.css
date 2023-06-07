@@ -56,6 +56,10 @@ h1 {
 
 /* Settings for page layout */
 
+.addTaskFrame {
+    /* width: calc(100% - 232px); */
+    margin-left: 232px;
+}
 .smallScreenTitle {
     display: none;
 }
