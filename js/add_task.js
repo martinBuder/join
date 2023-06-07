@@ -74,17 +74,16 @@ function clearTask() {
  * Starts the saving of the entered task with all subtasks, if they exist.
  */
 async function createTask() {
-    if (!(checkRequiredFields()))
-        return('');
+    // if (!(checkRequiredFields()))
+    //     return('');
 
     // JSON for the new task
     let newJSON = getNewJSON();
     
     // Saving the new task to disk
-    await getTasksArray();
-    // return('');
-    tasksArray.push(newJSON);
-    await setItem('tasks', tasksArray);
+    // await getTasksArray();
+    // tasksArray.push(newJSON);
+    // await setItem('tasks', tasksArray);
 
     // Open Board
     openBoardWhenSaved();
@@ -164,6 +163,6 @@ async function openBoardWhenSaved() {
     btn.classList.remove('d-none');
     btn.classList.add('w3-animate-bottom');
     // Wait a second, then open board
-    await new Promise(wait => setTimeout(wait, 1000));
+    await new Promise(wait => setTimeout(wait, 900));
     window.open('./board.html', '_self');
 }
