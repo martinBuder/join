@@ -21,22 +21,20 @@ function getUser() {
 	changeUserImg();
 }
 
-/** change user img
+/** change user img 
 	* 
 	*/
-function changeUserImg() {
-	let userImg = document.getElementById('userImg');
-	if (user['name'] == '') {
-		userImg.src = './img/person.svg';
-	}else{
-		try {
-	 userImg.src = user['img'];
-		userImg.onerror = function() {userImg.src = './img/person.svg';}
-	 }catch(e) {
-			return true;
-		}
- }
-}
+	function changeUserImg() {
+  let userImg = document.getElementById('userImg');  
+
+  userImg.onerror = function(errorMsg) { //>prüft ob das Bild geladen werden kann --> antwort = nein
+    userImg.src = './img/person.svg';
+				return true; //> okay dann lade ich halt das!
+  }
+		
+		userImg.src = user['img'];
+	}
+	// ! ein registrierter User hat immer das Bild 'vornamefamilienname.png' in seinem Json definiert
 
 /** a serie of functions to create a account
 	* 

@@ -33,9 +33,10 @@ body {
 .contactWindow {
     flex: 1;
     display: flex;
-    margin-top: 86px;
+    margin-top: 56px;
     position: relative;
     flex-direction: column;
+    padding: 50px;
 }
 
 .btnRightBottomPosition {
@@ -67,3 +68,16 @@ body {
     height: 50px;
 }
 
+/* ~ full contact area */
+
+.fullContactHeader {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.contactSubHeaderContainer {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
