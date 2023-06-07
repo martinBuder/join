@@ -18,7 +18,11 @@
     <header w3-include-html="templates/header.html" class="header"></header>
     <section w3-include-html="templates/sidebar.html" class="sidebar"></section>
 
-    <section w3-include-html="add_task_content.html"></section>
+    <section class="addTaskFrame">
+        <section class="smallScreenTitle">Kanban Project Management Tool</section>
+        <section w3-include-html="add_task_content.html" class="addTaskContainer"></section>
+    </section>
+    
     
     <script src="./script.js"></script>
     <script src="./js/user.js"></script> 

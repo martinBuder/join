@@ -1,4 +1,4 @@
-/* Markierung der Auswahl in der Sidebar */
+/* Markings in sidebar */
 #navLinkAddTask,
 #navLinkAddTaskM {
     background-color: #091931;
@@ -11,10 +11,11 @@
 #navLinkAddTaskM img {
     filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
 }
-/* ENDE Markierung der Auswahl in der Sidebar */
+/* END Markings in sidebar */
 
 
-/* Allgemeine Einstellungen */
+/* Common settings for multiple purposes */
+
 * {
     transition: all 0s ease-in-out;
 }
@@ -53,7 +54,25 @@ h1 {
 }
 
 
-/* Einstellungen für die Seitenaufteilung */
+/* Settings for page layout */
+
+.smallScreenTitle {
+    display: none;
+}
+.addTaskContainer {
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 232px);
+}
+#contentAddTask {
+    /* margin-left: 123px; */
+    margin-top: 171px;
+    width: 964px;
+
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
 .twoColumns {
     display: flex;
 }
@@ -66,8 +85,11 @@ h1 {
 }
 
 
-/* Allgemeine Feldeinstellungen */
+/* Common field setting */
 
+.taskFieldContainer {
+    background-color: white;
+}
 .inputContainerTextarea {
 	display: flex;
 	flex-direction: row;
@@ -81,38 +103,19 @@ h1 {
 	border-radius: 10px;
 	cursor: pointer;
 }
-
 .inputContainerTextarea textarea {
 	border: none;
 	flex: 1;
 }
-
 .inputContainerTextarea textarea:focus {
 	outline: none;
 }
-
-.taskFieldContainer {
-    background-color: white;
-    /* margin-top: 8px;
-    margin-bottom: 8px; */
-}
-
-#contentAddTask {
-    margin-left: 123px;
-    margin-top: 171px;
-}
-
-
-
 .labelAndField {
-    /* margin-bottom: 14px; */
     display: flex;
     flex-direction: column;
 }
-
 .labelAndField label {
     line-height: 25px;
-    /* padding-bottom: 8px; */
 }
 .inputField {
     font-size: 21px;
@@ -120,18 +123,23 @@ h1 {
     border: 1px solid #D1D1D1;
     border-radius: 10px;
 }
-
 .inputField:focus {
     outline: none;
 }
-
 .requiredMessage {
     font-family: Poppins, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color: red;
 }
+.likeInput {
+    font-size: 21px;
+	color: #d1d1d1;
+    border: none;
+	flex: 1;
+} /* likeInput is used for an element that should look like an input field but is none */
 
 
+/* Settings for Category and Assignments Selection */
 
 .selectionHeader {
     height: 51px;
@@ -189,9 +197,7 @@ h1 {
     display: flex;
     justify-content: space-between;
 }
-
 .selectCategory {
-    /* padding: 13px 21px; */
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     background-color: white;
@@ -206,6 +212,8 @@ h1 {
     height: 100%;
 }
 
+
+/* Settings for the initials badges */
 
 #assBadges {
     max-width: 422px;
@@ -227,6 +235,7 @@ h1 {
 }
 
 
+/* Settings for priority buttons and selection */
 
 .taskPriority {
     height: 61px;
@@ -274,14 +283,7 @@ h1 {
 }
 
 
-
-.likeInput {
-    font-size: 21px;
-	color: #d1d1d1;
-    border: none;
-	flex: 1;
-}
-
+/* Settings for subtasks */
 
 #newSubtaskList {
     margin-top: 18px;
@@ -298,6 +300,7 @@ h1 {
 }
 
 
+/* Settings for the buttons at the end of the form */
 
 .taskButtons {
     height: 65px;
@@ -348,7 +351,6 @@ h1 {
 .btnTaskCreate img {
     filter: invert(100%) brightness(1000%) saturate(0%) contrast(100%);
 }
-
 .w3-animate-bottom {
     position:relative;
     animation:animatebottom 0.4s
@@ -365,5 +367,57 @@ h1 {
 }
 
 
+/* Einstellungen für schmale Screens */
 
+@media (max-width: 1250px) {
+    #contentAddTask {
+        margin-top: 71px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .twoColumns {
+        text-align: left;
+        flex-direction: column;
+        align-items: center;
+    }
+    .columnLeft,
+    .columnRight {
+        width: 422px;
+        border: 0;
+        padding: 0;
+    }
+    .displayDueDate {
+        padding-top: 38px;
+    }
+    .taskButtons {
+        justify-content: center;
+        order: -2;
+    }
+}
 
+@media (max-width: 760px) {
+    .addTaskFrame {
+        /* display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 422px; */
+    }
+    .smallScreenTitle {
+        display: block;
+        margin-top: 120px;
+        margin-left: 120px;
+    }
+    #contentAddTask {
+        margin-top: 0;
+    }
+    .addTaskContainer {
+        margin-bottom: 100px;
+    }
+    .inputField {
+        width: 90%;
+    }
+    .selectCategory {
+        width: 90%;
+    }
+}
