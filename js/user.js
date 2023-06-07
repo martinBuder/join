@@ -43,8 +43,28 @@ function changeUserImg() {
 async function createNewAccount() {
 	getUserInputFields();
 	getUserLogInInfo();
+	await getItemFromRemoteStorage('users');
+	findUsersArray();
+	await findEmailUser();
+	isUserDouble();
+}
+
+/**
+	* step 2 from create a account if user hasn't an account
+	*/
+async function saveNewAccount() {
 	changeUserInformation();
-	await saveInRemoteStorage()
+	deleteUserfromUsers();
+	pushUserToUsers();
+	await	setItemToRemoteStorage('users', users);
+	clearDesktopUsersUserInformation()
+}
+
+/**
+	* clear all informations in code for user and users
+	*/
+function clearDesktopUsersUserInformation() {
+	clearUsers();
 	clearUserInformation();
 	renderLogInWindow();
 }
@@ -116,6 +136,7 @@ async function setItemToRemoteStorage(key, value) {
 }
 
 /** this function get the user information from Remote Storage and changed it to user-Array compares with e-mail and passwort
+	* !!! you need to used findUsersArray() to work with users array
 	* 
 	* @param {JsonWebKey} key 
 	*/
@@ -125,11 +146,9 @@ async function getItemFromRemoteStorage(key) {
 	users = await res.json();
 }
 
-// function errorFunction(e){
-// 	alert('The email or password you used is not correct!');
-// 	alert(`${e}`)
-// }
-
+/**
+	* this function separate users-Array from the serveranswer and changed in a user array 
+	*/
 function findUsersArray() {
 	if (users && users.data && users.data.value) {
 			users = JSON.parse(users.data.value.replace(/'/g, '"'));
@@ -143,12 +162,14 @@ function findCorrectUser() {
 	user = users.find(u => u.password === password && u.email === email);
 	if (user === undefined) {
 		alert('The email or password you used is not correct!');
-		goToIndex();
+		clearDesktopUsersUserInformation();
 	}else{
-			saveUser();
-			goToSummary();
+		saveUser();
+		goToSummary();
 	}
 }
+
+
 
 /** tell that something goes wrong by fetch
 	* 
@@ -167,6 +188,8 @@ async function logIn() {
 	findUsersArray();
 	findCorrectUser()
 }
+
+
 
 /** find sam e user in array and delete 
 	* 
@@ -249,7 +272,8 @@ function logOut() {
 	async function saveNewPassword(newPassword) {
 		await getItemFromRemoteStorage('users');
 		findUsersArray();
-		await findPasswordUser(newPassword);
+		await findEmailUser();
+		overwritePassword(newPassword)
 		deleteUserfromUsers();
 		pushUserToUsers();
 		await	setItemToRemoteStorage('users', users);
@@ -258,14 +282,29 @@ function logOut() {
 	
 	/** function found the userAccount who forgot the passwort and change with the new one
 		* 
-		* @param {string} newPassword 
 		*/
-	async function findPasswordUser(newPassword) {
+	async function findEmailUser() {
 		user = users.find(u => u.email === email);
-		user['password'] = newPassword.value;
 	}
 
-	
+	/**
+		* overwrite user password
+		*/
+function overwritePassword(newPassword) {
+	user['password'] = newPassword.value;
+}
+
+/**
+	* check: have the user an account
+	*/
+function isUserDouble() {
+	if(user !== undefined ) {
+		alert('This user has already an account!')
+		clearDesktopUsersUserInformation()
+	}else{
+		saveNewAccount();
+	}
+}
 
 
 
