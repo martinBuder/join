@@ -370,11 +370,20 @@ h1 {
 /* Einstellungen für schmale Screens */
 
 @media (max-width: 1250px) {
+    .addTaskFrame {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        width: calc(100% - 232px);
+    }
     #contentAddTask {
         margin-top: 71px;
         text-align: center;
         display: flex;
         flex-direction: column;
+    }
+    .addTaskContainer {
+        width: 100%;
     }
     .twoColumns {
         text-align: left;
@@ -398,20 +407,24 @@ h1 {
 
 @media (max-width: 760px) {
     .addTaskFrame {
-        /* display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 422px; */
+        width: 100%;
     }
     .smallScreenTitle {
-        display: block;
+        /* width: 422px; */
         margin-top: 120px;
-        margin-left: 120px;
+        display: flex;
+        justify-content: flex-start;
     }
     #contentAddTask {
         margin-top: 0;
     }
+    #contentAddTask h1 {
+        width: 422px;
+        display: flex;
+        justify-content: flex-start;
+    }
     .addTaskContainer {
+        width: 100%;
         margin-bottom: 100px;
     }
     .inputField {
@@ -419,5 +432,12 @@ h1 {
     }
     .selectCategory {
         width: 90%;
+    }
+    .displayPrio {
+        width: 90%;
+    }
+    .btnPriority {
+        width: 32%;
+        font-size: 16px;
     }
 }
