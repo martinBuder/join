@@ -16,21 +16,152 @@
 
 /* ENDE Markierung der Auswahl in der Sidebar */
 
+.tool {
+    display: none;
+}
+
 .headerContainer {
     display: flex;
     position: relative;
     justify-content: space-between;
     align-items: center;
-    width: 1000px;
+    width: 1078px;
 }
 
 .navbar-icon-mobile {
     margin: 0 0 8px 0 !important;
 }
 
+.board {
+    position: relative;
+    margin: 171px auto 0;
+    width: 1078px;
+}
+
+.boardHeadline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 108px;
+}
+
+.boardTasks {
+    display: flex;
+    justify-content: space-between;
+    gap: 2%;
+}
+
+.categorie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+}
+
+.categorie img {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #2A3647;
+    border-radius: 10px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.categorieName {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.boardText {
+    font-size: 73px;
+    font-weight: 700;
+}
+
+.boardHeadline button {
+    background-color: #2A3647;
+    border-radius: 10px;
+    color: white;
+    font-size: 25px;
+    margin-left: 35px;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boardHeadline img {
+    padding-left: 10px;
+}
+
+.boardHeadline input::placeholder {
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    font-weight: 400;
+    padding-left: 21px;
+}
+
+.boardHeadline input {
+    width: 251px;
+    height: 51px;
+    border: 1px solid #A8A8A8;
+    border-radius: 10px;
+}
+
+.serachAdd {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.addTask {
+    background-color: rgba(0, 0, 0, 50%);
+    width: 100%;
+    height: 100%;
+    z-index: 500;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.window {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 95%;
+    height: 95%;
+    background-color: white;
+    border-radius: 30px;
+    animation: slide 1.5s;
+}
+
+@keyframes slide {
+    from {
+        margin-left: 110%;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
+
+.window img {
+    margin: 35px;
+    cursor: pointer;
+}
+
+.addTask-none {
+    display: none;
+}
+
 @media (max-width: 1350px) {
     .headerContainer {
-        width: 700px;
+        width: 750px;
+    }
+
+    .board {
+        width: 750px;
     }
 
     .main-navigation {
@@ -44,7 +175,23 @@
 
 @media (max-width: 1000px) {
     .headerContainer {
-        width: 580px;
+        width: 750px;
+    }
+
+    .board {
+        width: 750px;
+        margin: 120px auto 110px;
+    }
+
+    .boardHeadline button {
+        margin-left: 0;
+        font-size: 0;
+        width: 50px;
+        height: 50px;
+    }
+
+    .boardHeadline img {
+        padding: 0 10px;
     }
 
     .header {
@@ -69,16 +216,66 @@
     .headerContainer {
         width: 420px;
     }
+
+    .serachAdd {
+        width: 100%;
+    }
+
+    .tool {
+        display: block;
+        font-size: 19px;
+    }
+
+    .board {
+        width: 420px;
+    }
+
+    .boardHeadline {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 0;
+        margin-bottom: 25px;
+    }
+
+    .boardHeadline input {
+        width: 100%;
+    }
+
+    .boardText {
+        font-size: 56px;
+    }
+
+    .boardTasks {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .categorie {
+        width: 100%;
+    }
 }
 
 @media (max-width: 490px) {
     .headerContainer {
         width: 360px;
     }
+
+    .board {
+        width: 360px;
+    }
 }
 
 @media (max-width: 450px) {
     .headerContainer {
+        width: 280px;
+    }
+
+    .tool {
+        font-size: 16px;
+    }
+
+    .board {
         width: 280px;
     }
 }

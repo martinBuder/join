@@ -9,6 +9,7 @@
     <script src="script.js"></script>
     <script src="./js/user.js"></script>
     <script src="js/storage.js"></script>
+    <script src="js/board.js"></script>
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./css/board.css">
@@ -17,21 +18,47 @@
     <title>Join</title>
 </head>
 
-<body onload="init()">
+<body onload="includeHTML(), getUser()">
     <header w3-include-html="templates/header.html" class="header"></header>
     <section w3-include-html="templates/sidebar.html" class="sidebar"></section>
 
-    <div>
-        <div>Board</div>
-        <div>
-            <input type="text" placeholder="Find Task">
-            <a href="./add_task.html">Add task
-                <img src="./img/Group 11.png" alt="">
-            </a>
+    <div class="board">
+        <div class="boardHeadline">
+            <div class="tool">Kanban Project Management Tool</div>
+            <div class="boardText">Board</div>
+            <div class="serachAdd">
+                <input type="text" placeholder="Find Task">
+                <button onclick="addTask()">Add task
+                    <img src="./img/Group 11.png" alt="">
+                </button>
+            </div>
+        </div>
+        <div class="boardTasks">
+            <div class="categorie">
+                <div class="categorieName">To do</div>
+                <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+            </div>
+            <div class="categorie">
+                <div class="categorieName">In progress</div>
+                <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+            </div>
+            <div class="categorie">
+                <div class="categorieName">Awaiting Feedback</div>
+                <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+            </div>
+            <div class="categorie">
+                <div class="categorieName">Done</div>
+                <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+            </div>
+
         </div>
     </div>
-    <div></div>
+    <div class="addTask addTask-none" id="addTask">
+        <div class="window">
+            <img onclick="closeAdd()" src="./img/icon-cancel.svg" alt="">
 
+        </div>
+    </div>
 </body>
 
 </html>
