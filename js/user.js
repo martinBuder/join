@@ -248,7 +248,7 @@ function goToIndex() {
 }
 
 /** save user array in localstorage so the user is on every site (because reload)
-	* 
+	*
 	*/
 function saveUser() {
 	let userAsText = JSON.stringify(user); // 

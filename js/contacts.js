@@ -162,3 +162,12 @@ function returnFullContactHtml(i) {
 	`
 }
 
+function saveContacts() {
+	let contactsAsText = JSON.stringify(contacts); // 
+	localStorage.setItem('contacts', contactsAsText);
+}
+
+
+
+
+
