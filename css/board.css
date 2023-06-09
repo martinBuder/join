@@ -133,7 +133,14 @@
     height: 95%;
     background-color: white;
     border-radius: 30px;
-    animation: slide 1.5s;
+    animation: slide 0.5s;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 30px;
 }
 
 @keyframes slide {
@@ -149,10 +156,16 @@
 .window img {
     margin: 35px;
     cursor: pointer;
+    position: absolute;
+    z-index: 1;
 }
 
 .addTask-none {
     display: none;
+}
+
+#navLinkAddTaskM {
+    background-color: #2A3647 !important;
 }
 
 @media (max-width: 1350px) {

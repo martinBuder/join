@@ -44,7 +44,7 @@ document.getElementById('person').innerHTML = '';
  * If "userName" is null, "Guest" is output, otherwise the content of "userName" is output.
  */
 if (userName == 0) {
-    document.getElementById('person').innerHTML += `Guest`;
+    document.getElementById('person').innerHTML += '';
 } else {
     document.getElementById('person').innerHTML += userName['name'];
 }
