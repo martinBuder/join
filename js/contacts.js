@@ -166,11 +166,26 @@ function returnFullContactHtml(i) {
 	* open add contact Window
 	*/
 function openAddContact() {
+	let addContactWindow = document.getElementById('addContactWindow');
+	addContactWindow.classList.add('addContactSlide')
+	
 	
 	// ! this function must go to save step
 	saveContactList();
 	setContactListToRemoteStorage('contactList', contactList)
 }
+
+/**
+ * This function closes the input mask.
+ */
+function closeAddContact() {
+	let addContactWindow = document.getElementById('addContactWindow');
+	addContactWindow.classList.add('addContactSlideOut');
+	setTimeout(function() {
+		addContactWindow.classList.remove('addContactSlideIn')
+	}, 1500);
+}
+
 
 /**save the contactList in remot storage with token, email and password
 	* 
