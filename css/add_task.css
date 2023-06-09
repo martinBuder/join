@@ -57,16 +57,11 @@ h1 {
 
 /* Settings for page layout */
 
-.addTaskFrame {
-    /* width: calc(100% - 232px); */
-    /* margin-left: 232px; */
+/* .addTaskFrame {
     display: flex;
     justify-content: center;
     width: calc(100% - 232px);
-}
-.smallScreenTitle {
-    display: none;
-}
+} */
 .addTaskContainer {
     display: flex;
     flex-direction: column;
@@ -74,6 +69,9 @@ h1 {
     align-items: center;
     width: calc(100% - 232px);
     /* max-width: 964px; */
+}
+.smallScreenTitle {
+    display: none;
 }
 #contentAddTask {
     /* margin-left: 123px; */
@@ -382,14 +380,15 @@ h1 {
 /* Einstellungen für schmale Screens */
 
 @media (max-width: 1250px) {
-    .addTaskFrame {
+    /* .addTaskFrame {
         display: flex;
         flex-direction: column;
         width: calc(100% - 232px);
         overflow: hidden;
-    }
+    } */
     #contentAddTask {
         margin-top: 101px;
+        max-width: 422px;
         text-align: center;
         display: grid;
         flex-direction: column;
@@ -449,10 +448,10 @@ h1 {
 }
 
 @media (max-width: 760px) {
-    .addTaskFrame {
+    /* .addTaskFrame {
         width: 100%;
         display: grid;
-    }
+    } */
     .smallScreenTitle {
         width: 422px;
         margin-top: 120px;
@@ -461,7 +460,8 @@ h1 {
     }
     #contentAddTask {
         margin-top: 0;
-        width: 422px;
+        /* width: 422px; */
+        max-width: 422px;
     }
     #contentAddTask h1 {
         padding: 19px 0 23px 0;
@@ -491,6 +491,11 @@ h1 {
 }
 
 @media (max-width: 490px) {
+    #contentAddTask {
+        display: flex;
+        max-width: 95%;
+        padding-left: 10px;
+    }
     .addTaskFrame {
         max-width: 95%;
         padding-left: 10px;
@@ -505,11 +510,6 @@ h1 {
     .addTaskContainer {
         max-width: 95%;
         left: 0px;
-    }
-    #contentAddTask {
-        display: flex;
-        max-width: 95%;
-        padding-left: 10px;
     }
     .btnTaskCreate {
         right: 10px;
