@@ -29,6 +29,7 @@ body {
     display: flex;
 }
 h1 {
+    padding-top: 82px;
     padding-bottom: 41px;
 }
 .no-border {
@@ -68,12 +69,16 @@ h1 {
 }
 .addTaskContainer {
     display: flex;
-    justify-content: center;
-    /* width: calc(100% - 232px); */
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    width: calc(100% - 232px);
+    /* max-width: 964px; */
 }
 #contentAddTask {
     /* margin-left: 123px; */
-    margin-top: 171px;
+    /* margin-top: 171px; */
+    margin-top: 82px;
     width: 964px;
 
     /* display: flex;
@@ -391,6 +396,7 @@ h1 {
         justify-content: center;
     }
     #contentAddTask h1 {
+        padding-top: 27px;
         padding-bottom: 23px;
         width: 422px;
         text-align: left;
@@ -460,7 +466,7 @@ h1 {
     #contentAddTask h1 {
         padding: 19px 0 23px 0;
         display: block;
-        justify-self: center;
+        /* justify-self: center; */
     }
     .addTaskContainer {
         width: 100%;
@@ -485,6 +491,27 @@ h1 {
 }
 
 @media (max-width: 490px) {
-
-    
+    .addTaskFrame {
+        max-width: 95%;
+        padding-left: 10px;
+    }
+    .smallScreenTitle {
+        max-width: 95%;
+    }
+    h1 {
+        max-width: 95%;
+        padding-left: 10px;
+    }
+    .addTaskContainer {
+        max-width: 95%;
+        left: 0px;
+    }
+    #contentAddTask {
+        display: flex;
+        max-width: 95%;
+        padding-left: 10px;
+    }
+    .btnTaskCreate {
+        right: 10px;
+    }
 }
