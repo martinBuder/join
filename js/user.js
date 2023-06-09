@@ -4,10 +4,10 @@ const STORAGE_URL   = 'https://remote-storage.developerakademie.org/item';
 let users = [];
 
 let user = {
-	name: 'person',
+	name: '',
 	email: '',
 	password: '',
-	img: './img/person.svg',
+	img: '',
 }
 
 /** get the user-Array from localStorage so that user is on every site 
@@ -23,18 +23,12 @@ function getUser() {
 
 /** change user img 
 	* 
-	*/
+ */
 	function changeUserImg() {
   let userImg = document.getElementById('userImg');  
-
-  userImg.onerror = function(errorMsg) { //>prüft ob das Bild geladen werden kann --> antwort = nein
-    userImg.src = './img/person.svg';
-				return true; //> okay dann lade ich halt das!
-  }
-		
-		userImg.src = user['img'];
+				userImg.src = user['img'] || './img/person.svg'
 	}
-	// ! ein registrierter User hat immer das Bild 'vornamefamilienname.png' in seinem Json definiert
+	// ! ein registrierter Team-User hat immer das Bild 'vornamefamilienname.png' in seinem Json definiert
 
 /** a serie of functions to create a account
 	* 
@@ -59,11 +53,21 @@ async function checkUser() {
 	* step 2 from create a account if user hasn't an account
 	*/
 async function saveNewAccount() {
+	reloadUserJson();
 	changeUserInformation();
 	deleteUserfromUsers();
 	pushUserToUsers();
 	await	setItemToRemoteStorage('users', users);
 	clearDesktopUsersUserInformation()
+}
+
+function reloadUserJson() {
+	user = {
+		name: '',
+		email: '',
+		password: '',
+		img: '',
+	}
 }
 
 /**
@@ -127,8 +131,22 @@ function changeUserInformation() {
 	user['name'] = username.value;
 	user['email'] = email;
 	user['password'] = password;
+	if (teamMember()) {
 	user['img'] = `./img/${username.value.toLowerCase().replace(' ', '')}.png`
+	}
 };
+
+/** check is this person a teammember, who register himself - so we this person can upload his picture 
+	* 
+	* @returns to change user information 
+	*/
+function teamMember() {
+	return (
+	(username.value.includes('Lothar') && username.value.includes('Zok')) ||
+	(username.value.includes('Gino') && username.value.includes('Emmel')) ||
+	(username.value.includes('Martin') && username.value.includes('Buder'))
+	)
+}
 
 /**save the user inforamtion in remot storage with token, email and password
 	* 
@@ -164,6 +182,9 @@ function findUsersArray() {
 	}
 }
 
+/**
+	* check if user is correct
+	*/
 function findCorrectUser() {
 	user = users.find(u => u.password === password && u.email === email);
 	if (user === undefined) {
@@ -194,8 +215,6 @@ async function logIn() {
 	findUsersArray();
 	findCorrectUser()
 }
-
-
 
 /** find sam e user in array and delete 
 	* 
@@ -245,7 +264,6 @@ function logOut() {
 	goToIndex();
 }
 
-
 /** compare the passworts and show next step
 	* 
 	*/
@@ -266,7 +284,6 @@ function logOut() {
 		*/
 	async function newPasswordOk(newPassword) {
 		await saveNewPassword(newPassword);
-		
 		indexContent.innerHTML += returnIdentPasswordHtml()
 		setTimeout(renderLogInWindow, 1000);
 	}
