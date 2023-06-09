@@ -217,18 +217,25 @@ function findUsersArray() {
 /**
 	* check if user is correct
 	*/
-async function findCorrectUser() {
+function findCorrectUser() {
 	user = users.find(u => u.password === password && u.email === email);
 	if (user === undefined) {
 		alert('The email or password you used is not correct!');
 		clearDesktopUsersUserInformation();
 	}else{
 		saveUser();
-		await getContactListFromRemoteStorage('contactList');
-		findContactListArray();
-		saveContactList();
-		goToSummary();
+		indexToSummary()
 	}
+}
+
+/**
+	* function serie go from index to summary
+	*/
+async function indexToSummary() {
+	await getContactListFromRemoteStorage('contactList');
+	findContactListArray();
+	saveContactList();
+	goToSummary();
 }
 
 /**
@@ -238,8 +245,6 @@ function saveContactList() {
 	let contactListAsText = JSON.stringify(contactList); // 
 	localStorage.setItem('contactList', contactListAsText);
 }
-
-
 
 /** tell that something goes wrong by fetch
 	* 

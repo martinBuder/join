@@ -145,9 +145,9 @@ function renderFullContact(i) {
 function returnFullContactHtml(i) {
 	return /*html*/`
 		<div class="fullContactHeader">
-			<div class="intials background: ${contacts[i]['color']}">${contacts[i]['initials']}</div>
+			<div class="intials background: ${contactList[i]['color']}">${contactList[i]['initials']}</div>
 			<div class="fullContactHeaderName">
-				<h2>${contacts[i]['name']}</h2>
+				<h2>${contactList[i]['name']}</h2>
 				<p onclick="contactAddTask()">+ Add Task</p>
 			</div>			
 		</div>
@@ -156,9 +156,9 @@ function returnFullContactHtml(i) {
 			<p onclick="editContact(${i})"><img src="./img/pen.svg" alt=""> Edit Contact</p>
 </div>	
 		<h4>Email</h4>
-		<a href="mailto:${contacts[i]['email']}">${contacts[i]['email']}</a>
+		<a href="mailto:${contactList[i]['email']}">${contactList[i]['email']}</a>
 		<h4>Phone</h4>
-		<a href="tel:${contacts[i]['phonenumber']}">${contacts[i]['phonenumber']}</a>
+		<a href="tel:${contactList[i]['phonenumber']}">${contactList[i]['phonenumber']}</a>
 	`
 }
 
@@ -167,7 +167,9 @@ function returnFullContactHtml(i) {
 	*/
 function openAddContact() {
 	let addContactWindow = document.getElementById('addContactWindow');
-	addContactWindow.classList.add('addContactSlide')
+	addContactWindow.style.animationName = "slide";
+	addContactWindow.style.animationDuration = "1.5s";
+	addContactWindow.style.animationFillMode = "forwards";
 	
 	
 	// ! this function must go to save step
@@ -180,8 +182,9 @@ function openAddContact() {
  */
 function closeAddContact() {
 	let addContactWindow = document.getElementById('addContactWindow');
-
-		addContactWindow.classList.remove('addContactSlide')
+	addContactWindow.style.animationName = "slideOut";
+	addContactWindow.style.animationDuration = "1.5s";
+	addContactWindow.style.animationFillMode = "backwards";
 
 }
 

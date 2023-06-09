@@ -21,6 +21,7 @@ async function init() {
     getUser();
     getContactList();
 }
+
 /**
  * get contacts from local storage
  */
@@ -30,19 +31,6 @@ function getContactList() {
 		contactList = JSON.parse(contactListAsText);
 	}
 }
-
-/**
-	* this function separate users-Array from the serveranswer and changed in a user array 
-	*/
-	function findContactListArray() {
-		if (contactList && contactList.data && contactList.data.value) {
-			contactList = JSON.parse(contactList.data.value.replace(/'/g, '"'));
-		} else {
-			contactList = null;
-		}
-	}
-
-
 
 /**
  * Function for including separate html files into a main file.

@@ -37,7 +37,7 @@ function returnLogInHtml() {
 		</div>
 		<div class="twiceBtnContainer">
 			<button class="focusBtn" type="submit">Log in</button>
-			<a href="summary.html" class="outFocusBtn guestA"><p>Guest Log in</p></a>
+			<a href="#" class="outFocusBtn guestA" onclick="indexToSummary()"><p>Guest Log in</p></a>
 		</div>
 	</form>
 	`;
