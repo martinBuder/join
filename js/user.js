@@ -159,6 +159,17 @@ async function setItemToRemoteStorage(key, value) {
 	return fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload) }).then(res => res.json());
 }
 
+/**save the user inforamtion in remot storage with token, email and password
+	* 
+	* @param {JsonWebKey} key 
+	* @param {Json} value 
+	* @returns 
+	*/
+	async function setContactListToRemoteStorage(key, value) {
+		const payload = {key, value, token: STORAGE_TOKEN,} //old is key: key & value: value
+		return fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload) }).then(res => res.json());
+	}
+
 /** this function get the user information from Remote Storage and changed it to user-Array compares with e-mail and passwort
 	* !!! you need to used findUsersArray() to work with users array
 	* 
@@ -170,6 +181,17 @@ async function getItemFromRemoteStorage(key) {
 	users = await res.json();
 }
 
+/** this function get the user information from Remote Storage and changed it to user-Array compares with e-mail and passwort
+	* !!! you need to used findContactListArray() to work with users array
+	* 
+	* @param {JsonWebKey} key 
+	*/
+	async function getContactListFromRemoteStorage(key) {
+		const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+		let res = await fetch(url).catch();
+		contactList = await res.json();
+	}
+
 /**
 	* this function separate users-Array from the serveranswer and changed in a user array 
 	*/
@@ -178,22 +200,43 @@ function findUsersArray() {
 			users = JSON.parse(users.data.value.replace(/'/g, '"'));
 	} else {
 			user = null;
-			
 	}
 }
 
 /**
+	* this function separate users-Array from the serveranswer and changed in a user array 
+	*/
+	function findContactListArray() {
+		if (contactList && contactList.data && contactList.data.value) {
+			contactList = JSON.parse(contactList.data.value.replace(/'/g, '"'));
+		} else {
+				contactList = null;
+		}
+	}
+
+/**
 	* check if user is correct
 	*/
-function findCorrectUser() {
+async function findCorrectUser() {
 	user = users.find(u => u.password === password && u.email === email);
 	if (user === undefined) {
 		alert('The email or password you used is not correct!');
 		clearDesktopUsersUserInformation();
 	}else{
 		saveUser();
+		await getContactListFromRemoteStorage('contactList');
+		findContactListArray();
+		saveContactList();
 		goToSummary();
 	}
+}
+
+/**
+	* save contactList in local Storage
+	*/
+function saveContactList() {
+	let contactListAsText = JSON.stringify(contactList); // 
+	localStorage.setItem('contactList', contactListAsText);
 }
 
 

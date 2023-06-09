@@ -15,11 +15,11 @@
     <link rel="icon" type="image/png" href="./img/join-navicon.png">
     <title>Join</title>
 </head>
-<body onload="includeHTML(), fillContactList()" class="contactBody">
+<body onload="init(), fillContactList()" class="contactBody">
     <header w3-include-html="./templates/header.html" class="header"></header>
     <section w3-include-html="./templates/sidebar.html" class="sidebar"></section>
     <main class="leftDirection">
-        <section class="contactsList" id="contactList">
+        <section class="contactsList" id="contactListContainer">
             
         </section>
         <section class="contactWindow">
@@ -32,6 +32,36 @@
 
             </div>
             <button class="focusBtn btnRightBottomPosition btnWithImg" onclick="openAddContact()"><p>New contact</p><img src="./img/addContact.svg" alt=""></button>
+        </section>
+        <section class="addContactWindow">
+            <div class="addContactContainer">
+                <div class="addContactClaimer">
+                    <img src="./img/join-logo-white.svg" alt="">
+                    <h1>Add Contact</h1>
+                    <p>Tasks are better with a team!</p>
+                    <div class="blueLine"></div>
+                </div>
+                <div class="addContactWorkspace">
+                    <div class="circle"></div>
+                    <div class="inputArea">
+                        <div class="inputContainer">
+                            <input type="text" id="#" placeholder="#" class="inputField"><img src="img/#" alt="">
+                        </div>
+                        <div class="inputContainer">
+                            <input type="text" id="#" placeholder="#" class="inputField"><img src="img/#" alt="">
+                        </div>
+                        <div class="inputContainer">
+                            <input type="text" id="#" placeholder="#" class="inputField"><img src="img/#" alt="">
+                        </div>
+                    </div>
+                    <div class="addContactWorkespaceBtn">
+                        <button class="btnWithImg noFocusBtn"><p>Cancel</p><p>x</p></button>
+                        <button class="btnWithImg focusBtn"><p>Create contact</p><img src="./img/addContact.svg" alt=""></button>
+                    </div>
+
+
+                </div>
+            </div>
         </section>
     </main>
     

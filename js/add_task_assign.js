@@ -1,6 +1,7 @@
 /**
  * Global Variables
  */
+// contacts is deprecated - will be deleted later
 let contacts = [
     {
         name: 'Lothar Zok',
@@ -26,9 +27,6 @@ let maxImgId = 0;
  * Fills the list of choices of the 'Assign To' field.
  */
 function addContacts() {
-    // Load contacts - erfolgt später aus einer separaten Function aus
-    // TODO - LOAD CONTACTS FROM SERVER
-    
     // Render into the list box
     document.getElementById('newAssList').innerHTML = '';
     let imgId = 0;
@@ -42,17 +40,12 @@ function addContacts() {
 
 /**
  * Subsection of filling the list of choices. Here for the list of contacts.
- */
+*/
 function fillContactsSelection() {
+    // Global variable contactList will be loaded on log in so I can already use it
     imgId = 1; // 0 is reserved for 'You'
-    for (let i = 0; i < contacts.length; i++) {
-        let curContact = contacts[i];
-        // let curImage = '';
-        // if (selectedContacts.indexOf(curContact.email) > -1) {
-        //     curImage = './img/add-task/check-button-checked.svg';
-        // } else {
-        //     curImage = './img/add-task/check-button-unchecked.svg';
-        // }
+    for (let i = 0; i < contactList.length; i++) {
+        let curContact = contactList[i];
         let curImage = (selectedContacts.indexOf(curContact.email.toLowerCase()) > -1) ? './img/add-task/check-button-checked.svg' : './img/add-task/check-button-unchecked.svg';
         
         if (curContact['email'].toLowerCase() != user['email'].toLowerCase()) {
@@ -88,7 +81,6 @@ function selectContact(item, imgId) {
  * @param {string} imgId - The ID of the item that was selected. Corresponds to the ID in the html file.
  */
 function toggleContactSelection(item, imgId) {
-    console.log(item);
     let elem = document.getElementById(imgId);
     if (elem.src.includes('unchecked')) {
         elem.src = "./img/add-task/check-button-checked.svg"
@@ -135,13 +127,19 @@ function addInitialsBadge(srcArray) {
  * @returns An array consisting of the initials and the assigned colour of a contact.
  */
 function getInitialsAndColor(name) {
+    let found = false;
     let retArray = [];
-    for (let i = 0; i < contacts.length; i++) {
-        const elem = contacts[i];
+    for (let i = 0; i < contactList.length; i++) {
+        const elem = contactList[i];
         if (elem.name == name) {
             retArray.push(getInitials(elem.name));
             retArray.push(elem.color);
+            found = true;
         }
+    }
+    if (!(found)) {  // In case the name is not in the list of contacts
+        retArray.push(getInitials(name));
+        retArray.push('bgColorGrey');
     }
     return retArray;
 }
@@ -198,7 +196,7 @@ function selectNewAssInput() {
         email: elem.value.toLowerCase(),
         color: getColor()
     }
-    contacts.some((e) => e.email == elem.value.toLowerCase()) ? '' : contacts.push(newContact);
+    contactList.some((e) => e.email == elem.value.toLowerCase()) ? '' : contactList.push(newContact);
     selectedContacts.some((e) => e == elem.value.toLowerCase()) ? '' : selectedContacts.push(elem.value.toLowerCase());
     elem.value = '';
 
@@ -238,8 +236,8 @@ function clearAssignments() {
 function getColor() {
     // Filter out already used colors
     let newArray = bgColorArray;
-    for (let i = 0; i < contacts.length; i++) {
-        let curColor = contacts[i].color;
+    for (let i = 0; i < contactList.length; i++) {
+        let curColor = contactList[i].color;
         newArray = newArray.filter(e => e !== curColor);
     }
     newArray.length == 0 ? newArray = bgColorArray : ''; // If all colors are already in use, select from all

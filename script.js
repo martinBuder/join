@@ -19,18 +19,30 @@ async function init() {
     await includeHTML(); // Solange warten, bis alle Dateien nachgeladen wurden
     // und dann erst ausführen, um z.B. auf ein eingefügtes Feld zuzugreifen
     getUser();
-    getContacts();
+    getContactList();
 }
-
 /**
  * get contacts from local storage
  */
-function getContacts() {
-	let contactListAsText = localStorage.getItem('contacts');
+function getContactList() {
+	let contactListAsText = localStorage.getItem('contactList');
 	if (contactListAsText) {
 		contactList = JSON.parse(contactListAsText);
 	}
 }
+
+/**
+	* this function separate users-Array from the serveranswer and changed in a user array 
+	*/
+	function findContactListArray() {
+		if (contactList && contactList.data && contactList.data.value) {
+			contactList = JSON.parse(contactList.data.value.replace(/'/g, '"'));
+		} else {
+			contactList = null;
+		}
+	}
+
+
 
 /**
  * Function for including separate html files into a main file.
