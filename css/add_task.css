@@ -69,7 +69,7 @@ h1 {
 .addTaskContainer {
     display: flex;
     justify-content: center;
-    width: calc(100% - 232px);
+    /* width: calc(100% - 232px); */
 }
 #contentAddTask {
     /* margin-left: 123px; */
@@ -382,9 +382,10 @@ h1 {
         flex-direction: column;
         /* justify-content: center; */
         width: calc(100% - 232px);
+        overflow: hidden;
     }
     #contentAddTask {
-        margin-top: 71px;
+        margin-top: 101px;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -407,28 +408,64 @@ h1 {
         padding-top: 38px;
     }
     .taskButtons {
-        justify-content: center;
+        /* justify-content: center;
         order: -2;
+        margin: 43px 0 23px 0; */
+    }
+    .btnTaskClear {
+        display: none;
+    }
+    .btnTaskCreate {
+        position: absolute;
+        top: 17px;
+        right: 20px;
+    }
+    .btnTaskAdded {
+        position: absolute;
+        width: 90%;
+        max-width: 322px;
+        top: 80%;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @keyframes animatebottom {
+        from{
+            top:150%;
+            opacity:0
+        } 
+        to{
+            top: 80%;
+            opacity:1
+        }
     }
 }
 
 @media (max-width: 760px) {
     .addTaskFrame {
         width: 100%;
+
+        display: grid;
+        /* flex-direction: column;
+        justify-content: center; */
     }
     .smallScreenTitle {
-        /* width: 422px; */
+        width: 422px;
         margin-top: 120px;
-        display: flex;
-        justify-content: flex-start;
+        display: block;
+        justify-self: center;
+        /* display: flex;
+        justify-content: flex-start; */
     }
     #contentAddTask {
         margin-top: 0;
+        width: 422px;
     }
     #contentAddTask h1 {
-        width: 422px;
-        display: flex;
-        justify-content: flex-start;
+        padding: 19px 0 23px 0;
+        display: block;
+        justify-self: center;
     }
     .addTaskContainer {
         width: 100%;
@@ -446,5 +483,8 @@ h1 {
     .btnPriority {
         width: 32%;
         font-size: 16px;
+    }
+    .taskButtons {
+        margin: 10px 0 23px 0;
     }
 }

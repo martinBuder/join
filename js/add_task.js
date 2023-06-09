@@ -74,8 +74,8 @@ function clearTask() {
  * Starts the saving of the entered task with all subtasks, if they exist.
  */
 async function createTask() {
-    // if (!(checkRequiredFields()))
-    //     return('');
+    if (!(checkRequiredFields()))
+        return('');
 
     // JSON for the new task
     let newJSON = getNewJSON();
@@ -91,7 +91,7 @@ async function createTask() {
 
 
 /**
- * Returns an array of already saved tasks. Used to push in a new task and then save it.
+ * Loads already saved tasks into the global array 'tasksArray'. This array is used to push in a new task and then save it.
  */
 async function getTasksArray() {
     let tmpArray = await getItem('tasks');
@@ -154,7 +154,7 @@ function getNewJSON() {
 
 
 /**
- * Starts a small animation with a confirmation message (a button) and waits a second to open the board.
+ * Starts a small animation with a confirmation message (a button) and waits just under a second to open the board.
  */
 async function openBoardWhenSaved() {
     // Start animation of confirmation button

@@ -88,7 +88,8 @@ body {
     position: relative;
     justify-content: space-between;
     align-items: center;
-    width: 964px;
+    width: 90%;
+    max-width: 964px;
     /* ! hier kommt die weite vom body hin*/
 }
 
