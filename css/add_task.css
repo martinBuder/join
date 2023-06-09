@@ -58,7 +58,10 @@ h1 {
 
 .addTaskFrame {
     /* width: calc(100% - 232px); */
-    margin-left: 232px;
+    /* margin-left: 232px; */
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 232px);
 }
 .smallScreenTitle {
     display: none;
