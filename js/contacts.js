@@ -1,4 +1,4 @@
-const contacts = [
+let contactList = [
 	{
 			name: 'Max Mustermann',
 			email: 'mustermann@web.de',
@@ -107,7 +107,7 @@ let contactJson = {
 }
 
 function sortContacts() {
-	contacts.sort( (a, b) => {
+	contactList.sort( (a, b) => {
 		if (a.name < b.name) return -1;
 		if (a.name > b.name) return 1;
 		return 0;
@@ -116,11 +116,11 @@ function sortContacts() {
 
 function fillContactList() {
 	sortContacts();
-	let contactList = document.getElementById('contactList');
-	contactList.innerHTML = '';
-	for (let i = 0; i < contacts.length; i++) {
-		let contact = contacts[i];
-		contactList.innerHTML += returnContactListHtml(contact, i);		
+	let contactListContainer = document.getElementById('contactListContainer');
+	contactListContainer.innerHTML = '';
+	for (let i = 0; i < contactList.length; i++) {
+		let contact = contactList[i];
+		contactListContainer.innerHTML += returnContactListHtml(contact, i);		
 	}
 }
 
@@ -162,10 +162,24 @@ function returnFullContactHtml(i) {
 	`
 }
 
-function saveContacts() {
-	let contactsAsText = JSON.stringify(contacts); // 
-	localStorage.setItem('contacts', contactsAsText);
+function openAddContact() {
+	saveContactList();
+	setContactListToRemoteStorage('contactList', contactList)
 }
+
+/**save the contactList in remot storage with token, email and password
+	* 
+	* @param {JsonWebKey} key 
+	* @param {Json} value 
+	* @returns 
+	*/
+	async function setContactListToRemoteStorage(key, value) {
+		const payload = {key, value, token: STORAGE_TOKEN,} //old is key: key & value: value
+		return fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload) }).then(res => res.json());
+	}
+
+
+
 
 
 

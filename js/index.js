@@ -3,6 +3,8 @@ let indexHeaderBtn;
 let passwordImg;
 let passwordField;
 
+
+
 /**
  * find element to fill
  */
@@ -75,6 +77,7 @@ function renderSignUpWindow() {
 	indexContent.innerHTML = returnSignUpHtml();
 	deleteHeaderBtn();
 }
+
 
 /**
 *

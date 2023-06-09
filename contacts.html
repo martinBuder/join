@@ -15,11 +15,11 @@
     <link rel="icon" type="image/png" href="./img/join-navicon.png">
     <title>Join</title>
 </head>
-<body onload="includeHTML(), fillContactList()" class="contactBody">
+<body onload="init(), fillContactList()" class="contactBody">
     <header w3-include-html="./templates/header.html" class="header"></header>
     <section w3-include-html="./templates/sidebar.html" class="sidebar"></section>
     <main class="leftDirection">
-        <section class="contactsList" id="contactList">
+        <section class="contactsList" id="contactListContainer">
             
         </section>
         <section class="contactWindow">
