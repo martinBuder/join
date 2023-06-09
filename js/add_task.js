@@ -130,6 +130,23 @@ function checkRequiredFields() {
  * @returns {json} The JSON object with the data of the entered task.
  */
 function getNewJSON() {
+    let newJSON = {
+        id: getKey(),
+        title: document.getElementById('taskTitle').value,
+        description: document.getElementById('taskDescription').value,
+        category: selectedCategory,
+        categorycolor: selectedColour,
+        duedate: document.getElementById('taskDueDate').value,
+        prio: selectedPriority,
+        status: 'todo',
+        subtasks: getSubtaskArray(),
+        assignedto: selectedContacts
+    }
+    return newJSON;
+}
+
+
+function getSubtaskArray() {
     let subtasksArray = [];
     for (let i = 0; i < selectedSubtasks.length; i++) {
         let tmpSubtask = {
@@ -138,18 +155,7 @@ function getNewJSON() {
         }
         subtasksArray.push(tmpSubtask);
     }
-    let newJSON = {
-        title: document.getElementById('taskTitle').value,
-        description: document.getElementById('taskDescription').value,
-        category: selectedCategory,
-        categorycolor: selectedColour,
-        duedate: document.getElementById('taskDueDate').value,
-        prio: selectedPriority,
-        status: 'todo',
-        subtasks: subtasksArray,
-        assignedto: selectedContacts
-    }
-    return newJSON;
+    return subtasksArray;
 }
 
 
@@ -165,4 +171,16 @@ async function openBoardWhenSaved() {
     // Wait a second, then open board
     await new Promise(wait => setTimeout(wait, 900));
     window.open('./board.html', '_self');
+}
+
+
+/**
+ * Creates a unique identifier that will be saved with a task. That way we have a key to use when changing a status by moving a task per drag and drop to another column (= status).
+ * 
+ * @returns A unique identifier for the tasks.
+ */
+function getKey() {
+    // Source: https://stackoverflow.com/questions/3231459/how-can-i-create-unique-ids-with-javascript
+    // Slightly revised by Lothar Zok
+    return "id-" + Date.now().toString(16) + "-" + Math.random().toString(16).slice(2);
 }
