@@ -162,7 +162,12 @@ function returnFullContactHtml(i) {
 	`
 }
 
+/**
+	* open add contact Window
+	*/
 function openAddContact() {
+	
+	// ! this function must go to save step
 	saveContactList();
 	setContactListToRemoteStorage('contactList', contactList)
 }
