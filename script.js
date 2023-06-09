@@ -18,9 +18,19 @@ let bgColorArray = ['bgColor0190E0', 'bgColorEE00D6', 'bgColor02CF2F', 'bgColorF
 async function init() {
     await includeHTML(); // Solange warten, bis alle Dateien nachgeladen wurden
     // und dann erst ausführen, um z.B. auf ein eingefügtes Feld zuzugreifen
-    getUser()
+    getUser();
+    getContacts();
 }
 
+/**
+ * get contacts from local storage
+ */
+function getContacts() {
+	let contactListAsText = localStorage.getItem('contacts');
+	if (contactListAsText) {
+		contactList = JSON.parse(contactListAsText);
+	}
+}
 
 /**
  * Function for including separate html files into a main file.
