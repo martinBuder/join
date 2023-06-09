@@ -133,7 +133,7 @@
     height: 95%;
     background-color: white;
     border-radius: 30px;
-    animation: slide 0.5s;
+    animation: slideOpen 0.5s;
 }
 
 iframe {
@@ -143,13 +143,23 @@ iframe {
     border-radius: 30px;
 }
 
-@keyframes slide {
+@keyframes slideOpen {
     from {
         margin-left: 110%;
     }
 
     to {
         margin-left: 0;
+    }
+}
+
+@keyframes slideClose {
+    from {
+        margin-left: 0%;
+    }
+
+    to {
+        margin-left: 110;
     }
 }
 

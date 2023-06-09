@@ -4,8 +4,7 @@
 function addTask() {
     document.getElementById('addTask').innerHTML = `
         <div class="window">
-            <img onclick="closeAdd()" src="./img/icon-cancel.svg" alt="">  
-            <iframe src="add_task_content.html" frameborder="0"></iframe>
+            <img onclick="closeAdd()" src="./img/icon-cancel.svg" alt="">
         </div>
     `;
     document.getElementById('addTask').classList.remove('addTask-none');
@@ -14,5 +13,6 @@ function addTask() {
  * This function closes the input mask.
  */
 function closeAdd() {
+
     document.getElementById('addTask').classList.add('addTask-none');
 }
