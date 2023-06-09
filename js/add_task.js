@@ -74,8 +74,8 @@ function clearTask() {
  * Starts the saving of the entered task with all subtasks, if they exist.
  */
 async function createTask() {
-    if (!(checkRequiredFields()))
-        return('');
+    // if (!(checkRequiredFields()))
+    //     return('');
 
     // JSON for the new task
     let newJSON = getNewJSON();

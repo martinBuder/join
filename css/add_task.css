@@ -380,15 +380,20 @@ h1 {
     .addTaskFrame {
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
         width: calc(100% - 232px);
         overflow: hidden;
     }
     #contentAddTask {
         margin-top: 101px;
         text-align: center;
-        display: flex;
+        display: grid;
         flex-direction: column;
+        justify-content: center;
+    }
+    #contentAddTask h1 {
+        padding-bottom: 23px;
+        width: 422px;
+        text-align: left;
     }
     .addTaskContainer {
         width: 100%;
@@ -406,11 +411,6 @@ h1 {
     }
     .displayDueDate {
         padding-top: 38px;
-    }
-    .taskButtons {
-        /* justify-content: center;
-        order: -2;
-        margin: 43px 0 23px 0; */
     }
     .btnTaskClear {
         display: none;
@@ -445,18 +445,13 @@ h1 {
 @media (max-width: 760px) {
     .addTaskFrame {
         width: 100%;
-
         display: grid;
-        /* flex-direction: column;
-        justify-content: center; */
     }
     .smallScreenTitle {
         width: 422px;
         margin-top: 120px;
         display: block;
         justify-self: center;
-        /* display: flex;
-        justify-content: flex-start; */
     }
     #contentAddTask {
         margin-top: 0;
@@ -487,4 +482,9 @@ h1 {
     .taskButtons {
         margin: 10px 0 23px 0;
     }
+}
+
+@media (max-width: 490px) {
+
+    
 }
