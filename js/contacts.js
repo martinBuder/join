@@ -180,10 +180,9 @@ function openAddContact() {
  */
 function closeAddContact() {
 	let addContactWindow = document.getElementById('addContactWindow');
-	addContactWindow.classList.add('addContactSlideOut');
-	setTimeout(function() {
-		addContactWindow.classList.remove('addContactSlideIn')
-	}, 1500);
+
+		addContactWindow.classList.remove('addContactSlide')
+
 }
 
 
