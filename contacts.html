@@ -33,12 +33,8 @@
             </div>
             <button class="focusBtn btnRightBottomPosition btnWithImg" onclick="openAddContact()"><p>New contact</p><img src="./img/addContact.svg" alt=""></button>
         </section>
-        <section class="addContactWindow addContactSlide" id="addContactWindow">
-            
-            <!-- onclick="closeAddContact()" -->
-
-             
-            <div class="addContactContainer">
+        <section class="addContactWindow addContactSlide" id="addContactWindow" onclick="closeAddContact()">
+            <div class="addContactContainer" onclick="event.stopPropagation()">
                 <div class="addContactClaimer">
                     <img src="./img/join-logo-white.svg" alt="">
                     <div class="claimerText">
@@ -49,7 +45,7 @@
                 </div>
                 <div class="addContactWorkspace">
                     <div class="closeX" onclick="closeAddContact()">&#10006</div>
-                    <div class="circle" id="circle"><img src="./img/person.svg" alt=""></div>
+                    <div class="circle bgLightGrey" id="circle"><img src="./img/person.svg" alt=""></div>
                     <form onsubmit="saveNewContact(); return false" class="inputArea" id="inputArea">
                         <div class="inputContainer">
                             <input type="text" id="contactName" placeholder="Name" class="inputField" required><img src="./img/person.svg" alt="">
@@ -63,6 +59,7 @@
                         <div class="addContactWorkespaceBtn" id="contactWorkspaceBtnContainer">
                            
                         </div>
+                        <div class="contactColorWrapper"></div>
                     </form>
                 </div>
             </div>

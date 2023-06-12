@@ -26,7 +26,6 @@ async function initContact() {
 			fillContactList();
 	};
 
-
 function fillContactList() {
 	let firstLetter
 	let firstLetterHeader
@@ -87,15 +86,59 @@ function openAddContact() {
 	startSlideAnimation();
 }
 
+/**
+	* fill inputfields with contactList Infos
+	* @param {number} i 
+	*/
 function fillEditInputs(i) {
 	contactName.value = contactList[i]['name'];
 	contactEmail.value = contactList[i]['email'];
-	contactPhone.value = contactList[i]['phonenumber']
+	contactPhone.value = contactList[i]['phonenumber'];
 }
 
-function openEditContact(i){
+function createCircle(i) {
+	let circle = document.getElementById('circle');
+	circle.innerHTML = contactList[i]['initials'];
+	circle.classList.remove('bgLightGrey');
+	circle.classList.add(contactList[i]['color'])
+	circle.setAttribute('onclick', `changeContactColor(${i})`);
+}
+
+async function changeContactColor(i) {
+	fillColors(i);
+
+}
+
+function fillColors(i) {
+	let contactColorWrapper = document.getElementsByClassName('contactColorWrapper')[0];
+	contactColorWrapper.innerHTML = ``;
+	contactColorWrapper.innerHTML = `<p>Joice a color...</p>`;
+	for (let j = 0; j < bgColorArray.length; j++) {
+		contactColorWrapper.innerHTML += /*html*/`
+			<div class="contactColorContainer ${bgColorArray[j]}" onclick="choiceColor(${i}, ${j})"></div>
+		`		
+	}
+}
+
+async function choiceColor(i, j) {
+	let contactColorWrapper = document.getElementsByClassName('contactColorWrapper')[0];
+	let circle = document.getElementById('circle');
+	circle.classList.remove(contactList[i]['color']);
+	contactList[i]['color'] = bgColorArray[j];
+
+	circle.classList.add(contactList[i]['color']);
+	contactColorWrapper.innerHTML = ``;
+	
+	await setContactListToRemoteStorage('contactList', contactList);
+	saveContactList();
+	getContactList();
+	fillContactList();
+}
+
+function openEditContact(i) {
 	getContactInputFields();
 	fillEditInputs(i);
+	createCircle(i);
 	addedEditContactBtn(i);
 	startSlideAnimation();
 	overwriteContactSaveOnSubmit(i);
@@ -163,7 +206,6 @@ function closeAddContact() {
 	addContactWindow.style.animationName = "slideOut";
 	addContactWindow.style.animationDuration = "1.5s";
 	addContactWindow.style.animationFillMode = "backwards";
-
 }
 
 
