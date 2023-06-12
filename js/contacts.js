@@ -8,6 +8,10 @@ let contactJson = {
 	color: '',
 }
 
+let contactName;
+let contactEmail;
+let contactPhone;
+
 function sortContacts() {
 	contactList.sort( (a, b) => {
 		if (a.name < b.name) return -1;
@@ -65,7 +69,7 @@ function returnFullContactHtml(i) {
 		</div>
 		<div class="contactSubHeaderContainer">
 			<h3>Contact Information</h3>
-			<p onclick="editContact(${i})"><img src="./img/pen.svg" alt=""> Edit Contact</p>
+			<p onclick="openEditContact(${i})"><img src="./img/pen.svg" alt=""> Edit Contact</p>
 </div>	
 		<h4>Email</h4>
 		<a href="mailto:${contactList[i]['email']}">${contactList[i]['email']}</a>
@@ -78,15 +82,46 @@ function returnFullContactHtml(i) {
 	* open add contact Window
 	*/
 function openAddContact() {
+	addedNewContactBtn();
+	startSlideAnimation();
+}
+
+function fillEditInputs(i) {
+	contactName.value = contactList[i]['name'];
+	contactEmail.value = contactList[i]['email']
+	contactPhone.value = contactList[i]['phonenumber']
+}
+
+function openEditContact(i){
+	getContactInputFields();
+	fillEditInputs(i)
+	addedEditContactBtn();
+	startSlideAnimation();
+}
+
+
+
+function startSlideAnimation() {
 	let addContactWindow = document.getElementById('addContactWindow');
 	addContactWindow.style.animationName = "slide";
 	addContactWindow.style.animationDuration = "1.5s";
 	addContactWindow.style.animationFillMode = "forwards";
-	
-	
-	// ! this function must go to save step
-	saveContactList();
-	setContactListToRemoteStorage('contactList', contactList)
+}
+
+function addedNewContactBtn() {
+	let contactWorkspaceBtnContainer = document.getElementById('contactWorkspaceBtnContainer');
+		contactWorkspaceBtnContainer.innerHTML = /*html*/`
+			<button class="btnWithImg outFocusBtn" onclick="closeAddContact()"><p>Cancel</p><p>&#10006</p></button>
+   <button class="btnWithImg focusBtn" submit ><p>Create contact</p><p>&#10003</p></button>
+		`
+}
+
+function addedEditContactBtn() {
+	let contactWorkspaceBtnContainer = document.getElementById('contactWorkspaceBtnContainer');
+		contactWorkspaceBtnContainer.innerHTML = /*html*/`
+			<button class="outFocusBtn" onclick="closeAddContact()">Delete</button>
+   <button class="focusBtn" submit>Save</button>
+		`
 }
 
 /**
@@ -139,6 +174,7 @@ return firstLetterHeader
 
 
 async function saveNewContact() {
+	getContactInputFields()
 	getNewContactData();
 	getNewContactInitials();
 	addColorNewContact();
@@ -151,13 +187,16 @@ async function saveNewContact() {
 	closeAddContact();
 }
 
+function getContactInputFields() {
+	contactName = document.getElementById('contactName');
+	contactEmail = document.getElementById('contactEmail');
+	contactPhone = document.getElementById('contactPhone');
+}
+
 function getNewContactData() {
-	let contactName = document.getElementById('contactName').value;
-	let contactEmail = document.getElementById('contactEmail').value;
-	let contactPhone = document.getElementById('contactPhone').value;
-	contactJson['name'] = contactName;
-	contactJson['email'] = contactEmail;
-	contactJson['phonenumber'] = contactPhone;
+	contactJson['name'] = contactName.value;
+	contactJson['email'] = contactEmail.value;
+	contactJson['phonenumber'] = contactPhone.value;
 }
 
 function getNewContactInitials() {
