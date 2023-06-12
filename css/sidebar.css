@@ -155,3 +155,11 @@ a:hover {
         display: block;
     }
 }
+@media (max-width: 490px) {
+    .navbar-icon {
+        height: 22px;
+    }
+    .navbar-entry {
+        font-size: 14px;
+    }
+}

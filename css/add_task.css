@@ -440,7 +440,7 @@ h1 {
         width: 422px;
         margin-top: 120px;
         display: block;
-        justify-self: center;
+        /* justify-self: center; */
     }
     #contentAddTask {
         margin-top: 0;
@@ -478,7 +478,7 @@ h1 {
     #contentAddTask {
         display: flex;
         max-width: 95%;
-        padding-left: 10px;
+        /* padding-left: 10px; */
     }
     .addTaskFrame {
         max-width: 95%;
@@ -486,16 +486,47 @@ h1 {
     }
     .smallScreenTitle {
         max-width: 95%;
+        font-size: 14px;
     }
-    h1 {
+    #contentAddTask h1 {
         max-width: 95%;
-        padding-left: 10px;
+        /* padding-left: 10px; */
+        font-size: 50px;
     }
     .addTaskContainer {
         max-width: 95%;
         left: 0px;
     }
+    .columnLeft,
+    .columnRight {
+        max-width: 95%;
+    }
     .btnTaskCreate {
         right: 10px;
+    }
+    .taskLabel {
+        font-size: 14px;
+    }
+    .taskPriority {
+        flex-direction: column;
+        height: 183px;
+    }
+    .btnPriority {
+        margin: 5px 0 5px 0;
+        width: 120px;
+    }
+    .btnPriority:hover {
+        margin: 0;
+    }
+    input,
+    textarea,
+    .inputField,
+    .selectionHeader,
+    #newCatList,
+    #newAssList,
+    input::placeholder,
+    textarea::placeholder,
+    .likeInput {
+        font-size: 16px;
     }
 }

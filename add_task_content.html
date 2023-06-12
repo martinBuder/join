@@ -15,14 +15,14 @@
 
             <!-- Field Description -->
             <div class="fieldContainer labelAndField mb-14">
-                <label for="taskDescription">Description</label>
+                <label for="taskDescription" class="taskLabel">Description</label>
                 <textarea name="Description" id="taskDescription" cols="30" rows="3" class="inputField mt-8" placeholder="Enter a description"></textarea>
                 <span class="requiredMessage mt-8 opacity-0" id="reqDescription">This field is required</span>
             </div>
 
             <!-- Field Category -->
             <div class="mb-14">
-                <label>Category</label>
+                <label class="taskLabel">Category</label>
                 <div class="labelAndField selectCategory mt-8">
                     <span class="selectionHeader selectionHeaderFlex" id="newCatHeader" onclick="toggleSelection('category')">
                         <span id="newCatHeaderField">Select task category</span>
@@ -51,7 +51,7 @@
 
             <!-- Field Assigned To -->
             <div>
-                <label>Assigned to</label>
+                <label class="taskLabel">Assigned to</label>
                 <div class="labelAndField selectCategory mt-8">
                     <span class="selectionHeader selectionHeaderFlex" id="newAssHeader" onclick="toggleSelection('assigned')">
                         <span id="newAssHeaderField">Select contacts to assign</span>
@@ -99,7 +99,7 @@
             
             <!-- Field Subtasks -->
             <div>
-                <label>Subtasks</label>
+                <label class="taskLabel">Subtasks</label>
                 <div class="labelAndField selectCategory mt-8">
                     <span class="selectionHeader selectionHeaderFlex" id="newSubtaskHeader" onclick="selectSubtask()">
                         <span id="newSubtaskHeaderField" class="likeInput">Add new subtask</span>
