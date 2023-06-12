@@ -15,7 +15,7 @@
     <link rel="icon" type="image/png" href="./img/join-navicon.png">
     <title>Join</title>
 </head>
-<body onload="init(), fillContactList()" class="contactBody">
+<body onload="initContact()" class="contactBody">
     <header w3-include-html="./templates/header.html" class="header"></header>
     <section w3-include-html="./templates/sidebar.html" class="sidebar"></section>
     <main class="leftDirection">
@@ -44,21 +44,21 @@
                 <div class="addContactWorkspace">
                     <div class="closeX" onclick="closeAddContact()">&#10006</div>
                     <div class="circle" id="circle"><img src="./img/person.svg" alt=""></div>
-                    <div class="inputArea">
+                    <form onsubmit="saveNewContact(); return false" class="inputArea">
                         <div class="inputContainer">
-                            <input type="text" id="contactName" placeholder="Name" class="inputField"><img src="./img/person.svg" alt="">
+                            <input type="text" id="contactName" placeholder="Name" class="inputField" required><img src="./img/person.svg" alt="">
                         </div>
                         <div class="inputContainer">
-                            <input type="text" id="contactEmail" placeholder="Email" class="inputField"><img src="./img/letter.svg" alt="">
+                            <input type="text" id="contactEmail" placeholder="Email" class="inputField" required><img src="./img/letter.svg" alt="">
                         </div>
                         <div class="inputContainer">
-                            <input type="text" id="contactPhone" placeholder="Phone" class="inputField"><img src="./img/phone.svg" alt="">
+                            <input type="text" id="contactPhone" placeholder="Phone" class="inputField" required><img src="./img/phone.svg" alt="">
                         </div>
                         <div class="addContactWorkespaceBtn">
-                            <button class="btnWithImg outFocusBtn"><p>Cancel</p><p>&#10006</p></button>
-                            <button class="btnWithImg focusBtn"><p>Create contact</p><p>&#10003</p></button>
+                            <button class="btnWithImg outFocusBtn" onclick="closeAddContact()"><p>Cancel</p><p>&#10006</p></button>
+                            <button class="btnWithImg focusBtn" submit ><p>Create contact</p><p>&#10003</p></button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </section>
