@@ -74,16 +74,16 @@ function clearTask() {
  * Starts the saving of the entered task with all subtasks, if they exist.
  */
 async function createTask() {
-    // if (!(checkRequiredFields()))
-    //     return('');
+    if (!(checkRequiredFields()))
+        return('');
 
     // JSON for the new task
     let newJSON = getNewJSON();
     
     // Saving the new task to disk
-    // await getTasksArray();
-    // tasksArray.push(newJSON);
-    // await setItem('tasks', tasksArray);
+    await getTasksArray();
+    tasksArray.push(newJSON);
+    await setItem('tasks', tasksArray);
 
     // Open Board
     openBoardWhenSaved();
@@ -146,6 +146,11 @@ function getNewJSON() {
 }
 
 
+/**
+ * Creates an array that contains all subtasks in JSON-format. Otherwise no sense, just to make a function smaller (less than 14 lines - whyever...)
+ * 
+ * @returns Array with elements in JSON-format. Array may be empty.
+ */
 function getSubtaskArray() {
     let subtasksArray = [];
     for (let i = 0; i < selectedSubtasks.length; i++) {

@@ -1,45 +1,27 @@
 /**
  * Global variable categories: Contains the already assigned categories
  */
-let categories = [
-    {
-        name: 'Sales',
-        img: 'lightviolet'
-    },
-    {
-        name: 'Backoffice',
-        img: 'turqoise'
-    },
-    {
-        name: 'Testkategorie',
-        img: ''
-    }
-];
+let categories = [];
 
 
 /**
  * Loads the already assigned categories and adds them to the selection list
- * 
- * NOCH NICHT FERTIG - LADEN DER KATEGORIEN FEHLT NOCH
  */
 async function addCategories() {
-    // Categories laden - erfolgt später aus einer separaten Function aus
-    // console.log('addCategories gestartet');
-
-    // TODO : Kategorien laden
-
+    // Load already used categories
+    categories = await getArrayOfCategories();
 
     // Render into the list box
-    document.getElementById('newCatList').innerHTML = '';
+    document.getElementById('newCatList').innerHTML = '';  // delete entries - important when page will be refreshed
     // -- Part 1: Selection 'New category' (fixed)
     let newCode = `<li onclick="selectCategory(this)">New category</li>`;
     // -- Part 2: Loop over categories and add newCode
     for (let i = 0; i < categories.length; i++) {
         let curCat = categories[i];
-        if (curCat['img'] == '') {
+        if (curCat['color'] == '') {
             newCode += `<li onclick="selectCategory(this)">${curCat['name']}</li>`
         } else {
-            newCode += `<li onclick="selectCategory(this)">${curCat['name']}<img src="img/add-task/circle-${curCat['img']}.svg" alt="" class="h21px"></li>`
+            newCode += `<li onclick="selectCategory(this)">${curCat['name']}<img src="img/add-task/circle-${curCat['color']}.svg" alt="" class="h21px"></li>`
         }
     }
     document.getElementById('newCatList').innerHTML = newCode;
@@ -129,4 +111,26 @@ function selectNewCatInput() {
     addCategories();
     cancelNewCatInput();
     toggleSelection('category');
+}
+
+
+/**
+ * Create a unique array of already used categories und its colors. Give that array back.
+ * 
+ * @returns Array with unique entries of category and categorycolor pairs
+ */
+async function getArrayOfCategories() {
+    let retArray = [];
+
+    await getTasksArray();
+    for (let i = 0; i < tasksArray.length; i++) {
+        const elem = tasksArray[i];
+        let tmpJSON = {
+            name: elem['category'],
+            color: elem['categorycolor']
+        }
+        retArray.push(tmpJSON);
+    }
+    retArray = [...new Set(retArray)];  // remove multiple entries
+    return retArray;
 }
