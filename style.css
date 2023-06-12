@@ -10,6 +10,35 @@
 }
 /* ENDE Einbindung der Schriften */
 
+  /* ! Scrollbar */
+  ::-webkit-scrollbar-button {
+    height: 20px;
+  }
+
+  ::-webkit-scrollbar-button:start:decrement {
+    background-image: url('./img/arrowUp.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  ::-webkit-scrollbar-button:end:increment {
+    background-image: url('./img/arrowDown.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    background-color: #fff;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    background-clip: padding-box;
+    border-radius: 50px;
+}
+
 
 /* Background Colour codes */
 .bgColor0190E0 {

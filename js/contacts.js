@@ -222,7 +222,7 @@ function getFirstLetter(contact) {
 function fillFirstLetterHeader(firstLetterHeader, firstLetter) {
 	if (firstLetterHeader !== firstLetter) {
 	contactListContainer.innerHTML += /*html*/`
-	<h2>${firstLetter.toUpperCase()}</h2>
+	<div class="oneLetterHeader">${firstLetter.toUpperCase()}</div>
 	`
 	firstLetterHeader = firstLetter;
 	}
