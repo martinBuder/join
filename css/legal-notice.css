@@ -1,0 +1,27 @@
+/* Settings especially for legal_notice.html */
+
+#navLinkLegalNotice {
+    background-color: #091931;
+}
+#navLinkLegalNotice span {
+    color: white;
+}
+#navLinkLegalNotice img {
+    filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
+}
+
+h1 {
+    padding-bottom: 24px;
+}
+#legalNoticeContent div:last-child {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+.noticeHeader {
+    font-size: 21px;
+    font-weight: bold;
+    padding: 16px 0 8px 16px;
+}
+.noticeText {
+    padding-left: 16px;
+}

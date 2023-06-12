@@ -120,7 +120,7 @@ function selectNewCatInput() {
  * @returns Array with unique entries of category and categorycolor pairs
  */
 async function getArrayOfCategories() {
-    let retArray = [];
+    let tmpArray = [];
 
     await getTasksArray();
     for (let i = 0; i < tasksArray.length; i++) {
@@ -129,8 +129,8 @@ async function getArrayOfCategories() {
             name: elem['category'],
             color: elem['categorycolor']
         }
-        retArray.push(tmpJSON);
+        tmpArray.push(tmpJSON);
     }
-    retArray = [...new Set(retArray)];  // remove multiple entries
+    let retArray = [...new Set(tmpArray)];  // ... changes the new set into an array
     return retArray;
 }
