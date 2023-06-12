@@ -94,12 +94,26 @@ function fillEditInputs(i) {
 
 function openEditContact(i){
 	getContactInputFields();
-	fillEditInputs(i)
+	fillEditInputs(i);
 	addedEditContactBtn();
 	startSlideAnimation();
+	overwriteContactSaveOnSubmit();
 }
 
+async function saveEditContact() {
+	setEditedContact();
+}
 
+function setEditedContact() {
+	contactList[i]['name'] = contactName.value;
+	contactList[i]['email'] = contactEmail.value;
+	contactList[i]['phonenumber'] = contactPhone.value
+}
+
+function 	overwriteContactSaveOnSubmit() {
+	let form = document.getElementById('inputArea')
+	form.setAttribute('onsubmit', 'saveEditContact()');
+}
 
 function startSlideAnimation() {
 	let addContactWindow = document.getElementById('addContactWindow');
