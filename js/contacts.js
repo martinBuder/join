@@ -1,7 +1,7 @@
 let contactList = [];
 
 let contactJson = {
-	name: 'person',
+	name: '',
 	email: '',
 	phonenumber: '',
 	initials:'',
@@ -11,6 +11,7 @@ let contactJson = {
 let contactName;
 let contactEmail;
 let contactPhone;
+let nameArray;
 
 function sortContacts() {
 	contactList.sort( (a, b) => {
@@ -88,31 +89,47 @@ function openAddContact() {
 
 function fillEditInputs(i) {
 	contactName.value = contactList[i]['name'];
-	contactEmail.value = contactList[i]['email']
+	contactEmail.value = contactList[i]['email'];
 	contactPhone.value = contactList[i]['phonenumber']
 }
 
 function openEditContact(i){
 	getContactInputFields();
 	fillEditInputs(i);
-	addedEditContactBtn();
+	addedEditContactBtn(i);
 	startSlideAnimation();
-	overwriteContactSaveOnSubmit();
+	overwriteContactSaveOnSubmit(i);
 }
 
-async function saveEditContact() {
-	setEditedContact();
+async function saveEditContact(i) {
+	setEditedContact(i);
+	getContactInitials(i);
+	sortContacts()
+	saveContactList();
+	await setContactListToRemoteStorage('contactList', contactList);
+	getContactList();
+	fillContactList();
+	closeAddContact();
 }
 
-function setEditedContact() {
+async function deleteContact(i) {
+	contactList.splice(i, 1);
+	saveContactList();
+	await setContactListToRemoteStorage('contactList', contactList);
+	getContactList();
+	fillContactList();
+	closeAddContact();
+}
+
+function setEditedContact(i) {
 	contactList[i]['name'] = contactName.value;
 	contactList[i]['email'] = contactEmail.value;
 	contactList[i]['phonenumber'] = contactPhone.value
 }
 
-function 	overwriteContactSaveOnSubmit() {
+function overwriteContactSaveOnSubmit(i) {
 	let form = document.getElementById('inputArea')
-	form.setAttribute('onsubmit', 'saveEditContact()');
+	form.setAttribute('onsubmit', `saveEditContact(${i})`);
 }
 
 function startSlideAnimation() {
@@ -130,10 +147,10 @@ function addedNewContactBtn() {
 		`
 }
 
-function addedEditContactBtn() {
+function addedEditContactBtn(i) {
 	let contactWorkspaceBtnContainer = document.getElementById('contactWorkspaceBtnContainer');
 		contactWorkspaceBtnContainer.innerHTML = /*html*/`
-			<button class="outFocusBtn" onclick="closeAddContact()">Delete</button>
+			<button class="outFocusBtn" onclick="deleteContact(${i})">Delete</button>
    <button class="focusBtn" submit>Save</button>
 		`
 }
@@ -190,7 +207,7 @@ return firstLetterHeader
 async function saveNewContact() {
 	getContactInputFields()
 	getNewContactData();
-	getNewContactInitials();
+	getContactInitials();
 	addColorNewContact();
 	pushContactToContacts();
 	sortContacts()
@@ -213,11 +230,19 @@ function getNewContactData() {
 	contactJson['phonenumber'] = contactPhone.value;
 }
 
-function getNewContactInitials() {
-	let nameArray = contactJson['name'].split(' ');
+function getContactInitials(i) {
+	if (i !== undefined) {
+		nameArray = contactList[i]['name'].split(' ');
+	}else{
+		nameArray = 	contactJson['name'].split(' ');
+	}
 	let initial = '';
 	nameArray.length == 1 ? initial = nameArray[0].substring(0, 2) : initial = nameArray[0].substring(0, 1) + nameArray[1].substring(0, 1);
-	contactJson['initials'] = initial.toUpperCase();
+	if (i !== undefined) {
+		contactList[i]['initials'] = initial.toUpperCase();
+	}else{
+ 	contactJson['initials'] = initial.toUpperCase();
+	}
 }
 
 function addColorNewContact() {
