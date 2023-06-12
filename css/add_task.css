@@ -432,10 +432,10 @@ h1 {
 }
 
 @media (max-width: 760px) {
-    /* .addTaskFrame {
-        width: 100%;
-        display: grid;
-    } */
+    .addTaskContainer {
+        /* width: 100%; */
+        margin-bottom: 100px;
+    }
     .smallScreenTitle {
         width: 422px;
         margin-top: 120px;
@@ -451,10 +451,6 @@ h1 {
         padding: 19px 0 23px 0;
         display: block;
         /* justify-self: center; */
-    }
-    .addTaskContainer {
-        width: 100%;
-        margin-bottom: 100px;
     }
     .inputField {
         width: 90%;
@@ -475,15 +471,20 @@ h1 {
 }
 
 @media (max-width: 490px) {
+    .addTaskContainer {
+        max-width: 95%;
+        left: 0px;
+        padding: 0 10px 0 10px;
+    }
     #contentAddTask {
         display: flex;
-        max-width: 95%;
+        max-width: 100%;
         /* padding-left: 10px; */
     }
-    .addTaskFrame {
+    /* .addTaskFrame {
         max-width: 95%;
         padding-left: 10px;
-    }
+    } */
     .smallScreenTitle {
         max-width: 95%;
         font-size: 14px;
@@ -491,11 +492,8 @@ h1 {
     #contentAddTask h1 {
         max-width: 95%;
         /* padding-left: 10px; */
+        margin-left: 10px;
         font-size: 50px;
-    }
-    .addTaskContainer {
-        max-width: 95%;
-        left: 0px;
     }
     .columnLeft,
     .columnRight {
@@ -528,5 +526,10 @@ h1 {
     textarea::placeholder,
     .likeInput {
         font-size: 16px;
+    }
+}
+@media (max-width: 290px) {
+    #contentAddTask h1 {
+        font-size: 46px;
     }
 }
