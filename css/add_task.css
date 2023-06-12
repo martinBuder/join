@@ -41,31 +41,18 @@ h1 {
 
 /* Settings for page layout */
 
-/* .addTaskFrame {
-    display: flex;
-    justify-content: center;
-    width: calc(100% - 232px);
-} */
 .addTaskContainer {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     width: calc(100% - 232px);
-    /* max-width: 964px; */
 }
 .smallScreenTitle {
     display: none;
 }
 #contentAddTask {
-    /* margin-left: 123px; */
-    /* margin-top: 171px; */
     margin-top: 82px;
     width: 964px;
-
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
 }
 .twoColumns {
     display: flex;
@@ -364,12 +351,6 @@ h1 {
 /* Einstellungen für schmale Screens */
 
 @media (max-width: 1250px) {
-    /* .addTaskFrame {
-        display: flex;
-        flex-direction: column;
-        width: calc(100% - 232px);
-        overflow: hidden;
-    } */
     #contentAddTask {
         margin-top: 101px;
         max-width: 422px;
@@ -433,24 +414,20 @@ h1 {
 
 @media (max-width: 760px) {
     .addTaskContainer {
-        /* width: 100%; */
         margin-bottom: 100px;
     }
     .smallScreenTitle {
         width: 422px;
         margin-top: 120px;
         display: block;
-        /* justify-self: center; */
     }
     #contentAddTask {
         margin-top: 0;
-        /* width: 422px; */
         max-width: 422px;
     }
     #contentAddTask h1 {
         padding: 19px 0 23px 0;
         display: block;
-        /* justify-self: center; */
     }
     .inputField {
         width: 90%;
@@ -479,19 +456,13 @@ h1 {
     #contentAddTask {
         display: flex;
         max-width: 100%;
-        /* padding-left: 10px; */
     }
-    /* .addTaskFrame {
-        max-width: 95%;
-        padding-left: 10px;
-    } */
     .smallScreenTitle {
         max-width: 95%;
         font-size: 14px;
     }
     #contentAddTask h1 {
         max-width: 95%;
-        /* padding-left: 10px; */
         margin-left: 10px;
         font-size: 50px;
     }
@@ -528,6 +499,7 @@ h1 {
         font-size: 16px;
     }
 }
+
 @media (max-width: 290px) {
     #contentAddTask h1 {
         font-size: 46px;

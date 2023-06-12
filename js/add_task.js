@@ -18,7 +18,9 @@ async function initAddTask() {
 
 
 /**
- * Switches the visibility of the selection list on or off.
+ * Switches the visibility of a selection list on or off.
+ * 
+ * @param {string} selection - The selection whose d-none class will be toggled.
  */
 function toggleSelection(selection) {
     switch (selection) {
@@ -180,7 +182,7 @@ async function openBoardWhenSaved() {
 
 
 /**
- * Creates a unique identifier that will be saved with a task. That way we have a key to use when changing a status by moving a task per drag and drop to another column (= status).
+ * Creates a unique identifier that will be saved with a task. That way we have a key to use when changing a status by moving a task per drag and drop to another column (= change status).
  * 
  * @returns A unique identifier for the tasks.
  */
