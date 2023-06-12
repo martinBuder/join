@@ -1,4 +1,4 @@
-/* Settings especially for legal_notice.html */
+/* Settings for legal_notice.html */
 
 #navLinkLegalNotice {
     background-color: #091931;
@@ -20,8 +20,8 @@ h1 {
 .noticeHeader {
     font-size: 21px;
     font-weight: bold;
-    padding: 16px 0 8px 16px;
+    padding: 16px 16px 8px 16px;
 }
 .noticeText {
-    padding-left: 16px;
+    padding: 0px 16px;
 }
