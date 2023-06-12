@@ -115,11 +115,15 @@ function sortContacts() {
 }
 
 function fillContactList() {
+	let firstLetter
+	let firstLetterHeader
 	sortContacts();
 	let contactListContainer = document.getElementById('contactListContainer');
 	contactListContainer.innerHTML = '';
 	for (let i = 0; i < contactList.length; i++) {
 		let contact = contactList[i];
+		firstLetter = getFirstLetter(contact);
+		firstLetterHeader = fillFirstLetterHeader(firstLetterHeader, firstLetter);
 		contactListContainer.innerHTML += returnContactListHtml(contact, i);		
 	}
 }
@@ -200,9 +204,30 @@ function closeAddContact() {
 		return fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload) }).then(res => res.json());
 	}
 
+/** get the first letter from name
+	* 
+	* @param {JSON} contact 
+	* @returns to fillContactList
+	*/
+function getFirstLetter(contact) {
+	return contact['name'].substr(0, 1)
+}
 
-
-
+/** check if the firstLetters are the same if not he fill the h2 with first Letter
+	* 
+	* @param {string} firstLetterHeader firstLetter from last Name
+	* @param {string} firstLetter 
+	* @returns 
+	*/
+function fillFirstLetterHeader(firstLetterHeader, firstLetter) {
+	if (firstLetterHeader !== firstLetter) {
+	contactListContainer.innerHTML += /*html*/`
+	<h2>${firstLetter.toUpperCase()}</h2>
+	`
+	firstLetterHeader = firstLetter;
+	}
+return firstLetterHeader
+}
 
 
 
