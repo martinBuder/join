@@ -26,6 +26,12 @@
     justify-content: space-between;
     align-items: center;
     width: 1078px;
+    max-width: 100%;
+}
+
+#navLinkAddTask,
+#navLinkAddTaskM {
+    background-color: #2A3647 !important;
 }
 
 .navbar-icon-mobile {
@@ -128,7 +134,7 @@
 .window {
     display: flex;
     align-items: flex-start;
-    justify-content: flex-end;
+    justify-content: center;
     width: 95%;
     height: 95%;
     background-color: white;
@@ -164,11 +170,18 @@ iframe {
 }
 
 .window img {
-    margin: 35px;
+    margin: 35px 3%;
     cursor: pointer;
-    position: absolute;
-    z-index: 1;
+    position: fixed;
+    right: 32px;
+    z-index: 5;
 }
+
+.addTaskContainer {
+    z-index: 2;
+}
+
+.addTaskContainerNone {}
 
 .addTask-none {
     display: none;

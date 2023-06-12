@@ -29,7 +29,7 @@
 .summary {
     position: relative;
     margin: 171px auto 0;
-    width: 1000px;
+    width: 1078px;
 }
 
 .summary-head {
@@ -231,11 +231,24 @@
     position: relative;
     justify-content: space-between;
     align-items: center;
-    width: 1000px;
+    width: 1078px;
+    max-width: 100%;
 }
 
 .navbar-icon-mobile {
     margin: 0 0 8px 0 !important;
+}
+
+.greetingBig {
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background-color: #F5F5F5;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 1350px) {
@@ -606,5 +619,11 @@
         height: 40px;
     }
 
+    .greet {
+        font-size: 40px;
+    }
 
+    .person {
+        font-size: 50px;
+    }
 }

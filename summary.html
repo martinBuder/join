@@ -18,7 +18,7 @@
 
 </head>
 
-<body onload="init()">
+<body onload="init(), greeting()">
     <header w3-include-html="./templates/header.html" class="header"></header>
     <section w3-include-html="./templates/sidebar.html" class="sidebar"></section>
 
@@ -78,6 +78,10 @@
                 <div id="person" class="person">Sofia Müller</div>
             </div>
         </div>
+    </div>
+    <div id="greetingBig" class="greetingBig">
+        <div id="greet" class="greet">Good morning</div>
+        <div id="person" class="person">Sofia Müller</div>
     </div>
     <script src="./js/summary.js"></script>
 </body>

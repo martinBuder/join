@@ -48,3 +48,16 @@ if (userName == 0) {
 } else {
     document.getElementById('person').innerHTML += userName['name'];
 }
+
+
+function greeting() {
+    if (document.documentElement.clientWidth < 1350) {
+        document.getElementById('greetingBig').innerHTML = '';
+        document.getElementById('greetingBig').innerHTML = `
+            <div id="greet" class="greet">Good morning</div>
+            <div id="person" class="person">Sofia Müller</div>
+        `;
+    } else {
+        document.getElementById('greetingBig').classList.add('addTask-none');
+    }
+}
