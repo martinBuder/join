@@ -8,22 +8,16 @@
 
     <script src="script.js"></script>
     <script src="./js/user.js"></script>
-
-      <!-- * for add task -->
-      <script src="./js/taskSection.js"></script>
-      <script src="./js/add_task_categories.js"></script>
-      <script src="./js/add_task_assign.js"></script>
-      <script src="./js/add_task_subtasks.js"></script>
-      <script src="./js/add_task.js"></script>
-      <link rel="stylesheet" href="./css/taskSection.css">
-      <link rel="stylesheet" href="./css/add_task.css">
-
     <script src="./js/storage.js"></script>
     <script src="./js/board.js"></script>
-  
+    <script src="./js/add_task_categories.js"></script>
+    <script src="./js/add_task_assign.js"></script>
+    <script src="./js/add_task_subtasks.js"></script>
+    <script src="./js/add_task.js"></script>
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./css/board.css">
+    <link rel="stylesheet" href="./css/add_task.css">
     <link rel="icon" type="image/png" href="img/join-navicon.png">
 
     <title>Join</title>
@@ -39,32 +33,54 @@
             <div class="tool">Kanban Project Management Tool</div>
             <div class="boardText">Board</div>
             <div class="serachAdd">
-                <input type="search" placeholder="Find Task">
+                <input type="search" id="#" placeholder="Find Task" class="inputField"><img class="lupe" src="./img/Vector.png" alt="">
                 <button onclick="addTask()">Add task
                     <img src="./img/Group 11.png" alt="">
                 </button>
             </div>
         </div>
         <div class="boardTasks">
-            <div class="categorie">
-                <div class="categorieName">To do</div>
-                <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+            <div class="boxes">
+                <div class="categorie">
+                    <div class="categorieName">To do</div>
+                    <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+                </div>
+                <div id="todo" class="taskBox">
+                    <div id="card[#]" draggable="true" ondragstart="startDrag()">
+                        <div id="category" class="cardHead">test</div>
+                        <div id="title" class="title">blöd</div>
+                        <div id="description" class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, vel autem officia odio quas, qui quis mollitia quasi pariatur aliquam omnis ad voluptatum magnam adipisci sapiente aperiam quo maiores! Sit?</div>
+                        <div id="subtasks" class="subtasks">doof</div>
+                        <div id="prio" class="prio">bla</div>
+                    </div>
+                </div>
             </div>
-            <div class="categorie">
-                <div class="categorieName">In progress</div>
-                <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+            <div class="boxes">
+                <div class="categorie">
+                    <div class="categorieName">In progress</div>
+                    <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+                </div>
+                <div id="inprogress" class="taskBox">
+
+                </div>
             </div>
-            <div class="categorie">
-                <div class="categorieName">Awaiting Feedback</div>
-                <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+            <div class="boxes">
+                <div class="categorie">
+                    <div class="categorieName">Awaiting Feedback</div>
+                    <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+                </div>
+                <div id="awaiting" class="taskBox"></div>
             </div>
-            <div class="categorie">
-                <div class="categorieName">Done</div>
-                <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+            <div class="boxes">
+                <div class="categorie">
+                    <div class="categorieName">Done</div>
+                    <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+                </div>
+                <div id="done" class="taskBox"></div>
             </div>
         </div>
     </div>
-    <div class="addTask addTask-none" id="addTaskSection">
+    <div class="addTask addTask-none" id="addTask">
         <div id="window" class="window">
             <section w3-include-html="add_task_content.html" class="addTaskContainer"></section>
             <img class="closeWindow" onclick="closeAdd()" src="./img/icon-cancel.svg" alt="">
