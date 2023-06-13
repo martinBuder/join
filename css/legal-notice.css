@@ -10,18 +10,26 @@
     filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
 }
 
-h1 {
-    padding-bottom: 24px;
+#legalNoticeFrame {
+    width: calc(100% - 232px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-#legalNoticeContent div:last-child {
+#legalNoticeFrame h1 {
+    padding: 171px 0 13px 0;
+}
+#legalNoticeFrame div:last-child {
     padding-top: 32px;
     padding-bottom: 32px;
 }
-.noticeHeader {
-    font-size: 21px;
-    font-weight: bold;
-    padding: 16px 16px 8px 16px;
+.legalNoticeContent {
+    width: 90%;
+    max-width: 964px;
 }
-.noticeText {
-    padding: 0px 16px;
+.noticeHeader {
+    font-size: 27px;
+    font-weight: bold;
+    padding: 35px 0 10px 0;
 }
