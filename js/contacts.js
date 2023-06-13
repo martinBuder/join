@@ -58,7 +58,7 @@ function fillContactList() {
 function returnContactListHtml(contact, i) {
 	return /*html*/`
 		<div class="contactWrapper" onclick="renderFullContact(${i})">
-			<div class="intials ${contact['color']}">${contact['initials']}</div>
+			<div class="initials ${contact['color']}">${contact['initials']}</div>
 			<div class="contactBox">
 				<h3>${contact['name']}</h3>
 				<a href="mailto:${contact['email']}" class="link">${contact['email']}</a>
@@ -85,7 +85,7 @@ function renderFullContact(i) {
 function returnFullContactHtml(i) {
 	return /*html*/`
 		<div class="fullContactHeader">
-			<div class="intials background: ${contactList[i]['color']}">${contactList[i]['initials']}</div>
+			<div class="initials background: ${contactList[i]['color']}">${contactList[i]['initials']}</div>
 			<div class="fullContactHeaderName">
 				<h2>${contactList[i]['name']}</h2>
 				<p onclick="addTask()">+ Add Task</p>
@@ -274,9 +274,8 @@ function closeAddContact() {
 	let addContactWindow = document.getElementById('addContactWindow');
 	addContactWindow.style.animationName = "slideOut";
 	addContactWindow.style.animationDuration = "1.5s";
-	addContactWindow.style.animationFillMode = "backwards";
+	addContactWindow.style.animationFillMode = "forwards"
 }
-
 
 /**save the contactList in remot storage with token, email and password
 	* 
