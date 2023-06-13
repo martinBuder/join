@@ -83,7 +83,7 @@ async function createTask() {
     let newJSON = getNewJSON();
     
     // Saving the new task to disk
-    await getTasksArray();
+    tasksArray = await getTasksArray();
     tasksArray.push(newJSON);
     await setItem('tasks', tasksArray);
 
@@ -93,12 +93,14 @@ async function createTask() {
 
 
 /**
- * Loads already saved tasks into the global array 'tasksArray'. This array is used to push in a new task and then save it.
+ * Loads already saved tasks and returns an array of the JSON data of these tasks.
+ * 
+ * @returns {Promise<array>} An array with the JSON data of already saved tasks. If no data is saved it returns an empty array.
  */
 async function getTasksArray() {
     let tmpArray = await getItem('tasks');
     tmpArray = await JSON.parse(tmpArray.data.value.replace(/'/g, '"'));
-    Array.isArray(tmpArray) ? tasksArray = tmpArray : tasksArray = [];
+    return (Array.isArray(tmpArray) ? tmpArray : []);
 }
 
 

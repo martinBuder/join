@@ -122,7 +122,7 @@ function selectNewCatInput() {
 async function getArrayOfCategories() {
     let tmpArray = [];
 
-    await getTasksArray();
+    tasksArray = await getTasksArray();
     for (let i = 0; i < tasksArray.length; i++) {
         const elem = tasksArray[i];
         let tmpJSON = {
