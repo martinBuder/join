@@ -20,9 +20,9 @@
 #legalNoticeFrame h1 {
     padding: 171px 0 13px 0;
 }
-#legalNoticeFrame div:last-child {
-    padding-top: 32px;
-    padding-bottom: 32px;
+.legalNoticeHeadline {
+    display: flex;
+    justify-content: space-between;
 }
 .legalNoticeContent {
     width: 90%;
@@ -32,4 +32,18 @@
     font-size: 27px;
     font-weight: bold;
     padding: 35px 0 10px 0;
+}
+.noticeTextLastChapter{
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+.legalNoticeBackArrow {
+    cursor: pointer;
+    padding-top: 171px;
+}
+
+@media (max-width: 750px) {
+    #legalNoticeFrame {
+        width: 95%;
+    }
 }
