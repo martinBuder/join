@@ -27,6 +27,7 @@
     <header w3-include-html="templates/header.html" class="header"></header>
     <section w3-include-html="templates/sidebar.html" class="sidebar"></section>
 
+
     <div class="board">
         <div class="boardHeadline">
             <div class="tool">Kanban Project Management Tool</div>
@@ -55,13 +56,12 @@
                 <div class="categorieName">Done</div>
                 <img onclick="addTask()" src="./img/Group 11b.png" alt="">
             </div>
-
         </div>
     </div>
     <div class="addTask addTask-none" id="addTask">
-        <div class="window">
-            <section w3-include-html="add_task_content.html" class="addTaskContainer addTaskContainerNone"></section>
-            <img onclick="closeAdd()" src="./img/icon-cancel.svg" alt="">
+        <div id="window" class="window">
+            <section w3-include-html="add_task_content.html" class="addTaskContainer"></section>
+            <img class="closeWindow" onclick="closeAdd()" src="./img/icon-cancel.svg" alt="">
         </div>
     </div>
 </body>

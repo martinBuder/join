@@ -49,15 +49,21 @@ if (userName == 0) {
     document.getElementById('person').innerHTML += userName['name'];
 }
 
-
-function greeting() {
+/**
+ * This function shows "greeting" for a few seconds when loading "summary" if the viewport is narrower than 1350 pixels.
+ */
+async function greeting() {
     if (document.documentElement.clientWidth < 1350) {
         document.getElementById('greetingBig').innerHTML = '';
         document.getElementById('greetingBig').innerHTML = `
             <div id="greet" class="greet">Good morning</div>
             <div id="person" class="person">Sofia Müller</div>
         `;
+        setTimeout(function() {
+            document.getElementById('greetingBig').classList.add('greetingBigNone');
+        }, 1000);
+
     } else {
-        document.getElementById('greetingBig').classList.add('addTask-none');
+        document.getElementById('greetingBig').classList.add('greetingBigNone');
     }
 }

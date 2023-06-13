@@ -139,49 +139,40 @@
     height: 95%;
     background-color: white;
     border-radius: 30px;
-    animation: slideOpen 0.5s;
-}
-
-iframe {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    border-radius: 30px;
 }
 
 @keyframes slideOpen {
     from {
-        margin-left: 110%;
+        transform: translate(100%);
     }
 
     to {
-        margin-left: 0;
+        transform: translate(0%);
     }
 }
 
 @keyframes slideClose {
     from {
-        margin-left: 0%;
+        transform: translate(0%);
     }
 
     to {
-        margin-left: 110;
+        transform: translate(100%);
     }
 }
 
-.window img {
+.closeWindow {
     margin: 35px 3%;
     cursor: pointer;
     position: fixed;
     right: 32px;
     z-index: 5;
+    transform: translate(100%);
 }
 
 .addTaskContainer {
     z-index: 2;
 }
-
-.addTaskContainerNone {}
 
 .addTask-none {
     display: none;

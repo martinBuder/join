@@ -251,6 +251,10 @@
     align-items: center;
 }
 
+.greetingBigNone {
+    display: none;
+}
+
 @media (max-width: 1350px) {
     .main-navigation {
         width: 200px !important;
