@@ -13,6 +13,9 @@ let contactEmail;
 let contactPhone;
 let nameArray;
 
+/**
+	* sort contactList from a to z
+	*/
 function sortContacts() {
 	contactList.sort( (a, b) => {
 		if (a.name < b.name) return -1;
@@ -21,11 +24,17 @@ function sortContacts() {
 	})
 }
 
+/**
+	* wait that init is ready and just then start fillContactList
+	*/
 async function initContact() {
 	  await init();
 			fillContactList();
 	};
 
+	/**
+		* find first Letter of name and if no header with same letter is there render a header with this letter and then fill with the contacts with same first letter
+		*/
 function fillContactList() {
 	let firstLetter
 	let firstLetterHeader
@@ -40,6 +49,12 @@ function fillContactList() {
 	}
 }
 
+/**
+	* 
+	* @param {JSON} contact 
+	* @param {index} i 
+	* @returns to fillContactList()
+	*/
 function returnContactListHtml(contact, i) {
 	return /*html*/`
 		<div class="contactWrapper" onclick="renderFullContact(${i})">
@@ -53,11 +68,20 @@ function returnContactListHtml(contact, i) {
 	`
 }
 
+/**
+	* render the full Contact part
+	* @param {index} i 
+	*/
 function renderFullContact(i) {
 	let showFullContact = document.getElementById('showFullContact');
 	showFullContact.innerHTML = returnFullContactHtml(i);
 }
 
+/**
+	* 
+	* @param {number} i 
+	* @returns to renderFullContact
+	*/
 function returnFullContactHtml(i) {
 	return /*html*/`
 		<div class="fullContactHeader">
@@ -88,7 +112,7 @@ function openAddContact() {
 
 /**
 	* fill inputfields with contactList Infos
-	* @param {number} i 
+	* @param {index} i 
 	*/
 function fillEditInputs(i) {
 	contactName.value = contactList[i]['name'];
@@ -96,6 +120,10 @@ function fillEditInputs(i) {
 	contactPhone.value = contactList[i]['phonenumber'];
 }
 
+/**
+	* design the circle in contact working window 
+	* @param {index} i 
+	*/
 function createCircle(i) {
 	let circle = document.getElementById('circle');
 	circle.innerHTML = contactList[i]['initials'];
@@ -104,12 +132,11 @@ function createCircle(i) {
 	circle.setAttribute('onclick', `changeContactColor(${i})`);
 }
 
-async function changeContactColor(i) {
-	fillColors(i);
-
-}
-
-function fillColors(i) {
+/**
+	* open the contact colors for changing
+	* @param {index} i 
+	*/
+function changeContactColor(i) {
 	let contactColorWrapper = document.getElementsByClassName('contactColorWrapper')[0];
 	contactColorWrapper.innerHTML = ``;
 	contactColorWrapper.innerHTML = `<p>Joice a color...</p>`;
@@ -120,21 +147,37 @@ function fillColors(i) {
 	}
 }
 
+/**
+	* serie of function to change the color
+	* @param {index} i 
+	* @param {index} j 
+	*/
 async function choiceColor(i, j) {
-	let contactColorWrapper = document.getElementsByClassName('contactColorWrapper')[0];
-	let circle = document.getElementById('circle');
-	circle.classList.remove(contactList[i]['color']);
-	contactList[i]['color'] = bgColorArray[j];
-
-	circle.classList.add(contactList[i]['color']);
-	contactColorWrapper.innerHTML = ``;
-	
+	chosseNewColor(i, j)
 	await setContactListToRemoteStorage('contactList', contactList);
 	saveContactList();
 	getContactList();
 	fillContactList();
 }
 
+/**
+	* choose a new color for contact
+	* @param {index} i 
+	* @param {index} j 
+	*/
+function chosseNewColor(i, j) {
+	let contactColorWrapper = document.getElementsByClassName('contactColorWrapper')[0];
+	let circle = document.getElementById('circle');
+	circle.classList.remove(contactList[i]['color']);
+	contactList[i]['color'] = bgColorArray[j];
+	circle.classList.add(contactList[i]['color']);
+	contactColorWrapper.innerHTML = ``;
+}
+
+/**
+	* serie of functions to open the contact edit window
+	* @param {index} i 
+	*/
 function openEditContact(i) {
 	getContactInputFields();
 	fillEditInputs(i);
@@ -144,6 +187,10 @@ function openEditContact(i) {
 	overwriteContactSaveOnSubmit(i);
 }
 
+/**
+	* serie of function to save the edited contact
+	* @param {index} i 
+	*/
 async function saveEditContact(i) {
 	setEditedContact(i);
 	getContactInitials(i);
@@ -155,6 +202,10 @@ async function saveEditContact(i) {
 	closeAddContact();
 }
 
+/**
+	* serie of function to delete contact
+	* @param {index} i 
+	*/
 async function deleteContact(i) {
 	contactList.splice(i, 1);
 	saveContactList();
@@ -164,17 +215,28 @@ async function deleteContact(i) {
 	closeAddContact();
 }
 
+/**
+	* fill contactJson with edited information
+	* @param {index} i 
+	*/
 function setEditedContact(i) {
 	contactList[i]['name'] = contactName.value;
 	contactList[i]['email'] = contactEmail.value;
 	contactList[i]['phonenumber'] = contactPhone.value
 }
 
+/**
+	* change form function to new function
+	* @param {index} i 
+	*/
 function overwriteContactSaveOnSubmit(i) {
 	let form = document.getElementById('inputArea')
 	form.setAttribute('onsubmit', `saveEditContact(${i})`);
 }
 
+/**
+	* contact Window get the animatioon to slide in 
+	*/
 function startSlideAnimation() {
 	let addContactWindow = document.getElementById('addContactWindow');
 	addContactWindow.style.animationName = "slide";
@@ -182,6 +244,9 @@ function startSlideAnimation() {
 	addContactWindow.style.animationFillMode = "forwards";
 }
 
+/**
+	* render the btn for new contact in contact window
+	*/
 function addedNewContactBtn() {
 	let contactWorkspaceBtnContainer = document.getElementById('contactWorkspaceBtnContainer');
 		contactWorkspaceBtnContainer.innerHTML = /*html*/`
@@ -190,6 +255,10 @@ function addedNewContactBtn() {
 		`
 }
 
+/**
+	* render the btn for edit contact in contact window
+	* @param {index} i 
+	*/
 function addedEditContactBtn(i) {
 	let contactWorkspaceBtnContainer = document.getElementById('contactWorkspaceBtnContainer');
 		contactWorkspaceBtnContainer.innerHTML = /*html*/`
@@ -245,7 +314,9 @@ function fillFirstLetterHeader(firstLetterHeader, firstLetter) {
 return firstLetterHeader
 }
 
-
+/**
+	* serie of function to save the new contact
+	*/
 async function saveNewContact() {
 	getContactInputFields()
 	getNewContactData();
@@ -260,18 +331,29 @@ async function saveNewContact() {
 	closeAddContact();
 }
 
+/**
+	* get the inputFields from work on contact window
+	*/
 function getContactInputFields() {
 	contactName = document.getElementById('contactName');
 	contactEmail = document.getElementById('contactEmail');
 	contactPhone = document.getElementById('contactPhone');
 }
 
+/**
+	* contactJson get the information --> before push in contactList
+	*/
 function getNewContactData() {
 	contactJson['name'] = contactName.value;
 	contactJson['email'] = contactEmail.value;
 	contactJson['phonenumber'] = contactPhone.value;
 }
 
+/**
+	* get the initials of name
+	* if i == definated we came from edit contact
+	* @param {index} i 
+	*/
 function getContactInitials(i) {
 	if (i !== undefined) {
 		nameArray = contactList[i]['name'].split(' ');
@@ -287,15 +369,24 @@ function getContactInitials(i) {
 	}
 }
 
+/**
+	* set a color for new contact
+	*/
 function addColorNewContact() {
 	contactJson['color'] = getRandomColor();
 }
 
+/**
+	* choose a random color for create a new contact
+	*/
 function getRandomColor() {
   const randomIndex = Math.floor(Math.random() * bgColorArray.length);
   return bgColorArray[randomIndex];
 }
 
+/**
+	* push contact to new contactList
+	*/
 function pushContactToContacts() {
 	contactList.push(contactJson);
 }
