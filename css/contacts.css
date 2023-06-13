@@ -195,6 +195,10 @@ body {
     gap: 40px;
 }
 
+.inputArea input {
+    padding: 0;
+}
+
 .addContactWorkespaceBtn {
     display: flex;
     justify-content: space-between;
@@ -214,3 +218,4 @@ body {
     width: 20px;
     height: 20px;
 }
+

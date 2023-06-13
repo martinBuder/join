@@ -174,10 +174,6 @@
     z-index: 2;
 }
 
-.addTask-none {
-    display: none;
-}
-
 #navLinkAddTaskM {
     background-color: #2A3647 !important;
 }

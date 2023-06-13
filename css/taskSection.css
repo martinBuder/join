@@ -1,0 +1,65 @@
+.addTask-none {
+	transform: translate(100%)
+}
+
+.addTask {
+	background-color: rgba(0, 0, 0, 50%);
+	width: 100%;
+	height: 100%;
+	z-index: 500;
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.window {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	width: 95%;
+	height: 95%;
+	background-color: white;
+	border-radius: 30px;
+}
+
+@keyframes slide {
+	from {
+					transform: translate(100%);
+	}
+
+	to {
+					transform: translate(0%);
+	}
+}
+
+@keyframes slideOut {
+	from {
+					transform: translate(0%);
+	}
+
+	to {
+					transform: translate(100%);
+	}
+}
+
+.closeWindow {
+	margin: 35px 3%;
+	cursor: pointer;
+	position: fixed;
+	right: 32px;
+	z-index: 5;
+	transform: translate(100%);
+}
+
+.addTaskContainer {
+	z-index: 2;
+}
+
+.addTask-none {
+	display: none;
+}
+
+#navLinkAddTaskM {
+	background-color: #2A3647 !important;
+}

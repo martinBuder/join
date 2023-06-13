@@ -88,7 +88,7 @@ function returnFullContactHtml(i) {
 			<div class="intials background: ${contactList[i]['color']}">${contactList[i]['initials']}</div>
 			<div class="fullContactHeaderName">
 				<h2>${contactList[i]['name']}</h2>
-				<p onclick="contactAddTask()">+ Add Task</p>
+				<p onclick="addTask()">+ Add Task</p>
 			</div>			
 		</div>
 		<div class="contactSubHeaderContainer">
