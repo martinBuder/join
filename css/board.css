@@ -29,11 +29,6 @@
     max-width: 100%;
 }
 
-#navLinkAddTask,
-#navLinkAddTaskM {
-    background-color: #2A3647 !important;
-}
-
 .navbar-icon-mobile {
     margin: 0 0 8px 0 !important;
 }
