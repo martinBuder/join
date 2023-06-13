@@ -37,12 +37,9 @@ function toggleSubtaskCheck(subtask, imgId) {
     let elem = document.getElementById(imgId);
     if (elem.src.includes('unchecked')) {
         elem.src = "./img/add-task/check-rectangle-checked.svg"
-        selectedSubtasks.push(subtask);
     } else {
         elem.src = "./img/add-task/check-rectangle-unchecked.svg";
-        removeSubtask(subtask);
     }
-    console.log(selectedSubtasks);
 }
 
 
@@ -64,10 +61,13 @@ function selectNewSubtaskInput() {
 
     selectedSubtasks.push(newValue);
     let newCode = `
-        <li onclick="toggleSubtaskCheck('${newValue}', 'check-${newValue.replace(' ', '_')}')"><img src="./img/add-task/check-rectangle-checked.svg" alt="" id="check-${newValue.replace(' ', '_')}">${newValue}</li>
+        <li>
+            <img src="./img/add-task/check-rectangle-unchecked.svg" alt="" id="check-${newValue.replace(' ', '_')}" onclick="toggleSubtaskCheck('${newValue}', 'check-${newValue.replace(' ', '_')}')">
+            ${newValue}
+            <img src="./img/delete.svg" alt="delete" onclick="removeSubtask('${newValue}');">
+        </li>
     `;
     document.getElementById('newSubtaskList').innerHTML += newCode;
-    console.log(selectedSubtasks);
     cancelNewSubtaskInput();
 }
 
@@ -79,10 +79,8 @@ function selectNewSubtaskInput() {
  */
 function removeSubtask(subtask) {
     selectedSubtasks = selectedSubtasks.filter((tmpItem) => tmpItem != subtask);
-    // let id = `check-${subtask.replace(' ', '_')}`;
-    // let img = document.getElementById(id);
-    // let li = img.parentNode;
-    // li.parentNode.removeChild(li);
-
-    console.log(selectedSubtasks);
+    let id = `check-${subtask.replace(' ', '_')}`;
+    let img = document.getElementById(id);
+    let li = img.parentNode;
+    li.parentNode.removeChild(li);
 }
