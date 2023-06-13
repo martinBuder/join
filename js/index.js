@@ -43,8 +43,8 @@ function returnLogInHtml() {
 	`;
 }
 
-/** delete header buttons
-	* 
+/** 
+	* delete header buttons
 	* @param {HTMLElement} indexHeaderBtn
 	*/
 function deleteHeaderBtn() {
@@ -106,16 +106,16 @@ return /*html*/ `
 `;
 }
 
-/** fill forgot password part
-	* 
+/** 
+	* fill forgot password part
 	*/
 function renderForgotPassword() {
 	indexContent.innerHTML = returnForgotPasswordHtml();
 	deleteHeaderBtn();
 }
 
-/** generate forgot Passwort Content
-	* 
+/** 
+	* generate forgot Passwort Content
 	* @returns to renderForgotPassword()
 	*/
 function returnForgotPasswordHtml() {
@@ -137,8 +137,8 @@ function returnForgotPasswordHtml() {
 	`
 }
 
-/** fill reset message 
-	* 
+/** 
+	* fill reset message 
 	*/
 async function resetPassword() {
 	email = document.getElementById('email').value;
@@ -146,23 +146,23 @@ async function resetPassword() {
 	noUserFound();
 }
 
-/** information and fill reset password area
-	* 
+/** 
+	* information and fill reset password area
 	*/
 function resetPasswordStepTwo() {
 	alert('This is just to show the reset site. In the normal way the user get an email with a link. If the user click on this link the follow site will open.');
 	renderResetPassword();
 }
 
-/** fill password html
-	* 
+/** 
+	* fill password html
 	*/
 function renderResetPassword() {
 	indexContent.innerHTML = returnResetPasswordHtml();
 }
 
-/** generate reset Passwort Content
-	* 
+/**
+	* generate reset Passwort Content
 	* @returns to renderResetPassword()
 	*/
 function returnResetPasswordHtml() {
@@ -189,8 +189,8 @@ function returnResetPasswordHtml() {
 }
 
 
-/**render new password isn't ok content
-	* 
+/**
+	* render new password isn't ok content
 	* @param {HTMLInputElement} confirmPassword 
 	*/
 function newPasswordFalse(confirmPassword){
@@ -199,8 +199,8 @@ function newPasswordFalse(confirmPassword){
 		confirmPassword.parentElement.style="border-color: red"
 }
 
-/** generate reset password is ok content
-	* 
+/** 
+	* generate reset password is ok content
 	* @returns to newPasswordOk() 
 	*/
 function returnIdentPasswordHtml() {
@@ -211,8 +211,8 @@ function returnIdentPasswordHtml() {
 	`
 }
 
-/**  generate an email is send content
-	* 
+/**  
+	* generate an email is send content
 	* @returns to resetPassword()
 	*/
 function returnSendEmailHtml() {
@@ -223,8 +223,8 @@ function returnSendEmailHtml() {
 	`
 }
 
-/** make that you see your password while writing
-	* 
+/** 
+	* make that you see your password while writing
 	*/
 function showPassword() {
 	passwordImg = document.getElementById('passwordImg');
@@ -236,8 +236,8 @@ function showPassword() {
 	passwordField.focus();
 }
 
-/** make that you don't see your password while writing
-	* 
+/** 
+	* make that you don't see your password while writing
 	*/
 function dontShowPassword() {
 	passwordImg.style="";
@@ -247,8 +247,8 @@ function dontShowPassword() {
 }
 
 
-/** render the Log In window
-	* 
+/** 
+	* render the Log In window
 	*/
 function createNewAccount() {
 	renderLogInWindow();

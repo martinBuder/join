@@ -10,8 +10,8 @@ let user = {
 	img: '',
 }
 
-/** get the user-Array from localStorage so that user is on every site 
-	* 
+/** 
+	* get the user-Array from localStorage so that user is on every site 
 	*/
 function getUser() {
 	let userAsText = localStorage.getItem('user');
@@ -21,8 +21,8 @@ function getUser() {
 	changeUserImg();
 }
 
-/** change user img 
-	* 
+/** 
+	* change user img 
  */
 	function changeUserImg() {
   let userImg = document.getElementById('userImg');  
@@ -30,8 +30,8 @@ function getUser() {
 	}
 	// ! ein registrierter Team-User hat immer das Bild 'vornamefamilienname.png' in seinem Json definiert
 
-/** a serie of functions to create a account
-	* 
+/** 
+	* a serie of functions to create a account
 	*/
 async function createNewAccount() {
 	getUserInputFields();
@@ -79,8 +79,8 @@ function clearDesktopUsersUserInformation() {
 	renderLogInWindow();
 }
 
-/** get usersArray -> fill userArray --> save userArray  at remote Storage ---> clear userArray on 
-	* 
+/** 
+	* serie of function to save in remoteStorage
 	*/
 async function saveInRemoteStorage() {
 	await getItemFromRemoteStorage('users');
@@ -91,15 +91,15 @@ async function saveInRemoteStorage() {
 	clearUsers();
 }
 
-/** push user to users
-	* 
+/** 
+	* push user to users
  */
 function pushUserToUsers() {
 	users.push(user);
 }
 
-/** clear user information in array and clear email and password
-	* 
+/** 
+	* clear user information in array and clear email and password
 	*/
 function clearUserInformation() {
 	Object.keys(user).forEach(key => {
@@ -107,8 +107,8 @@ function clearUserInformation() {
 	});
 }
 
-/** get the inputfields 
-	* 
+/**
+	*  get the inputfields 
 	*/
 function getUserInputFields() {
 	username = document.getElementById('name');
@@ -116,16 +116,16 @@ function getUserInputFields() {
 	password = document.getElementById('passwordField');
 }
 
-/** definated email and password for control
-	* 
+/** 
+	* definated email and password for control
 	*/
 function getUserLogInInfo() {
 	email = email.value;
 	password = password.value; 
 }
 
-/** change the information in user Array
-	* 
+/** 
+	* change the information in user Array
 	*/
 function changeUserInformation() {
 	user['name'] = username.value;
@@ -136,8 +136,8 @@ function changeUserInformation() {
 	}
 };
 
-/** check is this person a teammember, who register himself - so we this person can upload his picture 
-	* 
+/** 
+	* check is this person a teammember, who register himself - so this person can upload his picture 
 	* @returns to change user information 
 	*/
 function teamMember() {
@@ -148,8 +148,8 @@ function teamMember() {
 	)
 }
 
-/**save the user inforamtion in remot storage with token, email and password
-	* 
+/**
+	* save the user inforamtion in remot storage with token, email and password
 	* @param {JsonWebKey} key 
 	* @param {Json} value 
 	* @returns 
@@ -159,8 +159,8 @@ async function setItemToRemoteStorage(key, value) {
 	return fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload) }).then(res => res.json());
 }
 
-/**save the user inforamtion in remot storage with token, email and password
-	* 
+/**
+	* save the user inforamtion in remot storage with token, email and password
 	* @param {JsonWebKey} key 
 	* @param {Json} value 
 	* @returns 
@@ -170,9 +170,9 @@ async function setItemToRemoteStorage(key, value) {
 		return fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload) }).then(res => res.json());
 	}
 
-/** this function get the user information from Remote Storage and changed it to user-Array compares with e-mail and passwort
+/** 
+	* this function get the user information from Remote Storage and changed it to user-Array compares with e-mail and passwort
 	* !!! you need to used findUsersArray() to work with users array
-	* 
 	* @param {JsonWebKey} key 
 	*/
 async function getItemFromRemoteStorage(key) {
@@ -181,9 +181,9 @@ async function getItemFromRemoteStorage(key) {
 	users = await res.json();
 }
 
-/** this function get the user information from Remote Storage and changed it to user-Array compares with e-mail and passwort
+/** 
+	* this function get the user information from Remote Storage and changed it to user-Array compares with e-mail and passwort
 	* !!! you need to used findContactListArray() to work with users array
-	* 
 	* @param {JsonWebKey} key 
 	*/
 	async function getContactListFromRemoteStorage(key) {
@@ -246,15 +246,15 @@ function saveContactList() {
 	localStorage.setItem('contactList', contactListAsText);
 }
 
-/** tell that something goes wrong by fetch
-	* 
+/** 
+	* tell that something goes wrong by fetch
 	*/
 function errorFunction() {
 	alert(`Something goes wrong!`)
 }
 
-/** this are the functions row for log in fill input to summery site
-	* 
+/** 
+	* this are the functions row for log in fill input to summery site
 	*/
 async function logIn() {
 	getUserInputFields();
@@ -264,8 +264,8 @@ async function logIn() {
 	findCorrectUser()
 }
 
-/** find sam e user in array and delete 
-	* 
+/** 
+	* find sam e user in array and delete 
 	*/
 function deleteUserfromUsers() {
 	let index = users.findIndex(u => u.email === email);
@@ -274,37 +274,37 @@ function deleteUserfromUsers() {
 	}
 }
 
-/** clearUsers Array
-	* 
+/** 
+	* clearUsers Array
 	*/
 function clearUsers() {
 	users = [];
 }
 
-/** go to summery site
-	* 
+/** 
+	* go to summery site
 	*/
 function goToSummary() {
 	window.location.href = './summary.html';
 }
 
-/** go to index.html
-	* 
+/**
+	*  go to index.html
 	*/
 function goToIndex() {
 	window.location.href = './index.html';
 }
 
-/** save user array in localstorage so the user is on every site (because reload)
-	*
+/** 
+	* save user array in localstorage so the user is on every site (because reload)
 	*/
 function saveUser() {
 	let userAsText = JSON.stringify(user); // 
 	localStorage.setItem('user', userAsText);
 }
 
-/** series of functions to log out the user
-	* 
+/** 
+	* series of functions to log out the user
 	*/
 function logOut() {
 	clearUserInformation();
@@ -312,8 +312,8 @@ function logOut() {
 	goToIndex();
 }
 
-/** compare the passworts and show next step
-	* 
+/** 
+	* compare the passworts and show next step
 	*/
 	function createNewPassword() {
 		let newPassword = document.getElementById('passwordField');
@@ -325,9 +325,8 @@ function logOut() {
 		}
 	}
 	
-	/** create a new password and go to log In Window
-		* password is just given to passwordUser() 
-		* 
+	/** 
+		* create a new password and go to log In Window
 		* @param {string} newPassword 
 		*/
 	async function newPasswordOk(newPassword) {
@@ -356,8 +355,8 @@ function goToChangePassword() {
 	setTimeout(resetPasswordStepTwo, 200)
 }
 	
-	/** a serie of functions to change password
-		* 
+	/** 
+		* a serie of functions to change password
 		* @param {string} newPassword 
 		*/
 	async function saveNewPassword(newPassword) {
@@ -371,8 +370,8 @@ function goToChangePassword() {
 		clearUsers();
 	}
 	
-	/** function found the userAccount who forgot the passwort and change with the new one
-		* 
+	/** 
+		* function found the userAccount who forgot the passwort and change with the new one
 		*/
 	async function findEmailUser() {
 		user = users.find(u => u.email === email);
