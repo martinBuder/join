@@ -8,6 +8,8 @@ let contactJson = {
 	color: '',
 }
 
+let o = -1 // we need this in renderFullContact() --> show the bachground in contact list for active full contact
+
 let contactName;
 let contactEmail;
 let contactPhone;
@@ -61,7 +63,7 @@ function returnContactListHtml(contact, i) {
 			<div class="initials ${contact['color']}">${contact['initials']}</div>
 			<div class="contactBox">
 				<h3>${contact['name']}</h3>
-				<a href="mailto:${contact['email']}" class="link">${contact['email']}</a>
+				<a href="#" class="link">${contact['email']}</a> 
 			</div>
 		</div>
 
@@ -74,7 +76,14 @@ function returnContactListHtml(contact, i) {
 	*/
 function renderFullContact(i) {
 	let showFullContact = document.getElementById('showFullContact');
+	let contactWrapper = document.getElementsByClassName('contactWrapper')[i];
 	showFullContact.innerHTML = returnFullContactHtml(i);
+	contactWrapper.classList.add('sameFullContact');
+	if (o !== -1) {
+		let oldContactWrapper = document.getElementsByClassName('contactWrapper')[o];
+		oldContactWrapper.classList.remove('sameFullContact');
+	}
+	o = i;
 }
 
 /**
@@ -96,7 +105,7 @@ function returnFullContactHtml(i) {
 			<p onclick="openEditContact(${i})"><img src="./img/pen.svg" alt=""> Edit Contact</p>
 </div>	
 		<h4>Email</h4>
-		<a href="mailto:${contactList[i]['email']}">${contactList[i]['email']}</a>
+		<a href="mailto:${contactList[i]['email']}" target="_blank">${contactList[i]['email']}</a>
 		<h4>Phone</h4>
 		<a href="tel:${contactList[i]['phonenumber']}">${contactList[i]['phonenumber']}</a>
 	`
@@ -179,6 +188,7 @@ function chosseNewColor(i, j) {
 	* @param {index} i 
 	*/
 function openEditContact(i) {
+	changeClaimer();
 	getContactInputFields();
 	fillEditInputs(i);
 	createCircle(i);
@@ -186,6 +196,27 @@ function openEditContact(i) {
 	startSlideAnimation();
 	overwriteContactSaveOnSubmit(i);
 }
+
+/**
+	* change Claimer text
+	*/
+function changeClaimer() {
+	let changeClaimer = document.getElementsByClassName('claimerText')[0];
+	changeClaimer.innerHTML = /*html*/`
+		<h1>Edit contact</h1>
+	`
+}
+
+/**
+	* change Claimer text
+	*/
+	function changeClaimerback() {
+		let changeClaimer = document.getElementsByClassName('claimerText')[0];
+		changeClaimer.innerHTML = /*html*/`
+			<h1>Add Contact</h1>
+   <p>Tasks are better with a team!</p>
+		`
+	}
 
 /**
 	* serie of function to save the edited contact
@@ -216,6 +247,13 @@ async function deleteContact(i) {
 }
 
 /**
+	* clear all inputfields from inputArea
+	*/
+function clearInputs() {
+	document.getElementById('inputArea').reset();
+}
+
+/**
 	* fill contactJson with edited information
 	* @param {index} i 
 	*/
@@ -240,7 +278,7 @@ function overwriteContactSaveOnSubmit(i) {
 function startSlideAnimation() {
 	let addContactWindow = document.getElementById('addContactWindow');
 	addContactWindow.style.animationName = "slide";
-	addContactWindow.style.animationDuration = "1.5s";
+	addContactWindow.style.animationDuration = "800ms";
 	addContactWindow.style.animationFillMode = "forwards";
 }
 
@@ -250,9 +288,10 @@ function startSlideAnimation() {
 function addedNewContactBtn() {
 	let contactWorkspaceBtnContainer = document.getElementById('contactWorkspaceBtnContainer');
 		contactWorkspaceBtnContainer.innerHTML = /*html*/`
-			<button class="btnWithImg outFocusBtn" onclick="closeAddContact()"><p>Cancel</p><p>&#10006</p></button>
+			<button class="btnWithImg outFocusBtn contactCancelBtn" onclick="closeAddContact()"><p>Cancel</p><p>&#10006</p></button>
    <button class="btnWithImg focusBtn" submit ><p>Create contact</p><p>&#10003</p></button>
 		`
+	contactWorkspaceBtnContainer.style.justifyContent="flex-start"
 }
 
 /**
@@ -263,8 +302,10 @@ function addedEditContactBtn(i) {
 	let contactWorkspaceBtnContainer = document.getElementById('contactWorkspaceBtnContainer');
 		contactWorkspaceBtnContainer.innerHTML = /*html*/`
 			<button class="outFocusBtn" onclick="deleteContact(${i})">Delete</button>
-   <button class="focusBtn" submit>Save</button>
+   <button class="focusBtn editContactSaveBtn" submit>Save</button>
 		`
+			contactWorkspaceBtnContainer.style.justifyContent="flex-end"
+
 }
 
 /**
@@ -273,8 +314,10 @@ function addedEditContactBtn(i) {
 function closeAddContact() {
 	let addContactWindow = document.getElementById('addContactWindow');
 	addContactWindow.style.animationName = "slideOut";
-	addContactWindow.style.animationDuration = "1.5s";
-	addContactWindow.style.animationFillMode = "forwards"
+	addContactWindow.style.animationDuration = "800ms";
+	addContactWindow.style.animationFillMode = "forwards";
+	setTimeout(clearInputs, 1000);
+	setTimeout(changeClaimerback, 1000);
 }
 
 /**save the contactList in remot storage with token, email and password

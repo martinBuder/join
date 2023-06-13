@@ -47,6 +47,7 @@
         </section>
         <section class="addContactWindow addContactSlide" id="addContactWindow" onclick="closeAddContact()">
             <div class="addContactContainer" onclick="event.stopPropagation()">
+                <div class="closeX" onclick="closeAddContact()">&#10006</div>
                 <div class="addContactClaimer">
                     <img src="./img/join-logo-white.svg" alt="">
                     <div class="claimerText">
@@ -56,7 +57,6 @@
                     <div class="blueLine"></div>
                 </div>
                 <div class="addContactWorkspace">
-                    <div class="closeX" onclick="closeAddContact()">&#10006</div>
                     <div class="circle bgLightGrey" id="circle"><img src="./img/person.svg" alt=""></div>
                     <form onsubmit="saveNewContact(); return false" class="inputArea" id="inputArea">
                         <div class="inputContainer">
