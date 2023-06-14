@@ -1,3 +1,5 @@
+
+
 /**
  * This function opens the input mask.
  */
@@ -22,8 +24,13 @@ async function getTasksArray() {
 }
 
 function updateTask() {
+    // tasksArray is already filled with the current tasks
+    let boardTodoArray = tasksArray.filter(t => t['status'] == 'todo');
     document.getElementById('todo').innerHTML = '';
+    let boardInprogressArray = tasksArray.filter(t => t['status'] == 'inprogress');
     document.getElementById('inprogress').innerHTML = '';
+    let boardAwaitingArray = tasksArray.filter(t => t['status'] == 'awaiting');
     document.getElementById('awaiting').innerHTML = '';
+    let boardDoneArray = tasksArray.filter(t => t['status'] == 'done');
     document.getElementById('done').innerHTML = '';
 }

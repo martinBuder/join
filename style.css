@@ -84,28 +84,28 @@
 }
 
 /* Background Color Codes for Categories */
-.bgColorlightblue {
+.bgCatColorlightblue {
     background-color: #8AA4FF;
 }
-.bgColorred {
+.bgCatColorred {
     background-color: #FF0000;
 }
-.bgColorgreen {
+.bgCatColorgreen {
     background-color: #2AD300;
 }
-.bgColororange {
+.bgCatColororange {
     background-color: #FF8A00;
 }
-.bgColorviolet {
+.bgCatColorviolet {
     background-color: #E200BE;
 }
-.bgColorblue {
+.bgCatColorblue {
     background-color: #0038FF;
 }
-.bgColorturqoise {
+.bgCatColorturqoise {
     background-color: #1FD7C1;
 }
-.bgColorlightviolet {
+.bgCatColorlightviolet {
     background-color: #FC71FF;
 }
 

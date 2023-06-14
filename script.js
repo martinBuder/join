@@ -11,6 +11,7 @@ let cursor = "pointer";
 let bgColorArray = ['bgColor0190E0', 'bgColorEE00D6', 'bgColor02CF2F', 'bgColorFF7A00', 'bgColor9327FF', 'bgColor69C4EB', 'bgColorFC71FF', 'bgColorAF1616', 'bgColor462F8A', 'bgColor019623', 'bgColorFF0000', 'bgColor0000FF'];
 let bgCatColorArray = ['bgColorlightblue', 'bgColorred', 'bgColorgreen', 'bgColororange', 'bgColorviolet', 'bgColorblue', 'bgColorturqoise', 'bgColorlightviolet'];
 
+
 /**
  * Initialize the site.
  * This function calls several functions that are needed for functionality of the pages.
@@ -21,6 +22,7 @@ async function init() {
     getUser();
     getContactList();
 }
+
 
 /**
  * get contacts from local storage
@@ -50,6 +52,7 @@ async function includeHTML() {
     }
 }
 
+
 /** show or dont show the Log out Button
  * 
  */
@@ -59,6 +62,7 @@ function showLogOut(){
     logOutBtn.style.display = display;
     changeCursorUserImg();
 }
+
 
 /** change cursor over UserImg from pointer to auto and from auto to pointer
  * 

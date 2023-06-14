@@ -194,16 +194,21 @@
 }
 
 .taskBox {
+    max-width: 250px;
     background-color: white;
     padding: 18px;
     border-radius: 30px;
+}
+.taskColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
 }
 
 .cardHead {
     font-size: 19px;
     font-weight: 400;
     color: white;
-    background-color: #FC71FF;
     padding: 4px 25px;
     border-radius: 8px;
     width: fit-content;

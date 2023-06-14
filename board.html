@@ -15,7 +15,7 @@
     <script src="./js/add_task_subtasks.js"></script>
     <script src="./js/add_task.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./css/board.css">
     <link rel="stylesheet" href="./css/add_task.css">
     <link rel="icon" type="image/png" href="img/join-navicon.png">
@@ -45,9 +45,9 @@
                     <div class="categorieName">To do</div>
                     <img onclick="addTask()" src="./img/Group 11b.png" alt="">
                 </div>
-                <div id="todo" class="taskBox">
-                    <div id="card1" draggable="true" ondragstart="startDrag()">
-                        <div id="category" class="cardHead">test</div>
+                <div id="todo" class="taskColumn">
+                    <div id="card1" draggable="true" ondragstart="startDrag()" class="taskBox">
+                        <div id="category" class="cardHead bgCatColorviolet">test</div>
                         <div id="title" class="title">blöd</div>
                         <div id="description" class="description">Lorem ipsum dolor sit.</div>
                         <div id="subtasks" class="subtasks">doof</div>
@@ -60,9 +60,9 @@
                     <div class="categorieName">In progress</div>
                     <img onclick="addTask()" src="./img/Group 11b.png" alt="">
                 </div>
-                <div id="inprogress" class="taskBox">
-                    <div id="card2" draggable="true" ondragstart="startDrag()">
-                        <div id="category" class="cardHead">test</div>
+                <div id="inprogress" class="taskColumn">
+                    <div id="card2" draggable="true" ondragstart="startDrag()" class="taskBox">
+                        <div id="category" class="cardHead bgCatColororange">test</div>
                         <div id="title" class="title">blöd</div>
                         <div id="description" class="description">Lorem ipsum dolor sit.</div>
                         <div id="subtasks" class="subtasks">doof</div>
@@ -75,9 +75,9 @@
                     <div class="categorieName">Awaiting Feedback</div>
                     <img onclick="addTask()" src="./img/Group 11b.png" alt="">
                 </div>
-                <div id="awaiting" class="taskBox">
-                    <div id="card3" draggable="true" ondragstart="startDrag()">
-                        <div id="category" class="cardHead">test</div>
+                <div id="awaiting" class="taskColumn">
+                    <div id="card3" draggable="true" ondragstart="startDrag()" class="taskBox">
+                        <div id="category" class="cardHead bgCatColorturqoise">test</div>
                         <div id="title" class="title">blöd</div>
                         <div id="description" class="description">Lorem ipsum dolor sit.</div>
                         <div id="subtasks" class="subtasks">doof</div>
@@ -90,9 +90,16 @@
                     <div class="categorieName">Done</div>
                     <img onclick="addTask()" src="./img/Group 11b.png" alt="">
                 </div>
-                <div id="done" class="taskBox">
-                    <div id="card4" draggable="true" ondragstart="startDrag()">
-                        <div id="category" class="cardHead">test</div>
+                <div id="done" class="taskColumn">
+                    <div id="card4" draggable="true" ondragstart="startDrag()" class="taskBox">
+                        <div id="category" class="cardHead bgCatColorgreen">test</div>
+                        <div id="title" class="title">blöd</div>
+                        <div id="description" class="description">Lorem ipsum dolor sit.</div>
+                        <div id="subtasks" class="subtasks">doof</div>
+                        <div id="prio" class="prio">bla</div>
+                    </div>
+                    <div id="card5" draggable="true" ondragstart="startDrag()" class="taskBox">
+                        <div id="category" class="cardHead bgCatColorred">test</div>
                         <div id="title" class="title">blöd</div>
                         <div id="description" class="description">Lorem ipsum dolor sit.</div>
                         <div id="subtasks" class="subtasks">doof</div>
