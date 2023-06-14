@@ -143,8 +143,6 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 90%;
-    max-width: 964px;
-    /* ! hier kommt die weite vom body hin*/
 }
 
 .headerIconWrapper {
@@ -354,7 +352,6 @@ textarea::placeholder {
 @media (max-width: 760px) {
     .inputContainer {
         width: 90%;
-
     }
 
     input {
@@ -364,11 +361,14 @@ textarea::placeholder {
     .header {
         left: 0;
         width: 100%;
+        height: 70px;
+        z-index: 3;
     }
 
-    .logo {
+    .logo, .userImg {
         display: block;
-        width: 50px;
+        width: 40px;
+        height: 40px;
     }
 
     .headerContainer {
@@ -382,5 +382,21 @@ textarea::placeholder {
     .helpBtn,
     .header p {
         display: none;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .contactsWindow {
+        padding: 40px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+    
+    .btnWithImg img {
+        width: 20px;
     }
 }

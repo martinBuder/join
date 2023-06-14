@@ -21,7 +21,6 @@ body {
     justify-content: flex-start;
     margin: 0;
     padding: 90px 0 0 0;
-    height: 100vh;
 }
 
 .contactsList {
@@ -54,11 +53,12 @@ body {
     position: relative;
     flex-direction: column;
     padding: 50px;
+    height: calc(100vh - 90px)
 }
 
 .btnRightBottomPosition {
     position: absolute;
-    bottom: 50px;
+    bottom: 2vh;
     right: 50px;
 }
 
@@ -131,7 +131,7 @@ body {
 .contactSubHeaderContainer {
     display: flex;
     gap: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 2vh;
     align-items: baseline;
 }
 
@@ -142,7 +142,8 @@ body {
 .showFullContact {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 2vh
+
 }
 
 .closeFullSiteBtn {
@@ -306,15 +307,19 @@ body {
     height: 20px;
 }
 
+.mobilImgBtn, .mobilCompanyName {
+    display: none;
+}
+
 @media(max-width: 1300px) {
 
     /* *middle full Contact Version */
 
     .fullContactHeader {
         flex-direction: column;
-        gap: 20px;
         position: relative;
-        margin-bottom: 60px;
+        gap: 2vh;
+        margin-bottom: 5vh;
         align-items: flex-start;
     }
 
@@ -329,10 +334,13 @@ body {
 
     .showFullContact .fullContactHeader {
         margin: 0;
+        flex-direction: row;
     }
 
     .fullContactHeader .initials {
-        align-self: flex-start;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
     }
 
     .fullContactHeaderName h2 {
@@ -399,6 +407,11 @@ body {
         min-width: 180px;
     }
 
+    .inputField {
+        font-size: 18px;
+        border-radius: 2px;
+    }
+
     .contactCancelBtn {
         display: none;
     }
@@ -419,12 +432,13 @@ body {
     }
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1060px) {
     .contactBody main {
         flex-direction: column;
         position: relative;
         margin-top: 80px;
         height: auto;
+        overflow: hidden;
     }
 
     ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {
@@ -437,6 +451,7 @@ body {
 
     .contactsList {
         width: 100%;
+        height: calc(100vh - 120px);
     }
 
     .contactWindow {
@@ -468,6 +483,7 @@ body {
 
     .contactWindow.fullSite {
         visibility: visible;
+        height: calc(100vh - 120px);
     }
 
     .contactWindow.fullSite .btnRightBottomPosition{
@@ -479,5 +495,111 @@ body {
         position: absolute;
         top: 5px;
         right: 0;
+    }
+
+    button.mobilImgBtn {
+        display: flex;
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        align-self: flex-end;
+        justify-content: center;
+        align-items: center;
+    }
+
+    button.mobilImgBtn.editImgBtn {
+        width: 60px;
+        height: 60px;
+        margin-top: 10px;
+    }
+
+    .editImgBtn img {
+        filter: brightness(8);
+    }
+}
+
+@media(max-width: 760px) {
+    .mobilCompanyName {
+        display: block;
+        font-size: 24px;
+        text-wrap: balance;
+        padding-right: 20px;
+        font-size: 14px;
+    }
+
+    .btnRightBottomPosition {
+        top: 80px;
+    }
+
+    .contactBody main {
+        margin-top: 2vh;
+    }
+
+    .contactsList, .contactWindow {
+        height: calc(100vh - 210px);
+    }
+
+    .contactsList {
+        margin-top: 30px;
+    }
+
+    .contactsList h3 {
+        font-size: 18px;
+    }
+
+    .contactsList .link {
+        font-size: 14px;
+    }
+
+    .contactsList .initials {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+
+    .header-subtext {
+        text-wrap: balance;
+        font-size: 16px;
+    }
+
+    .oneLetterHeader, contactWrapper {
+        margin: 5px 20px;
+    }
+
+    .addContactWindow {
+        z-index: 10
+    }
+
+    .fullContactHeaderName h2 {
+        font-size: 30px;
+    }
+
+    .showFullContact {
+        gap: 1vh;
+    }
+
+    .contactSubHeaderContainer p {
+        display: none;
+    }
+
+    button.mobilImgBtn {
+        width: 40px;
+        height: 40px;
+    }
+
+    button.mobilImgBtn img {
+        width: 20px;
+        height: 20px;
+      
+    }
+
+    button.mobilImgBtn.editImgBtn {
+        width: 50px;
+        height: 50px;
+    }
+
+    button.mobilImgBtn.editImgBtn img{
+        width: 35px;
+        height: 35px;
     }
 }

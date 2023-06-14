@@ -17,6 +17,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 20;
 }
 
 .window {
@@ -26,7 +27,7 @@
 	width: 95%;
 	height: 95%;
 	background-color: white;
-	border-radius: 30px;
+	border-radius: 30px 0 0 30px;
 	overflow-y: auto;
 }
 
@@ -65,4 +66,10 @@
 
 #navLinkAddTaskM {
 	background-color: #2A3647 !important;
+}
+
+@media (max-width: 760px) {
+	.closeWindow {
+		top: 50px;
+	}
 }

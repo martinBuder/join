@@ -145,6 +145,8 @@ function returnFullContactHtml(i) {
 		<a href="mailto:${contactList[i]['email']}" target="_blank">${contactList[i]['email']}</a>
 		<h4>Phone</h4>
 		<a href="tel:${contactList[i]['phonenumber']}">${contactList[i]['phonenumber']}</a>
+		<button class="outFocusBtn mobilImgBtn" ><img src="./img/delete.svg" alt="" onclick="deleteContact(${i})"></button>
+  <button class="focusBtn mobilImgBtn editImgBtn" onclick="openEditContact(${i})"><img src="./img/pen.svg" alt=""></button>
 	`
 }
 
@@ -281,6 +283,7 @@ async function deleteContact(i) {
 	getContactList();
 	fillContactList();
 	closeAddContact();
+	closeFullSite();
 }
 
 /**
