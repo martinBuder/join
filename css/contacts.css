@@ -145,6 +145,9 @@ body {
     gap: 20px;
 }
 
+.closeFullSiteBtn {
+    display: none;
+}
 
 /* ~ add & edit contact */
 
@@ -336,6 +339,10 @@ body {
         font-size: 40px;
     }
 
+    .contactBody main {
+       height: auto;
+    }
+
     /* *small contact workstation */
     .addContactContainer {
         flex-direction: column;
@@ -417,6 +424,7 @@ body {
         flex-direction: column;
         position: relative;
         margin-top: 80px;
+        height: auto;
     }
 
     ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {
@@ -429,16 +437,16 @@ body {
 
     .contactsList {
         width: 100%;
-        height: calc(100vh - 200px)
     }
 
     .contactWindow {
         position: absolute;
-        top: 0;
+        top: 40px;
         left: 0;
-        height: 100vh;
         visibility: hidden;
         transition: none;
+        background-color: #fff;
+        width: 100%;
     }
 
     .btnRightBottomPosition {
@@ -450,7 +458,26 @@ body {
         visibility: visible;
     }
 
-    .header-container img{
-        z-index: 10;
+    .contactBody main {
+        height: auto;
+    }
+
+    .contactBody main * {
+        transition: none;
+    }
+
+    .contactWindow.fullSite {
+        visibility: visible;
+    }
+
+    .contactWindow.fullSite .btnRightBottomPosition{
+        visibility: hidden;
+    }
+
+    .closeFullSiteBtn {
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 0;
     }
 }

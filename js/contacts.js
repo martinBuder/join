@@ -32,6 +32,8 @@ function sortContacts() {
 async function initContact() {
 	  await init();
 			fillContactList();
+			addCategories();
+			addContacts();
 	};
 
 	/**
@@ -66,7 +68,6 @@ function returnContactListHtml(contact, i) {
 				<a href="#" class="link">${contact['email']}</a> 
 			</div>
 		</div>
-
 	`
 }
 
@@ -75,9 +76,45 @@ function returnContactListHtml(contact, i) {
 	* @param {index} i 
 	*/
 function renderFullContact(i) {
-	let showFullContact = document.getElementById('showFullContact');
+	getContactWindow();
+	getFullContactArea(i);
+	contactListBtnBackground(i);
+}
+
+/**
+	* open full contact site (mobile)
+	*/
+function getContactWindow() {
+	let contactWindow = document.getElementsByClassName('contactWindow')[0];
+	contactWindow.classList.add('fullSite');
+	fillContactList();
+}
+
+/**
+	* close full contact site (mobile)
+	*/
+function closeFullSite() {
+	let oldContactWrapper = document.getElementsByClassName('contactWrapper')[o];
+	oldContactWrapper.classList.remove('sameFullContact');
+	let contactWindow = document.getElementsByClassName('contactWindow')[0];
+	contactWindow.classList.remove('fullSite');
+}
+
+/**
+	* get the area to fill
+	* @param {index} i 
+	*/
+	function getFullContactArea(i) {
+		let showFullContact = document.getElementById('showFullContact');
+		showFullContact.innerHTML = returnFullContactHtml(i);
+	}
+
+/**
+	* change in contactList the background
+	* @param {index} i 
+	*/
+function contactListBtnBackground(i) {
 	let contactWrapper = document.getElementsByClassName('contactWrapper')[i];
-	showFullContact.innerHTML = returnFullContactHtml(i);
 	contactWrapper.classList.add('sameFullContact');
 	if (o !== -1) {
 		let oldContactWrapper = document.getElementsByClassName('contactWrapper')[o];
