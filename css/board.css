@@ -29,6 +29,11 @@
     max-width: 100%;
 }
 
+#navLinkAddTask,
+#navLinkAddTaskM {
+    background-color: #2A3647 !important;
+}
+
 .navbar-icon-mobile {
     margin: 0 0 8px 0 !important;
 }
@@ -55,8 +60,9 @@
 .categorie {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 25%;
+    align-items: flex-start;
+    height: 60px;
+    margin-bottom: 24px;
 }
 
 .categorie img {
@@ -111,8 +117,13 @@
 
 .serachAdd {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
+}
+
+.lupe {
+    position: relative;
+    right: 60px;
 }
 
 .addTask {
@@ -169,8 +180,47 @@
     z-index: 2;
 }
 
+.addTask-none {
+    display: none;
+}
+
 #navLinkAddTaskM {
     background-color: #2A3647 !important;
+}
+
+.boxes {
+    width: 25%;
+}
+
+.taskBox {
+    background-color: white;
+    padding: 18px;
+    border-radius: 30px;
+}
+
+.cardHead {
+    font-size: 19px;
+    font-weight: 400;
+    color: white;
+    background-color: #FC71FF;
+    padding: 4px 25px;
+    border-radius: 8px;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #2A3647;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 19px;
+    font-weight: 400;
+    color: #A8A8A8;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 1350px) {
@@ -198,7 +248,7 @@
 
     .board {
         width: 750px;
-        margin: 120px auto 110px;
+        margin: 120px auto;
     }
 
     .boardHeadline button {
