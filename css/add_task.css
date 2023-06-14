@@ -23,7 +23,7 @@ h1 {
     height: 21px;
 }
 .d-none {
-    display: none;
+    display: none !important;
 }
 .opacity-0 {
     opacity: 0;

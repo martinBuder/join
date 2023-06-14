@@ -57,7 +57,6 @@ function selectCategory(item) {
  * @param {string} srcColour - The selected colour for the category
  */
 function selectCatColour(srcColour) {
-    console.log('selected colour: ' + srcColour);
     selectedColour = srcColour;
 }
 
@@ -98,8 +97,8 @@ function toggleNewCatVisibility() {
  */
 function selectNewCatInput() {
     let elem = document.getElementById('newCatInputField');
-    console.log(elem.value);
     if (elem.value == '') return '';
+    
     let newCat = {
         name: elem.value,
         img: selectedColour
