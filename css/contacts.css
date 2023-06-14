@@ -39,7 +39,7 @@ body {
     background: linear-gradient(0deg, rgba(170,170,170,0.2) 0%, rgba(170,170,170,0.05) 100%);
 }
 
-.sameFullContact {
+.sameFullContact, .sameFullContact.contactWrapper:hover {
     background: #091931;
 }
 
@@ -303,7 +303,38 @@ body {
     height: 20px;
 }
 
-@media(max-width: 1130px) {
+@media(max-width: 1300px) {
+
+    /* *middle full Contact Version */
+
+    .fullContactHeader {
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+        margin-bottom: 60px;
+        align-items: flex-start;
+    }
+
+    .header-line {
+        height: 3px;
+        width: 40%;
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        margin: 0;
+    }
+
+    .showFullContact .fullContactHeader {
+        margin: 0;
+    }
+
+    .fullContactHeader .initials {
+        align-self: flex-start;
+    }
+
+    .fullContactHeaderName h2 {
+        font-size: 40px;
+    }
 
     /* *small contact workstation */
     .addContactContainer {
@@ -379,5 +410,47 @@ body {
         margin-right: 0;
         padding: 8px 16px;
     }
- }
+}
 
+@media(max-width: 1050px) {
+    .contactBody main {
+        flex-direction: column;
+        position: relative;
+        margin-top: 80px;
+    }
+
+    ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {
+        background-image: none;
+    }
+    
+    body.contactBody {
+        background: #fff;
+    }
+
+    .contactsList {
+        width: 100%;
+        height: calc(100vh - 200px)
+    }
+
+    .contactWindow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        visibility: hidden;
+        transition: none;
+    }
+
+    .btnRightBottomPosition {
+        position: fixed;
+        display: flex;
+        height: max-content;
+        top: 100px; 
+        right: 10px;
+        visibility: visible;
+    }
+
+    .header-container img{
+        z-index: 10;
+    }
+}
