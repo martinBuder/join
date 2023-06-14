@@ -154,7 +154,7 @@ function getInitialsAndColor(name) {
 function getInitials(name) {
     let nameArray = name.split(' ');
     let initial = '';
-    nameArray.length == 1 ? initial = nameArray[0].substr(0, 2) : initial = nameArray[0].substr(0, 1) + nameArray[1].substr(0, 1);
+    nameArray.length == 1 ? initial = nameArray[0].substring(0, 2) : initial = nameArray[0].substring(0, 1) + nameArray[1].substring(0, 1);
     return initial.toUpperCase();
 }
 
