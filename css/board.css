@@ -276,6 +276,83 @@
     margin-left: -6px;
 }
 
+
+/* Viewing a task */
+.viewTask {
+    background-color: rgba(0, 0, 0, 50%);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.viewTaskContainer {
+    background-color: white;
+    width: 50%;
+    height: 80%;
+    border-radius: 30px;
+    padding: 50px;
+}
+.viewTaskOneLine {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+.viewTaskHeadline {
+    display: flex;
+    justify-content: space-between;
+}
+#viewTaskTitle {
+    font-size: 51px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+#viewTaskDescription,
+.viewTaskText {
+    font-size: 21px;
+}
+.viewTaskPrio {
+    font-weight: normal;
+    color: white;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 4px 18px;
+    border: none;
+}
+.viewTaskPrioUrgent {
+    background-color: rgb(255, 61, 0);
+}
+.viewTaskPrioMedium {
+    background-color: rgb(255, 168, 0);
+}
+.viewTaskPrioLow {
+    background-color: rgb(122, 226, 41);
+}
+.viewTaskPrio > img {
+    filter: invert(0%) brightness(1000%) saturate(0%) contrast(106%);
+}
+.viewTaskEditor {
+    display: flex;
+    align-items: center;
+}
+.viewTaskEditorBadge {
+    width: 45px;
+    height: 45px;
+    color: white;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mb-25 {
+    margin-bottom: 25px;
+}
+
+
+
 @media (max-width: 1350px) {
     .headerContainer {
         width: 750px;

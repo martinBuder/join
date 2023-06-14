@@ -74,7 +74,7 @@ function renderStatus(statusToRender) {
 function getHtmlCode(elem) {
     // elem contains the json-data of a task
     let newCode = `
-        <div id="${elem['id']}" draggable="true" ondragstart="startDrag('${elem['id']}')" class="taskBox">
+        <div id="${elem['id']}" draggable="true" ondragstart="startDrag('${elem['id']}')" onclick="openTaskForView('${elem['id']}')" class="taskBox">
             <div id="category" class="cardCategory bgCatColor${elem['categorycolor']}">${elem['category']}</div>
             <div id="title" class="cardTitle">${elem['title']}</div>
             <div id="description" class="cardDescription">${elem['description']}</div>
@@ -164,29 +164,35 @@ function getCardInitials(name) {
 
 function startDrag(cardID) {
     currentDraggedElement = cardID;
-    // console.log(currentDraggedElement);
-
 }
 
+/**
+ * Allow a drop
+ * 
+ * @param {event} ev - The event that was called
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
 async function moveTo(cardColumn) {
-    console.log('Verschieben in Spalte ' + cardColumn);
-    console.log('ID zum verschieben: ' + currentDraggedElement);
-    // Zugriff auf das Element, das ich verschiebe (id == currentDraggedElement)
-    let curTask = tasksArray.filter(t => t['id'] == currentDraggedElement);
-    console.log(curTask);
-    // Dort ändern des Status, je nach Ziel (cardColumn)
-    curTask[0]['status'] = cardColumn;
-    console.log(curTask);
-    // Speichern des geänderten Tasks, d.h. da sich der Task innerhalb tasksArray befindet: Speichern von tasksArray
-    await setItem('tasks', tasksArray);
+    let curTask = tasksArray.filter(t => t['id'] == currentDraggedElement);  // get task-element of given id (id = currentDraggedElement)
+    curTask[0]['status'] = cardColumn;                                       // change status to given status (status = cardColumn)
+    await setItem('tasks', tasksArray);                                      // save the changed task, which means we have to save tasksArray
+    currentDraggedElement = '';                                              // delete the entry in currentDraggedElement
+    renderTasks();                                                           // and finally... reload the page
+}
 
-    // Löschen von currentDraggedElement
-    currentDraggedElement = '';
 
-    // Neuladen der Seite, damit das alles korrekt dargestellt wird
-    renderTasks();
+
+
+
+
+// Viewing a task
+function openTaskForView(taskId) {
+    document.getElementById('viewTask').classList.toggle('d-none');
+}
+
+function closeTaskForView() {
+    document.getElementById('viewTask').classList.toggle('d-none');
 }
