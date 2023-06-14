@@ -26,7 +26,6 @@
 	justify-content: center;
 	width: 95%;
 	height: 95%;
-	background-color: white;
 	border-radius: 30px 0 0 30px;
 	overflow-y: auto;
 }
@@ -69,7 +68,84 @@
 }
 
 @media (max-width: 760px) {
-	.closeWindow {
-		top: 50px;
+	.addTask { 
+		top: 0;
+		background: none;
 	}
+	
+	.window {
+		background: #f5f5f5;
+		max-height: calc(100vh - 158px);
+		height: 100%;
+		padding-bottom: 5px;
+	}
+
+	.window .btnTaskCreate {
+		top: 5px; 
+	}
+
+	.closeWindow {
+		margin: 20px;
+	}
+
+	.window .smallScreenTitle {
+		display: none;
+		width: 20px;
+		height: 20px;
+	}
+
+	.window #contentAddTask h1 {
+		font-size: 40px; 
+		padding-top: 0;
+	}
+
+	.window .addTaskContainer {
+		margin-bottom: 0;
+	}
+
+	.window .taskButtons {
+		display: none;
+	}
+
+	.window .columnLeft {
+		width: 100%;
+	}
+
+	.window * {
+		margin-left: 0;
+		margin-right: 0;
+		max-width: 100%;
+		font-size: 16px;
+	}
+
+	.window .displayPrio img {
+		width: 15px;
+	}
+
+	.window #contentAddTask, .window #assBadges {
+		max-width: 100%;
+	}
+
+	.window :is(.inputContainer, .labelAndField, .inputField, .displayPrio) {
+		width: 100%;
+	}
+
+	.window .taskPriority {
+		flex-direction: row;
+		height: max-content;
+	}
+
+	.window .btnPriority {
+		font-size: 14px;
+	}
+
+	.window .taskPriority>* {
+		width: 30%;
+		min-width: 30%;
+	}
+
+	.window ::placeholder {
+		font-size: 16px;
+	}
+
 }
