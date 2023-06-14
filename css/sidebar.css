@@ -153,6 +153,7 @@ a:hover {
 
     .mobile-navigation {
         display: block;
+        z-index: 50;
     }
 }
 @media (max-width: 490px) {
