@@ -83,6 +83,32 @@
     background-color: grey;
 }
 
+/* Background Color Codes for Categories */
+.bgColorlightblue {
+    background-color: #8AA4FF;
+}
+.bgColorred {
+    background-color: #FF0000;
+}
+.bgColorgreen {
+    background-color: #2AD300;
+}
+.bgColororange {
+    background-color: #FF8A00;
+}
+.bgColorviolet {
+    background-color: #E200BE;
+}
+.bgColorblue {
+    background-color: #0038FF;
+}
+.bgColorturqoise {
+    background-color: #1FD7C1;
+}
+.bgColorlightviolet {
+    background-color: #FC71FF;
+}
+
 
 * {
     margin: 0;
