@@ -145,6 +145,7 @@
     height: 95%;
     background-color: white;
     border-radius: 30px;
+    overflow-y: auto;
 }
 
 @keyframes slideOpen {
