@@ -190,6 +190,7 @@ async function moveTo(cardColumn) {
 
 // Viewing a task
 function openTaskForView(taskId) {
+    console.log("ID des Tasks: " + taskId);
     document.getElementById('viewTask').classList.toggle('d-none');
 }
 
