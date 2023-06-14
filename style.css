@@ -192,6 +192,13 @@ button {
     color: #fff;
     display: block;
     line-height: 30px;
+    height: 100%;
+    width: 100%;
+}
+
+#logOutBtn {
+    z-index: 2;
+    padding: 15px 0;
 }
 
 .focusBtn:hover {

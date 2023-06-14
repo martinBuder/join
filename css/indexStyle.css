@@ -47,6 +47,10 @@ img {
 	z-index: 1;
 }
 
+.smallFirstIndexWindow {
+	display: none;
+}
+
 .requiredMessageContainer {
 	position: relative;
 	margin-bottom: 40px;
@@ -60,7 +64,6 @@ img {
 	font-size: 10px;
 	color: red;
 	font-weight: 100;
-	
 }
 
 @keyframes moveLogo {
@@ -183,6 +186,47 @@ input#remember {
 }
 
 @media (max-width: 730px) {
+
+	.smallFirstIndexWindow {
+		display: block;
+		background-color: #2A3647;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 5;
+		animation: smallFirstIndexWindow;
+		animation-duration: 300ms;
+		animation-delay: 500ms;
+		animation-fill-mode: forwards;
+	}
+
+	.smallFirstIndexWindow img {
+		width: 100px;
+		animation: moveLogo;
+		animation-duration: 600ms;
+		animation-delay: 300ms;
+		animation-fill-mode: forwards;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(1);
+	}
+
+	.indexLogo {
+		animation-delay: 300ms;
+
+	}
+
+	@keyframes smallFirstIndexWindow {
+		to {
+			opacity: 0;
+		}
+	}
 
 	@keyframes moveLogo {
 		to {
