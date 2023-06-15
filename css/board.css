@@ -49,10 +49,16 @@
 .board {
     position: relative;
     margin: 171px auto 0;
-    width: 1078px;
+    /* width: 1078px; */
+    width: calc(100% - 232px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .boardHeadline {
+    width: 95%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -61,8 +67,9 @@
 
 .boardTasks {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    gap: 2%;
+    gap: 10px;
 }
 
 .boxStatus {
@@ -448,8 +455,13 @@
         width: 750px;
     } */
 
+    .boardTasks {
+
+    }
+
     .board {
-        width: 750px;
+        /* width: 750px; */
+        width: 100%;
     }
 
     /* .main-navigation {
@@ -467,7 +479,7 @@
     } */
 
     .board {
-        width: 750px;
+        width: 100%;
         margin: 120px auto;
     }
 
@@ -502,7 +514,7 @@
     }
 
     .board {
-        width: 420px;
+        width: 95%;
     }
 
     .boardHeadline {
@@ -520,11 +532,11 @@
         font-size: 56px;
     }
 
-    .boardTasks {
+    /* .boardTasks {
         flex-direction: column;
         align-items: center;
         gap: 5px;
-    }
+    } */
 
     .categorie {
         width: 100%;
@@ -536,9 +548,9 @@
         width: 360px;
     } */
 
-    .board {
+    /* .board {
         width: 360px;
-    }
+    } */
 }
 
 @media (max-width: 450px) {
@@ -550,7 +562,7 @@
         font-size: 16px;
     }
 
-    .board {
+    /* .board {
         width: 280px;
-    }
+    } */
 }
