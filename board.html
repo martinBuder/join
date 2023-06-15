@@ -49,9 +49,11 @@
 
             <!-- Tasks of status 'todo' -->
             <div class="boxes">
-                <div class="categorie">
-                    <div class="categorieName">To do</div>
-                    <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+                <div class="boxStatus">
+                    <div class="boxStatusName">To do</div>
+                    <div class="boxStatusPlusImage" onclick="addTask()">
+                        <img src="./img/add-task/icon-plus-sign.svg" alt="">
+                    </div>
                 </div>
                 <div id="todo" class="taskColumn" ondrop="moveTo('todo')" ondragover="allowDrop(event); highlightColumn('todo')" ondragleave="deHighlightColumn('todo')">
                     <!-- Here tasks of that status or a placeholer will be rendered -->
@@ -60,9 +62,11 @@
 
             <!-- Tasks of status 'inprogress' -->
             <div class="boxes">
-                <div class="categorie">
-                    <div class="categorieName">In progress</div>
-                    <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+                <div class="boxStatus">
+                    <div class="boxStatusName">In progress</div>
+                    <div class="boxStatusPlusImage" onclick="addTask()">
+                        <img src="./img/add-task/icon-plus-sign.svg" alt="">
+                    </div>
                 </div>
                 <div id="inprogress" class="taskColumn" ondrop="moveTo('inprogress')" ondragover="allowDrop(event); highlightColumn('inprogress')" ondragleave="deHighlightColumn('inprogress')">
                     <!-- Here tasks of that status or a placeholer will be rendered -->
@@ -71,9 +75,11 @@
 
             <!-- Tasks of status 'awaiting' -->
             <div class="boxes">
-                <div class="categorie">
-                    <div class="categorieName">Awaiting Feedback</div>
-                    <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+                <div class="boxStatus">
+                    <div class="boxStatusName">Awaiting Feedback</div>
+                    <div class="boxStatusPlusImage" onclick="addTask()">
+                        <img src="./img/add-task/icon-plus-sign.svg" alt="">
+                    </div>
                 </div>
                 <div id="awaiting" class="taskColumn" ondrop="moveTo('awaiting')" ondragover="allowDrop(event); highlightColumn('awaiting')" ondragleave="deHighlightColumn('awaiting')">
                     <!-- Here tasks of that status or a placeholer will be rendered -->
@@ -82,9 +88,11 @@
 
             <!-- Tasks of status 'done' -->
             <div class="boxes">
-                <div class="categorie">
-                    <div class="categorieName">Done</div>
-                    <img onclick="addTask()" src="./img/Group 11b.png" alt="">
+                <div class="boxStatus">
+                    <div class="boxStatusName">Done</div>
+                    <div class="boxStatusPlusImage" onclick="addTask()">
+                        <img src="./img/add-task/icon-plus-sign.svg" alt="">
+                    </div>
                 </div>
                 <div id="done" class="taskColumn" ondrop="moveTo('done')" ondragover="allowDrop(event); highlightColumn('done')" ondragleave="deHighlightColumn('done')">
                     <!-- Here tasks of that status or a placeholer will be rendered -->

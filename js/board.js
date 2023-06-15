@@ -209,7 +209,6 @@ async function deleteTaskFromView(taskId) {
  */
 function searchTasks() {
     let searchValue = document.getElementById('boardSearchField').value.toLowerCase();
-    console.log('~' + searchValue + '~')
     let filteredArray = tasksArray.filter(t => (t['title'].toLowerCase().includes(searchValue) || t['description'].toLowerCase().includes(searchValue)));
     renderTasks(filteredArray);
 }

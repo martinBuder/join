@@ -1,8 +1,5 @@
 /* Common settings for multiple purposes */
 
-* {
-    transition: all 0s ease-in-out;
-}
 .sidebar {
     height: 100vh;
     position: sticky;
