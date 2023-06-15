@@ -2,6 +2,7 @@
  * Global array for collecting the registered subtasks
  */
 let selectedSubtasks = [];
+let selectedSubtasksStatus = [];
 
 
 /**
@@ -37,8 +38,10 @@ function toggleSubtaskCheck(subtask, imgId) {
     let elem = document.getElementById(imgId);
     if (elem.src.includes('unchecked')) {
         elem.src = "./img/add-task/check-rectangle-checked.svg"
+        selectedSubtasksStatus[selectedSubtasks.indexOf(imgId.substring(6))] = 'done';
     } else {
         elem.src = "./img/add-task/check-rectangle-unchecked.svg";
+        selectedSubtasksStatus[selectedSubtasks.indexOf(imgId.substring(6))] = 'todo';
     }
 }
 
@@ -54,12 +57,13 @@ function cancelNewSubtaskInput() {
 
 /**
  * Responds to the confirmation of the input of a subtask.
- * Adds the entry to the list of subtasks and selects it immediately (sets the check mark).
+ * Adds the entry to the list of subtasks.
  */
 function selectNewSubtaskInput() {
     let newValue = document.getElementById('newSubtaskInputField').value.replace("'", "´");
 
     selectedSubtasks.push(newValue);
+    selectedSubtasksStatus.push('todo');
     let newCode = `
         <li>
             <img src="./img/add-task/check-rectangle-unchecked.svg" alt="" id="check-${newValue.replace(' ', '_')}" onclick="toggleSubtaskCheck('${newValue}', 'check-${newValue.replace(' ', '_')}')">
@@ -78,6 +82,7 @@ function selectNewSubtaskInput() {
  * @param {string} subtask - Name des Subtask
  */
 function removeSubtask(subtask) {
+    selectedSubtasksStatus.splice(selectedSubtasks.indexOf(subtask), 1);
     selectedSubtasks = selectedSubtasks.filter((tmpItem) => tmpItem != subtask);
     let id = `check-${subtask.replace(' ', '_')}`;
     let img = document.getElementById(id);

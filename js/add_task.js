@@ -76,19 +76,20 @@ function clearTask() {
  * Starts the saving of the entered task with all subtasks, if they exist.
  */
 async function createTask() {
-    if (!(checkRequiredFields()))
-        return('');
+    // if (!(checkRequiredFields()))
+    //     return('');
 
     // JSON for the new task
     let newJSON = getNewJSON();
+    console.log(newJSON);
     
     // Saving the new task to disk
-    tasksArray = await getTasksArray();
-    tasksArray.push(newJSON);
-    await setItem('tasks', tasksArray);
+    // tasksArray = await getTasksArray();
+    // tasksArray.push(newJSON);
+    // await setItem('tasks', tasksArray);
 
     // Open Board
-    openBoardWhenSaved();
+    // openBoardWhenSaved();
 }
 
 
@@ -160,7 +161,7 @@ function getSubtaskArray() {
     for (let i = 0; i < selectedSubtasks.length; i++) {
         let tmpSubtask = {
             title: selectedSubtasks[i],
-            status: 'todo'
+            status: selectedSubtasksStatus[i]
         }
         subtasksArray.push(tmpSubtask);
     }
