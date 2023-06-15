@@ -333,6 +333,11 @@
 .viewTaskPrio > img {
     filter: invert(0%) brightness(1000%) saturate(0%) contrast(106%);
 }
+.viewTaskEditorList {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
 .viewTaskEditor {
     display: flex;
     align-items: center;
@@ -349,6 +354,21 @@
 }
 .mb-25 {
     margin-bottom: 25px;
+}
+.mt-10 {
+    margin-top: 10px;
+}
+.newSubtaskList li {
+    font-size: 16px;
+    list-style-type: none;
+    margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.newSubtaskList li img {
+    height: 18px;
 }
 
 

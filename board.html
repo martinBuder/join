@@ -138,7 +138,7 @@
     
     <!-- Section for viewing a task in read mode -->
     <section id="viewTask" class="viewTask d-none">
-        <div class="viewTaskContainer">
+        <div id="viewTaskContainer" class="viewTaskContainer">
             <div class="viewTaskHeadline">
                 <div id="viewTaskCategory" class="cardCategory bgCatColorgreen">test</div>
                 <img class="closeTaskView" onclick="closeTaskForView()" src="./img/icon-cancel.svg" alt="">
@@ -148,6 +148,17 @@
             </div>
             <div id="viewTaskDescription" class="mb-25">
                 Make the product presentation to prospective buyers.
+            </div>
+            <div id="viewTaskSubtasks" class="viewTaskText mb-25">
+                <b>Subtasks:</b>
+                <ul class="newSubtaskList mt-10">
+                    <li>
+                        <img src="./img/add-task/check-rectangle-checked.svg" alt="">Subtask 1
+                    </li>
+                    <li>
+                        <img src="./img/add-task/check-rectangle-unchecked.svg" alt="">Subtask 2
+                    </li>
+                </ul>
             </div>
             <div class="viewTaskText viewTaskOneLine mb-25">
                 <b>Due date: </b>
