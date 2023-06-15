@@ -10,6 +10,7 @@
     <script src="./js/user.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/board.js"></script>
+    <script src="./js/board_view_task.js"></script>
     <script src="./js/add_task_categories.js"></script>
     <script src="./js/add_task_assign.js"></script>
     <script src="./js/add_task_subtasks.js"></script>
@@ -139,46 +140,8 @@
     <!-- Section for viewing a task in read mode -->
     <section id="viewTask" class="viewTask d-none">
         <div id="viewTaskContainer" class="viewTaskContainer">
-            <div class="viewTaskHeadline">
-                <div id="viewTaskCategory" class="cardCategory bgCatColorgreen">test</div>
-                <img class="closeTaskView" onclick="closeTaskForView()" src="./img/icon-cancel.svg" alt="">
-            </div>
-            <div id="viewTaskTitle">
-                Call potential clients
-            </div>
-            <div id="viewTaskDescription" class="mb-25">
-                Make the product presentation to prospective buyers.
-            </div>
-            <div id="viewTaskSubtasks" class="viewTaskText mb-25">
-                <b>Subtasks:</b>
-                <ul class="newSubtaskList mt-10">
-                    <li>
-                        <img src="./img/add-task/check-rectangle-checked.svg" alt="">Subtask 1
-                    </li>
-                    <li>
-                        <img src="./img/add-task/check-rectangle-unchecked.svg" alt="">Subtask 2
-                    </li>
-                </ul>
-            </div>
-            <div class="viewTaskText viewTaskOneLine mb-25">
-                <b>Due date: </b>
-                <span id="viewTaskDueDate">2023-06-14</span>
-            </div>
-            <div id="viewTaskPriority" class="viewTaskText viewTaskOneLine mb-25">
-                <b>Priority:</b>
-                <button class="viewTaskPrio viewTaskPrioUrgent">Urgent<img src="./img/add-task/prio-urgent.svg"></button>
-            </div>
-            <div class="viewTaskText mb-25">
-                <b>Assigned To:</b>
-            </div>
-            <div id="viewTaskEditorList" class="viewTaskEditorList">
-                <div class="viewTaskEditor viewTaskOneLine">
-                    <div class="viewTaskEditorBadge bgColor9327FF">DE</div>
-                    <div class="viewTaskText">David Eisenberg</div>
-                </div>
-            </div>
+            <!-- Data will be rendered when clicking on a task -->
         </div>
-        
     </section>
 </body>
 

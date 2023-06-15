@@ -289,8 +289,8 @@
 }
 .viewTaskContainer {
     background-color: white;
-    width: 50%;
-    height: 80%;
+    max-width: 50%;
+    /* height: 80%; */
     border-radius: 30px;
     padding: 50px;
 }
@@ -369,6 +369,51 @@
 }
 .newSubtaskList li img {
     height: 18px;
+}
+.viewTaskEditorAndButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 50px;
+}
+.viewTaskButtons {
+    display: flex;
+}
+.viewTaskButton {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.viewTaskButtonLeft {
+    border: 2px solid #2A3647;
+    border-radius: 10px 0 0 10px;
+}
+.viewTaskButtonLeft img {
+    height: 24px;
+}
+.viewTaskButtonRight {
+    background-color: #2A3647;
+    border: 2px solid #2A3647;
+    border-radius: 0 10px 10px 0;
+}
+.viewTaskButtonRight img {
+    height: 30px;
+    filter: invert(0%) brightness(1000%) saturate(0%) contrast(106%);
+}
+.viewTaskButtonLeft:hover {
+    color: rgb(41, 171, 226);
+    border-color: rgb(41, 171, 226);
+}
+.viewTaskButtonLeft:hover img {
+    filter: invert(65%) sepia(14%) saturate(6020%) hue-rotate(165deg) brightness(94%) contrast(89%);
+}
+.viewTaskButtonRight:hover {
+    background-color: rgb(41, 171, 226);
+    border-color: rgb(41, 171, 226);
 }
 
 
