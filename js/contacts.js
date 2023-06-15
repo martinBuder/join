@@ -1,14 +1,10 @@
-let contactList = [];
-
 let contactJson = {
-	name: '',
-	email: '',
-	phonenumber: '',
-	initials:'',
-	color: '',
-}
-
-let o = -1 // we need this in renderFullContact() --> show the bachground in contact list for active full contact
+  name: "",
+  email: "",
+  phonenumber: "",
+  initials: "",
+  color: "",
+};
 
 let contactName;
 let contactEmail;
@@ -16,465 +12,188 @@ let contactPhone;
 let nameArray;
 
 /**
-	* sort contactList from a to z
-	*/
-function sortContacts() {
-	contactList.sort( (a, b) => {
-		if (a.name < b.name) return -1;
-		if (a.name > b.name) return 1;
-		return 0;
-	})
-}
-
-/**
-	* wait that init is ready and just then start fillContactList
-	*/
+ * wait that init is ready and just then start fillContactList
+ */
 async function initContact() {
-	  await init();
-			fillContactList();
-			addCategories();
-			addContacts();
-	};
-
-	/**
-		* find first Letter of name and if no header with same letter is there render a header with this letter and then fill with the contacts with same first letter
-		*/
-function fillContactList() {
-	let firstLetter
-	let firstLetterHeader
-	sortContacts();
-	let contactListContainer = document.getElementById('contactListContainer');
-	contactListContainer.innerHTML = '';
-	for (let i = 0; i < contactList.length; i++) {
-		let contact = contactList[i];
-		firstLetter = getFirstLetter(contact);
-		firstLetterHeader = fillFirstLetterHeader(firstLetterHeader, firstLetter);
-		contactListContainer.innerHTML += returnContactListHtml(contact, i);		
-	}
+  await init();
+  fillContactList();
+  addCategories();
+  addContacts();
 }
 
 /**
-	* 
-	* @param {JSON} contact 
-	* @param {index} i 
-	* @returns to fillContactList()
-	*/
-function returnContactListHtml(contact, i) {
-	return /*html*/`
-		<div class="contactWrapper" onclick="renderFullContact(${i})">
-			<div class="initials ${contact['color']}">${contact['initials']}</div>
-			<div class="contactBox">
-				<h3>${contact['name']}</h3>
-				<a href="#" class="link">${contact['email']}</a> 
-			</div>
-		</div>
-	`
-}
-
-/**
-	* render the full Contact part
-	* @param {index} i 
-	*/
+ * render the full Contact part
+ * @param {index} i
+ */
 function renderFullContact(i) {
-	getContactWindow();
-	getFullContactArea(i);
-	contactListBtnBackground(i);
+  getContactWindow();
+  getFullContactArea(i);
+  contactListBtnBackground(i);
 }
 
 /**
-	* open full contact site (mobile)
-	*/
+ * open full contact site (mobile)
+ */
 function getContactWindow() {
-	let contactWindow = document.getElementsByClassName('contactWindow')[0];
-	contactWindow.classList.add('fullSite');
-	fillContactList();
+  let contactWindow = document.getElementsByClassName("contactWindow")[0];
+  contactWindow.classList.add("fullSite");
+  fillContactList(); /* so you have no darkblue background if you close the window */
 }
 
 /**
-	* close full contact site (mobile)
-	*/
+ * close full contact site (mobile)
+ */
 function closeFullSite() {
-	let oldContactWrapper = document.getElementsByClassName('contactWrapper')[o];
-	oldContactWrapper.classList.remove('sameFullContact');
-	let contactWindow = document.getElementsByClassName('contactWindow')[0];
-	contactWindow.classList.remove('fullSite');
+  let oldContactWrapper = document.getElementsByClassName("contactWrapper")[o];
+  oldContactWrapper.classList.remove("sameFullContact");
+  let contactWindow = document.getElementsByClassName("contactWindow")[0];
+  contactWindow.classList.remove("fullSite");
 }
 
 /**
-	* get the area to fill
-	* @param {index} i 
-	*/
-	function getFullContactArea(i) {
-		let showFullContact = document.getElementById('showFullContact');
-		showFullContact.innerHTML = returnFullContactHtml(i);
-	}
-
-/**
-	* change in contactList the background
-	* @param {index} i 
-	*/
-function contactListBtnBackground(i) {
-	let contactWrapper = document.getElementsByClassName('contactWrapper')[i];
-	contactWrapper.classList.add('sameFullContact');
-	if (o !== -1) {
-		let oldContactWrapper = document.getElementsByClassName('contactWrapper')[o];
-		oldContactWrapper.classList.remove('sameFullContact');
-	}
-	o = i;
+ * get the area to fill
+ * @param {index} i
+ */
+function getFullContactArea(i) {
+  let showFullContact = document.getElementById("showFullContact");
+  showFullContact.innerHTML = returnFullContactHtml(i);
 }
 
 /**
-	* 
-	* @param {number} i 
-	* @returns to renderFullContact
-	*/
-function returnFullContactHtml(i) {
-	return /*html*/`
-		<div class="fullContactHeader">
-			<div class="initials background: ${contactList[i]['color']}">${contactList[i]['initials']}</div>
-			<div class="fullContactHeaderName">
-				<h2>${contactList[i]['name']}</h2>
-				<p onclick="addTask()">+ Add Task</p>
-			</div>			
-		</div>
-		<div class="contactSubHeaderContainer">
-			<h3>Contact Information</h3>
-			<p onclick="openEditContact(${i})"><img src="./img/pen.svg" alt=""> Edit Contact</p>
-</div>	
-		<h4>Email</h4>
-		<a href="mailto:${contactList[i]['email']}" target="_blank">${contactList[i]['email']}</a>
-		<h4>Phone</h4>
-		<a href="tel:${contactList[i]['phonenumber']}">${contactList[i]['phonenumber']}</a>
-		<button class="outFocusBtn mobilImgBtn" ><img src="./img/delete.svg" alt="" onclick="deleteContact(${i})"></button>
-  <button class="focusBtn mobilImgBtn editImgBtn" onclick="openEditContact(${i})"><img src="./img/pen.svg" alt=""></button>
-	`
-}
-
-/**
-	* open add contact Window
-	*/
+ * open add contact Window
+ */
 function openAddContact() {
-	addedNewContactBtn();
-	startSlideAnimation();
+  addedNewContactBtn();
+  startSlideAnimation();
 }
 
 /**
-	* fill inputfields with contactList Infos
-	* @param {index} i 
-	*/
-function fillEditInputs(i) {
-	contactName.value = contactList[i]['name'];
-	contactEmail.value = contactList[i]['email'];
-	contactPhone.value = contactList[i]['phonenumber'];
-}
-
-/**
-	* design the circle in contact working window 
-	* @param {index} i 
-	*/
-function createCircle(i) {
-	let circle = document.getElementById('circle');
-	circle.innerHTML = contactList[i]['initials'];
-	circle.classList.remove('bgLightGrey');
-	circle.classList.add(contactList[i]['color'])
-	circle.setAttribute('onclick', `changeContactColor(${i})`);
-}
-
-/**
-	* open the contact colors for changing
-	* @param {index} i 
-	*/
-function changeContactColor(i) {
-	let contactColorWrapper = document.getElementsByClassName('contactColorWrapper')[0];
-	contactColorWrapper.innerHTML = ``;
-	contactColorWrapper.innerHTML = `<p>Joice a color...</p>`;
-	for (let j = 0; j < bgColorArray.length; j++) {
-		contactColorWrapper.innerHTML += /*html*/`
-			<div class="contactColorContainer ${bgColorArray[j]}" onclick="choiceColor(${i}, ${j})"></div>
-		`		
-	}
-}
-
-/**
-	* serie of function to change the color
-	* @param {index} i 
-	* @param {index} j 
-	*/
-async function choiceColor(i, j) {
-	chosseNewColor(i, j)
-	await setContactListToRemoteStorage('contactList', contactList);
-	saveContactList();
-	getContactList();
-	fillContactList();
-}
-
-/**
-	* choose a new color for contact
-	* @param {index} i 
-	* @param {index} j 
-	*/
-function chosseNewColor(i, j) {
-	let contactColorWrapper = document.getElementsByClassName('contactColorWrapper')[0];
-	let circle = document.getElementById('circle');
-	circle.classList.remove(contactList[i]['color']);
-	contactList[i]['color'] = bgColorArray[j];
-	circle.classList.add(contactList[i]['color']);
-	contactColorWrapper.innerHTML = ``;
-}
-
-/**
-	* serie of functions to open the contact edit window
-	* @param {index} i 
-	*/
+ * serie of functions to open the contact edit window
+ * @param {index} i
+ */
 function openEditContact(i) {
-	changeClaimer();
-	getContactInputFields();
-	fillEditInputs(i);
-	createCircle(i);
-	addedEditContactBtn(i);
-	startSlideAnimation();
-	overwriteContactSaveOnSubmit(i);
+  changeClaimer();
+  getContactInputFields();
+  fillEditInputs(i);
+  createCircle(i);
+  addedEditContactBtn(i);
+  startSlideAnimation();
+  overwriteContactSaveOnSubmit(i);
 }
 
 /**
-	* change Claimer text
-	*/
+ * change Claimer text
+ */
 function changeClaimer() {
-	let changeClaimer = document.getElementsByClassName('claimerText')[0];
-	changeClaimer.innerHTML = /*html*/`
+  let changeClaimer = document.getElementsByClassName("claimerText")[0];
+  changeClaimer.innerHTML = /*html*/ `
 		<h1>Edit contact</h1>
-	`
+	`;
 }
 
 /**
-	* change Claimer text
-	*/
-	function changeClaimerback() {
-		let changeClaimer = document.getElementsByClassName('claimerText')[0];
-		changeClaimer.innerHTML = /*html*/`
-			<h1>Add Contact</h1>
-   <p>Tasks are better with a team!</p>
-		`
-	}
-
-/**
-	* serie of function to save the edited contact
-	* @param {index} i 
-	*/
-async function saveEditContact(i) {
-	setEditedContact(i);
-	getContactInitials(i);
-	sortContacts()
-	saveContactList();
-	await setContactListToRemoteStorage('contactList', contactList);
-	getContactList();
-	fillContactList();
-	closeAddContact();
+ * change Claimer text
+ */
+function changeClaimerback() {
+  let changeClaimer = document.getElementsByClassName("claimerText")[0];
+  changeClaimer.innerHTML = /*html*/ `
+		<h1>Add Contact</h1>
+  <p>Tasks are better with a team!</p>
+	`;
 }
 
 /**
-	* serie of function to delete contact
-	* @param {index} i 
-	*/
-async function deleteContact(i) {
-	contactList.splice(i, 1);
-	saveContactList();
-	await setContactListToRemoteStorage('contactList', contactList);
-	getContactList();
-	fillContactList();
-	closeAddContact();
-	closeFullSite();
+ * fill inputfields with contactList Infos
+ * @param {index} i
+ */
+function fillEditInputs(i) {
+  contactName.value = contactList[i]["name"];
+  contactEmail.value = contactList[i]["email"];
+  contactPhone.value = contactList[i]["phonenumber"];
 }
 
 /**
-	* clear all inputfields from inputArea
-	*/
+ * clear all inputfields from inputArea
+ */
 function clearInputs() {
-	document.getElementById('inputArea').reset();
+  document.getElementById("inputArea").reset();
 }
 
 /**
-	* fill contactJson with edited information
-	* @param {index} i 
-	*/
+ * fill contactJson with edited information
+ * @param {index} i
+ */
 function setEditedContact(i) {
-	contactList[i]['name'] = contactName.value;
-	contactList[i]['email'] = contactEmail.value;
-	contactList[i]['phonenumber'] = contactPhone.value
+  contactList[i]["name"] = contactName.value;
+  contactList[i]["email"] = contactEmail.value;
+  contactList[i]["phonenumber"] = contactPhone.value;
 }
 
 /**
-	* change form function to new function
-	* @param {index} i 
-	*/
+ * change form function to new function
+ * @param {index} i
+ */
 function overwriteContactSaveOnSubmit(i) {
-	let form = document.getElementById('inputArea')
-	form.setAttribute('onsubmit', `saveEditContact(${i})`);
+  let form = document.getElementById("inputArea");
+  form.setAttribute("onsubmit", `saveEditContact(${i})`);
 }
 
 /**
-	* contact Window get the animatioon to slide in 
-	*/
+ * contact Window get the animatioon to slide in
+ */
 function startSlideAnimation() {
-	let addContactWindow = document.getElementById('addContactWindow');
-	addContactWindow.style.animationName = "slide";
-	addContactWindow.style.animationDuration = "800ms";
-	addContactWindow.style.animationFillMode = "forwards";
+  let addContactWindow = document.getElementById("addContactWindow");
+  addContactWindow.style.animationName = "slide";
+  addContactWindow.style.animationDuration = "800ms";
+  addContactWindow.style.animationFillMode = "forwards";
 }
 
 /**
-	* render the btn for new contact in contact window
-	*/
+ * render the btn for new contact in contact window
+ */
 function addedNewContactBtn() {
-	let contactWorkspaceBtnContainer = document.getElementById('contactWorkspaceBtnContainer');
-		contactWorkspaceBtnContainer.innerHTML = /*html*/`
+  let contactWorkspaceBtnContainer = document.getElementById(
+    "contactWorkspaceBtnContainer"
+  );
+  contactWorkspaceBtnContainer.innerHTML = /*html*/ `
 			<button class="btnWithImg outFocusBtn contactCancelBtn" onclick="closeAddContact()"><p>Cancel</p><p>&#10006</p></button>
    <button class="btnWithImg focusBtn" submit ><p>Create contact</p><p>&#10003</p></button>
-		`
-	contactWorkspaceBtnContainer.style.justifyContent="flex-start"
+		`;
+  contactWorkspaceBtnContainer.style.justifyContent = "flex-start";
 }
 
 /**
-	* render the btn for edit contact in contact window
-	* @param {index} i 
-	*/
+ * render the btn for edit contact in contact window
+ * @param {index} i
+ */
 function addedEditContactBtn(i) {
-	let contactWorkspaceBtnContainer = document.getElementById('contactWorkspaceBtnContainer');
-		contactWorkspaceBtnContainer.innerHTML = /*html*/`
+  let contactWorkspaceBtnContainer = document.getElementById(
+    "contactWorkspaceBtnContainer"
+  );
+  contactWorkspaceBtnContainer.innerHTML = /*html*/ `
 			<button class="outFocusBtn" onclick="deleteContact(${i})">Delete</button>
    <button class="focusBtn editContactSaveBtn" submit>Save</button>
-		`
-			contactWorkspaceBtnContainer.style.justifyContent="flex-end"
-
+		`;
+  contactWorkspaceBtnContainer.style.justifyContent = "flex-end";
 }
 
 /**
  * This function closes the input mask.
  */
 function closeAddContact() {
-	let addContactWindow = document.getElementById('addContactWindow');
-	addContactWindow.style.animationName = "slideOut";
-	addContactWindow.style.animationDuration = "800ms";
-	addContactWindow.style.animationFillMode = "forwards";
-	setTimeout(clearInputs, 1000);
-	setTimeout(changeClaimerback, 1000);
-}
-
-/**save the contactList in remot storage with token, email and password
-	* 
-	* @param {JsonWebKey} key 
-	* @param {Json} value 
-	* @returns 
-	*/
-	async function setContactListToRemoteStorage(key, value) {
-		const payload = {key, value, token: STORAGE_TOKEN,} //old is key: key & value: value
-		return fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload) }).then(res => res.json());
-	}
-
-/** get the first letter from name
-	* 
-	* @param {JSON} contact 
-	* @returns to fillContactList
-	*/
-function getFirstLetter(contact) {
-	return contact['name'].substring(0, 1)
-}
-
-/** check if the firstLetters are the same if not he fill the h2 with first Letter
-	* 
-	* @param {string} firstLetterHeader firstLetter from last Name
-	* @param {string} firstLetter 
-	* @returns 
-	*/
-function fillFirstLetterHeader(firstLetterHeader, firstLetter) {
-	if (firstLetterHeader !== firstLetter) {
-	contactListContainer.innerHTML += /*html*/`
-	<div class="oneLetterHeader">${firstLetter.toUpperCase()}</div>
-	`
-	firstLetterHeader = firstLetter;
-	}
-return firstLetterHeader
+  let addContactWindow = document.getElementById("addContactWindow");
+  addContactWindow.style.animationName = "slideOut";
+  addContactWindow.style.animationDuration = "800ms";
+  addContactWindow.style.animationFillMode = "forwards";
+  setTimeout(clearInputs, 1000);
+  setTimeout(changeClaimerback, 1000);
 }
 
 /**
-	* serie of function to save the new contact
-	*/
-async function saveNewContact() {
-	getContactInputFields()
-	getNewContactData();
-	getContactInitials();
-	addColorNewContact();
-	pushContactToContacts();
-	sortContacts()
-	saveContactList();
-	await setContactListToRemoteStorage('contactList', contactList);
-	getContactList();
-	fillContactList();
-	closeAddContact();
-}
-
-/**
-	* get the inputFields from work on contact window
-	*/
+ * get the inputFields from work on contact window
+ */
 function getContactInputFields() {
-	contactName = document.getElementById('contactName');
-	contactEmail = document.getElementById('contactEmail');
-	contactPhone = document.getElementById('contactPhone');
+  contactName = document.getElementById("contactName");
+  contactEmail = document.getElementById("contactEmail");
+  contactPhone = document.getElementById("contactPhone");
 }
-
-/**
-	* contactJson get the information --> before push in contactList
-	*/
-function getNewContactData() {
-	contactJson['name'] = contactName.value;
-	contactJson['email'] = contactEmail.value;
-	contactJson['phonenumber'] = contactPhone.value;
-}
-
-/**
-	* get the initials of name
-	* if i == definated we came from edit contact
-	* @param {index} i 
-	*/
-function getContactInitials(i) {
-	if (i !== undefined) {
-		nameArray = contactList[i]['name'].split(' ');
-	}else{
-		nameArray = 	contactJson['name'].split(' ');
-	}
-	let initial = '';
-	nameArray.length == 1 ? initial = nameArray[0].substring(0, 2) : initial = nameArray[0].substring(0, 1) + nameArray[1].substring(0, 1);
-	if (i !== undefined) {
-		contactList[i]['initials'] = initial.toUpperCase();
-	}else{
- 	contactJson['initials'] = initial.toUpperCase();
-	}
-}
-
-/**
-	* set a color for new contact
-	*/
-function addColorNewContact() {
-	contactJson['color'] = getRandomColor();
-}
-
-/**
-	* choose a random color for create a new contact
-	*/
-function getRandomColor() {
-  const randomIndex = Math.floor(Math.random() * bgColorArray.length);
-  return bgColorArray[randomIndex];
-}
-
-/**
-	* push contact to new contactList
-	*/
-function pushContactToContacts() {
-	contactList.push(contactJson);
-}
-
-
-
-
-
-
