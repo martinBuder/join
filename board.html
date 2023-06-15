@@ -34,9 +34,12 @@
         <div class="boardHeadline">
             <div class="tool">Kanban Project Management Tool</div>
             <div class="boardText">Board</div>
-            <div class="searchAdd">
-                <input type="search" id="boardSearchField" placeholder="Find Task" class="inputField" onkeyup="searchTasks()"><img class="lupe" src="./img/Vector.png" alt="Search">
-                <button onclick="addTask()">Add task
+            <div class="searchAndAddTask">
+                <div class="searchLine">
+                    <input type="text" id="boardSearchField" placeholder="Find Task" class="" onkeyup="searchTasks()">
+                    <img class="lupe" src="./img/Vector.png" alt="Search">
+                </div>
+                <button onclick="addTask()" class="boardAddTaskButton">Add task
                     <img src="./img/Group 11.png" alt="add task">
                 </button>
             </div>

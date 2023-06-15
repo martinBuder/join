@@ -93,7 +93,7 @@ function getHtmlCodeSubtasks(elem) {
 
     let elemSubtasksDone = 0;
     elemSubtasksDone = elemSubtasks.filter(st => st['status'] == 'done').length;
-    let percentage = (elemSubtasksCounter > 0) ? (100 / elemSubtasksCounter * elemSubtasksDone) : 0;
+    let percentage = (elemSubtasksCounter > 0) ? Math.round(100 / elemSubtasksCounter * elemSubtasksDone) : 0;
     let newCode = `
             <div id="subtasks" class="cardSubtasks">
                 <div class="cardSubtaskGraphic">
@@ -169,8 +169,9 @@ async function moveTo(cardColumn) {
     await setItem('tasks', tasksArray);                                      // save the changed task, which means we have to save tasksArray
     currentDraggedElement = '';                                              // delete the entry in currentDraggedElement
     deHighlightColumn(cardColumn);                                           // remove highlighting of the column
-    renderTasks();                                                           // and finally... reload the page
-}
+    // tasksArray = await getTasksArray();                                      // loading the newly saved tasks so I have the correct statuses
+    renderTasks(tasksArray);                                                 // and finally... reload the page
+}      
 
 function highlightColumn(colId) {
     document.getElementById(colId).classList.add('taskColumnHighlighted');
@@ -208,6 +209,7 @@ async function deleteTaskFromView(taskId) {
  */
 function searchTasks() {
     let searchValue = document.getElementById('boardSearchField').value.toLowerCase();
+    console.log('~' + searchValue + '~')
     let filteredArray = tasksArray.filter(t => (t['title'].toLowerCase().includes(searchValue) || t['description'].toLowerCase().includes(searchValue)));
     renderTasks(filteredArray);
 }
