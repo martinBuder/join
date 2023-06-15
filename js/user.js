@@ -30,37 +30,6 @@ function getUser() {
 	}
 	// ! ein registrierter Team-User hat immer das Bild 'vornamefamilienname.png' in seinem Json definiert
 
-/** 
-	* a serie of functions to create a account
-	*/
-async function createNewAccount() {
-	getUserInputFields();
-	getUserLogInInfo();
-	await checkUser()
-	isUserDouble();
-}
-
-/**
-	* check is user in users
-	*/
-async function checkUser() {
-	await getItemFromRemoteStorage('users');
-	findUsersArray();
-	await findEmailUser();
-}
-
-/**
-	* step 2 from create a account if user hasn't an account
-	*/
-async function saveNewAccount() {
-	reloadUserJson();
-	changeUserInformation();
-	deleteUserfromUsers();
-	pushUserToUsers();
-	await	setItemToRemoteStorage('users', users);
-	clearDesktopUsersUserInformation()
-}
-
 function reloadUserJson() {
 	user = {
 		name: '',
@@ -92,36 +61,12 @@ async function saveInRemoteStorage() {
 }
 
 /** 
-	* push user to users
- */
-function pushUserToUsers() {
-	users.push(user);
-}
-
-/** 
 	* clear user information in array and clear email and password
 	*/
 function clearUserInformation() {
 	Object.keys(user).forEach(key => {
   user[key] = '';
 	});
-}
-
-/**
-	*  get the inputfields 
-	*/
-function getUserInputFields() {
-	username = document.getElementById('name');
-	email = document.getElementById('email');
-	password = document.getElementById('passwordField');
-}
-
-/** 
-	* definated email and password for control
-	*/
-function getUserLogInInfo() {
-	email = email.value;
-	password = password.value; 
 }
 
 /** 
@@ -165,10 +110,10 @@ async function setItemToRemoteStorage(key, value) {
 	* @param {Json} value 
 	* @returns 
 	*/
-	async function setContactListToRemoteStorage(key, value) {
-		const payload = {key, value, token: STORAGE_TOKEN,} //old is key: key & value: value
-		return fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload) }).then(res => res.json());
-	}
+async function setContactListToRemoteStorage(key, value) {
+	const payload = {key, value, token: STORAGE_TOKEN,} //old is key: key & value: value
+	return fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload) }).then(res => res.json());
+}
 
 /** 
 	* this function get the user information from Remote Storage and changed it to user-Array compares with e-mail and passwort
@@ -177,7 +122,7 @@ async function setItemToRemoteStorage(key, value) {
 	*/
 async function getItemFromRemoteStorage(key) {
 	const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-	let res = await fetch(url).catch();
+	let res = await fetch(url).catch(errorFunction);
 	users = await res.json();
 }
 
@@ -186,11 +131,11 @@ async function getItemFromRemoteStorage(key) {
 	* !!! you need to used findContactListArray() to work with users array
 	* @param {JsonWebKey} key 
 	*/
-	async function getContactListFromRemoteStorage(key) {
-		const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-		let res = await fetch(url).catch();
-		contactList = await res.json();
-	}
+async function getContactListFromRemoteStorage(key) {
+	const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+	let res = await fetch(url).catch(errorFunction);
+	contactList = await res.json();
+}
 
 /**
 	* this function separate users-Array from the serveranswer and changed in a user array 
@@ -206,36 +151,12 @@ function findUsersArray() {
 /**
 	* this function separate users-Array from the serveranswer and changed in a user array 
 	*/
-	function findContactListArray() {
-		if (contactList && contactList.data && contactList.data.value) {
-			contactList = JSON.parse(contactList.data.value.replace(/'/g, '"'));
-		} else {
-				contactList = null;
-		}
+function findContactListArray() {
+	if (contactList && contactList.data && contactList.data.value) {
+		contactList = JSON.parse(contactList.data.value.replace(/'/g, '"'));
+	} else {
+		contactList = null;
 	}
-
-/**
-	* check if user is correct
-	*/
-function findCorrectUser() {
-	user = users.find(u => u.password === password && u.email === email);
-	if (user === undefined) {
-		alert('The email or password you used is not correct!');
-		clearDesktopUsersUserInformation();
-	}else{
-		saveUser();
-		indexToSummary()
-	}
-}
-
-/**
-	* function serie go from index to summary
-	*/
-async function indexToSummary() {
-	await getContactListFromRemoteStorage('contactList');
-	findContactListArray();
-	saveContactList();
-	goToSummary();
 }
 
 /**
@@ -254,17 +175,6 @@ function errorFunction() {
 }
 
 /** 
-	* this are the functions row for log in fill input to summery site
-	*/
-async function logIn() {
-	getUserInputFields();
-	getUserLogInInfo();
-	await getItemFromRemoteStorage('users');
-	findUsersArray();
-	findCorrectUser()
-}
-
-/** 
 	* find sam e user in array and delete 
 	*/
 function deleteUserfromUsers() {
@@ -279,13 +189,6 @@ function deleteUserfromUsers() {
 	*/
 function clearUsers() {
 	users = [];
-}
-
-/** 
-	* go to summery site
-	*/
-function goToSummary() {
-	window.location.href = './summary.html';
 }
 
 /**
@@ -315,86 +218,46 @@ function logOut() {
 /** 
 	* compare the passworts and show next step
 	*/
-	function createNewPassword() {
-		let newPassword = document.getElementById('passwordField');
-		let confirmPassword = document.getElementById('confirmPassword');
-		if(newPassword.value === confirmPassword.value) {
-			newPasswordOk(newPassword)
-		} else {
-			newPasswordFalse(confirmPassword);
-		}
+function createNewPassword() {
+	let newPassword = document.getElementById('passwordField');
+	let confirmPassword = document.getElementById('confirmPassword');
+	if(newPassword.value === confirmPassword.value) {
+		newPasswordOk(newPassword)
+	} else {
+		newPasswordFalse(confirmPassword);
 	}
+}
 	
-	/** 
-		* create a new password and go to log In Window
-		* @param {string} newPassword 
-		*/
-	async function newPasswordOk(newPassword) {
-		await saveNewPassword(newPassword);
-		indexContent.innerHTML += returnIdentPasswordHtml()
-		setTimeout(renderLogInWindow, 1000);
-	}
-
-	/**
-	* check: have the user an account
+/** 
+	* a serie of functions to change password
+	* @param {string} newPassword 
 	*/
-function noUserFound() {
-	if(user == undefined ) {
-		alert(`This user hasn't an account!`)
-		renderForgotPassword(); 
-	}else{
-		goToChangePassword();
-	}
+async function saveNewPassword(newPassword) {
+	await getItemFromRemoteStorage('users');
+	findUsersArray();
+	await findEmailUser();
+	overwritePassword(newPassword)
+	deleteUserfromUsers();
+	pushUserToUsers();
+	await	setItemToRemoteStorage('users', users);
+	clearUsers();
+}
+	
+/** 
+	* function found the userAccount who forgot the passwort and change with the new one
+	*/
+async function findEmailUser() {
+	user = users.find(u => u.email === email);
 }
 
 /**
-	* go forward to change password
+	* overwrite user password
 	*/
-function goToChangePassword() {
-	indexContent.innerHTML += returnSendEmailHtml();
-	setTimeout(resetPasswordStepTwo, 200)
-}
-	
-	/** 
-		* a serie of functions to change password
-		* @param {string} newPassword 
-		*/
-	async function saveNewPassword(newPassword) {
-		await getItemFromRemoteStorage('users');
-		findUsersArray();
-		await findEmailUser();
-		overwritePassword(newPassword)
-		deleteUserfromUsers();
-		pushUserToUsers();
-		await	setItemToRemoteStorage('users', users);
-		clearUsers();
-	}
-	
-	/** 
-		* function found the userAccount who forgot the passwort and change with the new one
-		*/
-	async function findEmailUser() {
-		user = users.find(u => u.email === email);
-	}
-
-	/**
-		* overwrite user password
-		*/
 function overwritePassword(newPassword) {
 	user['password'] = newPassword.value;
 }
 
-/**
-	* check: have the user an account
-	*/
-function isUserDouble() {
-	if(user !== undefined ) {
-		alert('This user has already an account!')
-		clearDesktopUsersUserInformation()
-	}else{
-		saveNewAccount();
-	}
-}
+
 
 
 
