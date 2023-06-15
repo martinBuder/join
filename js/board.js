@@ -194,7 +194,7 @@ function deHighlightColumn(colId) {
 async function deleteTaskFromView(taskId) {
     await deleteTask(taskId);
     closeTaskForView();
-    renderTasks();
+    renderTasks(tasksArray);
 }
 
 
