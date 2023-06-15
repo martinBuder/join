@@ -185,7 +185,7 @@ input#remember {
 	min-width: max-content;
 }
 
-@media (max-width: 730px) {
+@media (max-width: 760px) {
 
 	.smallFirstIndexWindow {
 		display: block;
@@ -206,7 +206,7 @@ input#remember {
 	}
 
 	.smallFirstIndexWindow img {
-		width: 100px;
+		width: 50px;
 		animation: moveLogo;
 		animation-duration: 600ms;
 		animation-delay: 300ms;
@@ -219,7 +219,7 @@ input#remember {
 
 	.indexLogo {
 		animation-delay: 300ms;
-
+		width: 50px
 	}
 
 	@keyframes smallFirstIndexWindow {
@@ -231,8 +231,8 @@ input#remember {
 
 	@keyframes moveLogo {
 		to {
-			top: 50px;
-			left: 50px;
+			top: 20px;
+			left: 20px;
 			transform: scale(0.8);
 		}
 	}
@@ -240,6 +240,8 @@ input#remember {
 	.indexHeader {
 		width: 100%;
 		justify-content: center;
+		padding: 0;
+		height: 70px;
 	}
 
 	.headerBtnContainer {
@@ -252,21 +254,22 @@ input#remember {
 	body.indexBody {
 		display: flex;
 		flex-direction: column-reverse;
-	}
-
-	.indexMain {
-		margin-top: 15vh;
+		justify-content: space-between;
+		margin-top: 20px;
+		height: calc(100vh - 20px);
 	}
 
 	.activityContainer {
-		width: 90%;
-		height: min-content;
+		width: 100%;
+		max-height: calc(100vh - 190px );
+		overflow: auto;
 		border-radius: 30px;
-		padding: 56px 25px;
+		padding: 20px 0;
+		gap: 3.5vh;
 	} 
 
 	.activityContainer h1 {
-		margin-top: 30px;
+		margin-top: 20px;
 	}
 
 	.blueLine {
@@ -275,6 +278,7 @@ input#remember {
 
 	.rememberContainer {
 		flex-direction: column-reverse;
+		gap: 1vh;
 	}
 
 	.link {
@@ -284,13 +288,46 @@ input#remember {
 
 	.checkContainer {
 		justify-content: flex-start;
-		padding: 0 0;
+		padding: 0 10px;
 		gap: 20px;
 	}
 
 	.twiceBtnContainer {
 		flex-direction: column;
-		width: 60%;
+		width: 50%;
+		gap: 15px;
+	}
+
+	.indexMain .inputContainer input, .indexMain .inputContainer input::placeholder {
+		min-width: 50px;
+		font-size: 16px;
+	}
+
+	.indexMain Button, .indexMain .guestA p {
+		font-size: 16px;
+	}
+
+	.indexMain Button, .activityContainer .guestA {
+		padding: 10px
+	}
+
+	.indexMain a {
+		padding: 0 10px;
+	}
+
+	.indexMain .guestA p  {
+		padding: 0;
+		margin: 0;
+	}
+
+	.indexMain .inputContainer {
+		height: auto;
+		padding: 8px 16px;
+	}
+
+	#indexContent {
+		width: 100%;
+		margin: 0 auto;
 	}
 }
 
