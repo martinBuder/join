@@ -390,8 +390,9 @@ h1 {
     }
     .btnTaskCreate {
         position: absolute;
-        top: 17px;
+        top: 8px;
         right: 20px;
+        z-index: 10;
     }
     .btnTaskAdded {
         position: absolute;

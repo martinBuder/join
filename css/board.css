@@ -28,23 +28,23 @@
     display: none;
 }
 
-.headerContainer {
+/* .headerContainer {
     display: flex;
     position: relative;
     justify-content: space-between;
     align-items: center;
     width: 1078px;
     max-width: 100%;
-}
+} */
 
 /* #navLinkAddTask,
 #navLinkAddTaskM {
     background-color: #2A3647 !important;
 } */
 
-.navbar-icon-mobile {
+/* .navbar-icon-mobile {
     margin: 0 0 8px 0 !important;
-}
+} */
 
 .board {
     position: relative;
@@ -92,47 +92,52 @@
     font-weight: 700;
 }
 
-.boardHeadline button {
-    background-color: #2A3647;
-    border-radius: 10px;
-    color: white;
-    font-size: 25px;
-    margin-left: 35px;
-    padding: 15px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.boardHeadline img {
-    padding-left: 10px;
-}
-
-.boardHeadline input::placeholder {
-    display: flex;
-    align-items: center;
-    font-size: 19px;
-    font-weight: 400;
-    padding-left: 21px;
-}
-
-.boardHeadline input {
-    width: 251px;
-    height: 51px;
-    border: 1px solid #A8A8A8;
-    border-radius: 10px;
-}
-
-.searchAdd {
+/* Search and Add Task line settings */
+.searchAndAddTask {
     display: flex;
     align-items: center;
     gap: 10px;
 }
+.searchLine {
+    background-color: white;
+    padding: 13px 15px 13px 21px;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 251px;
 
-.lupe {
-    position: relative;
-    right: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+#boardSearchField {
+    font-size: 19px;
+    font-weight: normal;
+    width: 80%;
+    border: none;
+}
+#boardSearchField:focus {
+    outline: none;
+}
+.lupe {
+    /* position: relative;
+    right: 60px; */
+    padding-left: 15px;
+    border-left: 1px solid #d1d1d1;
+}
+.boardAddTaskButton {
+    height: 55px;
+    background-color: #2A3647;
+    border-radius: 10px;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
 
 .addTask {
     background-color: rgba(0, 0, 0, 50%);
@@ -425,27 +430,27 @@
 
 
 @media (max-width: 1350px) {
-    .headerContainer {
+    /* .headerContainer {
         width: 750px;
-    }
+    } */
 
     .board {
         width: 750px;
     }
 
-    .main-navigation {
+    /* .main-navigation {
         width: 200px !important;
-    }
+    } */
 
-    .header {
+    /* .header {
         width: calc(100% - 200px);
-    }
+    } */
 }
 
 @media (max-width: 1000px) {
-    .headerContainer {
+    /* .headerContainer {
         width: 750px;
-    }
+    } */
 
     .board {
         width: 750px;
@@ -463,28 +468,15 @@
         padding: 0 10px;
     }
 
-    .header {
+    /* .header {
         width: 100%;
-    }
-
-    .main-navigation {
-        width: 200px !important;
-    }
-
-    .mobile-navigation {
-        display: block !important;
-        z-index: 1;
-    }
-
-    .main-navigation {
-        display: none !important;
-    }
+    } */
 }
 
 @media (max-width: 760px) {
-    .headerContainer {
+    /* .headerContainer {
         width: 420px;
-    }
+    } */
 
     .serachAdd {
         width: 100%;
@@ -526,9 +518,9 @@
 }
 
 @media (max-width: 490px) {
-    .headerContainer {
+    /* .headerContainer {
         width: 360px;
-    }
+    } */
 
     .board {
         width: 360px;
@@ -536,9 +528,9 @@
 }
 
 @media (max-width: 450px) {
-    .headerContainer {
+    /* .headerContainer {
         width: 280px;
-    }
+    } */
 
     .tool {
         font-size: 16px;
