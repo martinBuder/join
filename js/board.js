@@ -167,9 +167,9 @@ async function moveTo(cardColumn) {
     let curTask = tasksArray.filter(t => t['id'] == currentDraggedElement);  // get task-element of given id (id = currentDraggedElement)
     curTask[0]['status'] = cardColumn;                                       // change status to given status (status = cardColumn)
     await setItem('tasks', tasksArray);                                      // save the changed task, which means we have to save tasksArray
+    setNumbersToTaskNumbersForSummary();                                     // function for counting several summary data
     currentDraggedElement = '';                                              // delete the entry in currentDraggedElement
     deHighlightColumn(cardColumn);                                           // remove highlighting of the column
-    // tasksArray = await getTasksArray();                                      // loading the newly saved tasks so I have the correct statuses
     renderTasks(tasksArray);                                                 // and finally... reload the page
 }      
 
