@@ -17,12 +17,13 @@ let urgentTasksCounter = 0;
 /**
 	* serie of functions to set the datas in taskNumbersForSummaryArray
 	*/
-function setNumbersToTaskNumbersForSummary() {
+async function setNumbersToTaskNumbersForSummary() {
 	setAllTasksNumber();
 	countTaskNumbers();
 	setTaskNumbers();
 	clearCounters();
-	sortTaskForDate()
+	sortTaskForDate();
+	await setTaskNumbersStorage('taskNumbersForSummary', taskNumbersForSummary);
 }
 
 /**
@@ -84,9 +85,13 @@ function sortTaskForDate() {
 			if (a.duedate > b.duedate) return 1;
 			return 0;
 	});
-	let nextDate = tasksArray[0]['duedate'];
-	taskNumbersForSummary[6]['deadlineDate'] = nextDate
+	let nextDate = new Date(tasksArray[0]['duedate']);
+	let options = { month: 'long', day: 'numeric', year: 'numeric' };
+	taskNumbersForSummary[6]['deadlineDate'] = nextDate.toLocaleDateString("en-US", options);
 }
 
 
-
+	async function setTaskNumbersStorage(key, value) {
+		const payload = {key, value, token: STORAGE_TOKEN,} 
+		return fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload) }).then(res => res.json());
+	}
