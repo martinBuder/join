@@ -6,6 +6,11 @@ h2 {
 	margin: 50px 0 10px 0;
 }
 
+.bSite main {
+	width: calc(100% - 232px);
+	padding: 100px 5%;
+}
+
 .contentWrapper {
 	position: relative;
 }
@@ -31,6 +36,12 @@ li span {
 	display: inline-block;
 	vertical-align: top;
 	margin-top: -10px;
+}
+
+@media(max-width: 760px) {
+	.bSite main {
+		width: 100%;
+	}
 }
 
 

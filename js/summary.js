@@ -22,8 +22,8 @@ let taskNumbersForSummary = [
 function greeting() {
     let greetingPerson = document.getElementById('greetingPerson');
     let greetingPersonMobile = document.getElementById('greetingPersonMobile');
-    greetingPerson.innerHTML = `${taskNumbersForSummary['name']}`;
-    greetingPersonMobile.innerHTML = `${taskNumbersForSummary['name']}`        
+    greetingPerson.innerHTML = `${user['name']}`;
+    greetingPersonMobile.innerHTML = `${user['name']}`        
 }
 
 /**

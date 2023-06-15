@@ -3,9 +3,11 @@
 #navLinkLegalNotice {
     background-color: #091931;
 }
+
 #navLinkLegalNotice span {
     color: white;
 }
+
 #navLinkLegalNotice img {
     filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
 }
@@ -17,32 +19,38 @@
     justify-content: center;
     align-items: center;
 }
+
 #legalNoticeFrame h1 {
     padding: 171px 0 13px 0;
 }
+
 .legalNoticeHeadline {
     display: flex;
     justify-content: space-between;
 }
+
 .legalNoticeContent {
     width: 90%;
     max-width: 964px;
 }
+
 .noticeHeader {
     font-size: 27px;
     font-weight: bold;
     padding: 35px 0 10px 0;
 }
-.noticeTextLastChapter{
+
+.noticeTextLastChapter {
     padding-top: 32px;
     padding-bottom: 32px;
 }
+
 .legalNoticeBackArrow {
     cursor: pointer;
     padding-top: 171px;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
     #legalNoticeFrame {
         width: 95%;
     }
