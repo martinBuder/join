@@ -76,20 +76,20 @@ function clearTask() {
  * Starts the saving of the entered task with all subtasks, if they exist.
  */
 async function createTask() {
-    // if (!(checkRequiredFields()))
-    //     return('');
+    if (!(checkRequiredFields()))
+        return('');
 
     // JSON for the new task
     let newJSON = getNewJSON();
     console.log(newJSON);
     
     // Saving the new task to disk
-    // tasksArray = await getTasksArray();
-    // tasksArray.push(newJSON);
-    // await setItem('tasks', tasksArray);
+    tasksArray = await getTasksArray();
+    tasksArray.push(newJSON);
+    await setItem('tasks', tasksArray);
 
     // Open Board
-    // openBoardWhenSaved();
+    openBoardWhenSaved();
 }
 
 
@@ -193,4 +193,17 @@ function getKey() {
     // Source: https://stackoverflow.com/questions/3231459/how-can-i-create-unique-ids-with-javascript
     // Slightly revised by Lothar Zok
     return "id-" + Date.now().toString(16) + "-" + Math.random().toString(16).slice(2);
+}
+
+
+/**
+ * Deletes a task
+ * 
+ * @param {string} taskId - The ID of the task that should be deleted
+ */
+async function deleteTask(taskId) {
+    tasksArray = await getTasksArray();                                  // load current tasks so I really have all current ones
+    let filteredTasksArray = tasksArray.filter(t => t['id'] != taskId);  // filtering out the task to delete
+    await setItem('tasks', filteredTasksArray);                          // save the data to disk
+    tasksArray = filteredTasksArray                                      // assign the filtered array to the current tasks array
 }

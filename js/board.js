@@ -9,15 +9,15 @@ async function initBoard() {
 
     await initAddTask(); // needed for loading selections in add task submask
     tasksArray = await getTasksArray();  // loading the already saved tasks
-    renderTasks();
+    renderTasks(tasksArray);
 
 }
 
-function renderTasks() {
+function renderTasks(arrayToRender) {
     let statusArray = ['todo','inprogress','awaiting','done'];
     for (let i = 0; i < statusArray.length; i++) {
         document.getElementById(statusArray[i]).innerHTML = '';
-        renderStatus(statusArray[i]);
+        renderStatus(statusArray[i], arrayToRender);
     }
 }
 
@@ -45,8 +45,9 @@ async function getTasksArray() {
 }
 
 
-function renderStatus(statusToRender) {
-    let filteredArray = tasksArray.filter(t => t['status'] == statusToRender);
+function renderStatus(statusToRender, arrayToRender) {
+    // let filteredArray = tasksArray.filter(t => t['status'] == statusToRender);
+    let filteredArray = arrayToRender.filter(t => t['status'] == statusToRender);
     let newCode = ``;
     if (filteredArray.length == 0) {
         newCode = noTasks;
@@ -146,6 +147,9 @@ function getCardInitials(name) {
 
 
 
+
+// Drag & Drop Functions
+
 function startDrag(cardID) {
     currentDraggedElement = cardID;
 }
@@ -164,7 +168,32 @@ async function moveTo(cardColumn) {
     curTask[0]['status'] = cardColumn;                                       // change status to given status (status = cardColumn)
     await setItem('tasks', tasksArray);                                      // save the changed task, which means we have to save tasksArray
     currentDraggedElement = '';                                              // delete the entry in currentDraggedElement
+    deHighlightColumn(cardColumn);                                           // remove highlighting of the column
     renderTasks();                                                           // and finally... reload the page
+}
+
+function highlightColumn(colId) {
+    document.getElementById(colId).classList.add('taskColumnHighlighted');
+}
+
+function deHighlightColumn(colId) {
+    document.getElementById(colId).classList.remove('taskColumnHighlighted');
+}
+// END Drag & Drop Functions
+
+
+
+
+
+/**
+ * Deletes a task from the array of tasks and saves the changes to disk.
+ * 
+ * @param {string} taskId - The ID of the task to be deleted
+ */
+async function deleteTaskFromView(taskId) {
+    await deleteTask(taskId);
+    closeTaskForView();
+    renderTasks();
 }
 
 
@@ -172,3 +201,13 @@ async function moveTo(cardColumn) {
 
 
 
+
+/**
+ * Search for tasks with phrases/letters in either title or description.
+ * Will be called when letters are written into the search field.
+ */
+function searchTasks() {
+    let searchValue = document.getElementById('boardSearchField').value.toLowerCase();
+    let filteredArray = tasksArray.filter(t => (t['title'].toLowerCase().includes(searchValue) || t['description'].toLowerCase().includes(searchValue)));
+    renderTasks(filteredArray);
+}

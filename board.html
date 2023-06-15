@@ -29,113 +29,73 @@
     <header w3-include-html="templates/header.html" class="header"></header>
     <section w3-include-html="templates/sidebar.html" class="sidebar"></section>
 
-
-    <div class="board">
+    <!-- Main section for display of the board -->
+    <section class="board">
         <div class="boardHeadline">
             <div class="tool">Kanban Project Management Tool</div>
             <div class="boardText">Board</div>
             <div class="searchAdd">
-                <input type="search" id="#" placeholder="Find Task" class="inputField"><img class="lupe"
-                    src="./img/Vector.png" alt="">
+                <input type="search" id="boardSearchField" placeholder="Find Task" class="inputField" onkeyup="searchTasks()"><img class="lupe" src="./img/Vector.png" alt="Search">
                 <button onclick="addTask()">Add task
-                    <img src="./img/Group 11.png" alt="">
+                    <img src="./img/Group 11.png" alt="add task">
                 </button>
             </div>
         </div>
         <div class="boardTasks">
+
+            <!-- Tasks of status 'todo' -->
             <div class="boxes">
                 <div class="categorie">
                     <div class="categorieName">To do</div>
                     <img onclick="addTask()" src="./img/Group 11b.png" alt="">
                 </div>
-                <div id="todo" class="taskColumn" ondrop="moveTo('todo')" ondragover="allowDrop(event)">
-                    <div id="card1" draggable="true" ondragstart="startDrag()" class="taskBox">
-                        <div id="category" class="cardHead bgCatColorviolet">test</div>
-                        <div id="title" class="title">blöd</div>
-                        <div id="description" class="description">Lorem ipsum dolor sit.</div>
-                        <div id="subtasks" class="subtasks">doof</div>
-                        <div id="prio" class="prio">bla</div>
-                    </div>
-                    <div class="noTasks">
-                        No tasks with that status.
-                    </div>
+                <div id="todo" class="taskColumn" ondrop="moveTo('todo')" ondragover="allowDrop(event); highlightColumn('todo')" ondragleave="deHighlightColumn('todo')">
+                    <!-- Here tasks of that status or a placeholer will be rendered -->
                 </div>
             </div>
+
+            <!-- Tasks of status 'inprogress' -->
             <div class="boxes">
                 <div class="categorie">
                     <div class="categorieName">In progress</div>
                     <img onclick="addTask()" src="./img/Group 11b.png" alt="">
                 </div>
-                <div id="inprogress" class="taskColumn" ondrop="moveTo('inprogress')" ondragover="allowDrop(event)">
-                    <div id="card2" draggable="true" ondragstart="startDrag()" class="taskBox">
-                        <div id="category" class="cardHead bgCatColororange">test</div>
-                        <div id="title" class="title">blöd</div>
-                        <div id="description" class="description">Lorem ipsum dolor sit.</div>
-                        <div id="subtasks" class="subtasks">doof</div>
-                        <div id="prio" class="prio">bla</div>
-                    </div>
+                <div id="inprogress" class="taskColumn" ondrop="moveTo('inprogress')" ondragover="allowDrop(event); highlightColumn('inprogress')" ondragleave="deHighlightColumn('inprogress')">
+                    <!-- Here tasks of that status or a placeholer will be rendered -->
                 </div>
             </div>
+
+            <!-- Tasks of status 'awaiting' -->
             <div class="boxes">
                 <div class="categorie">
                     <div class="categorieName">Awaiting Feedback</div>
                     <img onclick="addTask()" src="./img/Group 11b.png" alt="">
                 </div>
-                <div id="awaiting" class="taskColumn" ondrop="moveTo('awaiting')" ondragover="allowDrop(event)">
-                    <div id="card3" draggable="true" ondragstart="startDrag()" class="taskBox">
-                        <div id="category" class="cardHead bgCatColorturqoise">test</div>
-                        <div id="title" class="title">blöd</div>
-                        <div id="description" class="description">Lorem ipsum dolor sit.</div>
-                        <div id="subtasks" class="subtasks">doof</div>
-                        <div id="prio" class="prio">bla</div>
-                    </div>
+                <div id="awaiting" class="taskColumn" ondrop="moveTo('awaiting')" ondragover="allowDrop(event); highlightColumn('awaiting')" ondragleave="deHighlightColumn('awaiting')">
+                    <!-- Here tasks of that status or a placeholer will be rendered -->
                 </div>
             </div>
+
+            <!-- Tasks of status 'done' -->
             <div class="boxes">
                 <div class="categorie">
                     <div class="categorieName">Done</div>
                     <img onclick="addTask()" src="./img/Group 11b.png" alt="">
                 </div>
-                <div id="done" class="taskColumn" ondrop="moveTo('done')" ondragover="allowDrop(event)">
-                    <div id="card4" draggable="true" ondragstart="startDrag('card4')" class="taskBox">
-                        <div id="category" class="cardCategory bgCatColorgreen">test</div>
-                        <div id="title" class="cardTitle">blöd</div>
-                        <div id="description" class="cardDescription">Lorem ipsum dolor sit.</div>
-                        <div id="subtasks" class="cardSubtasks">
-                            <div class="cardSubtaskGraphic">
-                                <div class="cardSubtaskPercent" style="width: 33%"></div>
-                            </div>
-                            1/3 Done
-                        </div>
-                        <div class="lettersAndPrio">
-                            <div id="prio" class="cardLettersContainer">
-                                <div class="cardLetters bgColor9327FF">EF</div>
-                                <div class="cardLetters bgColorAF1616 cardLettersMinus6">AM</div>
-                                <div class="cardLetters bgColorBlack cardLettersMinus6">+4</div>
-                            </div>
-                            <div class="cardPrio">
-                                <img src="./img/add-task/prio-low.svg" alt="low priority">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div id="card5" draggable="true" ondragstart="startDrag()" class="taskBox">
-                        <div id="category" class="cardHead bgCatColorred">test</div>
-                        <div id="title" class="title">blöd</div>
-                        <div id="description" class="description">Lorem ipsum dolor sit.</div>
-                        <div id="subtasks" class="subtasks">doof</div>
-                        <div id="prio" class="prio">bla</div>
-                    </div>
+                <div id="done" class="taskColumn" ondrop="moveTo('done')" ondragover="allowDrop(event); highlightColumn('done')" ondragleave="deHighlightColumn('done')">
+                    <!-- Here tasks of that status or a placeholer will be rendered -->
                 </div>
             </div>
         </div>
-    </div>
-    <div class="addTask addTask-none" id="addTask">
+    </section>
+
+    <!-- Section for adding a new task -->
+    <section class="addTask addTask-none" id="addTask">
         <div id="window" class="window">
             <section w3-include-html="add_task_content.html" class="addTaskContainer"></section>
             <img class="closeWindow" onclick="closeAdd()" src="./img/icon-cancel.svg" alt="">
         </div>
-    </div>
+    </section>
     
     <!-- Section for viewing a task in read mode -->
     <section id="viewTask" class="viewTask d-none">

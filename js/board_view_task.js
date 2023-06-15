@@ -62,7 +62,7 @@ function getViewRender(taskId) {
                 ${getViewRenderEditors(curTask)}
             </div>
             <div class="viewTaskButtons">
-                <div class="viewTaskButton viewTaskButtonLeft" onclick="deleteTask('${taskId}')">
+                <div class="viewTaskButton viewTaskButtonLeft" onclick="deleteTaskFromView('${taskId}')">
                     <img src="./img/delete.svg" alt="">
                 </div>
                 <div class="viewTaskButton viewTaskButtonRight" onclick="editTask('${taskId}')">

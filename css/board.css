@@ -1,4 +1,4 @@
-/* Markierung der Auswahl in der Sidebar */
+/* Markings in sidebar */
 #navLinkBoard,
 #navLinkBoardM {
     background-color: #091931;
@@ -13,8 +13,16 @@
 #navLinkBoard img {
     filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
 }
+/* END Markings in sidebar */
 
-/* ENDE Markierung der Auswahl in der Sidebar */
+
+/* Common settings */
+.mb-25 {
+    margin-bottom: 25px;
+}
+.mt-10 {
+    margin-top: 10px;
+}
 
 .tool {
     display: none;
@@ -29,10 +37,10 @@
     max-width: 100%;
 }
 
-#navLinkAddTask,
+/* #navLinkAddTask,
 #navLinkAddTaskM {
     background-color: #2A3647 !important;
-}
+} */
 
 .navbar-icon-mobile {
     margin: 0 0 8px 0 !important;
@@ -206,13 +214,18 @@
     border-radius: 22px;
 }
 .taskColumn {
+    border: 1px solid transparent;
+    height: calc(100% - 90px);
     min-height: 100px;
     margin-bottom: 16px;
     display: flex;
     flex-direction: column;
     gap: 35px;
 }
-
+.taskColumnHighlighted {
+    border: 1px dashed #d1d1d1;
+    border-radius: 30px;
+}
 .cardCategory {
     font-size: 16px;
     color: white;
@@ -290,7 +303,6 @@
 .viewTaskContainer {
     background-color: white;
     max-width: 50%;
-    /* height: 80%; */
     border-radius: 30px;
     padding: 50px;
 }
@@ -351,12 +363,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.mb-25 {
-    margin-bottom: 25px;
-}
-.mt-10 {
-    margin-top: 10px;
 }
 .newSubtaskList li {
     font-size: 16px;
