@@ -5,18 +5,18 @@ async function initSummary() {
 }
 
 let taskNumbersForSummary = [ 
-    {allTasks: 0, },
-    {progressTasks: 0,},
-    {awaitTasks: 0,},
-    {toDoTasks: 0,},
-    {doneTasks: 0,},
-    {urgentTasks: 0,},
-    {deadlineDate: 'January 01, 2024',}
+    {allTasks: 0},
+    {progressTasks: 0},
+    {awaitTasks: 0},
+    {toDoTasks: 0},
+    {doneTasks: 0},
+    {urgentTasks: 0},
+    {deadlineDate: 'January 01, 2024'}
 ]
   
 /**
  * This function shows definated tehe greeting person
- */
+ i*/
 function greeting() {
     let greetingPerson = document.getElementById('greetingPerson');
     let greetingPersonMobile = document.getElementById('greetingPersonMobile');
