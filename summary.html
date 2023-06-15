@@ -9,6 +9,9 @@
     <script src="./js/user.js"></script>
     <script src="./script.js"></script>
 
+    <script src="./js/summary.js"></script>
+
+
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./css/summary-style.css">
     <link rel="icon" type="image/png" href="./img/join-navicon.png">
@@ -16,7 +19,7 @@
 
 </head>
 
-<body onload="init(), greeting()">
+<body onload="initSummary()">
     <header w3-include-html="./templates/header.html" class="header"></header>
     <section w3-include-html="./templates/sidebar.html" class="sidebar"></section>
 
@@ -73,15 +76,14 @@
             </div>
             <div class="greeting">
                 <div id="greet" class="greet">Good morning</div>
-                <div id="person" class="person">Sofia Müller</div>
+                <div id="greetingPerson" class="person"></div>
             </div>
         </div>
     </div>
-    <div id="greetingBig" class="greetingBig">
+    <div class="greetingMobile">
         <div id="greet" class="greet">Good morning</div>
-        <div id="person" class="person">Sofia Müller</div>
+        <div id="greetingPersonMobile" class="person"></div>
     </div>
-    <script src="./js/summary.js"></script>
 </body>
 
 </html>

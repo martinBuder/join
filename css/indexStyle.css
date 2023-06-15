@@ -118,14 +118,15 @@ img {
 	border: 2px solid #29ABE2;
 }
 
-.twiceBtnContainer, .rememberContainer {
+.twiceBtnContainer,
+.rememberContainer {
 	display: flex;
 	width: 90%;
 	gap: 30px;
 	justify-content: center;
 }
 
-.twiceBtnContainer>*{
+.twiceBtnContainer>* {
 	flex: 1;
 }
 
@@ -261,12 +262,12 @@ input#remember {
 
 	.activityContainer {
 		width: 100%;
-		max-height: calc(100vh - 190px );
+		max-height: calc(100vh - 190px);
 		overflow: auto;
 		border-radius: 30px;
 		padding: 20px 0;
 		gap: 3.5vh;
-	} 
+	}
 
 	.activityContainer h1 {
 		margin-top: 20px;
@@ -298,16 +299,19 @@ input#remember {
 		gap: 15px;
 	}
 
-	.indexMain .inputContainer input, .indexMain .inputContainer input::placeholder {
+	.indexMain .inputContainer input,
+	.indexMain .inputContainer input::placeholder {
 		min-width: 50px;
 		font-size: 16px;
 	}
 
-	.indexMain Button, .indexMain .guestA p {
+	.indexMain Button,
+	.indexMain .guestA p {
 		font-size: 16px;
 	}
 
-	.indexMain Button, .activityContainer .guestA {
+	.indexMain Button,
+	.activityContainer .guestA {
 		padding: 10px
 	}
 
@@ -315,7 +319,7 @@ input#remember {
 		padding: 0 10px;
 	}
 
-	.indexMain .guestA p  {
+	.indexMain .guestA p {
 		padding: 0;
 		margin: 0;
 	}
@@ -330,10 +334,3 @@ input#remember {
 		margin: 0 auto;
 	}
 }
-
-
-
-
-
-
-

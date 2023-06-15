@@ -4,7 +4,7 @@
 
 #navLinkAddTask,
 #navLinkAddTaskM {
-    background-color: #2A3647 !important;
+	background-color: #2A3647 !important;
 }
 
 .addTask {
@@ -69,11 +69,11 @@
 }
 
 @media (max-width: 760px) {
-	.addTask { 
+	.addTask {
 		top: 0;
 		background: none;
 	}
-	
+
 	.window {
 		background: #f5f5f5;
 		max-height: calc(100vh - 158px);
@@ -82,7 +82,7 @@
 	}
 
 	.window .btnTaskCreate {
-		top: 5px; 
+		top: 5px;
 	}
 
 	.closeWindow {
@@ -96,7 +96,7 @@
 	}
 
 	.window #contentAddTask h1 {
-		font-size: 40px; 
+		font-size: 40px;
 		padding-top: 0;
 	}
 
@@ -123,7 +123,8 @@
 		width: 15px;
 	}
 
-	.window #contentAddTask, .window #assBadges {
+	.window #contentAddTask,
+	.window #assBadges {
 		max-width: 100%;
 	}
 
