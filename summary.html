@@ -1,89 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script src="./js/user.js"></script>
     <script src="./script.js"></script>
 
     <script src="./js/summary.js"></script>
 
-
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./css/summary-style.css">
-    <link rel="icon" type="image/png" href="./img/join-navicon.png">
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/summary-style.css" />
+    <link rel="icon" type="image/png" href="./img/join-navicon.png" />
     <title>Join</title>
+  </head>
 
-</head>
-
-<body onload="initSummary()">
+  <body onload="initSummary()">
     <header w3-include-html="./templates/header.html" class="header"></header>
-    <section w3-include-html="./templates/sidebar.html" class="sidebar"></section>
+    <section
+      w3-include-html="./templates/sidebar.html"
+      class="sidebar"></section>
 
     <div class="summary">
-        <div class="summary-head">
-            <div class="tool">Kanban Project Management Tool</div>
-            <div class="summary-headline">Summary</div>
-            <div class="summary-line"></div>
-            <div class="summary-headtext">Everything in a Nutshell!</div>
-        </div>
-        <div class="summary-body">
-            <div class="summary-tasks">
-                <div class="top-tasks">
-                    <a class="top-task" href="./board.html">
-                        <div class="number1" id="allTasks">5</div>
-                        <div class="statusText1">Task in <br> Board</div>
-                    </a>
-                    <a href="./board.html" class="top-task">
-                        <div class="number1" id="progressTasks">2</div>
-                        <div class="statusText1">Task in <br> Progress</div>
-                    </a>
-                    <a href="./board.html" class="top-task">
-                        <div class="number1" id="awaitTasks">2</div>
-                        <div class="statusText1">Awaiting <br> Feedback</div>
-                    </a>
-                </div>
-                <a href="./board.html" class="middle-task">
-                    <img src="./img/Frame 59.png" alt="">
-                    <div class="middle-task-status">
-                        <div class="number2" id="urgentTasks">1</div>
-                        <div class="statusText2">Urgent</div>
-                    </div>
-                    <div class="middle-task-date">
-                        <div class="date1" id="deadlineDate">October 16, 2022</div>
-                        <div class="statusText2">Upcoming Deadline</div>
-                    </div>
-                </a>
-                <div class="bottom-task">
-                    <a id="cha1" href="./board.html" class="todo">
-                        <img id="cha1Img" src="./img/Frame 592.svg" alt="">
-                        <div class="bottom-task-text">
-                            <div class="number1" id="toDoTasks">1</div>
-                            <div class="statusText1">To-do</div>
-                        </div>
-                    </a>
-                    <a id="cha2" href="./board.html" class="todo">
-                        <img id="cha2Img" src="./img/Frame 593.svg" alt="">
-                        <div class="bottom-task-text">
-                            <div class="number1" id="doneTasks">1</div>
-                            <div class="statusText1">Done</div>
-                        </div>
-                    </a>
-                </div>
+      <div class="summary-head">
+        <div class="tool">Kanban Project Management Tool</div>
+        <div class="summary-headline">Summary</div>
+        <div class="summary-line"></div>
+        <div class="summary-headtext">Everything in a Nutshell!</div>
+      </div>
+      <div class="summary-body">
+        <div class="summary-tasks">
+          <div class="top-tasks">
+            <a class="top-task" href="./board.html">
+              <div class="number1" id="allTasks">5</div>
+              <div class="statusText1">
+                Task in <br />
+                Board
+              </div>
+            </a>
+            <a href="./board.html" class="top-task">
+              <div class="number1" id="progressTasks">2</div>
+              <div class="statusText1">
+                Task in <br />
+                Progress
+              </div>
+            </a>
+            <a href="./board.html" class="top-task">
+              <div class="number1" id="awaitTasks">2</div>
+              <div class="statusText1">
+                Awaiting <br />
+                Feedback
+              </div>
+            </a>
+          </div>
+          <a href="./board.html" class="middle-task">
+            <img src="./img/Frame 59.png" alt="" />
+            <div class="middle-task-status">
+              <div class="number2" id="urgentTasks">1</div>
+              <div class="statusText2">Urgent</div>
             </div>
-            <div class="greeting">
-                <div id="greet" class="greet">Good morning</div>
-                <div id="greetingPerson" class="person"></div>
+            <div class="middle-task-date">
+              <div class="date1" id="deadlineDate">October 16, 2022</div>
+              <div class="statusText2">Upcoming Deadline</div>
             </div>
+          </a>
+          <div class="bottom-task">
+            <a id="cha1" href="./board.html" class="todo">
+              <img id="cha1Img" src="./img/Frame 592.svg" alt="" />
+              <div class="bottom-task-text">
+                <div class="number1" id="toDoTasks">1</div>
+                <div class="statusText1">To-do</div>
+              </div>
+            </a>
+            <a id="cha2" href="./board.html" class="todo">
+              <img id="cha2Img" src="./img/Frame 593.svg" alt="" />
+              <div class="bottom-task-text">
+                <div class="number1" id="doneTasks">1</div>
+                <div class="statusText1">Done</div>
+              </div>
+            </a>
+          </div>
         </div>
+        <div class="greeting">
+          <div id="greet" class="greet">Good morning</div>
+          <div id="greetingPerson" class="person"></div>
+        </div>
+      </div>
     </div>
     <div class="greetingMobile">
-        <div id="greet" class="greet">Good morning</div>
-        <div id="greetingPersonMobile" class="person"></div>
+      <div id="greet" class="greet">Good morning</div>
+      <div id="greetingPersonMobile" class="person"></div>
     </div>
-</body>
-
+  </body>
 </html>

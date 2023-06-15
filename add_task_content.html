@@ -1,130 +1,249 @@
 <section class="smallScreenTitle">Kanban Project Management Tool</section>
 <section id="contentAddTask">
-    <h1>Add Task</h1>
-    <div class="twoColumns">
-        <div class="columnLeft">
-
-            <!-- Field Title -->
-            <div class="mb-14">
-                <label for="taskTitle" class="taskLabel">Title</label>
-                <div class="inputContainer taskFieldContainer mt-8">
-                    <input type="text" name="Title" id="taskTitle" placeholder="Enter a title">
-                </div>
-                <span class="requiredMessage mt-8 opacity-0" id="reqTitle">This field is required</span>
-            </div>
-
-            <!-- Field Description -->
-            <div class="fieldContainer labelAndField mb-14">
-                <label for="taskDescription" class="taskLabel">Description</label>
-                <textarea name="Description" id="taskDescription" cols="30" rows="3" class="inputField mt-8" placeholder="Enter a description"></textarea>
-                <span class="requiredMessage mt-8 opacity-0" id="reqDescription">This field is required</span>
-            </div>
-
-            <!-- Field Category -->
-            <div class="mb-14">
-                <label class="taskLabel">Category</label>
-                <div class="labelAndField selectCategory mt-8">
-                    <span class="selectionHeader selectionHeaderFlex" id="newCatHeader" onclick="toggleSelection('category')">
-                        <span id="newCatHeaderField">Select task category</span>
-                        <img src="./img/down-arrow.svg" alt="Select" class="down-arrow">
-                    </span>
-                    <ul id="newCatList" class="d-none">
-                        <!-- Generated list of entries -->
-                    </ul>
-                    <div class="inputContainer d-none no-border" id="newCatInput">
-                        <input type="text" id="newCatInputField" placeholder="New category name">
-                        <img src="./img/icon-cancel.svg" alt="Cancel" onclick="cancelNewCatInput()">
-                        <span class="inputFieldIcon"></span>
-                        <img src="./img/icon-check.svg" alt="Check" onclick="selectNewCatInput()">
-                    </div>
-                </div>
-                <!-- <div class="d-none" id="newCatColours"> -->
-                <div id="newCatColours">
-                    <img src="./img/add-task/circle-lightblue.svg" alt="Light Blue" class="h21px" onclick="selectCatColour('lightblue')">
-                    <img src="./img/add-task/circle-red.svg" alt="Red" class="h21px" onclick="selectCatColour('red')">
-                    <img src="./img/add-task/circle-green.svg" alt="Green" class="h21px" onclick="selectCatColour('green')">
-                    <img src="./img/add-task/circle-orange.svg" alt="Orange" class="h21px" onclick="selectCatColour('orange')">
-                    <img src="./img/add-task/circle-violet.svg" alt="Violet" class="h21px" onclick="selectCatColour('violet')">
-                    <img src="./img/add-task/circle-blue.svg" alt="Blue" class="h21px" onclick="selectCatColour('blue')">
-                </div>
-                <span class="requiredMessage mt-8 opacity-0" id="reqCategory">This field is required</span>
-            </div>
-
-            <!-- Field Assigned To -->
-            <div>
-                <label class="taskLabel">Assigned to</label>
-                <div class="labelAndField selectCategory mt-8">
-                    <span class="selectionHeader selectionHeaderFlex" id="newAssHeader" onclick="toggleSelection('assigned')">
-                        <span id="newAssHeaderField">Select contacts to assign</span>
-                        <img src="./img/down-arrow.svg" alt="Select" class="down-arrow">
-                    </span>
-                    <ul id="newAssList" class="d-none">
-                        <!-- Generated list of entries -->
-                    </ul>
-                    <div class="inputContainer d-none no-border" id="newAssInput">
-                        <input type="text" id="newAssInputField" placeholder="Contact email">
-                        <img src="./img/icon-cancel.svg" alt="Cancel" onclick="cancelNewAssInput()">
-                        <span class="inputFieldIcon"></span>
-                        <img src="./img/icon-check.svg" alt="Check" onclick="selectNewAssInput()">
-                    </div>
-                </div>
-                <span class="requiredMessage mt-8 d-none" id="reqAssignedTo">Please insert a valid email address</span>
-            </div>
-            <div id="assBadges">
-                
-            </div>
-                
-        </div> <!-- End of columnLeft -->
-
-        <div class="columnRight">
-
-            <!-- Field Due Date -->
-            <div class="displayDueDate mb-14">
-                <label for="taskDueDate" class="taskLabel">Due date</label>
-                <div class="inputContainer taskFieldContainer mt-8">
-                    <input type="date" name="due date" id="taskDueDate" placeholder="dd/mm/yyyy">
-                </div>
-                <span class="requiredMessage mt-8 opacity-0" id="reqDueDate">This field is required</span>
-            </div>
-
-            <!-- Field Prio -->
-            <div class="displayPrio mb-14">
-                <label class="taskLabel">Prio</label>
-                <div class="taskPriority">
-                    <button class="btnPriority" id="btnPrioUrgent" onclick="selectPriority('Urgent')">Urgent<img src="./img/add-task/prio-urgent.svg" id="imgUrgent" alt="Priority Urgent"></button>
-                    <button class="btnPriority" id="btnPrioMedium" onclick="selectPriority('Medium')">Medium<img src="./img/add-task/prio-medium.svg" id="imgMedium" alt="Priority Medium"></button>
-                    <button class="btnPriority" id="btnPrioLow" onclick="selectPriority('Low')">Low<img src="./img/add-task/prio-low.svg" id="imgLow" alt="Priority Low"></button>
-                </div>
-                <span class="requiredMessage mt-8 opacity-0" id="reqPriority">This field is required</span>
-            </div>
-            
-            <!-- Field Subtasks -->
-            <div>
-                <label class="taskLabel">Subtasks</label>
-                <div class="labelAndField selectCategory mt-8">
-                    <span class="selectionHeader selectionHeaderFlex" id="newSubtaskHeader" onclick="selectSubtask()">
-                        <span id="newSubtaskHeaderField" class="likeInput">Add new subtask</span>
-                        <img src="./img/add-task/icon-plus-sign.svg" alt="Select">
-                    </span>
-                    <div class="inputContainer d-none no-border" id="newSubtaskInput">
-                        <input type="text" id="newSubtaskInputField" placeholder="Add new subtask">
-                        <img src="./img/icon-cancel.svg" alt="Cancel" onclick="cancelNewSubtaskInput()">
-                        <span class="inputFieldIcon"></span>
-                        <img src="./img/icon-check.svg" alt="Check" onclick="selectNewSubtaskInput()">
-                    </div>
-                </div>
-                <ul id="newSubtaskList">
-                    <!-- Generated list of entries -->
-                </ul>
-            </div>
+  <h1>Add Task</h1>
+  <div class="twoColumns">
+    <div class="columnLeft">
+      <!-- Field Title -->
+      <div class="mb-14">
+        <label for="taskTitle" class="taskLabel">Title</label>
+        <div class="inputContainer taskFieldContainer mt-8">
+          <input
+            type="text"
+            name="Title"
+            id="taskTitle"
+            placeholder="Enter a title" />
         </div>
+        <span class="requiredMessage mt-8 opacity-0" id="reqTitle"
+          >This field is required</span
+        >
+      </div>
 
-    </div> <!-- End of columnRight -->
+      <!-- Field Description -->
+      <div class="fieldContainer labelAndField mb-14">
+        <label for="taskDescription" class="taskLabel">Description</label>
+        <textarea
+          name="Description"
+          id="taskDescription"
+          cols="30"
+          rows="3"
+          class="inputField mt-8"
+          placeholder="Enter a description"></textarea>
+        <span class="requiredMessage mt-8 opacity-0" id="reqDescription"
+          >This field is required</span
+        >
+      </div>
 
-    <div class="taskButtons">
-        <!-- Buttons -->
-        <button class="btnTaskAdded d-none" id="btnTaskAdded">Task added to board <img src="./img/board-icon.svg" alt="Added to board"></button>
-        <button class="btnTaskFinish btnTaskClear taskButtonsFlex" onclick="clearTask()">Clear <img src="./img/icon-cancel.svg" alt="Cancel"></button>
-        <button class="btnTaskFinish btnTaskCreate taskButtonsFlex" onclick="createTask()">Create Task <img src="./img/icon-check.svg" alt="Create Task"></button>
+      <!-- Field Category -->
+      <div class="mb-14">
+        <label class="taskLabel">Category</label>
+        <div class="labelAndField selectCategory mt-8">
+          <span
+            class="selectionHeader selectionHeaderFlex"
+            id="newCatHeader"
+            onclick="toggleSelection('category')">
+            <span id="newCatHeaderField">Select task category</span>
+            <img src="./img/down-arrow.svg" alt="Select" class="down-arrow" />
+          </span>
+          <ul id="newCatList" class="d-none">
+            <!-- Generated list of entries -->
+          </ul>
+          <div class="inputContainer d-none no-border" id="newCatInput">
+            <input
+              type="text"
+              id="newCatInputField"
+              placeholder="New category name" />
+            <img
+              src="./img/icon-cancel.svg"
+              alt="Cancel"
+              onclick="cancelNewCatInput()" />
+            <span class="inputFieldIcon"></span>
+            <img
+              src="./img/icon-check.svg"
+              alt="Check"
+              onclick="selectNewCatInput()" />
+          </div>
+        </div>
+        <!-- <div class="d-none" id="newCatColours"> -->
+        <div id="newCatColours">
+          <img
+            src="./img/add-task/circle-lightblue.svg"
+            alt="Light Blue"
+            class="h21px"
+            onclick="selectCatColour('lightblue')" />
+          <img
+            src="./img/add-task/circle-red.svg"
+            alt="Red"
+            class="h21px"
+            onclick="selectCatColour('red')" />
+          <img
+            src="./img/add-task/circle-green.svg"
+            alt="Green"
+            class="h21px"
+            onclick="selectCatColour('green')" />
+          <img
+            src="./img/add-task/circle-orange.svg"
+            alt="Orange"
+            class="h21px"
+            onclick="selectCatColour('orange')" />
+          <img
+            src="./img/add-task/circle-violet.svg"
+            alt="Violet"
+            class="h21px"
+            onclick="selectCatColour('violet')" />
+          <img
+            src="./img/add-task/circle-blue.svg"
+            alt="Blue"
+            class="h21px"
+            onclick="selectCatColour('blue')" />
+        </div>
+        <span class="requiredMessage mt-8 opacity-0" id="reqCategory"
+          >This field is required</span
+        >
+      </div>
+
+      <!-- Field Assigned To -->
+      <div>
+        <label class="taskLabel">Assigned to</label>
+        <div class="labelAndField selectCategory mt-8">
+          <span
+            class="selectionHeader selectionHeaderFlex"
+            id="newAssHeader"
+            onclick="toggleSelection('assigned')">
+            <span id="newAssHeaderField">Select contacts to assign</span>
+            <img src="./img/down-arrow.svg" alt="Select" class="down-arrow" />
+          </span>
+          <ul id="newAssList" class="d-none">
+            <!-- Generated list of entries -->
+          </ul>
+          <div class="inputContainer d-none no-border" id="newAssInput">
+            <input
+              type="text"
+              id="newAssInputField"
+              placeholder="Contact email" />
+            <img
+              src="./img/icon-cancel.svg"
+              alt="Cancel"
+              onclick="cancelNewAssInput()" />
+            <span class="inputFieldIcon"></span>
+            <img
+              src="./img/icon-check.svg"
+              alt="Check"
+              onclick="selectNewAssInput()" />
+          </div>
+        </div>
+        <span class="requiredMessage mt-8 d-none" id="reqAssignedTo"
+          >Please insert a valid email address</span
+        >
+      </div>
+      <div id="assBadges"></div>
     </div>
+    <!-- End of columnLeft -->
+
+    <div class="columnRight">
+      <!-- Field Due Date -->
+      <div class="displayDueDate mb-14">
+        <label for="taskDueDate" class="taskLabel">Due date</label>
+        <div class="inputContainer taskFieldContainer mt-8">
+          <input
+            type="date"
+            name="due date"
+            id="taskDueDate"
+            placeholder="dd/mm/yyyy" />
+        </div>
+        <span class="requiredMessage mt-8 opacity-0" id="reqDueDate"
+          >This field is required</span
+        >
+      </div>
+
+      <!-- Field Prio -->
+      <div class="displayPrio mb-14">
+        <label class="taskLabel">Prio</label>
+        <div class="taskPriority">
+          <button
+            class="btnPriority"
+            id="btnPrioUrgent"
+            onclick="selectPriority('Urgent')">
+            Urgent<img
+              src="./img/add-task/prio-urgent.svg"
+              id="imgUrgent"
+              alt="Priority Urgent" />
+          </button>
+          <button
+            class="btnPriority"
+            id="btnPrioMedium"
+            onclick="selectPriority('Medium')">
+            Medium<img
+              src="./img/add-task/prio-medium.svg"
+              id="imgMedium"
+              alt="Priority Medium" />
+          </button>
+          <button
+            class="btnPriority"
+            id="btnPrioLow"
+            onclick="selectPriority('Low')">
+            Low<img
+              src="./img/add-task/prio-low.svg"
+              id="imgLow"
+              alt="Priority Low" />
+          </button>
+        </div>
+        <span class="requiredMessage mt-8 opacity-0" id="reqPriority"
+          >This field is required</span
+        >
+      </div>
+
+      <!-- Field Subtasks -->
+      <div>
+        <label class="taskLabel">Subtasks</label>
+        <div class="labelAndField selectCategory mt-8">
+          <span
+            class="selectionHeader selectionHeaderFlex"
+            id="newSubtaskHeader"
+            onclick="selectSubtask()">
+            <span id="newSubtaskHeaderField" class="likeInput"
+              >Add new subtask</span
+            >
+            <img src="./img/add-task/icon-plus-sign.svg" alt="Select" />
+          </span>
+          <div class="inputContainer d-none no-border" id="newSubtaskInput">
+            <input
+              type="text"
+              id="newSubtaskInputField"
+              placeholder="Add new subtask" />
+            <img
+              src="./img/icon-cancel.svg"
+              alt="Cancel"
+              onclick="cancelNewSubtaskInput()" />
+            <span class="inputFieldIcon"></span>
+            <img
+              src="./img/icon-check.svg"
+              alt="Check"
+              onclick="selectNewSubtaskInput()" />
+          </div>
+        </div>
+        <ul id="newSubtaskList">
+          <!-- Generated list of entries -->
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End of columnRight -->
+
+  <div class="taskButtons">
+    <!-- Buttons -->
+    <button class="btnTaskAdded d-none" id="btnTaskAdded">
+      Task added to board
+      <img src="./img/board-icon.svg" alt="Added to board" />
+    </button>
+    <button
+      class="btnTaskFinish btnTaskClear taskButtonsFlex"
+      onclick="clearTask()">
+      Clear <img src="./img/icon-cancel.svg" alt="Cancel" />
+    </button>
+    <button
+      class="btnTaskFinish btnTaskCreate taskButtonsFlex"
+      onclick="createTask()">
+      Create Task <img src="./img/icon-check.svg" alt="Create Task" />
+    </button>
+  </div>
 </section>
