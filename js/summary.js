@@ -9,7 +9,9 @@ let taskNumbersForSummary = [
     {progressTasks: 0,},
     {awaitTasks: 0,},
     {toDoTasks: 0,},
-    {doneTasks: 0,}
+    {doneTasks: 0,},
+    {urgentTasks: 0,},
+    {deadlineDate: 'January 01, 2024',}
 ]
   
 /**
