@@ -72,7 +72,7 @@ function findtaskNumbersForSummaryArray() {
     taskNumbersForSummary.data.value
   ) {
     taskNumbersForSummary = JSON.parse(
-      taskNumbersForSummary.data.value.replace(/'/g, '"')
+    taskNumbersForSummary.data.value.replace(/'/g, '"')
     );
   } else {
     user = null;
