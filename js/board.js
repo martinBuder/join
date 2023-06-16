@@ -56,9 +56,9 @@ function getHtmlCode(elem) {
                 <div id="category" class="cardCategory bgCatColor${elem['categorycolor']}">${elem['category']}</div>
                 <div class="menuDropdownContainer">
                     <img src="./img/blackBackArrow.svg" class="cardArrow" onclick="showStatusMenu(event, '${elem['status']}', '${elem['id']}')">
-                    <div id="dropdown${elem['id']}" class="menuDropdown d-none">
+                    <ul id="dropdown${elem['id']}" class="menuDropdown d-none">
                         ${getHtmlCodeDropdown(elem)}
-                    </div>
+                    </ul>
                 </div>
             </div>
             <div id="title" class="cardTitle">${elem['title']}</div>
@@ -82,16 +82,14 @@ function getHtmlCode(elem) {
 }
 
 function getHtmlCodeDropdown(elem) {
-    console.log(elem['status']);
     let allStatus = ['todo', 'inprogress', 'awaiting', 'done'];
     let filteredStatus = allStatus.filter(ast => ast != elem['status']);
-    console.log(filteredStatus);
     newCode = ``;
     for (let i = 0; i < filteredStatus.length; i++) {
         let curStatus = filteredStatus[i];
         let txtStatus = curStatus.replace('todo', 'To do').replace('inprogress', 'In progress').replace('awaiting', 'Awaiting Feedback').replace('done', 'Done');
         newCode += `
-            <a href="#" onclick="moveToFromMenu(event, '${curStatus}', '${elem['id']}')">${txtStatus}</a>
+            <li onclick="moveToFromMenu(event, '${curStatus}', '${elem['id']}')">${txtStatus}</li>
         `;
     }
     return newCode;
