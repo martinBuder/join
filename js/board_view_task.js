@@ -35,41 +35,41 @@ function getViewRender(taskId) {
     let curTask = curTaskArray[0];
 
     let newCode = `
-    <div class="viewTaskHeadline">
-    <div id="viewTaskCategory" class="cardCategory bgCatColor${curTask['categorycolor']}">${curTask['category']}</div>
-            <img class="closeTaskView" onclick="closeTaskForView()" src="./img/icon-cancel.svg" alt="">
+    <div class="viewTaskHeadline mb-20">
+        <div id="viewTaskCategory" class="cardCategory bgCatColor${curTask['categorycolor']}">${curTask['category']}</div>
+        <img class="closeTaskView" onclick="closeTaskForView()" src="./img/icon-cancel.svg" alt="">
+    </div>
+    <div id="viewTaskTitle">
+        ${curTask['title']}
+    </div>
+    <div id="viewTaskDescription" class="mb-25">
+        ${curTask['description']}
+    </div>
+    ${getViewRenderSubtasks(curTask)}
+    <div class="viewTaskText viewTaskOneLine mb-25">
+        <b>Due date: </b>
+        <span id="viewTaskDueDate">${curTask['duedate']}</span>
+    </div>
+    <div id="viewTaskPriority" class="viewTaskText viewTaskOneLine mb-25">
+        <b>Priority:</b>
+        <button class="viewTaskPrio viewTaskPrio${curTask['prio']}">${curTask['prio']}<img src="./img/add-task/prio-${curTask['prio'].toLowerCase()}.svg"></button>
+    </div>
+    <div class="viewTaskText mb-25">
+        <b>Assigned To:</b>
+    </div>
+    <div class="viewTaskEditorAndButtons">
+        <div id="viewTaskEditorList" class="viewTaskEditorList">
+            ${getViewRenderEditors(curTask)}
         </div>
-        <div id="viewTaskTitle">
-            ${curTask['title']}
-        </div>
-        <div id="viewTaskDescription" class="mb-25">
-            ${curTask['description']}
-        </div>
-        ${getViewRenderSubtasks(curTask)}
-        <div class="viewTaskText viewTaskOneLine mb-25">
-            <b>Due date: </b>
-            <span id="viewTaskDueDate">${curTask['duedate']}</span>
-        </div>
-        <div id="viewTaskPriority" class="viewTaskText viewTaskOneLine mb-25">
-            <b>Priority:</b>
-            <button class="viewTaskPrio viewTaskPrio${curTask['prio']}">${curTask['prio']}<img src="./img/add-task/prio-${curTask['prio'].toLowerCase()}.svg"></button>
-        </div>
-        <div class="viewTaskText mb-25">
-            <b>Assigned To:</b>
-        </div>
-        <div class="viewTaskEditorAndButtons">
-            <div id="viewTaskEditorList" class="viewTaskEditorList">
-                ${getViewRenderEditors(curTask)}
+        <div class="viewTaskButtons">
+            <div class="viewTaskButton viewTaskButtonLeft" onclick="deleteTaskFromView('${taskId}')">
+                <img src="./img/delete.svg" alt="">
             </div>
-            <div class="viewTaskButtons">
-                <div class="viewTaskButton viewTaskButtonLeft" onclick="deleteTaskFromView('${taskId}')">
-                    <img src="./img/delete.svg" alt="">
-                </div>
-                <div class="viewTaskButton viewTaskButtonRight" onclick="editTask('${taskId}')">
-                    <img src="./img/pen.svg" alt="">
-                </div>
+            <div class="viewTaskButton viewTaskButtonRight" onclick="editTask('${taskId}')">
+                <img src="./img/pen.svg" alt="">
             </div>
         </div>
+    </div>
     `;
 
     return newCode;

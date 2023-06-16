@@ -65,7 +65,7 @@ function getHtmlCode(elem) {
     // elem contains the json-data of a task
     let newCode = `
         <div id="${elem['id']}" draggable="true" ondragstart="startDrag('${elem['id']}')" onclick="openTaskForView('${elem['id']}')" class="taskBox">
-            <div id="category" class="cardCategory bgCatColor${elem['categorycolor']}">${elem['category']}</div>
+            <div id="category" class="cardCategory bgCatColor${elem['categorycolor']} mb-20">${elem['category']}</div>
             <div id="title" class="cardTitle">${elem['title']}</div>
             <div id="description" class="cardDescription">${elem['description']}</div>
     `;

@@ -17,6 +17,9 @@
 
 
 /* Common settings */
+.mb-20 {
+    margin-bottom: 20px;
+}
 .mb-25 {
     margin-bottom: 25px;
 }
@@ -47,7 +50,7 @@
 } */
 
 .board {
-    position: relative;
+    /* position: relative; */
     margin: 171px auto 0;
     /* width: 1078px; */
     width: calc(100% - 232px);
@@ -68,8 +71,9 @@
 .boardTasks {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
+    /* justify-content: space-between; */
+    justify-content: center;
+    gap: 30px;
 }
 
 .boxStatus {
@@ -258,7 +262,6 @@
     padding: 4px 25px;
     border-radius: 8px;
     width: fit-content;
-    margin-bottom: 20px;
 }
 
 .cardTitle {
@@ -328,9 +331,12 @@
 }
 .viewTaskContainer {
     background-color: white;
-    max-width: 50%;
+    /* max-width: 50%; */
+    max-width: 100%;
+    max-height: 100vh;
     border-radius: 30px;
     padding: 50px;
+    overflow-y: auto;
 }
 .viewTaskOneLine {
     display: flex;
@@ -456,12 +462,12 @@
     } */
 
     .boardTasks {
-
+        width: 95%;
     }
 
     .board {
         /* width: 750px; */
-        width: 100%;
+        width: 95%;
     }
 
     /* .main-navigation {
