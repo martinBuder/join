@@ -52,7 +52,15 @@ function getHtmlCode(elem) {
     // elem contains the json-data of a task
     let newCode = `
         <div id="${elem['id']}" draggable="true" ondragstart="startDrag('${elem['id']}')" onclick="openTaskForView('${elem['id']}')" class="taskBox">
-            <div id="category" class="cardCategory bgCatColor${elem['categorycolor']} mb-20">${elem['category']}</div>
+            <div class="cardCategoryAndArrow mb-20">
+                <div id="category" class="cardCategory bgCatColor${elem['categorycolor']}">${elem['category']}</div>
+                <div class="menuDropdownContainer">
+                    <img src="./img/blackBackArrow.svg" class="cardArrow" onclick="showStatusMenu(event, '${elem['status']}', '${elem['id']}')">
+                    <div id="dropdown${elem['id']}" class="menuDropdown d-none">
+                        ${getHtmlCodeDropdown(elem)}
+                    </div>
+                </div>
+            </div>
             <div id="title" class="cardTitle">${elem['title']}</div>
             <div id="description" class="cardDescription">${elem['description']}</div>
     `;
@@ -70,6 +78,22 @@ function getHtmlCode(elem) {
             </div>
         </div>
     `;
+    return newCode;
+}
+
+function getHtmlCodeDropdown(elem) {
+    console.log(elem['status']);
+    let allStatus = ['todo', 'inprogress', 'awaiting', 'done'];
+    let filteredStatus = allStatus.filter(ast => ast != elem['status']);
+    console.log(filteredStatus);
+    newCode = ``;
+    for (let i = 0; i < filteredStatus.length; i++) {
+        let curStatus = filteredStatus[i];
+        let txtStatus = curStatus.replace('todo', 'To do').replace('inprogress', 'In progress').replace('awaiting', 'Awaiting Feedback').replace('done', 'Done');
+        newCode += `
+            <a href="#" onclick="moveToFromMenu(event, '${curStatus}', '${elem['id']}')">${txtStatus}</a>
+        `;
+    }
     return newCode;
 }
 
@@ -198,4 +222,26 @@ function searchTasks() {
     let searchValue = document.getElementById('boardSearchField').value.toLowerCase();
     let filteredArray = tasksArray.filter(t => (t['title'].toLowerCase().includes(searchValue) || t['description'].toLowerCase().includes(searchValue)));
     renderTasks(filteredArray);
+}
+
+
+
+
+
+
+function showStatusMenu(event, curStatus, curId) {
+    // console.log('showStatusMenu gestartet - Status: ' + curStatus);
+    event.stopPropagation();
+
+    document.getElementById('dropdown' + curId).classList.toggle('d-none');
+}
+
+function moveToFromMenu(event, whereTo, curId) {
+    // console.log('moveToFromMenu gestartet - Zielstatus: ' + whereTo);
+    event.stopPropagation();
+
+    currentDraggedElement = curId;
+    moveTo(whereTo);
+
+    document.getElementById('dropdown' + curId).classList.toggle('d-none');
 }

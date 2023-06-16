@@ -6,13 +6,10 @@
  * @param {string} taskId - The ID of the task to open
  */
 function openTaskForView(taskId) {
-    console.log("ID des Tasks: " + taskId);
-
     let newCode = getViewRender(taskId);
 
     document.getElementById('viewTask').classList.toggle('d-none');
     document.getElementById('viewTaskContainer').innerHTML = newCode;
-
 }
 
 

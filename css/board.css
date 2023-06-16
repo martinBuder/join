@@ -198,6 +198,11 @@
     border: 1px dashed #d1d1d1;
     border-radius: 30px;
 }
+.cardCategoryAndArrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .cardCategory {
     font-size: 16px;
     color: white;
@@ -205,7 +210,30 @@
     border-radius: 8px;
     width: fit-content;
 }
+.cardArrow {
+    transform: scaleX(-1);
+    height: 20px;
+    filter: invert(15%) sepia(30%) saturate(705%) hue-rotate(175deg) brightness(100%) contrast(86%);
+}
+.cardArrow:hover {
+    filter: invert(56%) sepia(100%) saturate(1258%) hue-rotate(165deg) brightness(94%) contrast(88%);
+}
+.menuDropdown {
+    background-color: white;
+    border: 1px solid #A8A8A8;
+    border-radius: 5px;
+    padding: 4px 8px 4px 8px;
+    position: absolute;
+    z-index: 100;
+    overflow: auto;
 
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.menuDropdown a:hover {
+    color: #29abe2;
+}
 .cardTitle {
     font-size: 16px;
     font-weight: 700;
