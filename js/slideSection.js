@@ -9,5 +9,5 @@ function addTask() {
 */
 function closeAdd() {
   document.getElementById('addTask').classList.add('addTask-none');
-  clearTask();
+  clearTask(); // deletes all entries - needed in editing an existing task
 }
