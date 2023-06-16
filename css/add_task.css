@@ -1,10 +1,4 @@
 /* Common settings for multiple purposes */
-
-.sidebar {
-    height: 100vh;
-    position: sticky;
-    top: 0;
-}
 body {
     transition: all 0.2s ease-in-out;
     display: flex;
@@ -350,7 +344,7 @@ h1 {
 
 /* Einstellungen für schmale Screens */
 
-@media (max-width: 1250px) {
+@media (max-width: 1270px) {
     #contentAddTask {
         margin-top: 101px;
         max-width: 422px;
