@@ -28,24 +28,6 @@
     display: none;
 }
 
-/* .headerContainer {
-    display: flex;
-    position: relative;
-    justify-content: space-between;
-    align-items: center;
-    width: 1078px;
-    max-width: 100%;
-} */
-
-/* #navLinkAddTask,
-#navLinkAddTaskM {
-    background-color: #2A3647 !important;
-} */
-
-/* .navbar-icon-mobile {
-    margin: 0 0 8px 0 !important;
-} */
-
 .board {
     position: relative;
     margin: 171px auto 0;
@@ -147,7 +129,6 @@
     background-color: #2A3647;
     border-radius: 10px;
     color: white;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -156,17 +137,6 @@
 .boardAddTaskButton:hover {
     background-color: #29abe2;
     border-color: #29abe2;
-}
-
-.addTask {
-    background-color: rgba(0, 0, 0, 50%);
-    width: 100%;
-    height: 100%;
-    z-index: 500;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .window {
@@ -187,14 +157,6 @@
     right: 32px;
     z-index: 5;
     transform: translate(100%);
-}
-
-.addTaskContainer {
-    z-index: 2;
-}
-
-.addTask-none {
-    display: none;
 }
 
 #navLinkAddTaskM {
