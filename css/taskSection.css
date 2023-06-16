@@ -29,29 +29,13 @@
 	width: 95%;
 	height: 95%;
 	border-radius: 30px;
-	overflow-y: auto;
+	overflow-y: initial;
 	background: #fff;
 }
-/* 
-@keyframes slide {
-	from {
-		transform: translate(100%);
-	}
 
-	to {
-		transform: translate(0%);
-	}
+#contentAddTask {
+	margin-top: 20px;
 }
-
-@keyframes slideOut {
-	from {
-		transform: translate(0%);
-	}
-
-	to {
-		transform: translate(100%);
-	}
-} */
 
 .closeWindow {
 	margin: 35px 3%;
@@ -64,6 +48,8 @@
 
 .addTaskContainer {
 	z-index: 2;
+	overflow-y: auto;
+	height: 96%
 }
 
 #navLinkAddTaskM {
