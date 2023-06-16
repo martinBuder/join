@@ -47,6 +47,13 @@ img {
 	z-index: 1;
 }
 
+.slideLogo {
+	position: absolute;
+	top: 25px;
+	left: 25px;
+	display: none;
+}
+
 .smallFirstIndexWindow {
 	display: none;
 }
@@ -177,6 +184,13 @@ main.indexMain {
 	transform: translate(-50%, -50%);
 	z-index: 2;
 	display: flex;
+	animation: flyingFromBottom ease-in-out 500ms;
+}
+
+@keyframes flyingFromBottom{
+	from {
+		transform: translateY(500%); 
+	}
 }
 
 .messageBtn img {
@@ -236,6 +250,22 @@ input#remember {
 			top: 20px;
 			left: 20px;
 			transform: scale(0.8);
+		}
+	}
+
+.slideForm {
+	animation: flyingFromBottom 800ms ease-in-out;
+	}
+
+	.slideLogo {
+		display: block;
+		width: 40px;
+		animation: flyingFromBottom 800ms ease-in-out, displayNone 100ms ease-in-out 800ms forwards;
+	}
+
+	@keyframes displayNone {
+		to {
+			opacity: 0;
 		}
 	}
 
@@ -340,6 +370,16 @@ input#remember {
 	#indexContent {
 		width: 100%;
 		margin: 0 auto;
+	}
+
+	.backArrow {
+		top: 15px;
+		left: 25px;
+	}
+
+	.messageBtn {
+		animation: none;
+		top: 75%
 	}
 }
 

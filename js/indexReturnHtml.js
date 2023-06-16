@@ -60,20 +60,25 @@ function returnSignUpHtml() {
 	*/
 function returnForgotPasswordHtml() {
 		return /*html*/`
-		<form onsubmit="resetPassword(); return false;" class="activityContainer">
-			<img src="./img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
-			<h1>I forgot my password</h1>
-			<div class="blueLine"></div>
-			<p class="activityText">
-				Don't worry! We will send you an email with the instructions to reset your password.
-			</p>
-			<div class="inputContainer">
-				<input type="email" id="email" placeholder="Email" class="inputField" required><img src="./img/letter.svg" alt="">
-			</div>
-			<div class="twiceBtnContainer">
-				<button class="focusBtn" type="submit">Send me the email</button>
-			</div>
-	</form>	
+		<div class="slideLogo">
+   <img src="./img/join-logo.svg" alt="logo" />
+  </div>
+		<div class="slideForm">
+			<form onsubmit="resetPassword(); return false;" class="activityContainer">
+				<img src="./img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
+				<h1>I forgot my password</h1>
+				<div class="blueLine"></div>
+				<p class="activityText">
+					Don't worry! We will send you an email with the instructions to reset your password.
+				</p>
+				<div class="inputContainer">
+					<input type="email" id="email" placeholder="Email" class="inputField" required><img src="./img/letter.svg" alt="">
+				</div>
+				<div class="twiceBtnContainer">
+					<button class="focusBtn" type="submit">Send me the email</button>
+				</div>
+			</form>	
+		</div
 		`
 }
 
