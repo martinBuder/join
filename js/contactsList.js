@@ -44,6 +44,7 @@ function fillFirstLetterHeader(firstLetterHeader, firstLetter) {
 function fillContactList() {
   let firstLetter;
   let firstLetterHeader;
+  changeToYou();
   sortContacts();
   let contactListContainer = document.getElementById("contactListContainer");
   contactListContainer.innerHTML = "";
@@ -53,6 +54,30 @@ function fillContactList() {
     firstLetterHeader = fillFirstLetterHeader(firstLetterHeader, firstLetter);
     contactListContainer.innerHTML += returnContactListHtml(contact, i);
   }
+  changeYouToName();
+}
+
+/**
+ * change you in contactList to yourself
+ */
+function changeToYou() {
+for (let i = 0; i < contactList.length; i++) {
+    if (contactList[i]['email'] == user['email']) {
+      contactList[i]['name'] = 'yourself'
+  }
+}
+}
+
+
+/**
+ * change yourself to your name in contactListArray
+ */
+function changeYouToName() {
+  for (let i = 0; i < contactList.length; i++) {
+    if (contactList[i]['email'] == user['email']) {
+        contactList[i]['name'] = user['name']
+    }
+  } 
 }
 
 /**

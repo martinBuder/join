@@ -532,6 +532,7 @@ body {
 
     .contactsList {
         margin-top: 30px;
+        padding-bottom: 60px;
         height: calc(100vh - 210px);
     }
 

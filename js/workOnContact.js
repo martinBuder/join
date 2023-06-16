@@ -81,7 +81,6 @@ function getRandomColor() {
 async function saveEditContact(i) {
   setEditedContact(i);
   getContactInitials(i);
-  sortContacts();
   saveContactList();
   await setContactListToRemoteStorage("contactList", contactList);
   getContactList();
@@ -112,7 +111,6 @@ async function saveNewContact() {
   getContactInitials();
   addColorNewContact();
   pushContactToContacts();
-  sortContacts();
   saveContactList();
   await setContactListToRemoteStorage("contactList", contactList);
   getContactList();
