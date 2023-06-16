@@ -17,7 +17,7 @@ function editTask(curId) {
     selectedColour = curTask[0]['categorycolor'];
     document.getElementById('newCatHeaderField').innerHTML = `${selectedCategory}<img src="./img/add-task/circle-${selectedColour}.svg" class="h21px">`;
 
-    selectPriority(curTask[0]['prio'])
+    selectPriority(curTask[0]['prio']);
 
     document.getElementById('taskDueDate').value = curTask[0]['duedate'];
 
