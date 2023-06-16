@@ -16,14 +16,55 @@ let taskNumbersForSummary = [
   { deadlineDate: "January 01, 2024" },
 ];
 
+let greetingWords;
+
 /**
- * This function shows definated tehe greeting person
+ * serie of function to greet
  */
 function greeting() {
+  getDayTime();
+  setGreetingWords();
+  setGreetingPerson();
+}
+
+/**
+ * set the right person to greet
+ */
+function setGreetingPerson() {
   let greetingPerson = document.getElementById("greetingPerson");
   let greetingPersonMobile = document.getElementById("greetingPersonMobile");
   greetingPerson.innerHTML = `${user["name"]}`;
   greetingPersonMobile.innerHTML = `${user["name"]}`;
+}
+
+/**
+ * get the right greeting for day Time
+ */
+function getDayTime() {
+  let dayTime = new Date().getHours();
+  if (dayTime <= 5 && dayTime > 12) {
+    greetingWords = 'Good Morning';
+  }
+  if (dayTime >= 12 && dayTime < 17) {
+    greetingWords = 'Good Afternoon';
+  }
+  if (dayTime >= 17 && dayTime < 5) {
+    greetingWords = 'Good Afternoon';
+  }
+}
+
+/**
+ * set the greeting words in html
+ */
+function setGreetingWords() {
+  let greet = document.getElementById("greet");
+  let greetMobile = document.getElementById("greetMobile");
+  greet.innerHTML = `${greetingWords}`;
+  greetMobile.innerHTML = `${greetingWords}`;
+  if (user['name'] !== '') {
+    greet.innerHTML += `,`;
+    greetMobile.innerHTML += `,`;
+  }
 }
 
 /**
@@ -78,3 +119,4 @@ function findtaskNumbersForSummaryArray() {
     user = null;
   }
 }
+
