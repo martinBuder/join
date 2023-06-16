@@ -1,7 +1,7 @@
 /* Markierung der Auswahl in der Sidebar */
 #navLinkContacts,
-#navLinkContactskM {
-    background-color: #091931;
+#navLinkContactsM {
+    background-color: #091931 !important;
 }
 
 #navLinkContacts span,
