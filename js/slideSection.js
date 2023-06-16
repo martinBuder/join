@@ -9,4 +9,5 @@ function addTask() {
 */
 function closeAdd() {
   document.getElementById('addTask').classList.add('addTask-none');
+  clearTask();
 }
