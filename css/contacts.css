@@ -154,6 +154,11 @@ body {
     display: none;
 }
 
+.contactBody main .workOnContact {
+    transform: translate(100%);
+	transition: all ease-in-out 400ms;
+}
+
 /* ~ add & edit contact */
 
 .addContactClaimer h1 {
@@ -161,7 +166,7 @@ body {
     margin: 0;
 }
 
-.addContactWindow {
+.contactBody main .addContactWindow {
     position: fixed;
     top: 0;
     left: 0;
@@ -171,7 +176,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.2);
-    transform: translate(100%);
+    transition: all ease-in-out 400ms;
 }
 
 .blueLine {
@@ -180,26 +185,6 @@ body {
     border-radius: 50px;
     height: 2px;
     margin-top: -20px;
-}
-
-@keyframes slide {
-    from {
-        transform: translate(100%);
-    }
-
-    to {
-        transform: translate(0%);
-    }
-}
-
-@keyframes slideOut {
-    from {
-        transform: translate(0%);
-    }
-
-    to {
-        transform: translate(100%);
-    }
 }
 
 .addContactContainer {

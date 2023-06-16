@@ -127,8 +127,8 @@
     </section>
 
     <!-- Section for adding a new task -->
-    <section class="addTask addTask-none" id="addTask">
-      <div id="window" class="window">
+    <section class="addTask addTask-none" id="addTask" onclick="closeAdd()">
+      <div id="window" class="window" onclick="event.stopPropagation()">
         <section
           w3-include-html="add_task_content.html"
           class="addTaskContainer"></section>

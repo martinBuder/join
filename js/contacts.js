@@ -143,9 +143,7 @@ function overwriteContactSaveOnSubmit(i) {
  */
 function startSlideAnimation() {
   let addContactWindow = document.getElementById("addContactWindow");
-  addContactWindow.style.animationName = "slide";
-  addContactWindow.style.animationDuration = "800ms";
-  addContactWindow.style.animationFillMode = "forwards";
+  addContactWindow.classList.remove('workOnContact')
 }
 
 /**
@@ -182,9 +180,7 @@ function addedEditContactBtn(i) {
  */
 function closeAddContact() {
   let addContactWindow = document.getElementById("addContactWindow");
-  addContactWindow.style.animationName = "slideOut";
-  addContactWindow.style.animationDuration = "800ms";
-  addContactWindow.style.animationFillMode = "forwards";
+  addContactWindow.classList.add('workOnContact');
   setTimeout(clearInputs, 1000);
   setTimeout(changeClaimerback, 1000);
 }
