@@ -120,16 +120,20 @@ function selectNewCatInput() {
  */
 async function getArrayOfCategories() {
     let tmpArray = [];
+    let tmpCategories = [];
 
     tasksArray = await getTasksArray();
     for (let i = 0; i < tasksArray.length; i++) {
         const elem = tasksArray[i];
-        let tmpJSON = {
-            name: elem['category'],
-            color: elem['categorycolor']
+        if (tmpCategories.indexOf(elem['category']) < 0) {
+            let tmpJSON = {
+                name: elem['category'],
+                color: elem['categorycolor']
+            }
+            tmpArray.push(tmpJSON);
+            tmpCategories.push(elem['category']);
         }
-        tmpArray.push(tmpJSON);
     }
-    let retArray = [...new Set(tmpArray)];  // ... changes the new set into an array
-    return retArray;
+
+    return tmpArray;
 }
