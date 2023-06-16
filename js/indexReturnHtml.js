@@ -8,7 +8,7 @@ function returnLogInHtml() {
 		<h1>Log In</h1>
 		<div class="blueLine"></div>
 		<div class="inputContainer">
-			<input type="email" id="email" placeholder="Email" class="inputField" required><img src="img/letter.svg" alt="">
+			<input type="email" id="email" placeholder="Email" class="inputField" required><img src="./img/letter.svg" alt="">
 		</div>
 		<div class="inputContainer">
 			<input type="password" id="passwordField" placeholder="Password" class="inputField" autocomplete="current-password" required><div id="passwordImg" onclick="showPassword()"></div>
@@ -34,14 +34,14 @@ function returnLogInHtml() {
 function returnSignUpHtml() {
 	return /*html*/ `
 		<form onsubmit="createNewAccount(); return false;" class="activityContainer">
-			<img src="img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
+			<img src="./img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
 			<h1>Sign Up</h1>
 			<div class="blueLine"></div>
 			<div class="inputContainer">
-				<input type="text" id="name" placeholder="Name" class="inputField" required><img src="img/person.svg" alt="">
+				<input type="text" id="name" placeholder="Name" class="inputField" required><img src="./img/person.svg" alt="">
 			</div>
 			<div class="inputContainer">
-				<input type="email" id="email" placeholder="Email" class="inputField" required><img src="img/letter.svg" alt="" >
+				<input type="email" id="email" placeholder="Email" class="inputField" required><img src="./img/letter.svg" alt="" >
 			</div>
 			<div class="inputContainer">
 				<input type="password" id="passwordField" placeholder="Password" class="inputField" autocomplete="current-password" minlength="8" required><div id="passwordImg" onclick="showPassword()"></div>
@@ -61,14 +61,14 @@ function returnSignUpHtml() {
 function returnForgotPasswordHtml() {
 		return /*html*/`
 		<form onsubmit="resetPassword(); return false;" class="activityContainer">
-			<img src="img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
+			<img src="./img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
 			<h1>I forgot my password</h1>
 			<div class="blueLine"></div>
 			<p class="activityText">
 				Don't worry! We will send you an email with the instructions to reset your password.
 			</p>
 			<div class="inputContainer">
-				<input type="email" id="email" placeholder="Email" class="inputField" required><img src="img/letter.svg" alt="">
+				<input type="email" id="email" placeholder="Email" class="inputField" required><img src="./img/letter.svg" alt="">
 			</div>
 			<div class="twiceBtnContainer">
 				<button class="focusBtn" type="submit">Send me the email</button>
@@ -95,7 +95,7 @@ function returnHeaderBtnHtml() {
 function returnResetPasswordHtml() {
 	return /*html*/`
 		<form onsubmit="createNewPassword(); return false;" class="activityContainer">
-			<img src="img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
+			<img src="./img/backArrow.svg" class="backArrow" onclick="renderLogInWindow()" alt="">
 			<h1>Reset your password</h1>
 			<div class="blueLine"></div>
 			<p class="activityText">
@@ -134,7 +134,7 @@ function returnIdentPasswordHtml() {
 function returnSendEmailHtml() {
 	return /*html*/`
 		<div class="messageBtnBackground">
-			<button class="focusBtn messageBtn"><img src="img/sendOk.svg" alt=""> An E-Mail has been sent to you.</button>
+			<button class="focusBtn messageBtn"><img src="./img/sendOk.svg" alt=""> An E-Mail has been sent to you.</button>
 		</div>
 		`
 }

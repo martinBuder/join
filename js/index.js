@@ -84,7 +84,7 @@ function newPasswordFalse(confirmPassword){
 function showPassword() {
 	passwordImg = document.getElementById('passwordImg');
 	passwordField = document.getElementById('passwordField');
-	passwordImg.style.backgroundImage = "url('img/openEye.svg')";
+	passwordImg.style.backgroundImage = "url('./img/openEye.svg')";
 	passwordImg.style.backgroundSize = "contain"
 	passwordImg.setAttribute("onClick", "dontShowPassword();");
 	passwordField.setAttribute("type", "text")

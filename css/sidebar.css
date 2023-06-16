@@ -156,10 +156,12 @@ a:hover {
         z-index: 50;
     }
 }
+
 @media (max-width: 490px) {
     .navbar-icon {
         height: 22px;
     }
+
     .navbar-entry {
         font-size: 14px;
     }

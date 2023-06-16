@@ -162,8 +162,6 @@
     border-color: #29abe2;
 }
 
-
-
 .addTask {
     background-color: rgba(0, 0, 0, 50%);
     width: 100%;
@@ -184,26 +182,6 @@
     background-color: white;
     border-radius: 30px;
     overflow-y: auto;
-}
-
-@keyframes slideOpen {
-    from {
-        transform: translate(100%);
-    }
-
-    to {
-        transform: translate(0%);
-    }
-}
-
-@keyframes slideClose {
-    from {
-        transform: translate(0%);
-    }
-
-    to {
-        transform: translate(100%);
-    }
 }
 
 .closeWindow {
