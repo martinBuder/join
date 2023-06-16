@@ -216,10 +216,12 @@
     border-radius: 30px;
 }
 .noTasks {
-    /* max-width: 250px; */
+    height: 41px;
     padding: 9px 18px;
-    border: 1px dashed grey;
-    border-radius: 22px;
+    background-color: #d1d1d1;
+    color: #A8A8A8;
+    border: 1px dashed #A8A8A8;
+    border-radius: 10px;
 }
 .taskColumn {
     border: 1px solid transparent;

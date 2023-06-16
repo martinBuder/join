@@ -1,7 +1,7 @@
 let currentDraggedElement = '';
 let noTasks = `
     <div class="noTasks">
-        No tasks with that status.
+        No tasks status
     </div>
 `;
 
@@ -50,7 +50,7 @@ function renderStatus(statusToRender, arrayToRender) {
     let filteredArray = arrayToRender.filter(t => t['status'] == statusToRender);
     let newCode = ``;
     if (filteredArray.length == 0) {
-        newCode = noTasks;
+        newCode = noTasks.replace('status', statusToRender).replace('inprogress', 'in progress').replace('awaiting', 'awaiting feedback');
         document.getElementById(statusToRender).innerHTML += newCode;
     } else {
         for (let i = 0; i < filteredArray.length; i++) {
