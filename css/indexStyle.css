@@ -80,11 +80,12 @@ img {
 	}
 }
 
-.indexMain {
+main.indexMain {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 70vh;
+	margin-top: 0;
 }
 
 .activityContainer {
@@ -243,6 +244,7 @@ input#remember {
 		justify-content: center;
 		padding: 0;
 		height: 70px;
+		margin-bottom: 10px;
 	}
 
 	.headerBtnContainer {
@@ -299,6 +301,12 @@ input#remember {
 		gap: 15px;
 	}
 
+	main.indexMain {
+		width: 70%;
+		margin: 0 auto;
+		margin-top: 86px;
+	}
+
 	.indexMain .inputContainer input,
 	.indexMain .inputContainer input::placeholder {
 		min-width: 50px;
@@ -332,5 +340,24 @@ input#remember {
 	#indexContent {
 		width: 100%;
 		margin: 0 auto;
+	}
+}
+
+@media(max-width: 550px) {
+	main.indexMain {
+		width: 80%;
+	}
+}
+
+@media(max-width: 430px) {
+	main.indexMain {
+		width: 90%;
+		margin-top: 60px;
+	}
+}
+
+@media(max-width: 320px) {
+	main.indexMain {
+		width: 100%;
 	}
 }
