@@ -101,7 +101,7 @@ function changeClaimerback() {
   let changeClaimer = document.getElementsByClassName("claimerText")[0];
   changeClaimer.innerHTML = /*html*/ `
 		<h1>Add Contact</h1>
-  <p>Tasks are better with a team!</p>
+    <p>Tasks are better with a team!</p>
 	`;
 }
 

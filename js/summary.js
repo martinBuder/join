@@ -42,14 +42,14 @@ function setGreetingPerson() {
  */
 function getDayTime() {
   let dayTime = new Date().getHours();
-  if (dayTime <= 5 && dayTime > 12) {
+  if (dayTime >= 5 && dayTime < 12) {
     greetingWords = 'Good Morning';
   }
   if (dayTime >= 12 && dayTime < 17) {
     greetingWords = 'Good Afternoon';
   }
   if (dayTime >= 17 && dayTime < 5) {
-    greetingWords = 'Good Afternoon';
+    greetingWords = 'Good Evening';
   }
 }
 
