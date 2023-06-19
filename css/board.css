@@ -433,36 +433,16 @@
     border-color: rgb(41, 171, 226);
 }
 
-
+/* Setting for small screens */
 
 @media (max-width: 1350px) {
-    /* .headerContainer {
-        width: 750px;
-    } */
-
-    .boardTasks {
-        width: 95%;
-    }
-
+    .boardTasks,
     .board {
-        /* width: 750px; */
         width: 95%;
     }
-
-    /* .main-navigation {
-        width: 200px !important;
-    } */
-
-    /* .header {
-        width: calc(100% - 200px);
-    } */
 }
 
 @media (max-width: 1000px) {
-    /* .headerContainer {
-        width: 750px;
-    } */
-
     .board {
         width: 100%;
         margin: 120px auto;
@@ -475,20 +455,26 @@
         height: 50px;
     }
 
-    .boardHeadline img {
+    .boardHeadline > img {
         padding: 0 10px;
     }
 
-    /* .header {
-        width: 100%;
-    } */
+    .boardAddTaskButton {
+        display: flex;
+        justify-content: center;
+    }
+    .boardAddTaskButton span {
+        display: none;
+    }
+}
+
+@media (max-width: 850px) {
+    .boardHeadline {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 760px) {
-    /* .headerContainer {
-        width: 420px;
-    } */
-
     .serachAdd {
         width: 100%;
     }
@@ -517,37 +503,19 @@
         font-size: 56px;
     }
 
-    /* .boardTasks {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-    } */
-
     .categorie {
         width: 100%;
     }
 }
 
-@media (max-width: 490px) {
-    /* .headerContainer {
-        width: 360px;
-    } */
-
-    /* .board {
-        width: 360px;
-    } */
-}
-
 @media (max-width: 450px) {
-    /* .headerContainer {
-        width: 280px;
-    } */
-
     .tool {
         font-size: 16px;
     }
+}
 
-    /* .board {
-        width: 280px;
-    } */
+@media (max-width: 350px) {
+    .searchAndAddTask {
+        flex-direction: column;
+    }
 }
