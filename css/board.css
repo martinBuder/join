@@ -17,6 +17,7 @@
 
 
 /* Common settings */
+
 .mb-20 {
     margin-bottom: 20px;
 }
@@ -26,22 +27,20 @@
 .mt-10 {
     margin-top: 10px;
 }
-
 .tool {
     display: none;
 }
 
+/* Board settings */
+
 .board {
-    /* position: relative; */
     margin: 171px auto 0;
-    /* width: 1078px; */
     width: calc(100% - 232px);
 
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 .boardHeadline {
     width: 95%;
     display: flex;
@@ -49,15 +48,12 @@
     justify-content: space-between;
     margin-bottom: 108px;
 }
-
 .boardTasks {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
     justify-content: center;
     gap: 30px;
 }
-
 .boxStatus {
     display: flex;
     justify-content: space-between;
@@ -85,12 +81,10 @@
 .boxStatusPlusImage:hover img {
     filter: invert(65%) sepia(14%) saturate(6020%) hue-rotate(165deg) brightness(94%) contrast(89%);
 }
-
 .boxStatusName {
     font-size: 21px;
     font-weight: bold;
 }
-
 .boardText {
     font-size: 73px;
     font-weight: 700;
@@ -98,6 +92,7 @@
 
 
 /* Search and Add Task line settings */
+
 .searchAndAddTask {
     display: flex;
     align-items: center;
@@ -142,7 +137,6 @@
     background-color: #29abe2;
     border-color: #29abe2;
 }
-
 .window {
     display: flex;
     align-items: flex-start;
@@ -153,7 +147,6 @@
     border-radius: 30px;
     overflow-y: auto;
 }
-
 .closeWindow {
     margin: 35px 3%;
     cursor: pointer;
@@ -162,17 +155,13 @@
     z-index: 5;
     transform: translate(100%);
 }
-
 #navLinkAddTaskM {
     background-color: #2A3647 !important;
 }
-
 .boxes {
     width: 250px;
 }
-
 .taskBox {
-    /* width: 250px; */
     background-color: white;
     padding: 18px;
     border-radius: 30px;
@@ -299,6 +288,7 @@
 
 
 /* Viewing a task */
+
 .viewTask {
     background-color: rgba(0, 0, 0, 50%);
     width: 100%;
@@ -310,7 +300,6 @@
 }
 .viewTaskContainer {
     background-color: white;
-    /* max-width: 50%; */
     max-width: 100%;
     max-height: 100vh;
     border-radius: 30px;
@@ -433,6 +422,7 @@
     border-color: rgb(41, 171, 226);
 }
 
+
 /* Setting for small screens */
 
 @media (max-width: 1350px) {
@@ -447,18 +437,15 @@
         width: 100%;
         margin: 120px auto;
     }
-
     .boardHeadline button {
         margin-left: 0;
         font-size: 0;
         width: 50px;
         height: 50px;
     }
-
     .boardHeadline > img {
         padding: 0 10px;
     }
-
     .boardAddTaskButton {
         display: flex;
         justify-content: center;
@@ -478,31 +465,25 @@
     .serachAdd {
         width: 100%;
     }
-
     .tool {
         display: block;
         font-size: 19px;
     }
-
     .board {
         width: 95%;
     }
-
     .boardHeadline {
         flex-direction: column;
         align-items: flex-start;
         margin-top: 0;
         margin-bottom: 25px;
     }
-
     .boardHeadline input {
         width: 100%;
     }
-
     .boardText {
         font-size: 56px;
     }
-
     .categorie {
         width: 100%;
     }
