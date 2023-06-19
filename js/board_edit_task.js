@@ -18,7 +18,7 @@ function editTask(curId) {
     addTask();  // opens the editing mode for a task - generally used when creating a new task, but here some data was added before
 }
 
-function saveTask() {
+async function saveTask() {
     console.log('subtasks: ' + selectedSubtasks + ' (status: ' + selectedSubtasksStatus + ')');
     let newJson = getChangedJSON();
     console.log(newJson);
@@ -29,6 +29,8 @@ function saveTask() {
     changeJsonData(index, newJson)
     console.log(tasksArray);
 
+    // save the changes tasksArray
+    await setItem('tasks', tasksArray);
 
     // Empty global variables 
     emptyVariables();
@@ -40,6 +42,8 @@ function saveTask() {
     document.getElementById('btnTaskClear').classList.remove('d-none');
     document.getElementById('btnTaskCreate').classList.remove('d-none');
     document.getElementById('btnTaskSave').classList.add('d-none');
+
+    renderTasks(tasksArray);
 }
 
 // ---------- Help functions for shortening the editTask function ----------
