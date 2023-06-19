@@ -19,7 +19,7 @@ function changeContactColor(i) {
     "contactColorWrapper"
   )[0];
   contactColorWrapper.innerHTML = ``;
-  contactColorWrapper.innerHTML = `<p>Joice a color...</p>`;
+  contactColorWrapper.innerHTML = `<p>Choose a color...</p>`;
   for (let j = 0; j < bgColorArray.length; j++) {
     contactColorWrapper.innerHTML += /*html*/ `
 				<div class="contactColorContainer ${bgColorArray[j]}" onclick="choiceColor(${i}, ${j})"></div>

@@ -179,10 +179,12 @@ function addedEditContactBtn(i) {
  * This function closes the input mask.
  */
 function closeAddContact() {
-  let addContactWindow = document.getElementById("addContactWindow");
+  let addContactWindow = document.getElementById('addContactWindow');
+  let contactColorWrapper = document.getElementsByClassName('contactColorWrapper')[0];
   addContactWindow.classList.add('workOnContact');
   setTimeout(clearInputs, 1000);
   setTimeout(changeClaimerback, 1000);
+  setTimeout(contactColorWrapper.innerHTML = ``, 1000);
 }
 
 /**

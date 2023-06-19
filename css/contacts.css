@@ -344,7 +344,9 @@ body {
     /* *small contact workstation */
     .addContactContainer {
         flex-direction: column;
-        width: 320px;
+        max-width: 320px;
+        height: 90vh;
+        max-height: 600px;
     }
 
     .addContactClaimer {
@@ -386,7 +388,7 @@ body {
     .inputArea .inputContainer {
         width: 256px;
         padding: 6px 12px;
-        height: 40px
+        height: 40px;
     }
 
     .inputArea {
@@ -561,7 +563,7 @@ body {
     }
 
     .addContactWindow {
-        z-index: 10;
+        z-index: 50;
     }
 
     .fullContactHeaderName h2 {
@@ -595,5 +597,24 @@ body {
     button.mobilImgBtn.editImgBtn img {
         width: 35px;
         height: 35px;
+    }
+
+    .contactColorWrapper {
+        flex-wrap: wrap;
+        bottom: 10px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+        gap: 50px
+    }
+
+    .contactColorContainer {
+        height: 40px;
+        width: 40px;
+        border: 3px solid #aaa;
+    }
+
+    .contactColorWrapper p {
+        width: 100%;
     }
 }
