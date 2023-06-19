@@ -13,7 +13,8 @@ function sortContacts() {
   });
 }
 
-/** get the first letter from name
+/** 
+ * get the first letter from name
  *
  * @param {JSON} contact
  * @returns to fillContactList
@@ -22,7 +23,8 @@ function getFirstLetter(contact) {
   return contact["name"].substring(0, 1);
 }
 
-/** check if the firstLetters are the same if not he fill the h2 with first Letter
+/** 
+ * check if the firstLetters are the same if not he fill the h2 with first Letter
  *
  * @param {string} firstLetterHeader firstLetter from last Name
  * @param {string} firstLetter
@@ -82,6 +84,7 @@ function changeYouToName() {
 
 /**
  * change in contactList the background
+ * 
  * @param {index} i
  */
 function contactListBtnBackground(i) {
@@ -95,7 +98,8 @@ function contactListBtnBackground(i) {
   o = i;
 }
 
-/**save the contactList in remot storage with token, email and password
+/**
+ * save the contactList in remot storage with token, email and password
  *
  * @param {JsonWebKey} key
  * @param {Json} value

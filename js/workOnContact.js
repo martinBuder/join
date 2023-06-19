@@ -1,5 +1,6 @@
 /**
  * design the circle in contact working window
+ * 
  * @param {index} i
  */
 function createCircle(i) {
@@ -12,6 +13,7 @@ function createCircle(i) {
 
 /**
  * open the contact colors for changing
+ * 
  * @param {index} i
  */
 function changeContactColor(i) {
@@ -29,6 +31,7 @@ function changeContactColor(i) {
 
 /**
  * serie of function to change the color
+ * 
  * @param {index} i
  * @param {index} j
  */
@@ -42,6 +45,7 @@ async function choiceColor(i, j) {
 
 /**
  * choose a new color for contact
+ * 
  * @param {index} i
  * @param {index} j
  */
@@ -76,6 +80,7 @@ function getRandomColor() {
 
 /**
  * serie of function to save the edited contact
+ * 
  * @param {index} i
  */
 async function saveEditContact(i) {
@@ -90,6 +95,7 @@ async function saveEditContact(i) {
 
 /**
  * serie of function to delete contact
+ * 
  * @param {index} i
  */
 async function deleteContact(i) {
@@ -130,6 +136,7 @@ function getNewContactData() {
 /**
  * get the initials of name
  * if i == definated we came from edit contact
+ * 
  * @param {index} i
  */
 function getContactInitials(i) {

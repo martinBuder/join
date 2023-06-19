@@ -95,6 +95,7 @@ function teamMember() {
 
 /**
  * save the user inforamtion in remot storage with token, email and password
+ * 
  * @param {JsonWebKey} key
  * @param {Json} value
  * @returns
@@ -109,6 +110,7 @@ async function setItemToRemoteStorage(key, value) {
 
 /**
  * save the user inforamtion in remot storage with token, email and password
+ * 
  * @param {JsonWebKey} key
  * @param {Json} value
  * @returns
@@ -124,6 +126,7 @@ async function setContactListToRemoteStorage(key, value) {
 /**
  * this function get the user information from Remote Storage and changed it to user-Array compares with e-mail and passwort
  * !!! you need to used findUsersArray() to work with users array
+ * 
  * @param {JsonWebKey} key
  */
 async function getItemFromRemoteStorage(key) {
@@ -135,6 +138,7 @@ async function getItemFromRemoteStorage(key) {
 /**
  * this function get the user information from Remote Storage and changed it to user-Array compares with e-mail and passwort
  * !!! you need to used findContactListArray() to work with users array
+ * 
  * @param {JsonWebKey} key
  */
 async function getContactListFromRemoteStorage(key) {
@@ -236,6 +240,7 @@ function createNewPassword() {
 
 /**
  * a serie of functions to change password
+ * 
  * @param {string} newPassword
  */
 async function saveNewPassword(newPassword) {

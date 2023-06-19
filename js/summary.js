@@ -70,7 +70,6 @@ function setGreetingWords() {
 /**
  * set all values in html
  */
-
 function fillTaskNumbers() {
   for (let i = 0; i < taskNumbersForSummary.length; i++) {
     let taskNumber = taskNumbersForSummary[i];
@@ -95,6 +94,7 @@ function gettaskNumbersForSummary() {
 /**
  * this function get the user information from Remote Storage and changed it to taskNumbersForSummary-Array compares with e-mail and passwort
  * !!! you need to used findtaskNumbersForSummaryArray() to work with taskNumbersForSummary array
+ * 
  * @param {JsonWebKey} key
  */
 async function getTaskNumbersFromRemoteStorage(key) {

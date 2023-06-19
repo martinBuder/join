@@ -93,6 +93,13 @@ function sortTaskForDate() {
   );
 }
 
+/**
+ * set the task into remote storage
+ * 
+ * @param {JsonWebKey} key 
+ * @param {JSON} value 
+ * @returns 
+ */
 async function setTaskNumbersStorage(key, value) {
   const payload = { key, value, token: STORAGE_TOKEN };
   return fetch(STORAGE_URL, {

@@ -1,4 +1,5 @@
 /** 
+	* generate html for logIn window
  *
  * @returns to renderLogInWindow()
  */
@@ -28,9 +29,10 @@ function returnLogInHtml() {
 }
 
 /**
-*
-* @returns to renderSignUpWindow()
-*/
+	* generate html for sign up 
+	*
+	* @returns to renderSignUpWindow()
+	*/
 function returnSignUpHtml() {
 	return /*html*/ `
 		<form onsubmit="createNewAccount(); return false;" class="activityContainer">
@@ -56,6 +58,7 @@ function returnSignUpHtml() {
 
 /** 
 	* generate forgot Passwort Content
+	*
 	* @returns to renderForgotPassword()
 	*/
 function returnForgotPasswordHtml() {
@@ -78,11 +81,12 @@ function returnForgotPasswordHtml() {
 					<button class="focusBtn" type="submit">Send me the email</button>
 				</div>
 			</form>	
-		</div
+		</div>
 		`
-}
+};
 
 /**
+	* generate html for header buttons
 	* 
 	* @returns to renderLogInHeaderButtons()
 	*/
@@ -95,6 +99,7 @@ function returnHeaderBtnHtml() {
 
 /**
 	* generate reset Passwort Content
+
 	* @returns to renderResetPassword()
 	*/
 function returnResetPasswordHtml() {
@@ -122,6 +127,7 @@ function returnResetPasswordHtml() {
 
 /** 
 	* generate reset password is ok content
+
 	* @returns to newPasswordOk() 
 	*/
 function returnIdentPasswordHtml() {
@@ -134,6 +140,7 @@ function returnIdentPasswordHtml() {
 
 /**  
 	* generate an email is send content
+	
 	* @returns to resetPassword()
 	*/
 function returnSendEmailHtml() {

@@ -23,6 +23,7 @@ async function initContact() {
 
 /**
  * render the full Contact part
+ * 
  * @param {index} i
  */
 function renderFullContact(i) {
@@ -52,6 +53,7 @@ function closeFullSite() {
 
 /**
  * get the area to fill
+ * 
  * @param {index} i
  */
 function getFullContactArea(i) {
@@ -69,6 +71,7 @@ function openAddContact() {
 
 /**
  * serie of functions to open the contact edit window
+ * 
  * @param {index} i
  */
 function openEditContact(i) {
@@ -104,6 +107,7 @@ function changeClaimerback() {
 
 /**
  * fill inputfields with contactList Infos
+ * 
  * @param {index} i
  */
 function fillEditInputs(i) {
@@ -121,6 +125,7 @@ function clearInputs() {
 
 /**
  * fill contactJson with edited information
+ * 
  * @param {index} i
  */
 function setEditedContact(i) {
@@ -131,6 +136,7 @@ function setEditedContact(i) {
 
 /**
  * change form function to new function
+ * 
  * @param {index} i
  */
 function overwriteContactSaveOnSubmit(i) {
@@ -162,6 +168,7 @@ function addedNewContactBtn() {
 
 /**
  * render the btn for edit contact in contact window
+ * 
  * @param {index} i
  */
 function addedEditContactBtn(i) {

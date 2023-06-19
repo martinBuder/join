@@ -14,14 +14,15 @@ function renderLogInWindow() {
 
 /** 
 	* delete header buttons
+	*
 	* @param {HTMLElement} indexHeaderBtn
 	*/
 function deleteHeaderBtn() {
 	indexHeaderBtn.innerHTML = ''; 
 }
 
-/** fill header buttons
-	* 
+/** 
+	* fill header buttons
 	*/
 function renderLogInHeaderButtons() {
 	indexHeaderBtn = document.getElementById('indexHeaderBtn');
@@ -70,6 +71,7 @@ function renderResetPassword() {
 
 /**
 	* render new password isn't ok content
+
 	* @param {HTMLInputElement} confirmPassword 
 	*/
 function newPasswordFalse(confirmPassword){

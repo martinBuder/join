@@ -1,5 +1,6 @@
 /**
- *
+ * generate html for contactsList
+	* 
  * @param {JSON} contact
  * @param {index} i
  * @returns to fillContactList()
@@ -17,7 +18,8 @@ function returnContactListHtml(contact, i) {
 }
 
 /**
- *
+ * generate html for fullContact
+	* 
  * @param {number} i
  * @returns to renderFullContact
  */

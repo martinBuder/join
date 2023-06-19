@@ -97,6 +97,7 @@ function goToSummary() {
 
 /**
  * create a new password and go to log In Window
+ * 
  * @param {string} newPassword
  */
 async function newPasswordOk(newPassword) {
