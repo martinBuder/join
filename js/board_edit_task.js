@@ -19,14 +19,19 @@ function editTask(curId) {
 }
 
 function saveTask() {
-    // Task mit der ID currentEditedTask speichern
-    // let curTask = tasksArray.filter(t => t['id'] == currentEditedTask);
-
-    let newJsonArray = getChangedJSON();
-    console.log(newJsonArray);
+    console.log('subtasks: ' + selectedSubtasks + ' (status: ' + selectedSubtasksStatus + ')');
+    let newJson = getChangedJSON();
+    console.log(newJson);
 
     var index = tasksArray.findIndex(obj => obj.id == currentEditedTask);
     console.log('index: ' + index);
+
+    changeJsonData(index, newJson)
+    console.log(tasksArray);
+
+
+    // Empty global variables 
+    emptyVariables();
 
     // Close Edit Form
     closeAdd();
@@ -46,9 +51,7 @@ function boardSetCommonFields(curTask) {
 }
 function boardSetCategory(curTask) {
     selectedCategory = curTask[0]['category'];
-    console.log('category: ' + selectedCategory);
     selectedColour = curTask[0]['categorycolor'];
-    console.log('colour: ' + selectedColour);
     document.getElementById('newCatHeaderField').innerHTML = `${selectedCategory}<img src="./img/add-task/circle-${selectedColour}.svg" class="h21px">`;
 }
 function boardSetEditors(curTask) {
@@ -74,7 +77,7 @@ function boardSetSubtasks(curTask) {
         let newImg = (curSubtask['status'] == 'done') ? 'checked' : 'unchecked';
         let newCode = `
             <li>
-                <img src="./img/add-task/check-rectangle-${newImg}.svg" alt="" id="check-${newValue.replace(' ', '_')}" onclick="toggleSubtaskCheck('${newValue}', 'check-${newValue.replace(' ', '_')}')">
+                <img src="./img/add-task/check-rectangle-${newImg}.svg" alt="" id="check-${newValue.replace(/\s/g, '~~~')}" onclick="toggleSubtaskCheck('${newValue}', 'check-${newValue.replace(/\s/g, '~~~')}')">
                 ${newValue}
                 <img src="./img/delete.svg" alt="delete" onclick="removeSubtask('${newValue}');">
             </li>
@@ -93,7 +96,8 @@ function boardChangeButtonVisibility() {
 
 /**
  * Assembles and returns a JSON object with the data of the entered task.
- * Important: This function creates no new ID. Instead it uses the ID saved in variable currentEditedTask
+ * Important: This function creates no new ID. Instead it uses the ID saved in variable currentEditedTask.
+ * For that reason not all elements are included in this JSON object.
  * 
  * @returns {json} The JSON object with the data of the entered task.
  */
@@ -106,9 +110,30 @@ function getChangedJSON() {
         categorycolor: selectedColour,
         duedate: document.getElementById('taskDueDate').value,
         prio: selectedPriority,
-        status: 'todo',
         subtasks: getSubtaskArray(),
         assignedto: selectedContacts
     }
     return newJSON;
+}
+
+function changeJsonData(index, newJson) {
+    let changeArray = ['title', 'description', 'category', 'categorycolor', 'duedate', 'prio', 'subtasks', 'assignedto'];
+    for (let i = 0; i < changeArray.length; i++) {
+        const elem = changeArray[i];
+        tasksArray[index][elem] = newJson[elem];
+    }
+}
+
+
+/**
+ * Delete entries in some global variables. Otherwise they may affect editing another task.
+ */
+function emptyVariables() {
+    selectedContacts = [];
+    selectedSubtasks = [];
+    selectedSubtasksStatus = [];
+    categories = [];
+    selectedColour = '';
+    selectedCategory = '';
+    selectedPriority = '';
 }

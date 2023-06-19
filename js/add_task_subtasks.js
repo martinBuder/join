@@ -38,10 +38,10 @@ function toggleSubtaskCheck(subtask, imgId) {
     let elem = document.getElementById(imgId);
     if (elem.src.includes('unchecked')) {
         elem.src = "./img/add-task/check-rectangle-checked.svg"
-        selectedSubtasksStatus[selectedSubtasks.indexOf(imgId.substring(6))] = 'done';
+        selectedSubtasksStatus[selectedSubtasks.indexOf(imgId.substring(6).replace(/~~~/g, ' '))] = 'done';
     } else {
         elem.src = "./img/add-task/check-rectangle-unchecked.svg";
-        selectedSubtasksStatus[selectedSubtasks.indexOf(imgId.substring(6))] = 'todo';
+        selectedSubtasksStatus[selectedSubtasks.indexOf(imgId.substring(6).replace(/~~~/g, ' '))] = 'todo';
     }
 }
 
