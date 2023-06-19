@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: board.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: board.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Global variables
+ */
+let currentDraggedElement = '';
+let noTasks = `
+    &lt;div class="noTasks">
+        No tasks status
+    &lt;/div>
+`;
+
+
+/**
+ * Initialises the board, that is it loads all data and renders it.
+ */
+async function initBoard() {
+    await initAddTask();                 // needed for loading selections in add task submask
+    tasksArray = await getTasksArray();  // loading the already saved tasks from disk
+    renderTasks(tasksArray);
+}
+
+
+/**
+ * Renders the JSON data of an array. Usually that are the already saved data (tasksArray) but when searching for tasks this may be an array of filtered JSON data.
+ * 
+ * @param {json} arrayToRender - The array of already saved tasks OR the array of filtered tasks
+ */
+function renderTasks(arrayToRender) {
+    let statusArray = ['todo','inprogress','awaiting','done'];
+    for (let i = 0; i &lt; statusArray.length; i++) {
+        document.getElementById(statusArray[i]).innerHTML = '';
+        renderStatus(statusArray[i], arrayToRender);
+    }
+}
+
+
+/**
+ * Loads already saved tasks and returns an array of the JSON data of these tasks.
+ * 
+ * @returns An array with the JSON data of already saved tasks. If no data is saved it returns an empty array.
+ */
+async function getTasksArray() {
+    let tmpArray = await getItem('tasks');
+    tmpArray = await JSON.parse(tmpArray.data.value.replace(/'/g, '"'));
+    return (Array.isArray(tmpArray) ? tmpArray : []);
+}
+
+
+/**
+ * Renders the JSON data of a status (column). Usually that are the already saved data (tasksArray) but when searching for tasks this may be an array of filtered JSON data.
+ * 
+ * @param {string} statusToRender - The status (column) that shall be rendered
+ * @param {json} arrayToRender - The array of JSON objects that will be filtered to the status
+ */
+function renderStatus(statusToRender, arrayToRender) {
+    let filteredArray = arrayToRender.filter(t => t['status'] == statusToRender);
+    let newCode = ``;
+    if (filteredArray.length == 0) {
+        newCode = noTasks.replace('status', statusToRender).replace('inprogress', 'in progress').replace('awaiting', 'awaiting feedback');
+        document.getElementById(statusToRender).innerHTML += newCode;
+    } else {
+        for (let i = 0; i &lt; filteredArray.length; i++) {
+            const elem = filteredArray[i]; // elem contains now one task of the given status
+            newCode = getHtmlCode(elem);
+            document.getElementById(statusToRender).innerHTML += newCode;
+        }
+    }
+}
+
+
+/**
+ * Returns the html code for a JSON data object for displaying a task inside a status column.
+ * 
+ * @param {json} elem - The JSON data of the object whose html code should be returned.
+ * @returns A string representing the html code.
+ */
+function getHtmlCode(elem) {
+    // elem contains the json-data of a task
+    let newCode = `
+        &lt;div id="${elem['id']}" draggable="true" ondragstart="startDrag('${elem['id']}')" onclick="openTaskForView('${elem['id']}')" class="taskBox">
+            &lt;div class="cardCategoryAndArrow mb-20">
+                &lt;div id="category" class="cardCategory bgCatColor${elem['categorycolor']}">${elem['category']}&lt;/div>
+                &lt;div class="menuDropdownContainer">
+                    &lt;img src="./img/blackBackArrow.svg" class="cardArrow" onclick="showStatusMenu(event, '${elem['status']}', '${elem['id']}')">
+                    &lt;ul id="dropdown${elem['id']}" class="menuDropdown d-none">
+                        ${getHtmlCodeDropdown(elem)}
+                    &lt;/ul>
+                &lt;/div>
+            &lt;/div>
+            &lt;div id="title" class="cardTitle">${elem['title']}&lt;/div>
+            &lt;div id="description" class="cardDescription">${elem['description']}&lt;/div>
+    `;
+    newCode += getHtmlCodeSubtasks(elem);
+    newCode += `
+            &lt;div class="lettersAndPrio">
+                &lt;div id="prio" class="cardLettersContainer">
+    `;
+    newCode += getHtmlCodeEditors(elem);
+    newCode += `
+                &lt;/div>
+                &lt;div class="cardPrio">
+                    &lt;img src="./img/add-task/prio-${elem['prio'].toLowerCase()}.svg" alt="${elem['prio'].toLowerCase()} priority">
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    `;
+    return newCode;
+}
+
+
+/**
+ * Returns the html code for the status submenu. This part is used when changing a status by the arrow function.
+ * 
+ * @param {json} elem - The JSON data of the object whose html code should be returned.
+ * @returns A string representing the html code.
+ */
+function getHtmlCodeDropdown(elem) {
+    let allStatus = ['todo', 'inprogress', 'awaiting', 'done'];
+    let filteredStatus = allStatus.filter(ast => ast != elem['status']);
+    newCode = ``;
+    for (let i = 0; i &lt; filteredStatus.length; i++) {
+        let curStatus = filteredStatus[i];
+        let txtStatus = curStatus.replace('todo', 'To do').replace('inprogress', 'In progress').replace('awaiting', 'Awaiting Feedback').replace('done', 'Done');
+        newCode += `
+            &lt;li onclick="moveToFromMenu(event, '${curStatus}', '${elem['id']}')">${txtStatus}&lt;/li>
+        `;
+    }
+    return newCode;
+}
+
+
+/**
+ * Returns the html code for the subtasks of a task.
+ * 
+ * @param {json} elem - The JSON data of the object whose html code should be returned.
+ * @returns A string representing the html code.
+ */
+function getHtmlCodeSubtasks(elem) {
+    let elemSubtasks = elem['subtasks'];
+    let elemSubtasksCounter = elemSubtasks.length;
+    if (elemSubtasksCounter == 0) return ('');
+
+    let elemSubtasksDone = 0;
+    elemSubtasksDone = elemSubtasks.filter(st => st['status'] == 'done').length;
+    let percentage = (elemSubtasksCounter > 0) ? Math.round(100 / elemSubtasksCounter * elemSubtasksDone) : 0;
+    let newCode = `
+            &lt;div id="subtasks" class="cardSubtasks">
+                &lt;div class="cardSubtaskGraphic">
+                    &lt;div class="cardSubtaskPercent" style="width: ${percentage}%">&lt;/div>
+                &lt;/div>
+                ${elemSubtasksDone}/${elemSubtasksCounter} Done
+            &lt;/div>
+    `;
+    return (newCode);
+}
+
+
+/**
+ * Returns the html code for the editor (assign to) selection of a task.
+ * 
+ * @param {json} elem - The JSON data of the object whose html code should be returned.
+ * @returns A string representing the html code.
+ */
+function getHtmlCodeEditors(elem) {
+    let elemEditors = elem['assignedto'];  // Contains an array of email-addresses
+    let plusElements = elemEditors.length > 3 ? elemEditors.length - 2 : 0;
+    if (elemEditors.length == 0) return ('');
+    if (elemEditors.length > 3) {
+        let slicedEditors = elemEditors.slice(0,2);
+        elemEditors = slicedEditors;
+    }
+    let newCode = ``;
+
+    for (let i = 0; i &lt; elemEditors.length; i++) {
+        let nameJson = contactList.filter(c => c['email'] == elemEditors[i]);
+        let name = nameJson.length > 0 ? nameJson[0]['initials'] : elemEditors[i];
+        let color = nameJson.length > 0 ? nameJson[0]['color'] : 'bgColorGrey';
+        let nameInitials = getCardInitials(name);
+        let minusMargin = i > 0 ? ' cardLettersMinus6' : '';
+        newCode += `
+            &lt;div class="cardLetters ${color}${minusMargin}">${nameInitials}&lt;/div>
+        `;
+    }
+    if (plusElements > 0) newCode += `&lt;div class="cardLetters bgColorBlack cardLettersMinus6">+${plusElements}&lt;/div>`;
+
+    return newCode;
+}
+
+
+/**
+ * Returns the initials of a given name. If the name, hence the parameter, is only one word, the first two letters are taken for the initials.
+ * 
+ * @param {string} name - The name whose initials should be returned
+ * @returns A string with the initials for a name in uppercase letters
+ */
+function getCardInitials(name) {
+    let nameArray = name.split(' ');
+    let initial = '';
+    nameArray.length == 1 ? initial = nameArray[0].substring(0, 2) : initial = nameArray[0].substring(0, 1) + nameArray[1].substring(0, 1);
+    return initial.toUpperCase();
+}
+
+
+// --------- Drag &amp; Drop Functions ----------
+
+
+/**
+ * Sets a global parameter with the ID of the currently dragged element.
+ * 
+ * @param {string} cardID - The ID of the element that is dragged.
+ */
+function startDrag(cardID) {
+    currentDraggedElement = cardID;
+}
+
+
+/**
+ * Allow a drop.
+ * 
+ * @param {event} ev - The event that was called
+ */
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+
+/**
+ * Reacts to the dropping of an element inside a status column.
+ * 
+ * @param {string} cardColumn - The status column an element will be dropped in.
+ */
+async function moveTo(cardColumn) {
+    let curTask = tasksArray.filter(t => t['id'] == currentDraggedElement);  // get task-element of given id (id = currentDraggedElement)
+    curTask[0]['status'] = cardColumn;                                       // change status to given status (status = cardColumn)
+    await setItem('tasks', tasksArray);                                      // save the changed task, which means we have to save tasksArray
+    setNumbersToTaskNumbersForSummary();                                     // function for counting several summary data
+    currentDraggedElement = '';                                              // delete the entry in currentDraggedElement
+    deHighlightColumn(cardColumn);                                           // remove highlighting of the column
+    renderTasks(tasksArray);                                                 // and finally... reload the page
+}      
+
+
+/**
+ * Highlights a status column when hovering over it.
+ * 
+ * @param {string} colId - The status column that needs a hovering effect.
+ */
+function highlightColumn(colId) {
+    document.getElementById(colId).classList.add('taskColumnHighlighted');
+}
+
+
+/**
+ * Removes the highlighting of a status column when hovering leaves its area.
+ * 
+ * @param {string} colId - The status column whose hovering effect should be removed.
+ */
+function deHighlightColumn(colId) {
+    document.getElementById(colId).classList.remove('taskColumnHighlighted');
+}
+
+
+// ---------- END Drag &amp; Drop Functions ----------
+
+
+/**
+ * Deletes a task from the array of tasks and saves the changes to disk.
+ * 
+ * @param {string} taskId - The ID of the task to be deleted
+ */
+async function deleteTaskFromView(taskId) {
+    await deleteTask(taskId);
+    closeTaskForView();
+    renderTasks(tasksArray);
+}
+
+
+
+
+
+
+
+/**
+ * Search for tasks with phrases/letters in either title or description.
+ * Will be called when letters are written into the search field.
+ */
+function searchTasks() {
+    let searchValue = document.getElementById('boardSearchField').value.toLowerCase();
+    let filteredArray = tasksArray.filter(t => (t['title'].toLowerCase().includes(searchValue) || t['description'].toLowerCase().includes(searchValue)));
+    renderTasks(filteredArray);
+}
+
+
+
+
+
+
+function showStatusMenu(event, curStatus, curId) {
+    // console.log('showStatusMenu gestartet - Status: ' + curStatus);
+    event.stopPropagation();
+
+    document.getElementById('dropdown' + curId).classList.toggle('d-none');
+}
+
+function moveToFromMenu(event, whereTo, curId) {
+    // console.log('moveToFromMenu gestartet - Zielstatus: ' + whereTo);
+    event.stopPropagation();
+
+    currentDraggedElement = curId;
+    moveTo(whereTo);
+
+    document.getElementById('dropdown' + curId).classList.toggle('d-none');
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#boardChangeButtonVisibility">boardChangeButtonVisibility</a></li><li><a href="global.html#boardSetCategory">boardSetCategory</a></li><li><a href="global.html#boardSetCommonFields">boardSetCommonFields</a></li><li><a href="global.html#boardSetEditors">boardSetEditors</a></li><li><a href="global.html#boardSetSubtasks">boardSetSubtasks</a></li><li><a href="global.html#changeJsonData">changeJsonData</a></li><li><a href="global.html#closeTaskForView">closeTaskForView</a></li><li><a href="global.html#currentDraggedElement">currentDraggedElement</a></li><li><a href="global.html#currentEditedTask">currentEditedTask</a></li><li><a href="global.html#deHighlightColumn">deHighlightColumn</a></li><li><a href="global.html#deleteTaskFromView">deleteTaskFromView</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#emptyVariables">emptyVariables</a></li><li><a href="global.html#getCardInitials">getCardInitials</a></li><li><a href="global.html#getChangedJSON">getChangedJSON</a></li><li><a href="global.html#getHtmlCode">getHtmlCode</a></li><li><a href="global.html#getHtmlCodeDropdown">getHtmlCodeDropdown</a></li><li><a href="global.html#getHtmlCodeEditors">getHtmlCodeEditors</a></li><li><a href="global.html#getHtmlCodeSubtasks">getHtmlCodeSubtasks</a></li><li><a href="global.html#getTasksArray">getTasksArray</a></li><li><a href="global.html#getViewRender">getViewRender</a></li><li><a href="global.html#getViewRenderEditors">getViewRenderEditors</a></li><li><a href="global.html#getViewRenderSubtasks">getViewRenderSubtasks</a></li><li><a href="global.html#highlightColumn">highlightColumn</a></li><li><a href="global.html#initBoard">initBoard</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#openTaskForView">openTaskForView</a></li><li><a href="global.html#renderStatus">renderStatus</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#saveTask">saveTask</a></li><li><a href="global.html#searchTasks">searchTasks</a></li><li><a href="global.html#startDrag">startDrag</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 19 2023 12:49:58 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
