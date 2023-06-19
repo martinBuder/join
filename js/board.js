@@ -1,3 +1,6 @@
+/**
+ * Global variables
+ */
 let currentDraggedElement = '';
 let noTasks = `
     <div class="noTasks">
@@ -5,14 +8,22 @@ let noTasks = `
     </div>
 `;
 
+
+/**
+ * Initialises the board, that is it loads all data and renders it.
+ */
 async function initBoard() {
-
-    await initAddTask(); // needed for loading selections in add task submask
-    tasksArray = await getTasksArray();  // loading the already saved tasks
+    await initAddTask();                 // needed for loading selections in add task submask
+    tasksArray = await getTasksArray();  // loading the already saved tasks from disk
     renderTasks(tasksArray);
-
 }
 
+
+/**
+ * Renders the JSON data of an array. Usually that are the already saved data (tasksArray) but when searching for tasks this may be an array of filtered JSON data.
+ * 
+ * @param {json} arrayToRender - The array of already saved tasks OR the array of filtered tasks
+ */
 function renderTasks(arrayToRender) {
     let statusArray = ['todo','inprogress','awaiting','done'];
     for (let i = 0; i < statusArray.length; i++) {
@@ -21,8 +32,10 @@ function renderTasks(arrayToRender) {
     }
 }
 
+
 /**
  * Loads already saved tasks and returns an array of the JSON data of these tasks.
+ * 
  * @returns An array with the JSON data of already saved tasks. If no data is saved it returns an empty array.
  */
 async function getTasksArray() {
@@ -32,8 +45,13 @@ async function getTasksArray() {
 }
 
 
+/**
+ * Renders the JSON data of a status (column). Usually that are the already saved data (tasksArray) but when searching for tasks this may be an array of filtered JSON data.
+ * 
+ * @param {string} statusToRender - The status (column) that shall be rendered
+ * @param {json} arrayToRender - The array of JSON objects that will be filtered to the status
+ */
 function renderStatus(statusToRender, arrayToRender) {
-    // let filteredArray = tasksArray.filter(t => t['status'] == statusToRender);
     let filteredArray = arrayToRender.filter(t => t['status'] == statusToRender);
     let newCode = ``;
     if (filteredArray.length == 0) {
@@ -48,6 +66,13 @@ function renderStatus(statusToRender, arrayToRender) {
     }
 }
 
+
+/**
+ * Returns the html code for a JSON data object for displaying a task inside a status column.
+ * 
+ * @param {json} elem - The JSON data of the object whose html code should be returned.
+ * @returns A string representing the html code.
+ */
 function getHtmlCode(elem) {
     // elem contains the json-data of a task
     let newCode = `
@@ -81,6 +106,13 @@ function getHtmlCode(elem) {
     return newCode;
 }
 
+
+/**
+ * Returns the html code for the status submenu. This part is used when changing a status by the arrow function.
+ * 
+ * @param {json} elem - The JSON data of the object whose html code should be returned.
+ * @returns A string representing the html code.
+ */
 function getHtmlCodeDropdown(elem) {
     let allStatus = ['todo', 'inprogress', 'awaiting', 'done'];
     let filteredStatus = allStatus.filter(ast => ast != elem['status']);
@@ -95,6 +127,13 @@ function getHtmlCodeDropdown(elem) {
     return newCode;
 }
 
+
+/**
+ * Returns the html code for the subtasks of a task.
+ * 
+ * @param {json} elem - The JSON data of the object whose html code should be returned.
+ * @returns A string representing the html code.
+ */
 function getHtmlCodeSubtasks(elem) {
     let elemSubtasks = elem['subtasks'];
     let elemSubtasksCounter = elemSubtasks.length;
@@ -114,6 +153,13 @@ function getHtmlCodeSubtasks(elem) {
     return (newCode);
 }
 
+
+/**
+ * Returns the html code for the editor (assign to) selection of a task.
+ * 
+ * @param {json} elem - The JSON data of the object whose html code should be returned.
+ * @returns A string representing the html code.
+ */
 function getHtmlCodeEditors(elem) {
     let elemEditors = elem['assignedto'];  // Contains an array of email-addresses
     let plusElements = elemEditors.length > 3 ? elemEditors.length - 2 : 0;
@@ -154,17 +200,21 @@ function getCardInitials(name) {
 }
 
 
+// --------- Drag & Drop Functions ----------
 
 
-
-// Drag & Drop Functions
-
+/**
+ * Sets a global parameter with the ID of the currently dragged element.
+ * 
+ * @param {string} cardID - The ID of the element that is dragged.
+ */
 function startDrag(cardID) {
     currentDraggedElement = cardID;
 }
 
+
 /**
- * Allow a drop
+ * Allow a drop.
  * 
  * @param {event} ev - The event that was called
  */
@@ -172,6 +222,12 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
+
+/**
+ * Reacts to the dropping of an element inside a status column.
+ * 
+ * @param {string} cardColumn - The status column an element will be dropped in.
+ */
 async function moveTo(cardColumn) {
     let curTask = tasksArray.filter(t => t['id'] == currentDraggedElement);  // get task-element of given id (id = currentDraggedElement)
     curTask[0]['status'] = cardColumn;                                       // change status to given status (status = cardColumn)
@@ -182,17 +238,28 @@ async function moveTo(cardColumn) {
     renderTasks(tasksArray);                                                 // and finally... reload the page
 }      
 
+
+/**
+ * Highlights a status column when hovering over it.
+ * 
+ * @param {string} colId - The status column that needs a hovering effect.
+ */
 function highlightColumn(colId) {
     document.getElementById(colId).classList.add('taskColumnHighlighted');
 }
 
+
+/**
+ * Removes the highlighting of a status column when hovering leaves its area.
+ * 
+ * @param {string} colId - The status column whose hovering effect should be removed.
+ */
 function deHighlightColumn(colId) {
     document.getElementById(colId).classList.remove('taskColumnHighlighted');
 }
-// END Drag & Drop Functions
 
 
-
+// ---------- END Drag & Drop Functions ----------
 
 
 /**
