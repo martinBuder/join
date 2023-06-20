@@ -210,6 +210,6 @@ async function deleteTask(taskId) {
     tasksArray = await getTasksArray();                                  // load current tasks so I really have all current ones
     let filteredTasksArray = tasksArray.filter(t => t['id'] != taskId);  // filtering out the task to delete
     await setItem('tasks', filteredTasksArray);                          // save the data to disk
-    tasksArray = filteredTasksArray ;                                     // assign the filtered array to the current tasks array
+    tasksArray = filteredTasksArray;                                     // assign the filtered array to the current tasks array
     setNumbersToTaskNumbersForSummary();                                 // function for counting several summary data
 }
