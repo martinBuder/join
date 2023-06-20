@@ -422,6 +422,26 @@ body {
         margin-right: 0;
         padding: 8px 16px;
     }
+
+    
+    .contactColorWrapper {
+        flex-wrap: wrap;
+        bottom: 10px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+        gap: 50px
+    }
+
+    .contactColorContainer {
+        height: 40px;
+        width: 40px;
+        border: 3px solid #aaa;
+    }
+
+    .contactColorWrapper p {
+        width: 100%;
+    }
 }
 
 @media(max-width: 1060px) {
@@ -598,22 +618,4 @@ body {
         height: 35px;
     }
 
-    .contactColorWrapper {
-        flex-wrap: wrap;
-        bottom: 10px;
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 10px;
-        gap: 50px
-    }
-
-    .contactColorContainer {
-        height: 40px;
-        width: 40px;
-        border: 3px solid #aaa;
-    }
-
-    .contactColorWrapper p {
-        width: 100%;
-    }
 }

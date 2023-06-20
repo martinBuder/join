@@ -100,7 +100,6 @@ async function saveEditContact(i) {
  */
 async function deleteContact(i) {
   contactList.splice(i, 1);
-  debugger
   saveContactList();
   await setContactListToRemoteStorage("contactList", contactList);
   getContactList();
