@@ -72,12 +72,12 @@ function renderResetPassword() {
 /**
 	* render new password isn't ok content
 
-	* @param {HTMLInputElement} confirmPassword 
+	* @param {HTMLInputElement} inputField
 	*/
-function newPasswordFalse(confirmPassword){
-	let requiredMessage = document.getElementById('requiredMessage');
+function somethingIsWrong(inputField){
+	 let requiredMessage = document.getElementById('requiredMessage');
 		requiredMessage.style="opacity: 1";
-		confirmPassword.parentElement.style="border-color: red"
+		inputField.parentElement.style="border-color: red"
 }
 
 /** 

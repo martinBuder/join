@@ -12,11 +12,11 @@ function returnLogInHtml() {
 			<input type="email" id="email" placeholder="Email" class="inputField" required><img src="./img/letter.svg" alt="">
 		</div>
 		<div class="inputContainer">
-			<input type="password" id="passwordField" placeholder="Password" class="inputField" autocomplete="current-password" required><div id="passwordImg" onclick="showPassword()"></div>
+			<input type="password" id="passwordField" placeholder="Password" class="inputField" required><div id="passwordImg" onclick="showPassword()"></div>
 		</div>
 		<div class="rememberContainer">
 			<div class="checkContainer">
-				<input type="checkbox" name="remember" id="remember"> <p>Remember me</p>
+				<input type="checkbox" onchange="toggleAutocomplete()" name="remember" id="remember"><p>Remember me</p>
 			</div>    
 			<a href="#" class="link" onclick="renderForgotPassword()">Forgot my password</a>
 		</div>
@@ -45,12 +45,13 @@ function returnSignUpHtml() {
 			<div class="inputContainer">
 				<input type="email" id="email" placeholder="Email" class="inputField" required><img src="./img/letter.svg" alt="" >
 			</div>
-			<div class="inputContainer">
-				<input type="password" id="passwordField" placeholder="Password" class="inputField" autocomplete="current-password" minlength="8" required><div id="passwordImg" onclick="showPassword()"></div>
+			<div class="inputContainer requiredMessageContainer">
+				<input type="password" id="passwordField" placeholder="Password" class="inputField" minlength="8" required><div id="passwordImg" onclick="showPassword()"></div>
+				<span id="requiredMessage" style="opacity: 0">This user has already an account.</span>
 			</div>
-			<!-- ! function sign up field evtl. wieder weg oder anpassen-->
 			<div class="twiceBtnContainer">
 				<button class="focusBtn" type="submit">Sign up</button>
+
 			</div>
 	</form>	
 	`;
@@ -74,8 +75,10 @@ function returnForgotPasswordHtml() {
 				<p class="activityText">
 					Don't worry! We will send you an email with the instructions to reset your password.
 				</p>
-				<div class="inputContainer">
+				<div class="inputContainer requiredMessageContainer">
 					<input type="email" id="email" placeholder="Email" class="inputField" required><img src="./img/letter.svg" alt="">
+					<span id="requiredMessage" style="opacity: 0">
+						This User wasn't found.</span>
 				</div>
 				<div class="twiceBtnContainer">
 					<button class="focusBtn" type="submit">Send me the email</button>
@@ -126,8 +129,6 @@ function returnResetPasswordHtml() {
 }
 
 /** 
-	* generate reset password is ok content
-
 	* @returns to newPasswordOk() 
 	*/
 function returnIdentPasswordHtml() {
@@ -138,9 +139,11 @@ function returnIdentPasswordHtml() {
 		`
 }
 
+
+
 /**  
 	* generate an email is send content
-	
+	*
 	* @returns to resetPassword()
 	*/
 function returnSendEmailHtml() {

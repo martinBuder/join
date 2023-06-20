@@ -234,7 +234,7 @@ function createNewPassword() {
   if (newPassword.value === confirmPassword.value) {
     newPasswordOk(newPassword);
   } else {
-    newPasswordFalse(confirmPassword);
+    somethingIsWrong(confirmPassword);
   }
 }
 

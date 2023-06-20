@@ -111,8 +111,9 @@ async function newPasswordOk(newPassword) {
  */
 function noUserFound() {
   if (user == undefined) {
-    alert(`This user hasn't an account!`);
-    renderForgotPassword();
+    let emailInput = document.getElementById('email')
+    somethingIsWrong(emailInput);
+    setTimeout(renderForgotPassword, 2000);
   } else {
     goToChangePassword();
   }
@@ -131,9 +132,23 @@ function goToChangePassword() {
  */
 function isUserDouble() {
   if (user !== undefined) {
-    alert("This user has already an account!");
-    clearDesktopUsersUserInformation();
+    let emailInput = document.getElementById('email');
+    somethingIsWrong(emailInput);
+    setTimeout(clearDesktopUsersUserInformation, 2000);
   } else {
     saveNewAccount();
+  }
+}
+
+/**
+ * set autocomplete email if remember is checked
+ */
+function toggleAutocomplete() {
+  let rememberCheckbox = document.getElementById("remember");
+  let emailInput = document.getElementById("email");
+    if (rememberCheckbox.checked) {
+    emailInput.setAttribute("autocomplete", "current-email");
+  } else {
+    emailInput.removeAttribute("autocomplete");
   }
 }
