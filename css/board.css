@@ -378,6 +378,7 @@
 }
 .viewTaskEditorAndButtons {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-end;
     gap: 50px;
@@ -493,6 +494,13 @@
 @media (max-width: 450px) {
     .tool {
         font-size: 16px;
+    }
+    .viewTaskText {
+        font-size: 16px;
+    }
+    .viewTaskEditorBadge {
+        width: 35px;
+        height: 35px;
     }
 }
 

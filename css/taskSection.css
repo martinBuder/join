@@ -62,9 +62,7 @@
 	}
 	
 .window .btnTaskCreate {
-  position: absolute;
-  top: 16px;
-  right: 20px;
+  position: inherit;
   z-index: 10;
 	}
 }

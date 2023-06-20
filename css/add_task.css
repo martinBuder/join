@@ -440,6 +440,9 @@ h1 {
     .taskButtons {
         margin: 10px 0 23px 0;
     }
+    .btnTaskCreate {
+        top: 7px;
+    }
 }
 
 @media (max-width: 490px) {
