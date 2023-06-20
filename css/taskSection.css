@@ -29,12 +29,11 @@
 	width: 95%;
 	height: 95%;
 	border-radius: 30px;
-	overflow-y: initial;
 	background: #fff;
 }
 
 #contentAddTask {
-	margin-top: 20px;
+	margin-top: 0;
 }
 
 .closeWindow {
@@ -48,8 +47,14 @@
 
 .addTaskContainer {
 	z-index: 2;
+	height: 100%;
 	overflow-y: auto;
-	height: 96%
+	justify-content: center;
+}
+
+.addTaskContainer::-webkit-scrollbar-thumb {
+	position: absolute;
+	right: -20px
 }
 
 #navLinkAddTaskM {
@@ -64,6 +69,12 @@
 .window .btnTaskCreate {
   position: inherit;
   z-index: 10;
+	}
+}
+
+@media (max-width: 1270px) {
+	.addTaskContainer {
+		justify-content: flex-start;
 	}
 }
 
@@ -96,6 +107,7 @@
 		max-height: calc(100vh - 150px);
 		height: 100%;
 		padding-bottom: 5px;
+		margin-top: 5px;
 		border-radius: 0;
 	}
 
