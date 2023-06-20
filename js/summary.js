@@ -48,7 +48,7 @@ function getDayTime() {
   if (dayTime >= 12 && dayTime < 17) {
     greetingWords = 'Good Afternoon';
   }
-  if (dayTime >= 17 && dayTime < 5) {
+  if (dayTime >= 17 || dayTime < 5) {
     greetingWords = 'Good Evening';
   }
 }
