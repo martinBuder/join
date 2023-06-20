@@ -36,6 +36,7 @@ async function saveTask() {
     var index = tasksArray.findIndex(obj => obj.id == currentEditedTask);  // get the index of the current task inside the tasksArray
     changeJsonData(index, newJson);                                        // change the JSON data inside tasksArray
     await setItem('tasks', tasksArray);                                    // save the changes of tasksArray to disc
+    setNumbersToTaskNumbersForSummary();                                   // function for counting several summary data
     emptyVariables();                                                      // reset the global variables that were used
     closeAdd();                                                            // Close Edit Form
 
