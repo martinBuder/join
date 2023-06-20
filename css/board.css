@@ -489,14 +489,26 @@
     .categorie {
         width: 100%;
     }
+    .viewTask {
+        top: 70px;
+        height: calc(100% - 150px); /* minus height of header and footer */
+        align-items: flex-start;
+        overflow-y: scroll;
+    }
 }
 
 @media (max-width: 450px) {
     .tool {
         font-size: 16px;
     }
+    #viewTaskTitle {
+        font-size: 41px;
+    }
     .viewTaskText {
         font-size: 16px;
+    }
+    .viewTaskOneLine {
+        gap: 15px;
     }
     .viewTaskEditorBadge {
         width: 35px;
