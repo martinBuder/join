@@ -274,11 +274,6 @@ async function deleteTaskFromView(taskId) {
 }
 
 
-
-
-
-
-
 /**
  * Search for tasks with phrases/letters in either title or description.
  * Will be called when letters are written into the search field.
@@ -290,19 +285,27 @@ function searchTasks() {
 }
 
 
-
-
-
-
+/**
+ * Shows the menu to change the status of a task.
+ * 
+ * @param {object} event - The event handler
+ * @param {string} curStatus - The current status
+ * @param {string} curId - The ID of the element that was clicked
+ */
 function showStatusMenu(event, curStatus, curId) {
-    // console.log('showStatusMenu gestartet - Status: ' + curStatus);
     event.stopPropagation();
-
     document.getElementById('dropdown' + curId).classList.toggle('d-none');
 }
 
+
+/**
+ * Moves a task to another status.
+ * 
+ * @param {object} event - The event handler
+ * @param {string} whereTo - The new status, that is, the status the task will be moved to
+ * @param {string} curId - The ID of the element that will be moved
+ */
 function moveToFromMenu(event, whereTo, curId) {
-    // console.log('moveToFromMenu gestartet - Zielstatus: ' + whereTo);
     event.stopPropagation();
 
     currentDraggedElement = curId;

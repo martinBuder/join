@@ -279,7 +279,7 @@ h1 {
 
 .taskButtons {
     height: 65px;
-    margin: 43px 0 40px 0;
+    margin: 38px 0 40px 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -492,6 +492,12 @@ h1 {
     textarea::placeholder,
     .likeInput {
         font-size: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .taskPriority {
+        flex-direction: column;
     }
 }
 

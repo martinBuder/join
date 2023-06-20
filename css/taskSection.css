@@ -73,7 +73,7 @@
  .header {
 		position: fixed;
 		top: 0;
-		z-index: 0
+		z-index: 1;
 	}
 
 	.addTask {
@@ -143,6 +143,7 @@
 
 	.window .taskPriority {
 		flex-direction: row;
+		height: 61px;
 	}
 
 	.window .btnPriority {
@@ -158,4 +159,14 @@
 		font-size: 16px;
 	}
 
+}
+
+@media (max-width: 400px) {
+	.window .taskPriority {
+		flex-direction: column;
+		height: 183px;
+	}
+	.window .taskPriority > * {
+		width: 50%;
+	}
 }

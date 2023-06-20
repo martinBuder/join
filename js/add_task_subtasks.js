@@ -66,7 +66,7 @@ function selectNewSubtaskInput() {
     selectedSubtasksStatus.push('todo');
     let newCode = `
         <li>
-            <img src="./img/add-task/check-rectangle-unchecked.svg" alt="" id="check-${newValue.replace(' ', '_')}" onclick="toggleSubtaskCheck('${newValue}', 'check-${newValue.replace(' ', '_')}')">
+            <img src="./img/add-task/check-rectangle-unchecked.svg" alt="" id="check-${newValue.replace(/\s/g, '~~~')}" onclick="toggleSubtaskCheck('${newValue}', 'check-${newValue.replace(/\s/g, '~~~')}')">
             ${newValue}
             <img src="./img/delete.svg" alt="delete" onclick="removeSubtask('${newValue}');">
         </li>
@@ -84,7 +84,7 @@ function selectNewSubtaskInput() {
 function removeSubtask(subtask) {
     selectedSubtasksStatus.splice(selectedSubtasks.indexOf(subtask), 1);
     selectedSubtasks = selectedSubtasks.filter((tmpItem) => tmpItem != subtask);
-    let id = `check-${subtask.replace(' ', '_')}`;
+    let id = `check-${subtask.replace(/\s/g, '~~~')}`;
     let img = document.getElementById(id);
     let li = img.parentNode;
     li.parentNode.removeChild(li);

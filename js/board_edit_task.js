@@ -12,7 +12,6 @@ let currentEditedTask = '';  // contains the id of the task that is currently ed
  * @param {string} curId - The ID of the task that is about to change
  */
 function editTask(curId) {
-    console.log(curId);
     currentEditedTask = curId;
     let curTask = tasksArray.filter(t => t['id'] == currentEditedTask);
     closeTaskForView();  // closes the viewing mode of the current task - otherwise it will still be open in the background
