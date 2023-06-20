@@ -268,6 +268,7 @@ function deHighlightColumn(colId) {
  * @param {string} taskId - The ID of the task to be deleted
  */
 async function deleteTaskFromView(taskId) {
+    debugger
     await deleteTask(taskId);
     closeTaskForView();
     renderTasks(tasksArray);
