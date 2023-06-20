@@ -68,6 +68,10 @@ function clearTask() {
     selectedPriority = '';
     selectedContacts = [];
 
+    selectedSubtasks = [];
+    selectedSubtasksStatus = [];
+    categories = [];
+
     initAddTask();
 }
 
