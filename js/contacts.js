@@ -176,8 +176,8 @@ function addedEditContactBtn(i) {
     "contactWorkspaceBtnContainer"
   );
   contactWorkspaceBtnContainer.innerHTML = /*html*/ `
-			<button class="outFocusBtn" onclick="deleteContact(${i})">Delete</button>
-   <button class="focusBtn editContactSaveBtn" submit>Save</button>
+	<button class="outFocusBtn" onclick="deleteContact(event, ${i})">Delete</button>
+   <button class="focusBtn editContactSaveBtn" submit disabled>Save</button>
 		`;
   contactWorkspaceBtnContainer.style.justifyContent = "flex-end";
 }

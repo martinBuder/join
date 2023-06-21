@@ -87,31 +87,63 @@ async function saveEditContact(i) {
   setEditedContact(i);
   getContactInitials(i);
   saveContactList();
-  await setContactListToRemoteStorage("contactList", contactList);
   getContactList();
   fillContactList();
   closeAddContact();
+  await setContactListToRemoteStorage("contactList", contactList);
 }
 
 /**
  * serie of function to delete contact
  * 
  * @param {index} i
+ * @param {event} submit saveNewContact()
  */
-async function deleteContact(i) {
+async function deleteContact(event, i) {
+  event.preventDefault();
+  closeAllButtons();
   contactList.splice(i, 1);
-  saveContactList();
-  await setContactListToRemoteStorage("contactList", contactList);
-  getContactList();
-  fillContactList();
-  closeAddContact();
+  saveContactList(); // set contactList to localStorage
+  clearFullContact();
+  fillContactList(); // füllt contactList nach Anfangsbuchstaben
+  closeAddContact(); // schließt bearbeitungsfenster
   closeFullSite();
+  openAllButtons();
+  await setContactListToRemoteStorage("contactList", contactList);
+}
+
+/**
+ * close all  Buttons
+ */
+function closeAllButtons() {
+  let buttons = document.getElementsByTagName('button');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = true;
+  }
+}
+
+/**
+ * open all Buttons
+ */
+function openAllButtons() {
+  let buttons = document.getElementsByTagName('button');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = false;
+  }
+}
+
+/**
+ * clear full contact
+ */
+function clearFullContact() {
+  document.getElementById('showFullContact').innerHTML = '';
 }
 
 /**
  * serie of function to save the new contact
  */
 async function saveNewContact() {
+  closeAllButtons();
   getContactInputFields();
   getNewContactData();
   getContactInitials();
@@ -122,6 +154,7 @@ async function saveNewContact() {
   getContactList();
   fillContactList();
   closeAddContact();
+  openAllButtons();
 }
 
 /**
