@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="script.js"></script>
-    <script src="js/storage.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="./js/index.js"></script>
+    <script src="./js/user.js"></script>
+    <script src="./js/indexUser.js"></script>
+    <script src="./js/indexReturnHtml.js"></script>
 
-    <link rel="icon" type="image/png" href="img/join-navicon.png">
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/indexStyle.css" />
+    <link rel="icon" type="image/png" href="./img/join-navicon.png" />
     <title>Join</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body class="indexBody" onload="renderLogInWindow()">
+    <header class="indexHeader">
+      <div class="indexLogo">
+        <img src="./img/join-logo.svg" alt="logo" />
+      </div>
+      <div
+        class="headerBtnContainer changeOpacityAnimation"
+        id="indexHeaderBtn"></div>
+    </header>
+    <div class="smallFirstIndexWindow">
+      <img src="./img/join-logo-white.svg" alt="" />
+    </div>
+    <main class="indexMain">
+      <div class="changeOpacityAnimation" id="indexContent"></div>
+    </main>
+  </body>
 </html>

@@ -1,18 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script src="script.js"></script>
-    <script src="js/storage.js"></script>
-    <link rel="stylesheet" href="style.css">
-    
-    <link rel="icon" type="image/png" href="img/join-navicon.png">
+    <script src="./js/user.js"></script>
+    <script src="./js/slideSection.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/board.js"></script>
+    <script src="./js/board_view_task.js"></script>
+    <script src="./js/board_edit_task.js"></script>
+    <script src="./js/add_task_categories.js"></script>
+    <script src="./js/add_task_assign.js"></script>
+    <script src="./js/add_task_subtasks.js"></script>
+    <script src="./js/add_task.js"></script>
+    <script src="./js/boardToSummary.js"></script>
+
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/add_task.css" />
+    <link rel="stylesheet" href="./css/taskSection.css" />
+    <link rel="icon" type="image/png" href="./img/join-navicon.png" />
+
     <title>Join</title>
-</head>
-<body>
-    
-</body>
+  </head>
+
+  <body onload="initBoard();" id="editOutScroll">
+    <header w3-include-html="templates/header.html" class="header"></header>
+    <section w3-include-html="templates/sidebar.html" class="sidebar"></section>
+
+    <!-- Main section for display of the board -->
+    <section class="board">
+      <div class="boardHeadline">
+        <div class="tool">Kanban Project Management Tool</div>
+        <div class="boardText">Board</div>
+        <div class="searchAndAddTask">
+          <div class="searchLine">
+            <input
+              type="text"
+              id="boardSearchField"
+              placeholder="Find Task"
+              class=""
+              onkeyup="searchTasks()" />
+            <img class="lupe" src="./img/Vector.png" alt="Search" />
+          </div>
+          <button onclick="addTask()" class="boardAddTaskButton">
+            <span>Add task</span>
+            <img src="./img/Group 11.png" alt="add task" />
+          </button>
+        </div>
+      </div>
+      <div class="boardTasks">
+        <!-- Tasks of status 'todo' -->
+        <div class="boxes">
+          <div class="boxStatus">
+            <div class="boxStatusName">To do</div>
+            <div class="boxStatusPlusImage" onclick="addTask()">
+              <img src="./img/add-task/icon-plus-sign.svg" alt="" />
+            </div>
+          </div>
+          <div
+            id="todo"
+            class="taskColumn"
+            ondrop="moveTo('todo')"
+            ondragover="allowDrop(event); highlightColumn('todo')"
+            ondragleave="deHighlightColumn('todo')">
+            <!-- Here tasks of that status or a placeholer will be rendered -->
+          </div>
+        </div>
+
+        <!-- Tasks of status 'inprogress' -->
+        <div class="boxes">
+          <div class="boxStatus">
+            <div class="boxStatusName">In progress</div>
+            <div class="boxStatusPlusImage" onclick="addTask()">
+              <img src="./img/add-task/icon-plus-sign.svg" alt="" />
+            </div>
+          </div>
+          <div
+            id="inprogress"
+            class="taskColumn"
+            ondrop="moveTo('inprogress')"
+            ondragover="allowDrop(event); highlightColumn('inprogress')"
+            ondragleave="deHighlightColumn('inprogress')">
+            <!-- Here tasks of that status or a placeholer will be rendered -->
+          </div>
+        </div>
+
+        <!-- Tasks of status 'awaiting' -->
+        <div class="boxes">
+          <div class="boxStatus">
+            <div class="boxStatusName">Awaiting Feedback</div>
+            <div class="boxStatusPlusImage" onclick="addTask()">
+              <img src="./img/add-task/icon-plus-sign.svg" alt="" />
+            </div>
+          </div>
+          <div
+            id="awaiting"
+            class="taskColumn"
+            ondrop="moveTo('awaiting')"
+            ondragover="allowDrop(event); highlightColumn('awaiting')"
+            ondragleave="deHighlightColumn('awaiting')">
+            <!-- Here tasks of that status or a placeholer will be rendered -->
+          </div>
+        </div>
+
+        <!-- Tasks of status 'done' -->
+        <div class="boxes">
+          <div class="boxStatus">
+            <div class="boxStatusName">Done</div>
+            <div class="boxStatusPlusImage" onclick="addTask()">
+              <img src="./img/add-task/icon-plus-sign.svg" alt="" />
+            </div>
+          </div>
+          <div
+            id="done"
+            class="taskColumn"
+            ondrop="moveTo('done')"
+            ondragover="allowDrop(event); highlightColumn('done')"
+            ondragleave="deHighlightColumn('done')">
+            <!-- Here tasks of that status or a placeholer will be rendered -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section for adding a new task -->
+    <section class="addTask addTask-none" id="addTask" onclick="closeAdd()">
+      <div id="window" class="window" onclick="event.stopPropagation()">
+        <section
+          w3-include-html="add_task_content.html"
+          class="addTaskContainer"></section>
+        <img
+          class="closeWindow"
+          onclick="closeAdd()"
+          src="./img/icon-cancel.svg"
+          alt="" />
+      </div>
+    </section>
+
+    <!-- Section for viewing a task in read mode -->
+    <section id="viewTask" class="viewTask d-none">
+      <div id="viewTaskContainer" class="viewTaskContainer">
+        <!-- Data will be rendered when clicking on a task -->
+      </div>
+    </section>
+  </body>
 </html>

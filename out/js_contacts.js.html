@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/contacts.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/contacts.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let contactJson = {
+  name: "",
+  email: "",
+  phonenumber: "",
+  initials: "",
+  color: "",
+};
+
+let contactName;
+let contactEmail;
+let contactPhone;
+let nameArray;
+
+/**
+ * wait that init is ready and just then start fillContactList
+ */
+async function initContact() {
+  await init();
+  fillContactList();
+  addCategories();
+  addContacts();
+}
+
+/**
+ * render the full Contact part
+ * 
+ * @param {index} i
+ */
+function renderFullContact(i) {
+  getContactWindow();
+  getFullContactArea(i);
+  contactListBtnBackground(i);
+}
+
+/**
+ * open full contact site (mobile)
+ */
+function getContactWindow() {
+  let contactWindow = document.getElementsByClassName("contactWindow")[0];
+  contactWindow.classList.add("fullSite");
+  fillContactList(); /* so you have no darkblue background if you close the window */
+}
+
+/**
+ * close full contact site (mobile)
+ */
+function closeFullSite() {
+  let oldContactWrapper = document.getElementsByClassName("contactWrapper")[o];
+  oldContactWrapper.classList.remove("sameFullContact");
+  let contactWindow = document.getElementsByClassName("contactWindow")[0];
+  contactWindow.classList.remove("fullSite");
+}
+
+/**
+ * get the area to fill
+ * 
+ * @param {index} i
+ */
+function getFullContactArea(i) {
+  let showFullContact = document.getElementById("showFullContact");
+  showFullContact.innerHTML = returnFullContactHtml(i);
+}
+
+/**
+ * open add contact Window
+ */
+function openAddContact() {
+  addedNewContactBtn();
+  startSlideAnimation();
+}
+
+/**
+ * serie of functions to open the contact edit window
+ * 
+ * @param {index} i
+ */
+function openEditContact(i) {
+  changeClaimer();
+  getContactInputFields();
+  fillEditInputs(i);
+  createCircle(i);
+  addedEditContactBtn(i);
+  startSlideAnimation();
+  overwriteContactSaveOnSubmit(i);
+}
+
+/**
+ * change Claimer text
+ */
+function changeClaimer() {
+  let changeClaimer = document.getElementsByClassName("claimerText")[0];
+  changeClaimer.innerHTML = /*html*/ `
+		&lt;h1>Edit contact&lt;/h1>
+	`;
+}
+
+/**
+ * change Claimer text
+ */
+function changeClaimerback() {
+  let changeClaimer = document.getElementsByClassName("claimerText")[0];
+  changeClaimer.innerHTML = /*html*/ `
+		&lt;h1>Add Contact&lt;/h1>
+    &lt;p>Tasks are better with a team!&lt;/p>
+	`;
+}
+
+/**
+ * fill inputfields with contactList Infos
+ * 
+ * @param {index} i
+ */
+function fillEditInputs(i) {
+  contactName.value = contactList[i]["name"];
+  contactEmail.value = contactList[i]["email"];
+  contactPhone.value = contactList[i]["phonenumber"];
+}
+
+/**
+ * clear all inputfields from inputArea
+ */
+function clearInputs() {
+  document.getElementById("inputArea").reset();
+}
+
+/**
+ * fill contactJson with edited information
+ * 
+ * @param {index} i
+ */
+function setEditedContact(i) {
+  contactList[i]["name"] = contactName.value;
+  contactList[i]["email"] = contactEmail.value;
+  contactList[i]["phonenumber"] = contactPhone.value;
+}
+
+/**
+ * change form function to new function
+ * 
+ * @param {index} i
+ */
+function overwriteContactSaveOnSubmit(i) {
+  let form = document.getElementById("inputArea");
+  form.setAttribute("onsubmit", `saveEditContact(${i})`);
+}
+
+/**
+ * contact Window get the animatioon to slide in
+ */
+function startSlideAnimation() {
+  let addContactWindow = document.getElementById("addContactWindow");
+  addContactWindow.classList.remove('workOnContact')
+}
+
+/**
+ * render the btn for new contact in contact window
+ */
+function addedNewContactBtn() {
+  let contactWorkspaceBtnContainer = document.getElementById(
+    "contactWorkspaceBtnContainer"
+  );
+  contactWorkspaceBtnContainer.innerHTML = /*html*/ `
+			&lt;button class="btnWithImg outFocusBtn contactCancelBtn" onclick="closeAddContact()">&lt;p>Cancel&lt;/p>&lt;p>&amp;#10006&lt;/p>&lt;/button>
+   &lt;button class="btnWithImg focusBtn" submit >&lt;p>Create contact&lt;/p>&lt;p>&amp;#10003&lt;/p>&lt;/button>
+		`;
+  contactWorkspaceBtnContainer.style.justifyContent = "flex-start";
+}
+
+/**
+ * render the btn for edit contact in contact window
+ * 
+ * @param {index} i
+ */
+function addedEditContactBtn(i) {
+  let contactWorkspaceBtnContainer = document.getElementById(
+    "contactWorkspaceBtnContainer"
+  );
+  contactWorkspaceBtnContainer.innerHTML = /*html*/ `
+			&lt;button class="outFocusBtn" onclick="deleteContact(${i})">Delete&lt;/button>
+   &lt;button class="focusBtn editContactSaveBtn" submit>Save&lt;/button>
+		`;
+  contactWorkspaceBtnContainer.style.justifyContent = "flex-end";
+}
+
+/**
+ * This function closes the input mask.
+ */
+function closeAddContact() {
+  let addContactWindow = document.getElementById('addContactWindow');
+  let contactColorWrapper = document.getElementsByClassName('contactColorWrapper')[0];
+  addContactWindow.classList.add('workOnContact');
+  setTimeout(clearInputs, 1000);
+  setTimeout(changeClaimerback, 1000);
+  setTimeout(contactColorWrapper.innerHTML = ``, 1000);
+}
+
+/**
+ * get the inputFields from work on contact window
+ */
+function getContactInputFields() {
+  contactName = document.getElementById("contactName");
+  contactEmail = document.getElementById("contactEmail");
+  contactPhone = document.getElementById("contactPhone");
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activateNewCatInput">activateNewCatInput</a></li><li><a href="global.html#addCategories">addCategories</a></li><li><a href="global.html#addColorNewContact">addColorNewContact</a></li><li><a href="global.html#addContacts">addContacts</a></li><li><a href="global.html#addInitialsBadge">addInitialsBadge</a></li><li><a href="global.html#addTask">addTask</a></li><li><a href="global.html#addedEditContactBtn">addedEditContactBtn</a></li><li><a href="global.html#addedNewContactBtn">addedNewContactBtn</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#bgColorArray">bgColorArray</a></li><li><a href="global.html#boardChangeButtonVisibility">boardChangeButtonVisibility</a></li><li><a href="global.html#boardSetCategory">boardSetCategory</a></li><li><a href="global.html#boardSetCommonFields">boardSetCommonFields</a></li><li><a href="global.html#boardSetEditors">boardSetEditors</a></li><li><a href="global.html#boardSetSubtasks">boardSetSubtasks</a></li><li><a href="global.html#cancelNewAssInput">cancelNewAssInput</a></li><li><a href="global.html#cancelNewCatInput">cancelNewCatInput</a></li><li><a href="global.html#cancelNewSubtaskInput">cancelNewSubtaskInput</a></li><li><a href="global.html#categories">categories</a></li><li><a href="global.html#changeClaimer">changeClaimer</a></li><li><a href="global.html#changeClaimerback">changeClaimerback</a></li><li><a href="global.html#changeContactColor">changeContactColor</a></li><li><a href="global.html#changeCursorUserImg">changeCursorUserImg</a></li><li><a href="global.html#changeJsonData">changeJsonData</a></li><li><a href="global.html#changeToYou">changeToYou</a></li><li><a href="global.html#changeUserImg">changeUserImg</a></li><li><a href="global.html#changeUserInformation">changeUserInformation</a></li><li><a href="global.html#changeYouToName">changeYouToName</a></li><li><a href="global.html#checkRequiredFields">checkRequiredFields</a></li><li><a href="global.html#checkUser">checkUser</a></li><li><a href="global.html#choiceColor">choiceColor</a></li><li><a href="global.html#chosseNewColor">chosseNewColor</a></li><li><a href="global.html#clearAssignments">clearAssignments</a></li><li><a href="global.html#clearCounters">clearCounters</a></li><li><a href="global.html#clearDesktopUsersUserInformation">clearDesktopUsersUserInformation</a></li><li><a href="global.html#clearInputs">clearInputs</a></li><li><a href="global.html#clearTask">clearTask</a></li><li><a href="global.html#clearUserInformation">clearUserInformation</a></li><li><a href="global.html#clearUsers">clearUsers</a></li><li><a href="global.html#closeAdd">closeAdd</a></li><li><a href="global.html#closeAddContact">closeAddContact</a></li><li><a href="global.html#closeFullSite">closeFullSite</a></li><li><a href="global.html#closeTaskForView">closeTaskForView</a></li><li><a href="global.html#contactListBtnBackground">contactListBtnBackground</a></li><li><a href="global.html#countTaskNumbers">countTaskNumbers</a></li><li><a href="global.html#createCircle">createCircle</a></li><li><a href="global.html#createNewAccount">createNewAccount</a></li><li><a href="global.html#createNewPassword">createNewPassword</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#currentDraggedElement">currentDraggedElement</a></li><li><a href="global.html#currentEditedTask">currentEditedTask</a></li><li><a href="global.html#deHighlightColumn">deHighlightColumn</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteHeaderBtn">deleteHeaderBtn</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#deleteTaskFromView">deleteTaskFromView</a></li><li><a href="global.html#deleteUserfromUsers">deleteUserfromUsers</a></li><li><a href="global.html#display">display</a></li><li><a href="global.html#dontShowPassword">dontShowPassword</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#emptyVariables">emptyVariables</a></li><li><a href="global.html#errorFunction">errorFunction</a></li><li><a href="global.html#fillContactList">fillContactList</a></li><li><a href="global.html#fillContactsSelection">fillContactsSelection</a></li><li><a href="global.html#fillEditInputs">fillEditInputs</a></li><li><a href="global.html#fillFirstLetterHeader">fillFirstLetterHeader</a></li><li><a href="global.html#fillTaskNumbers">fillTaskNumbers</a></li><li><a href="global.html#findContactListArray">findContactListArray</a></li><li><a href="global.html#findCorrectUser">findCorrectUser</a></li><li><a href="global.html#findEmailUser">findEmailUser</a></li><li><a href="global.html#findUsersArray">findUsersArray</a></li><li><a href="global.html#findtaskNumbersForSummaryArray">findtaskNumbersForSummaryArray</a></li><li><a href="global.html#getArrayOfCategories">getArrayOfCategories</a></li><li><a href="global.html#getCardInitials">getCardInitials</a></li><li><a href="global.html#getChangedJSON">getChangedJSON</a></li><li><a href="global.html#getColor">getColor</a></li><li><a href="global.html#getContactInitials">getContactInitials</a></li><li><a href="global.html#getContactInputFields">getContactInputFields</a></li><li><a href="global.html#getContactList">getContactList</a></li><li><a href="global.html#getContactListFromRemoteStorage">getContactListFromRemoteStorage</a></li><li><a href="global.html#getContactWindow">getContactWindow</a></li><li><a href="global.html#getDayTime">getDayTime</a></li><li><a href="global.html#getFirstLetter">getFirstLetter</a></li><li><a href="global.html#getFullContactArea">getFullContactArea</a></li><li><a href="global.html#getHtmlCode">getHtmlCode</a></li><li><a href="global.html#getHtmlCodeDropdown">getHtmlCodeDropdown</a></li><li><a href="global.html#getHtmlCodeEditors">getHtmlCodeEditors</a></li><li><a href="global.html#getHtmlCodeSubtasks">getHtmlCodeSubtasks</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getInitialsAndColor">getInitialsAndColor</a></li><li><a href="global.html#getItemFromRemoteStorage">getItemFromRemoteStorage</a></li><li><a href="global.html#getKey">getKey</a></li><li><a href="global.html#getNewContactData">getNewContactData</a></li><li><a href="global.html#getNewJSON">getNewJSON</a></li><li><a href="global.html#getRandomColor">getRandomColor</a></li><li><a href="global.html#getSubtaskArray">getSubtaskArray</a></li><li><a href="global.html#getTaskNumbersFromRemoteStorage">getTaskNumbersFromRemoteStorage</a></li><li><a href="global.html#getTasksArray">getTasksArray</a></li><li><a href="global.html#getUser">getUser</a></li><li><a href="global.html#getUserInputFields">getUserInputFields</a></li><li><a href="global.html#getUserLogInInfo">getUserLogInInfo</a></li><li><a href="global.html#getViewRender">getViewRender</a></li><li><a href="global.html#getViewRenderEditors">getViewRenderEditors</a></li><li><a href="global.html#getViewRenderSubtasks">getViewRenderSubtasks</a></li><li><a href="global.html#gettaskNumbersForSummary">gettaskNumbersForSummary</a></li><li><a href="global.html#goToChangePassword">goToChangePassword</a></li><li><a href="global.html#goToIndex">goToIndex</a></li><li><a href="global.html#goToSummary">goToSummary</a></li><li><a href="global.html#greeting">greeting</a></li><li><a href="global.html#highlightColumn">highlightColumn</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#indexToSummary">indexToSummary</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initAddTask">initAddTask</a></li><li><a href="global.html#initBoard">initBoard</a></li><li><a href="global.html#initContact">initContact</a></li><li><a href="global.html#isUserDouble">isUserDouble</a></li><li><a href="global.html#logIn">logIn</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newPasswordFalse">newPasswordFalse</a></li><li><a href="global.html#newPasswordOk">newPasswordOk</a></li><li><a href="global.html#noUserFound">noUserFound</a></li><li><a href="global.html#openAddContact">openAddContact</a></li><li><a href="global.html#openBoardWhenSaved">openBoardWhenSaved</a></li><li><a href="global.html#openEditContact">openEditContact</a></li><li><a href="global.html#openTaskForView">openTaskForView</a></li><li><a href="global.html#overwriteContactSaveOnSubmit">overwriteContactSaveOnSubmit</a></li><li><a href="global.html#overwritePassword">overwritePassword</a></li><li><a href="global.html#pushContactToContacts">pushContactToContacts</a></li><li><a href="global.html#pushUserToUsers">pushUserToUsers</a></li><li><a href="global.html#removeSubtask">removeSubtask</a></li><li><a href="global.html#renderForgotPassword">renderForgotPassword</a></li><li><a href="global.html#renderFullContact">renderFullContact</a></li><li><a href="global.html#renderLogInHeaderButtons">renderLogInHeaderButtons</a></li><li><a href="global.html#renderLogInWindow">renderLogInWindow</a></li><li><a href="global.html#renderResetPassword">renderResetPassword</a></li><li><a href="global.html#renderSignUpWindow">renderSignUpWindow</a></li><li><a href="global.html#renderStatus">renderStatus</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#resetPasswordStepTwo">resetPasswordStepTwo</a></li><li><a href="global.html#returnContactListHtml">returnContactListHtml</a></li><li><a href="global.html#returnForgotPasswordHtml">returnForgotPasswordHtml</a></li><li><a href="global.html#returnFullContactHtml">returnFullContactHtml</a></li><li><a href="global.html#returnHeaderBtnHtml">returnHeaderBtnHtml</a></li><li><a href="global.html#returnIdentPasswordHtml">returnIdentPasswordHtml</a></li><li><a href="global.html#returnLogInHtml">returnLogInHtml</a></li><li><a href="global.html#returnResetPasswordHtml">returnResetPasswordHtml</a></li><li><a href="global.html#returnSendEmailHtml">returnSendEmailHtml</a></li><li><a href="global.html#returnSignUpHtml">returnSignUpHtml</a></li><li><a href="global.html#saveContactList">saveContactList</a></li><li><a href="global.html#saveEditContact">saveEditContact</a></li><li><a href="global.html#saveInRemoteStorage">saveInRemoteStorage</a></li><li><a href="global.html#saveNewAccount">saveNewAccount</a></li><li><a href="global.html#saveNewContact">saveNewContact</a></li><li><a href="global.html#saveNewPassword">saveNewPassword</a></li><li><a href="global.html#saveTask">saveTask</a></li><li><a href="global.html#saveUser">saveUser</a></li><li><a href="global.html#searchTasks">searchTasks</a></li><li><a href="global.html#selectCatColour">selectCatColour</a></li><li><a href="global.html#selectCategory">selectCategory</a></li><li><a href="global.html#selectContact">selectContact</a></li><li><a href="global.html#selectNewAssInput">selectNewAssInput</a></li><li><a href="global.html#selectNewCatInput">selectNewCatInput</a></li><li><a href="global.html#selectNewSubtaskInput">selectNewSubtaskInput</a></li><li><a href="global.html#selectPriority">selectPriority</a></li><li><a href="global.html#selectSubtask">selectSubtask</a></li><li><a href="global.html#selectedColour">selectedColour</a></li><li><a href="global.html#selectedSubtasks">selectedSubtasks</a></li><li><a href="global.html#setAllTasksNumber">setAllTasksNumber</a></li><li><a href="global.html#setContactListToRemoteStorage">setContactListToRemoteStorage</a></li><li><a href="global.html#setEditedContact">setEditedContact</a></li><li><a href="global.html#setGreetingPerson">setGreetingPerson</a></li><li><a href="global.html#setGreetingWords">setGreetingWords</a></li><li><a href="global.html#setItemToRemoteStorage">setItemToRemoteStorage</a></li><li><a href="global.html#setNumbersToTaskNumbersForSummary">setNumbersToTaskNumbersForSummary</a></li><li><a href="global.html#setTaskNumbers">setTaskNumbers</a></li><li><a href="global.html#setTaskNumbersStorage">setTaskNumbersStorage</a></li><li><a href="global.html#showInitialBadges">showInitialBadges</a></li><li><a href="global.html#showLogOut">showLogOut</a></li><li><a href="global.html#showMsgWrongEmailAddress">showMsgWrongEmailAddress</a></li><li><a href="global.html#showPassword">showPassword</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#sortTaskForDate">sortTaskForDate</a></li><li><a href="global.html#startDrag">startDrag</a></li><li><a href="global.html#startSlideAnimation">startSlideAnimation</a></li><li><a href="global.html#teamMember">teamMember</a></li><li><a href="global.html#toggleAssVisibility">toggleAssVisibility</a></li><li><a href="global.html#toggleContactSelection">toggleContactSelection</a></li><li><a href="global.html#toggleNewCatVisibility">toggleNewCatVisibility</a></li><li><a href="global.html#toggleSelection">toggleSelection</a></li><li><a href="global.html#toggleSubtaskCheck">toggleSubtaskCheck</a></li><li><a href="global.html#toggleSubtaskVisibility">toggleSubtaskVisibility</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 19 2023 12:09:07 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

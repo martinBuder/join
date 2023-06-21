@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/add_task_assign.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/add_task_assign.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Global Variables
+ */
+// contacts is deprecated - will be deleted later
+let contacts = [
+    {
+        name: 'Lothar Zok',
+        email: 'lothar.zok@web.de',
+        color: 'bgColor019623'
+    },
+    {
+        name: 'Martin Buder',
+        email: 'martinb@test.de',
+        color: 'bgColor0190E0'
+    },
+    {
+        name: 'Gino Emmel',
+        email: 'ginoe@test.com',
+        color: 'bgColorAF1616'
+    }
+];
+let selectedContacts = [];
+let maxImgId = 0;
+
+
+/**
+ * Fills the list of choices of the 'Assign To' field.
+ */
+function addContacts() {
+    // Render into the list box
+    document.getElementById('newAssList').innerHTML = '';
+    let imgId = 0;
+    // Fill list: Selection 'You' (fixed) -> List of contacts -> Selection 'New contact' (fixed)
+    let curImage = (selectedContacts.indexOf(user.email.toLowerCase()) > -1) ? 'checked' : 'unchecked';
+    document.getElementById('newAssList').innerHTML += `&lt;li onclick="selectContact('${user.email}', 'img-${imgId}')">&lt;span>You&lt;/span>&lt;img src="./img/add-task/check-button-${curImage}.svg" alt="" class="h21px" id="img-${imgId}">&lt;/li>`;
+    fillContactsSelection();
+    document.getElementById('newAssList').innerHTML += `&lt;li onclick="selectContact('inviteNewContact', '-1')" class="inviteNewContact">&lt;span>Invite new contact&lt;/span>&lt;img src="./img/contacts-icon.svg" alt="" class="h21px">&lt;/li>`;
+}
+
+
+/**
+ * Subsection of filling the list of choices. Here for the list of contacts.
+*/
+function fillContactsSelection() {
+    // Global variable contactList will be loaded on log in so I can already use it
+    imgId = 1; // 0 is reserved for 'You'
+    for (let i = 0; i &lt; contactList.length; i++) {
+        let curContact = contactList[i];
+        let curImage = (selectedContacts.indexOf(curContact.email.toLowerCase()) > -1) ? './img/add-task/check-button-checked.svg' : './img/add-task/check-button-unchecked.svg';
+        
+        if (curContact['email'].toLowerCase() != user['email'].toLowerCase()) {
+            document.getElementById('newAssList').innerHTML += `&lt;li onclick="selectContact('${curContact['email']}', 'img-${imgId}')">${curContact['name']}&lt;img src="${curImage}" alt="" class="h21px" id="img-${imgId}">&lt;/li>`
+            imgId++;
+            maxImgId = imgId;
+        }
+    }
+}
+
+
+/**
+ * Reacts to the selection of an entry in the list of contacts. Triggers corresponding further functions.
+ * 
+ * @param {string} item - The item that was chosen
+ * @param {string} imgId - The ID of the item that was selected. Corresponds to the ID in the html file.
+ */
+function selectContact(item, imgId) {
+    // Item should only be the email address OR 'inviteNewContact'.
+    if (item == 'inviteNewContact') {
+        toggleAssVisibility();
+    } else {
+        toggleContactSelection(item, imgId);
+    }
+    showInitialBadges();
+}
+
+
+/**
+ * Toggles the highlighting whether an entry in the list has been selected or not.
+ * 
+ * @param {string} item - The item that was chosen.
+ * @param {string} imgId - The ID of the item that was selected. Corresponds to the ID in the html file.
+ */
+function toggleContactSelection(item, imgId) {
+    let elem = document.getElementById(imgId);
+    if (elem.src.includes('unchecked')) {
+        elem.src = "./img/add-task/check-button-checked.svg"
+        selectedContacts.push(item);
+    } else {
+        elem.src = "./img/add-task/check-button-unchecked.svg";
+        selectedContacts = selectedContacts.filter((tmpItem) => tmpItem != item);
+    }
+}
+
+
+/**
+ * Shows the coloured badges with initials in it for every selected contact.
+ */
+function showInitialBadges() {
+    document.getElementById('assBadges').innerHTML = '';
+    let elemArray = document.getElementById('newAssList').childNodes;
+    for (let i = 0; i &lt; elemArray.length; i++) {
+        let elem = elemArray[i];
+        if (elem.innerHTML.includes('-checked.svg')) {
+            let curName = elem.innerText;
+            curName == 'You' ? curName = user.name : '';
+            addInitialsBadge(getInitialsAndColor(curName));
+        }
+    }
+}
+
+
+/**
+ * Adds the code for a badge with initials to the according div.
+ * 
+ * @param {array} srcArray - An array of two string: The initals of a contact and its assigned colour
+ */
+function addInitialsBadge(srcArray) {
+        let newCode = `&lt;div class="assBadge ${srcArray[1]}">${srcArray[0]}&lt;/div>`;
+        document.getElementById('assBadges').innerHTML += newCode;
+}
+
+
+/**
+ * Returns the initials (via function getInitials) and colours for a given contact.
+ * 
+ * @param {string} name - The name of the contact whose initials and colours should be returned.
+ * @returns An array consisting of the initials and the assigned colour of a contact.
+ */
+function getInitialsAndColor(name) {
+    let found = false;
+    let retArray = [];
+    for (let i = 0; i &lt; contactList.length; i++) {
+        const elem = contactList[i];
+        if (elem.name == name) {
+            retArray.push(getInitials(elem.name));
+            retArray.push(elem.color);
+            found = true;
+        }
+    }
+    if (!(found)) {  // In case the name is not in the list of contacts
+        retArray.push(getInitials(name));
+        retArray.push('bgColorGrey');
+    }
+    return retArray;
+}
+
+
+/**
+ * Returns the initials of a given name. If the name, hence the parameter, is only one word, the first two letters are taken for the initials.
+ * 
+ * @param {string} name - The name whose initials should be returned
+ * @returns A string with the initials for a name in uppercase letters
+ */
+function getInitials(name) {
+    let nameArray = name.split(' ');
+    let initial = '';
+    nameArray.length == 1 ? initial = nameArray[0].substring(0, 2) : initial = nameArray[0].substring(0, 1) + nameArray[1].substring(0, 1);
+    return initial.toUpperCase();
+}
+
+
+/**
+ * Changes the visibility when the selection 'inviteNewContact' is chosen.
+ */
+function toggleAssVisibility() {
+    let fieldArray = ['newAssHeader', 'newAssList', 'newAssInput'];
+    for (let i = 0; i &lt; fieldArray.length; i++) {
+        let element = document.getElementById(fieldArray[i]);
+        element.classList.toggle('d-none');
+        fieldArray[i] == 'newAssHeader' ? element.classList.toggle('selectionHeaderFlex') : '';
+    }
+}
+
+
+/**
+ * Cancellation of the entry of a new contact.
+ */
+function cancelNewAssInput() {
+    showMsgWrongEmailAddress(false);
+    toggleAssVisibility();
+}
+
+
+/**
+ * Processes the entry of a new contact. Triggers corresponding further functions.
+ * 
+ * @returns Cancel if the entry does not correspond to the format for email addresses or if no value was given.
+ */
+function selectNewAssInput() {
+    let elem = document.getElementById('newAssInputField');
+    if (elem.value == '') return '';
+    if (!(elem.value.includes('@'))) {showMsgWrongEmailAddress(true); return('');}
+
+    let newContact = {
+        name: elem.value.toLowerCase(),
+        email: elem.value.toLowerCase(),
+        color: getColor()
+    }
+    contactList.some((e) => e.email == elem.value.toLowerCase()) ? '' : contactList.push(newContact);
+    selectedContacts.some((e) => e == elem.value.toLowerCase()) ? '' : selectedContacts.push(elem.value.toLowerCase());
+    elem.value = '';
+
+    addContacts();
+    cancelNewAssInput();
+    showMsgWrongEmailAddress(false);
+    showInitialBadges();
+}
+
+
+/**
+ * Shows or hides the error message for an incorrect email address.
+ * 
+ * @param {boolean} toShow - true or false
+ */
+function showMsgWrongEmailAddress(toShow) {
+    toShow ? document.getElementById('reqAssignedTo').classList.remove('d-none') : document.getElementById('reqAssignedTo').classList.add('d-none');
+}
+
+
+/**
+ * Deselects all entries in the list of contacts. Used when deleting all information previously entered in the form.
+ */
+function clearAssignments() {
+    for (let i = 0; i &lt; maxImgId; i++) {
+        document.getElementById('img-' + i).src = './img/add-task/check-button-unchecked.svg';
+    }
+    selectedContacts = [];
+}
+
+
+/**
+ * Selects a random color from the array of colors, filtered for those who are not already used.
+ * 
+ * @returns The new color (e.g. 'bgColor0190E0') that can be used as class for a background color
+ */
+function getColor() {
+    // Filter out already used colors
+    let newArray = bgColorArray;
+    for (let i = 0; i &lt; contactList.length; i++) {
+        let curColor = contactList[i].color;
+        newArray = newArray.filter(e => e !== curColor);
+    }
+    newArray.length == 0 ? newArray = bgColorArray : ''; // If all colors are already in use, select from all
+    // Now select a random color from those who are not used
+    let newColor = newArray[Math.floor(Math.random() * newArray.length)];
+    return newColor;
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activateNewCatInput">activateNewCatInput</a></li><li><a href="global.html#addCategories">addCategories</a></li><li><a href="global.html#addColorNewContact">addColorNewContact</a></li><li><a href="global.html#addContacts">addContacts</a></li><li><a href="global.html#addInitialsBadge">addInitialsBadge</a></li><li><a href="global.html#addTask">addTask</a></li><li><a href="global.html#addedEditContactBtn">addedEditContactBtn</a></li><li><a href="global.html#addedNewContactBtn">addedNewContactBtn</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#bgColorArray">bgColorArray</a></li><li><a href="global.html#boardChangeButtonVisibility">boardChangeButtonVisibility</a></li><li><a href="global.html#boardSetCategory">boardSetCategory</a></li><li><a href="global.html#boardSetCommonFields">boardSetCommonFields</a></li><li><a href="global.html#boardSetEditors">boardSetEditors</a></li><li><a href="global.html#boardSetSubtasks">boardSetSubtasks</a></li><li><a href="global.html#cancelNewAssInput">cancelNewAssInput</a></li><li><a href="global.html#cancelNewCatInput">cancelNewCatInput</a></li><li><a href="global.html#cancelNewSubtaskInput">cancelNewSubtaskInput</a></li><li><a href="global.html#categories">categories</a></li><li><a href="global.html#changeClaimer">changeClaimer</a></li><li><a href="global.html#changeClaimerback">changeClaimerback</a></li><li><a href="global.html#changeContactColor">changeContactColor</a></li><li><a href="global.html#changeCursorUserImg">changeCursorUserImg</a></li><li><a href="global.html#changeJsonData">changeJsonData</a></li><li><a href="global.html#changeToYou">changeToYou</a></li><li><a href="global.html#changeUserImg">changeUserImg</a></li><li><a href="global.html#changeUserInformation">changeUserInformation</a></li><li><a href="global.html#changeYouToName">changeYouToName</a></li><li><a href="global.html#checkRequiredFields">checkRequiredFields</a></li><li><a href="global.html#checkUser">checkUser</a></li><li><a href="global.html#choiceColor">choiceColor</a></li><li><a href="global.html#chosseNewColor">chosseNewColor</a></li><li><a href="global.html#clearAssignments">clearAssignments</a></li><li><a href="global.html#clearCounters">clearCounters</a></li><li><a href="global.html#clearDesktopUsersUserInformation">clearDesktopUsersUserInformation</a></li><li><a href="global.html#clearInputs">clearInputs</a></li><li><a href="global.html#clearTask">clearTask</a></li><li><a href="global.html#clearUserInformation">clearUserInformation</a></li><li><a href="global.html#clearUsers">clearUsers</a></li><li><a href="global.html#closeAdd">closeAdd</a></li><li><a href="global.html#closeAddContact">closeAddContact</a></li><li><a href="global.html#closeFullSite">closeFullSite</a></li><li><a href="global.html#closeTaskForView">closeTaskForView</a></li><li><a href="global.html#contactListBtnBackground">contactListBtnBackground</a></li><li><a href="global.html#countTaskNumbers">countTaskNumbers</a></li><li><a href="global.html#createCircle">createCircle</a></li><li><a href="global.html#createNewAccount">createNewAccount</a></li><li><a href="global.html#createNewPassword">createNewPassword</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#currentDraggedElement">currentDraggedElement</a></li><li><a href="global.html#currentEditedTask">currentEditedTask</a></li><li><a href="global.html#deHighlightColumn">deHighlightColumn</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteHeaderBtn">deleteHeaderBtn</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#deleteTaskFromView">deleteTaskFromView</a></li><li><a href="global.html#deleteUserfromUsers">deleteUserfromUsers</a></li><li><a href="global.html#display">display</a></li><li><a href="global.html#dontShowPassword">dontShowPassword</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#emptyVariables">emptyVariables</a></li><li><a href="global.html#errorFunction">errorFunction</a></li><li><a href="global.html#fillContactList">fillContactList</a></li><li><a href="global.html#fillContactsSelection">fillContactsSelection</a></li><li><a href="global.html#fillEditInputs">fillEditInputs</a></li><li><a href="global.html#fillFirstLetterHeader">fillFirstLetterHeader</a></li><li><a href="global.html#fillTaskNumbers">fillTaskNumbers</a></li><li><a href="global.html#findContactListArray">findContactListArray</a></li><li><a href="global.html#findCorrectUser">findCorrectUser</a></li><li><a href="global.html#findEmailUser">findEmailUser</a></li><li><a href="global.html#findUsersArray">findUsersArray</a></li><li><a href="global.html#findtaskNumbersForSummaryArray">findtaskNumbersForSummaryArray</a></li><li><a href="global.html#getArrayOfCategories">getArrayOfCategories</a></li><li><a href="global.html#getCardInitials">getCardInitials</a></li><li><a href="global.html#getChangedJSON">getChangedJSON</a></li><li><a href="global.html#getColor">getColor</a></li><li><a href="global.html#getContactInitials">getContactInitials</a></li><li><a href="global.html#getContactInputFields">getContactInputFields</a></li><li><a href="global.html#getContactList">getContactList</a></li><li><a href="global.html#getContactListFromRemoteStorage">getContactListFromRemoteStorage</a></li><li><a href="global.html#getContactWindow">getContactWindow</a></li><li><a href="global.html#getDayTime">getDayTime</a></li><li><a href="global.html#getFirstLetter">getFirstLetter</a></li><li><a href="global.html#getFullContactArea">getFullContactArea</a></li><li><a href="global.html#getHtmlCode">getHtmlCode</a></li><li><a href="global.html#getHtmlCodeDropdown">getHtmlCodeDropdown</a></li><li><a href="global.html#getHtmlCodeEditors">getHtmlCodeEditors</a></li><li><a href="global.html#getHtmlCodeSubtasks">getHtmlCodeSubtasks</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getInitialsAndColor">getInitialsAndColor</a></li><li><a href="global.html#getItemFromRemoteStorage">getItemFromRemoteStorage</a></li><li><a href="global.html#getKey">getKey</a></li><li><a href="global.html#getNewContactData">getNewContactData</a></li><li><a href="global.html#getNewJSON">getNewJSON</a></li><li><a href="global.html#getRandomColor">getRandomColor</a></li><li><a href="global.html#getSubtaskArray">getSubtaskArray</a></li><li><a href="global.html#getTaskNumbersFromRemoteStorage">getTaskNumbersFromRemoteStorage</a></li><li><a href="global.html#getTasksArray">getTasksArray</a></li><li><a href="global.html#getUser">getUser</a></li><li><a href="global.html#getUserInputFields">getUserInputFields</a></li><li><a href="global.html#getUserLogInInfo">getUserLogInInfo</a></li><li><a href="global.html#getViewRender">getViewRender</a></li><li><a href="global.html#getViewRenderEditors">getViewRenderEditors</a></li><li><a href="global.html#getViewRenderSubtasks">getViewRenderSubtasks</a></li><li><a href="global.html#gettaskNumbersForSummary">gettaskNumbersForSummary</a></li><li><a href="global.html#goToChangePassword">goToChangePassword</a></li><li><a href="global.html#goToIndex">goToIndex</a></li><li><a href="global.html#goToSummary">goToSummary</a></li><li><a href="global.html#greeting">greeting</a></li><li><a href="global.html#highlightColumn">highlightColumn</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#indexToSummary">indexToSummary</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initAddTask">initAddTask</a></li><li><a href="global.html#initBoard">initBoard</a></li><li><a href="global.html#initContact">initContact</a></li><li><a href="global.html#isUserDouble">isUserDouble</a></li><li><a href="global.html#logIn">logIn</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newPasswordFalse">newPasswordFalse</a></li><li><a href="global.html#newPasswordOk">newPasswordOk</a></li><li><a href="global.html#noUserFound">noUserFound</a></li><li><a href="global.html#openAddContact">openAddContact</a></li><li><a href="global.html#openBoardWhenSaved">openBoardWhenSaved</a></li><li><a href="global.html#openEditContact">openEditContact</a></li><li><a href="global.html#openTaskForView">openTaskForView</a></li><li><a href="global.html#overwriteContactSaveOnSubmit">overwriteContactSaveOnSubmit</a></li><li><a href="global.html#overwritePassword">overwritePassword</a></li><li><a href="global.html#pushContactToContacts">pushContactToContacts</a></li><li><a href="global.html#pushUserToUsers">pushUserToUsers</a></li><li><a href="global.html#removeSubtask">removeSubtask</a></li><li><a href="global.html#renderForgotPassword">renderForgotPassword</a></li><li><a href="global.html#renderFullContact">renderFullContact</a></li><li><a href="global.html#renderLogInHeaderButtons">renderLogInHeaderButtons</a></li><li><a href="global.html#renderLogInWindow">renderLogInWindow</a></li><li><a href="global.html#renderResetPassword">renderResetPassword</a></li><li><a href="global.html#renderSignUpWindow">renderSignUpWindow</a></li><li><a href="global.html#renderStatus">renderStatus</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#resetPasswordStepTwo">resetPasswordStepTwo</a></li><li><a href="global.html#returnContactListHtml">returnContactListHtml</a></li><li><a href="global.html#returnForgotPasswordHtml">returnForgotPasswordHtml</a></li><li><a href="global.html#returnFullContactHtml">returnFullContactHtml</a></li><li><a href="global.html#returnHeaderBtnHtml">returnHeaderBtnHtml</a></li><li><a href="global.html#returnIdentPasswordHtml">returnIdentPasswordHtml</a></li><li><a href="global.html#returnLogInHtml">returnLogInHtml</a></li><li><a href="global.html#returnResetPasswordHtml">returnResetPasswordHtml</a></li><li><a href="global.html#returnSendEmailHtml">returnSendEmailHtml</a></li><li><a href="global.html#returnSignUpHtml">returnSignUpHtml</a></li><li><a href="global.html#saveContactList">saveContactList</a></li><li><a href="global.html#saveEditContact">saveEditContact</a></li><li><a href="global.html#saveInRemoteStorage">saveInRemoteStorage</a></li><li><a href="global.html#saveNewAccount">saveNewAccount</a></li><li><a href="global.html#saveNewContact">saveNewContact</a></li><li><a href="global.html#saveNewPassword">saveNewPassword</a></li><li><a href="global.html#saveTask">saveTask</a></li><li><a href="global.html#saveUser">saveUser</a></li><li><a href="global.html#searchTasks">searchTasks</a></li><li><a href="global.html#selectCatColour">selectCatColour</a></li><li><a href="global.html#selectCategory">selectCategory</a></li><li><a href="global.html#selectContact">selectContact</a></li><li><a href="global.html#selectNewAssInput">selectNewAssInput</a></li><li><a href="global.html#selectNewCatInput">selectNewCatInput</a></li><li><a href="global.html#selectNewSubtaskInput">selectNewSubtaskInput</a></li><li><a href="global.html#selectPriority">selectPriority</a></li><li><a href="global.html#selectSubtask">selectSubtask</a></li><li><a href="global.html#selectedColour">selectedColour</a></li><li><a href="global.html#selectedSubtasks">selectedSubtasks</a></li><li><a href="global.html#setAllTasksNumber">setAllTasksNumber</a></li><li><a href="global.html#setContactListToRemoteStorage">setContactListToRemoteStorage</a></li><li><a href="global.html#setEditedContact">setEditedContact</a></li><li><a href="global.html#setGreetingPerson">setGreetingPerson</a></li><li><a href="global.html#setGreetingWords">setGreetingWords</a></li><li><a href="global.html#setItemToRemoteStorage">setItemToRemoteStorage</a></li><li><a href="global.html#setNumbersToTaskNumbersForSummary">setNumbersToTaskNumbersForSummary</a></li><li><a href="global.html#setTaskNumbers">setTaskNumbers</a></li><li><a href="global.html#setTaskNumbersStorage">setTaskNumbersStorage</a></li><li><a href="global.html#showInitialBadges">showInitialBadges</a></li><li><a href="global.html#showLogOut">showLogOut</a></li><li><a href="global.html#showMsgWrongEmailAddress">showMsgWrongEmailAddress</a></li><li><a href="global.html#showPassword">showPassword</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#sortTaskForDate">sortTaskForDate</a></li><li><a href="global.html#startDrag">startDrag</a></li><li><a href="global.html#startSlideAnimation">startSlideAnimation</a></li><li><a href="global.html#teamMember">teamMember</a></li><li><a href="global.html#toggleAssVisibility">toggleAssVisibility</a></li><li><a href="global.html#toggleContactSelection">toggleContactSelection</a></li><li><a href="global.html#toggleNewCatVisibility">toggleNewCatVisibility</a></li><li><a href="global.html#toggleSelection">toggleSelection</a></li><li><a href="global.html#toggleSubtaskCheck">toggleSubtaskCheck</a></li><li><a href="global.html#toggleSubtaskVisibility">toggleSubtaskVisibility</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 19 2023 12:09:07 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

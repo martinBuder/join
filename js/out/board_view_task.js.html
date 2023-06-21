@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: board_view_task.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: board_view_task.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Classes for viewing a task (view mode)
+
+/**
+ * Opens a task in view mode
+ * 
+ * @param {string} taskId - The ID of the task to open
+ */
+function openTaskForView(taskId) {
+    let newCode = getViewRender(taskId);
+
+    document.getElementById('viewTask').classList.toggle('d-none');
+    document.getElementById('viewTaskContainer').innerHTML = newCode;
+}
+
+
+/**
+ * Closes the view mode
+ */
+function closeTaskForView() {
+    document.getElementById('viewTask').classList.toggle('d-none');
+}
+
+
+/**
+ * Creates the HTML code for rendering a selected task
+ * 
+ * @param {string} taskId - The ID of the task to render
+ * @returns HTML code for rendering the task
+ */
+function getViewRender(taskId) {
+    let curTaskArray = tasksArray.filter(t => t['id'] == taskId);
+    let curTask = curTaskArray[0];
+
+    let newCode = `
+    &lt;div class="viewTaskHeadline mb-20">
+        &lt;div id="viewTaskCategory" class="cardCategory bgCatColor${curTask['categorycolor']}">${curTask['category']}&lt;/div>
+        &lt;img class="closeTaskView" onclick="closeTaskForView()" src="./img/icon-cancel.svg" alt="">
+    &lt;/div>
+    &lt;div id="viewTaskTitle">
+        ${curTask['title']}
+    &lt;/div>
+    &lt;div id="viewTaskDescription" class="mb-25">
+        ${curTask['description']}
+    &lt;/div>
+    ${getViewRenderSubtasks(curTask)}
+    &lt;div class="viewTaskText viewTaskOneLine mb-25">
+        &lt;b>Due date: &lt;/b>
+        &lt;span id="viewTaskDueDate">${curTask['duedate']}&lt;/span>
+    &lt;/div>
+    &lt;div id="viewTaskPriority" class="viewTaskText viewTaskOneLine mb-25">
+        &lt;b>Priority:&lt;/b>
+        &lt;button class="viewTaskPrio viewTaskPrio${curTask['prio']}">${curTask['prio']}&lt;img src="./img/add-task/prio-${curTask['prio'].toLowerCase()}.svg">&lt;/button>
+    &lt;/div>
+    &lt;div class="viewTaskText mb-25">
+        &lt;b>Assigned To:&lt;/b>
+    &lt;/div>
+    &lt;div class="viewTaskEditorAndButtons">
+        &lt;div id="viewTaskEditorList" class="viewTaskEditorList">
+            ${getViewRenderEditors(curTask)}
+        &lt;/div>
+        &lt;div class="viewTaskButtons">
+            &lt;div class="viewTaskButton viewTaskButtonLeft" onclick="deleteTaskFromView('${taskId}')">
+                &lt;img src="./img/delete.svg" alt="">
+            &lt;/div>
+            &lt;div class="viewTaskButton viewTaskButtonRight" onclick="editTask('${taskId}')">
+                &lt;img src="./img/pen.svg" alt="">
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>
+    `;
+
+    return newCode;
+}
+
+
+/**
+ * Subfunction that creates the HTML code for rendering subtasks
+ * 
+ * @param {json} curTask - The JSON data that represents the selected task
+ * @returns Part of the HTML code for rendering subtasks (if any)
+ */
+function getViewRenderSubtasks(curTask) {
+    let subtaskCode = ``;
+    if (curTask['subtasks'].length > 0) {
+        subtaskCode += `
+        &lt;div id="viewTaskSubtasks" class="viewTaskText mb-25">
+            &lt;b>Subtasks:&lt;/b>
+            &lt;ul class="newSubtaskList mt-10">
+        `;
+        for (let i = 0; i &lt; curTask['subtasks'].length; i++) {
+            const elem = curTask['subtasks'][i];
+            subtaskCode += `
+                &lt;li>
+                    &lt;img src="./img/add-task/check-rectangle-${(elem['status'] == 'done' ? 'checked' : 'unchecked')}.svg" alt="">${elem['title']}
+                &lt;/li>
+            `;
+        }
+        subtaskCode += `
+            &lt;/ul>
+        &lt;/div>
+        `;
+    }
+    return subtaskCode;
+}
+
+
+/**
+ * Subfunction that creates the HTML code for rendering editors
+ * 
+ * @param {json} curTask - The JSON data that represents the selected task
+ * @returns Part of the HTML code for rendering editors (if any)
+ */
+function getViewRenderEditors(curTask) {
+    let editorsCode = ``;
+    for (let i = 0; i &lt; curTask['assignedto'].length; i++) {
+        const elem = curTask['assignedto'][i];
+        let nameJson = contactList.filter(c => c['email'] == elem);
+        let name = nameJson.length > 0 ? nameJson[0]['initials'] : elem;
+        let color = nameJson.length > 0 ? nameJson[0]['color'] : 'bgColorGrey';
+        let nameInitials = getCardInitials(name);
+        editorsCode += `
+        &lt;div class="viewTaskEditor viewTaskOneLine">
+            &lt;div class="viewTaskEditorBadge ${color}">${nameInitials}&lt;/div>
+            &lt;div class="viewTaskText">${elem}&lt;/div>
+        &lt;/div>
+        `;
+    }
+    return editorsCode;
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#boardChangeButtonVisibility">boardChangeButtonVisibility</a></li><li><a href="global.html#boardSetCategory">boardSetCategory</a></li><li><a href="global.html#boardSetCommonFields">boardSetCommonFields</a></li><li><a href="global.html#boardSetEditors">boardSetEditors</a></li><li><a href="global.html#boardSetSubtasks">boardSetSubtasks</a></li><li><a href="global.html#changeJsonData">changeJsonData</a></li><li><a href="global.html#closeTaskForView">closeTaskForView</a></li><li><a href="global.html#currentDraggedElement">currentDraggedElement</a></li><li><a href="global.html#currentEditedTask">currentEditedTask</a></li><li><a href="global.html#deHighlightColumn">deHighlightColumn</a></li><li><a href="global.html#deleteTaskFromView">deleteTaskFromView</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#emptyVariables">emptyVariables</a></li><li><a href="global.html#getCardInitials">getCardInitials</a></li><li><a href="global.html#getChangedJSON">getChangedJSON</a></li><li><a href="global.html#getHtmlCode">getHtmlCode</a></li><li><a href="global.html#getHtmlCodeDropdown">getHtmlCodeDropdown</a></li><li><a href="global.html#getHtmlCodeEditors">getHtmlCodeEditors</a></li><li><a href="global.html#getHtmlCodeSubtasks">getHtmlCodeSubtasks</a></li><li><a href="global.html#getTasksArray">getTasksArray</a></li><li><a href="global.html#getViewRender">getViewRender</a></li><li><a href="global.html#getViewRenderEditors">getViewRenderEditors</a></li><li><a href="global.html#getViewRenderSubtasks">getViewRenderSubtasks</a></li><li><a href="global.html#highlightColumn">highlightColumn</a></li><li><a href="global.html#initBoard">initBoard</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#openTaskForView">openTaskForView</a></li><li><a href="global.html#renderStatus">renderStatus</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#saveTask">saveTask</a></li><li><a href="global.html#searchTasks">searchTasks</a></li><li><a href="global.html#startDrag">startDrag</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 19 2023 12:49:58 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

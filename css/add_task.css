@@ -1,0 +1,511 @@
+/* Common settings for multiple purposes */
+body {
+    transition: all 0.2s ease-in-out;
+    display: flex;
+}
+h1 {
+    padding-top: 82px;
+    padding-bottom: 41px;
+}
+.no-border {
+    border: none;
+}
+.h21px {
+    height: 21px;
+}
+.d-none {
+    display: none !important;
+}
+.opacity-0 {
+    opacity: 0;
+}
+.mb-14 {
+    margin-bottom: 14px;
+}
+.mb-38 {
+    margin-bottom: 38px;
+}
+.mt-8 {
+    margin-top: 8px;
+}
+
+
+/* Settings for page layout */
+
+.addTaskContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 232px);
+}
+.smallScreenTitle {
+    display: none;
+}
+#contentAddTask {
+    margin-top: 82px;
+    width: 964px;
+}
+.twoColumns {
+    display: flex;
+}
+.columnLeft {
+    padding-right: 59px;
+    border-right: 1px solid #D1D1D1;
+}
+.columnRight {
+    padding-left: 59px;
+}
+
+
+/* Common field setting */
+
+.taskFieldContainer {
+    background-color: white;
+}
+.inputContainerTextarea {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 13px 21px;
+	gap: 10px;
+	width: 422px;
+	height: 97px;
+    background-color: white;
+	border: 1px solid #D1D1D1;
+	border-radius: 10px;
+	cursor: pointer;
+}
+.inputContainerTextarea textarea {
+	border: none;
+	flex: 1;
+}
+.inputContainerTextarea textarea:focus {
+	outline: none;
+}
+.labelAndField {
+    display: flex;
+    flex-direction: column;
+}
+.labelAndField label {
+    line-height: 25px;
+}
+.inputField {
+    font-size: 21px;
+    padding: 13px 21px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+.inputField:focus {
+    outline: none;
+}
+.requiredMessage {
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: red;
+}
+.likeInput {
+    font-size: 21px;
+	color: #d1d1d1;
+    border: none;
+	flex: 1;
+} /* likeInput is used for an element that should look like an input field but is none */
+
+
+/* Settings for Category and Assignments Selection */
+
+.selectionHeader {
+    height: 51px;
+    font-size: 21px;
+    padding: 8px 13px 8px 13px;
+    cursor: pointer;
+}
+.selectionHeaderFlex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#newCatHeaderField,
+#newCatList li,
+#newAssList li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#newCatList,
+#newAssList {
+    font-size: 21px;
+}
+#newCatList li,
+#newAssList li {
+    height: 51px;
+    padding: 0px 13px 0px 13px;
+    
+    list-style-type: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+#newCatList li:last-child,
+#newAssList li:last-child {
+    border-bottom-left-radius:  9px;
+    border-bottom-right-radius: 9px;
+} 
+#newCatList li:hover,
+#newAssList li:hover {
+    background-color: #D1D1D1;
+}
+#newCatColours {
+    display: none;
+    gap: 21px;
+}
+#newCatColours img:hover {
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.inviteNewContact img {
+    filter: invert(100%) brightness(0%) saturate(0%) contrast(100%);
+}
+#newAssList li {
+    display: flex;
+    justify-content: space-between;
+}
+.selectCategory {
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    background-color: white;
+}
+.down-arrow {
+    width: 16px;
+    height: 8px;
+}
+.inputFieldIcon {
+    background-color: #D1D1D1;
+    width: 1px;
+    height: 100%;
+}
+
+
+/* Settings for the initials badges */
+
+#assBadges {
+    max-width: 422px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.assBadge {
+    font-size: 21px;
+    width: 45px;
+    height: 45px;
+    color: white;
+    border-radius: 50%;
+    margin-top: 22px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Settings for priority buttons and selection */
+
+.taskPriority {
+    height: 61px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btnPriority {
+    width: 136px;
+    height: 51px;
+    background-color: white;
+    border-color: #D1D1D1;
+    font-size: 21px;
+    font-weight: 400;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.btnPriority:hover {
+    height: 61px;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.btnSelectedUrgent {
+    border-color: rgb(255, 61, 0);
+    background-color: rgb(255, 61, 0);
+}
+.btnSelectedMedium {
+    border-color: rgb(255, 168, 0);
+    background-color: rgb(255, 168, 0);
+}
+.btnSelectedLow {
+    border-color: rgb(122, 226, 41);
+    background-color: rgb(122, 226, 41);
+}
+.btnSelected {
+    color: white;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.btnSelectedImage {
+    filter: invert(0%) brightness(1000%) saturate(0%) contrast(106%);
+}
+
+
+/* Settings for subtasks */
+
+#newSubtaskList {
+    margin-top: 18px;
+}
+#newSubtaskList li {
+    font-size: 16px;
+    list-style-type: none;
+    margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+#newSubtaskList li img {
+    cursor: pointer;
+    height: 18px;
+}
+
+
+/* Settings for the buttons at the end of the form */
+
+.taskButtons {
+    height: 65px;
+    margin: 38px 0 40px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 25px;
+}
+.taskButtonsFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+.btnTaskAdded {
+    height: 65px;
+    border-color: rgb(42, 54, 71);
+    background-color: rgb(42, 54, 71);
+    color: white;
+}
+.btnTaskFinish {
+    height: 55px;
+}
+.btnTaskClear {
+    font-weight: 400;
+    border: 1px solid rgb(42, 54, 71);
+}
+.btnTaskClear:hover {
+    color: rgb(41, 171, 226);
+    border-color: rgb(41, 171, 226);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.btnTaskClear:hover img {
+    filter: invert(65%) sepia(14%) saturate(6020%) hue-rotate(165deg) brightness(94%) contrast(89%);
+}
+.btnTaskCreate {
+    background-color: rgb(42, 54, 71);
+    border-color:rgb(42, 54, 71);
+    color: white;
+}
+.btnTaskCreate:hover {
+    background-color: rgb(41, 171, 226);
+    border-color: rgb(41, 171, 226);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+.btnTaskAdded img,
+.btnTaskCreate img {
+    filter: invert(100%) brightness(1000%) saturate(0%) contrast(100%);
+}
+.w3-animate-bottom {
+    position:relative;
+    animation:animatebottom 0.4s
+}
+@keyframes animatebottom {
+    from{
+        bottom:-300px;
+        opacity:0
+    } 
+    to{
+        bottom:0;
+        opacity:1
+    }
+}
+
+
+/* Einstellungen für schmale Screens */
+
+@media (max-width: 1270px) {
+    #contentAddTask {
+        margin-top: 101px;
+        max-width: 422px;
+        text-align: center;
+        display: grid;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #contentAddTask h1 {
+        padding-top: 27px;
+        padding-bottom: 23px;
+        width: 422px;
+        text-align: left;
+    }
+    .addTaskContainer {
+        width: 100%;
+    }
+    .twoColumns {
+        text-align: left;
+        flex-direction: column;
+        align-items: center;
+    }
+    .columnLeft,
+    .columnRight {
+        width: 422px;
+        border: 0;
+        padding: 0;
+    }
+    .displayDueDate {
+        padding-top: 38px;
+    }
+    .btnTaskClear {
+        display: none;
+    }
+    .btnTaskCreate {
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        z-index: 10;
+    }
+    .btnTaskAdded {
+        position: absolute;
+        width: 90%;
+        max-width: 322px;
+        top: 80%;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @keyframes animatebottom {
+        from{
+            top:150%;
+            opacity:0
+        } 
+        to{
+            top: 80%;
+            opacity:1
+        }
+    }
+}
+
+@media (max-width: 760px) {
+    .addTaskContainer {
+        margin-bottom: 100px;
+    }
+    .smallScreenTitle {
+        width: 422px;
+        margin-top: 120px;
+        display: block;
+    }
+    #contentAddTask {
+        margin-top: 0;
+        max-width: 422px;
+    }
+    #contentAddTask h1 {
+        padding: 19px 0 23px 0;
+        display: block;
+    }
+    .inputField {
+        width: 90%;
+    }
+    .selectCategory {
+        width: 90%;
+    }
+    .displayPrio {
+        width: 90%;
+    }
+    .btnPriority {
+        width: 32%;
+        font-size: 16px;
+    }
+    .taskButtons {
+        margin: 10px 0 23px 0;
+    }
+    .btnTaskCreate {
+        top: 7px;
+    }
+}
+
+@media (max-width: 490px) {
+    .addTaskContainer {
+        max-width: 95%;
+        left: 0px;
+        padding: 0 10px 0 10px;
+    }
+    #contentAddTask {
+        display: flex;
+        max-width: 100%;
+    }
+    .smallScreenTitle {
+        max-width: 95%;
+        font-size: 14px;
+    }
+    #contentAddTask h1 {
+        max-width: 95%;
+        margin-left: 10px;
+        font-size: 50px;
+    }
+    .columnLeft,
+    .columnRight {
+        max-width: 95%;
+    }
+    .btnTaskCreate {
+        right: 10px;
+    }
+    .taskLabel {
+        font-size: 14px;
+    }
+    .taskPriority {
+        flex-direction: column;
+        height: 183px;
+    }
+    .btnPriority {
+        margin: 5px 0 5px 0;
+        width: 120px;
+    }
+    .btnPriority:hover {
+        margin: 0;
+    }
+    input,
+    textarea,
+    .inputField,
+    .selectionHeader,
+    #newCatList,
+    #newAssList,
+    input::placeholder,
+    textarea::placeholder,
+    .likeInput {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .taskPriority {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 290px) {
+    #contentAddTask h1 {
+        font-size: 46px;
+    }
+}

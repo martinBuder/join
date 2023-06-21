@@ -3,12 +3,422 @@
     font-family: Inter;
     src: url(fonts/Inter-VariableFont_slnt,wght.ttf);
 }
+
+@font-face {
+    font-family: Poppins;
+    src: url(fonts/Poppins-Regular.ttf);
+}
+
 /* ENDE Einbindung der Schriften */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ! Scrollbar */
+::-webkit-scrollbar-button {
+    height: 20px;
+}
 
-  font-family: Inter, Arial, Helvetica, sans-serif;
+::-webkit-scrollbar-button:start:decrement {
+    background-image: url('./img/arrowUp.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-button:end:increment {
+    background-image: url('./img/arrowDown.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #fff;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    background-clip: padding-box;
+    border-radius: 50px;
+}
+
+/* Background Colour codes */
+.bgColor0190E0 {
+    background-color: #0190E0;
+}
+
+.bgColorEE00D6 {
+    background-color: #EE00D6;
+}
+
+.bgColor02CF2F {
+    background-color: #02CF2F;
+}
+
+.bgColorFF7A00 {
+    background-color: #FF7A00;
+}
+
+.bgColor9327FF {
+    background-color: #9327FF;
+}
+
+.bgColor69C4EB {
+    background-color: #69C4EB;
+}
+
+.bgColorFC71FF {
+    background-color: #FC71FF;
+}
+
+.bgColorAF1616 {
+    background-color: #AF1616;
+}
+
+.bgColor462F8A {
+    background-color: #462F8A;
+}
+
+.bgColor019623 {
+    background-color: #019623;
+}
+
+.bgColorFF0000 {
+    background-color: #FF0000;
+}
+
+.bgColor0000FF {
+    background-color: #0000FF;
+}
+
+.bgColorBlack {
+    background-color: black;
+}
+
+.bgColorGrey {
+    background-color: grey;
+}
+
+/* Background Color Codes for Categories */
+.bgCatColorlightblue {
+    background-color: #8AA4FF;
+}
+
+.bgCatColorred {
+    background-color: #FF0000;
+}
+
+.bgCatColorgreen {
+    background-color: #2AD300;
+}
+
+.bgCatColororange {
+    background-color: #FF8A00;
+}
+
+.bgCatColorviolet {
+    background-color: #E200BE;
+}
+
+.bgCatColorblue {
+    background-color: #0038FF;
+}
+
+.bgCatColorturqoise {
+    background-color: #1FD7C1;
+}
+
+.bgCatColorlightviolet {
+    background-color: #FC71FF;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: #F5F5F5;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 232px);
+    height: 90px;
+    background: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.headerContainer {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.headerIconWrapper {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+}
+
+h1 {
+    font-size: 61px;
+    line-height: 120%;
+}
+
+h2 {
+    font-size: 27px;
+    line-height: 120%;
+    ;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+main {
+    margin-top: 86px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 100px 0;
+}
+
+.contentWrapper {
+    width: 964px;
+}
+
+/* *buttons .focusBtn = blau .outFocusBtn = transparent*/
+
+button {
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+    border: 1px solid #2A3647;
+    cursor: pointer;
+}
+
+#logOutBtn {
+    position: absolute;
+    right: 0;
+    top: 72px;
+    border-radius: 16px 0 16px 16px;
+    font-weight: 100;
+    font-size: 16px;
+    width: 140px;
+}
+
+.focusBtn,
+#logOutBtn {
+    background-color: #2A3647;
+    color: #fff;
+}
+
+#logOutBtn a {
+    color: #fff;
+    display: block;
+    line-height: 30px;
+    height: 100%;
+    width: 100%;
+}
+
+#logOutBtn {
+    z-index: 2;
+    padding: 15px 0;
+}
+
+.focusBtn:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-color: #29ABE2;
+}
+
+.outFocusBtn {
+    background-color: transparent;
+    color: #2A3647;
+}
+
+.outFocusBtn:hover {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-color: #29ABE2;
+    color: #29ABE2;
+}
+
+[onclick] {
+    cursor: pointer;
+}
+
+.userImg {
+    border-radius: 50%;
+    border: 3px solid #2A3647;
+    width: 50px;
+    height: 50px;
+}
+
+.userImg img {
+    width: auto;
+    height: 100%;
+    object-position: center;
+}
+
+#logOutBtn a.smallMenu,
+.logo {
+    display: none;
+}
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-line {
+    width: 0px;
+    height: 59px;
+    border: 3px solid #29ABE2;
+    border-radius: 6px;
+    margin: 0 30px 0 30px;
+}
+
+.header-subtext {
+    font-weight: 400;
+    font-size: 32px;
+    color: #2A3647;
+}
+
+/* *inputFelder mit bild */
+
+
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    gap: 10px;
+    width: 422px;
+    height: 51px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.inputContainer input {
+    border: none;
+    flex: 1;
+}
+
+.inputContainer img,
+#passwordImg {
+    width: 20px;
+    height: 18px;
+}
+
+#passwordImg {
+    background-image: url(img/lock.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center/center;
+}
+
+input:focus~#passwordImg {
+    background-image: url(img/closeEye.svg);
+}
+
+.inputContainer input:focus {
+    outline: none;
+}
+
+input,
+textarea {
+    font-size: 21px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    font-size: 21px;
+    color: #d1d1d1;
+    font-weight: 400;
+}
+
+/* * links */
+.link {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    color: #29ABE2;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+@media (max-width: 760px) {
+    .inputContainer {
+        width: 90%;
+    }
+
+    input {
+        min-width: 150px;
+    }
+
+    .header {
+        left: 0;
+        width: 100%;
+        height: 70px;
+        z-index: 3;
+    }
+
+    .logo,
+    .userImg {
+        display: block;
+        width: 40px;
+        height: 40px;
+    }
+
+    .headerContainer {
+        width: 90%;
+    }
+
+    #logOutBtn a.smallMenu {
+        display: block;
+    }
+
+    .helpBtn,
+    .header p {
+        display: none;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .contactsWindow {
+        padding: 40px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+
+    .btnWithImg img {
+        width: 20px;
+    }
 }

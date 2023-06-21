@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/board_edit_task.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/board_edit_task.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Functions for editing a task (edit mode)
+
+/**
+ * Global variables
+ */
+let currentEditedTask = '';  // contains the id of the task that is currently edited
+
+
+/**
+ * Start the change functionality. Sets some important data and opens the task in edit mode.
+ * 
+ * @param {string} curId - The ID of the task that is about to change
+ */
+function editTask(curId) {
+    console.log(curId);
+    currentEditedTask = curId;
+    let curTask = tasksArray.filter(t => t['id'] == currentEditedTask);
+    closeTaskForView();  // closes the viewing mode of the current task - otherwise it will still be open in the background
+
+    // filling of the fields with already saved data
+    boardSetCommonFields(curTask);
+    boardSetCategory(curTask);
+    selectPriority(curTask[0]['prio']);  // function from add_task.js
+    boardSetEditors(curTask);
+    boardSetSubtasks(curTask);
+    boardChangeButtonVisibility();
+
+    addTask();  // opens the editing mode for a task - generally used when creating a new task, but here some data was added before
+}
+
+
+/**
+ * Saves the changed task to disc and re-renders the board.
+ */
+async function saveTask() {
+    let newJson = getChangedJSON();                                        // create a JSON object with the changed values
+    var index = tasksArray.findIndex(obj => obj.id == currentEditedTask);  // get the index of the current task inside the tasksArray
+    changeJsonData(index, newJson);                                        // change the JSON data inside tasksArray
+    await setItem('tasks', tasksArray);                                    // save the changes of tasksArray to disc
+    emptyVariables();                                                      // reset the global variables that were used
+    closeAdd();                                                            // Close Edit Form
+
+    // after saving: reset visibility of some buttons
+    document.getElementById('btnTaskClear').classList.remove('d-none');
+    document.getElementById('btnTaskCreate').classList.remove('d-none');
+    document.getElementById('btnTaskSave').classList.add('d-none');
+
+    renderTasks(tasksArray); // re-render the tasks so changes will be shown
+}
+
+
+// ---------- Help functions for shortening the editTask function ----------
+
+
+/**
+ * Sets the data of some common fields, that might be changed, into the array with the data of the current task.
+ * 
+ * @param {Array} curTask - An array with the data of the current task
+ */
+function boardSetCommonFields(curTask) {
+    document.getElementById('taskTitle').value = curTask[0]['title'];
+    document.getElementById('taskDescription').value = curTask[0]['description'];
+    document.getElementById('taskDueDate').value = curTask[0]['duedate'];
+}
+
+
+/**
+ * Sets the data of the category fields, that might be changed, into the array with the data of the current task.
+ * 
+ * @param {Array} curTask - An array with the data of the current task
+ */
+function boardSetCategory(curTask) {
+    selectedCategory = curTask[0]['category'];
+    selectedColour = curTask[0]['categorycolor'];
+    document.getElementById('newCatHeaderField').innerHTML = `${selectedCategory}&lt;img src="./img/add-task/circle-${selectedColour}.svg" class="h21px">`;
+}
+
+
+/**
+ * Sets the data of the editors field, that might be changed, into the array with the data of the current task.
+ * 
+ * @param {Array} curTask - An array with the data of the current task
+ */
+function boardSetEditors(curTask) {
+    for (let i = 0; i &lt; curTask[0]['assignedto'].length; i++) {
+        const assignedto = curTask[0]['assignedto'][i];
+        let listEntries = document.querySelectorAll('ul#newAssList li');
+        for (let j = 0; j &lt; listEntries.length; j++) {
+            const le = listEntries[j];
+            if (le.getAttribute('onclick').includes(assignedto)) {
+                le.click();
+            }
+        }
+    }
+}
+
+
+/**
+ * Sets the data of the subtasks fields, that might be changed, into the array with the data of the current task.
+ * 
+ * @param {Array} curTask - An array with the data of the current task
+ */
+function boardSetSubtasks(curTask) {
+    for (let i = 0; i &lt; curTask[0]['subtasks'].length; i++) {
+        let curSubtask = curTask[0]['subtasks'][i];
+        selectedSubtasks.push(curSubtask['title']);
+        selectedSubtasksStatus.push(curSubtask['status']);
+
+        let newValue = curSubtask['title'].replace("'", "´");
+        let newImg = (curSubtask['status'] == 'done') ? 'checked' : 'unchecked';
+        let newCode = `
+            &lt;li>
+                &lt;img src="./img/add-task/check-rectangle-${newImg}.svg" alt="" id="check-${newValue.replace(/\s/g, '~~~')}" onclick="toggleSubtaskCheck('${newValue}', 'check-${newValue.replace(/\s/g, '~~~')}')">
+                ${newValue}
+                &lt;img src="./img/delete.svg" alt="delete" onclick="removeSubtask('${newValue}');">
+            &lt;/li>
+        `;
+        document.getElementById('newSubtaskList').innerHTML += newCode;
+    }
+}
+
+
+/**
+ * Changes the visibility of some buttons inside the task form.
+ */
+function boardChangeButtonVisibility() {
+    document.getElementById('btnTaskClear').classList.add('d-none');   // hide clear button
+    document.getElementById('btnTaskCreate').classList.add('d-none');  // hide create button - click here would create a complete new task with the data
+    document.getElementById('btnTaskSave').classList.remove('d-none'); // show save button - click here will overwrite already saved data
+}
+
+
+// ---------- Help functions for shortening the saveTask function ----------
+
+
+/**
+ * Assembles and returns a JSON object with the data of the entered task.
+ * Important: This function creates no new ID. Instead it uses the ID saved in variable currentEditedTask.
+ * For that reason not all elements are included in this JSON object.
+ * 
+ * @returns {json} The JSON object with the data of the entered task.
+ */
+function getChangedJSON() {
+    let newJSON = {
+        id: currentEditedTask,
+        title: document.getElementById('taskTitle').value,
+        description: document.getElementById('taskDescription').value,
+        category: selectedCategory,
+        categorycolor: selectedColour,
+        duedate: document.getElementById('taskDueDate').value,
+        prio: selectedPriority,
+        subtasks: getSubtaskArray(),
+        assignedto: selectedContacts
+    }
+    return newJSON;
+}
+
+
+/**
+ * Changes the JSON data in tasksArray with the data from the change form (also as JSON data).
+ * 
+ * @param {integer} index - The index number of the JSON object inside the tasksArray
+ * @param {json} newJson - The JSON object with the changed data
+ */
+function changeJsonData(index, newJson) {
+    let changeArray = ['title', 'description', 'category', 'categorycolor', 'duedate', 'prio', 'subtasks', 'assignedto'];
+    for (let i = 0; i &lt; changeArray.length; i++) {
+        const elem = changeArray[i];
+        tasksArray[index][elem] = newJson[elem];
+    }
+}
+
+
+/**
+ * Delete entries in some global variables. Otherwise they may affect editing another task.
+ */
+function emptyVariables() {
+    selectedContacts = [];
+    selectedSubtasks = [];
+    selectedSubtasksStatus = [];
+    categories = [];
+    selectedColour = '';
+    selectedCategory = '';
+    selectedPriority = '';
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activateNewCatInput">activateNewCatInput</a></li><li><a href="global.html#addCategories">addCategories</a></li><li><a href="global.html#addColorNewContact">addColorNewContact</a></li><li><a href="global.html#addContacts">addContacts</a></li><li><a href="global.html#addInitialsBadge">addInitialsBadge</a></li><li><a href="global.html#addTask">addTask</a></li><li><a href="global.html#addedEditContactBtn">addedEditContactBtn</a></li><li><a href="global.html#addedNewContactBtn">addedNewContactBtn</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#bgColorArray">bgColorArray</a></li><li><a href="global.html#boardChangeButtonVisibility">boardChangeButtonVisibility</a></li><li><a href="global.html#boardSetCategory">boardSetCategory</a></li><li><a href="global.html#boardSetCommonFields">boardSetCommonFields</a></li><li><a href="global.html#boardSetEditors">boardSetEditors</a></li><li><a href="global.html#boardSetSubtasks">boardSetSubtasks</a></li><li><a href="global.html#cancelNewAssInput">cancelNewAssInput</a></li><li><a href="global.html#cancelNewCatInput">cancelNewCatInput</a></li><li><a href="global.html#cancelNewSubtaskInput">cancelNewSubtaskInput</a></li><li><a href="global.html#categories">categories</a></li><li><a href="global.html#changeClaimer">changeClaimer</a></li><li><a href="global.html#changeClaimerback">changeClaimerback</a></li><li><a href="global.html#changeContactColor">changeContactColor</a></li><li><a href="global.html#changeCursorUserImg">changeCursorUserImg</a></li><li><a href="global.html#changeJsonData">changeJsonData</a></li><li><a href="global.html#changeToYou">changeToYou</a></li><li><a href="global.html#changeUserImg">changeUserImg</a></li><li><a href="global.html#changeUserInformation">changeUserInformation</a></li><li><a href="global.html#changeYouToName">changeYouToName</a></li><li><a href="global.html#checkRequiredFields">checkRequiredFields</a></li><li><a href="global.html#checkUser">checkUser</a></li><li><a href="global.html#choiceColor">choiceColor</a></li><li><a href="global.html#chosseNewColor">chosseNewColor</a></li><li><a href="global.html#clearAssignments">clearAssignments</a></li><li><a href="global.html#clearCounters">clearCounters</a></li><li><a href="global.html#clearDesktopUsersUserInformation">clearDesktopUsersUserInformation</a></li><li><a href="global.html#clearInputs">clearInputs</a></li><li><a href="global.html#clearTask">clearTask</a></li><li><a href="global.html#clearUserInformation">clearUserInformation</a></li><li><a href="global.html#clearUsers">clearUsers</a></li><li><a href="global.html#closeAdd">closeAdd</a></li><li><a href="global.html#closeAddContact">closeAddContact</a></li><li><a href="global.html#closeFullSite">closeFullSite</a></li><li><a href="global.html#closeTaskForView">closeTaskForView</a></li><li><a href="global.html#contactListBtnBackground">contactListBtnBackground</a></li><li><a href="global.html#countTaskNumbers">countTaskNumbers</a></li><li><a href="global.html#createCircle">createCircle</a></li><li><a href="global.html#createNewAccount">createNewAccount</a></li><li><a href="global.html#createNewPassword">createNewPassword</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#currentDraggedElement">currentDraggedElement</a></li><li><a href="global.html#currentEditedTask">currentEditedTask</a></li><li><a href="global.html#deHighlightColumn">deHighlightColumn</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteHeaderBtn">deleteHeaderBtn</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#deleteTaskFromView">deleteTaskFromView</a></li><li><a href="global.html#deleteUserfromUsers">deleteUserfromUsers</a></li><li><a href="global.html#display">display</a></li><li><a href="global.html#dontShowPassword">dontShowPassword</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#emptyVariables">emptyVariables</a></li><li><a href="global.html#errorFunction">errorFunction</a></li><li><a href="global.html#fillContactList">fillContactList</a></li><li><a href="global.html#fillContactsSelection">fillContactsSelection</a></li><li><a href="global.html#fillEditInputs">fillEditInputs</a></li><li><a href="global.html#fillFirstLetterHeader">fillFirstLetterHeader</a></li><li><a href="global.html#fillTaskNumbers">fillTaskNumbers</a></li><li><a href="global.html#findContactListArray">findContactListArray</a></li><li><a href="global.html#findCorrectUser">findCorrectUser</a></li><li><a href="global.html#findEmailUser">findEmailUser</a></li><li><a href="global.html#findUsersArray">findUsersArray</a></li><li><a href="global.html#findtaskNumbersForSummaryArray">findtaskNumbersForSummaryArray</a></li><li><a href="global.html#getArrayOfCategories">getArrayOfCategories</a></li><li><a href="global.html#getCardInitials">getCardInitials</a></li><li><a href="global.html#getChangedJSON">getChangedJSON</a></li><li><a href="global.html#getColor">getColor</a></li><li><a href="global.html#getContactInitials">getContactInitials</a></li><li><a href="global.html#getContactInputFields">getContactInputFields</a></li><li><a href="global.html#getContactList">getContactList</a></li><li><a href="global.html#getContactListFromRemoteStorage">getContactListFromRemoteStorage</a></li><li><a href="global.html#getContactWindow">getContactWindow</a></li><li><a href="global.html#getDayTime">getDayTime</a></li><li><a href="global.html#getFirstLetter">getFirstLetter</a></li><li><a href="global.html#getFullContactArea">getFullContactArea</a></li><li><a href="global.html#getHtmlCode">getHtmlCode</a></li><li><a href="global.html#getHtmlCodeDropdown">getHtmlCodeDropdown</a></li><li><a href="global.html#getHtmlCodeEditors">getHtmlCodeEditors</a></li><li><a href="global.html#getHtmlCodeSubtasks">getHtmlCodeSubtasks</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getInitialsAndColor">getInitialsAndColor</a></li><li><a href="global.html#getItemFromRemoteStorage">getItemFromRemoteStorage</a></li><li><a href="global.html#getKey">getKey</a></li><li><a href="global.html#getNewContactData">getNewContactData</a></li><li><a href="global.html#getNewJSON">getNewJSON</a></li><li><a href="global.html#getRandomColor">getRandomColor</a></li><li><a href="global.html#getSubtaskArray">getSubtaskArray</a></li><li><a href="global.html#getTaskNumbersFromRemoteStorage">getTaskNumbersFromRemoteStorage</a></li><li><a href="global.html#getTasksArray">getTasksArray</a></li><li><a href="global.html#getUser">getUser</a></li><li><a href="global.html#getUserInputFields">getUserInputFields</a></li><li><a href="global.html#getUserLogInInfo">getUserLogInInfo</a></li><li><a href="global.html#getViewRender">getViewRender</a></li><li><a href="global.html#getViewRenderEditors">getViewRenderEditors</a></li><li><a href="global.html#getViewRenderSubtasks">getViewRenderSubtasks</a></li><li><a href="global.html#gettaskNumbersForSummary">gettaskNumbersForSummary</a></li><li><a href="global.html#goToChangePassword">goToChangePassword</a></li><li><a href="global.html#goToIndex">goToIndex</a></li><li><a href="global.html#goToSummary">goToSummary</a></li><li><a href="global.html#greeting">greeting</a></li><li><a href="global.html#highlightColumn">highlightColumn</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#indexToSummary">indexToSummary</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initAddTask">initAddTask</a></li><li><a href="global.html#initBoard">initBoard</a></li><li><a href="global.html#initContact">initContact</a></li><li><a href="global.html#isUserDouble">isUserDouble</a></li><li><a href="global.html#logIn">logIn</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newPasswordFalse">newPasswordFalse</a></li><li><a href="global.html#newPasswordOk">newPasswordOk</a></li><li><a href="global.html#noUserFound">noUserFound</a></li><li><a href="global.html#openAddContact">openAddContact</a></li><li><a href="global.html#openBoardWhenSaved">openBoardWhenSaved</a></li><li><a href="global.html#openEditContact">openEditContact</a></li><li><a href="global.html#openTaskForView">openTaskForView</a></li><li><a href="global.html#overwriteContactSaveOnSubmit">overwriteContactSaveOnSubmit</a></li><li><a href="global.html#overwritePassword">overwritePassword</a></li><li><a href="global.html#pushContactToContacts">pushContactToContacts</a></li><li><a href="global.html#pushUserToUsers">pushUserToUsers</a></li><li><a href="global.html#removeSubtask">removeSubtask</a></li><li><a href="global.html#renderForgotPassword">renderForgotPassword</a></li><li><a href="global.html#renderFullContact">renderFullContact</a></li><li><a href="global.html#renderLogInHeaderButtons">renderLogInHeaderButtons</a></li><li><a href="global.html#renderLogInWindow">renderLogInWindow</a></li><li><a href="global.html#renderResetPassword">renderResetPassword</a></li><li><a href="global.html#renderSignUpWindow">renderSignUpWindow</a></li><li><a href="global.html#renderStatus">renderStatus</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#resetPasswordStepTwo">resetPasswordStepTwo</a></li><li><a href="global.html#returnContactListHtml">returnContactListHtml</a></li><li><a href="global.html#returnForgotPasswordHtml">returnForgotPasswordHtml</a></li><li><a href="global.html#returnFullContactHtml">returnFullContactHtml</a></li><li><a href="global.html#returnHeaderBtnHtml">returnHeaderBtnHtml</a></li><li><a href="global.html#returnIdentPasswordHtml">returnIdentPasswordHtml</a></li><li><a href="global.html#returnLogInHtml">returnLogInHtml</a></li><li><a href="global.html#returnResetPasswordHtml">returnResetPasswordHtml</a></li><li><a href="global.html#returnSendEmailHtml">returnSendEmailHtml</a></li><li><a href="global.html#returnSignUpHtml">returnSignUpHtml</a></li><li><a href="global.html#saveContactList">saveContactList</a></li><li><a href="global.html#saveEditContact">saveEditContact</a></li><li><a href="global.html#saveInRemoteStorage">saveInRemoteStorage</a></li><li><a href="global.html#saveNewAccount">saveNewAccount</a></li><li><a href="global.html#saveNewContact">saveNewContact</a></li><li><a href="global.html#saveNewPassword">saveNewPassword</a></li><li><a href="global.html#saveTask">saveTask</a></li><li><a href="global.html#saveUser">saveUser</a></li><li><a href="global.html#searchTasks">searchTasks</a></li><li><a href="global.html#selectCatColour">selectCatColour</a></li><li><a href="global.html#selectCategory">selectCategory</a></li><li><a href="global.html#selectContact">selectContact</a></li><li><a href="global.html#selectNewAssInput">selectNewAssInput</a></li><li><a href="global.html#selectNewCatInput">selectNewCatInput</a></li><li><a href="global.html#selectNewSubtaskInput">selectNewSubtaskInput</a></li><li><a href="global.html#selectPriority">selectPriority</a></li><li><a href="global.html#selectSubtask">selectSubtask</a></li><li><a href="global.html#selectedColour">selectedColour</a></li><li><a href="global.html#selectedSubtasks">selectedSubtasks</a></li><li><a href="global.html#setAllTasksNumber">setAllTasksNumber</a></li><li><a href="global.html#setContactListToRemoteStorage">setContactListToRemoteStorage</a></li><li><a href="global.html#setEditedContact">setEditedContact</a></li><li><a href="global.html#setGreetingPerson">setGreetingPerson</a></li><li><a href="global.html#setGreetingWords">setGreetingWords</a></li><li><a href="global.html#setItemToRemoteStorage">setItemToRemoteStorage</a></li><li><a href="global.html#setNumbersToTaskNumbersForSummary">setNumbersToTaskNumbersForSummary</a></li><li><a href="global.html#setTaskNumbers">setTaskNumbers</a></li><li><a href="global.html#setTaskNumbersStorage">setTaskNumbersStorage</a></li><li><a href="global.html#showInitialBadges">showInitialBadges</a></li><li><a href="global.html#showLogOut">showLogOut</a></li><li><a href="global.html#showMsgWrongEmailAddress">showMsgWrongEmailAddress</a></li><li><a href="global.html#showPassword">showPassword</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#sortTaskForDate">sortTaskForDate</a></li><li><a href="global.html#startDrag">startDrag</a></li><li><a href="global.html#startSlideAnimation">startSlideAnimation</a></li><li><a href="global.html#teamMember">teamMember</a></li><li><a href="global.html#toggleAssVisibility">toggleAssVisibility</a></li><li><a href="global.html#toggleContactSelection">toggleContactSelection</a></li><li><a href="global.html#toggleNewCatVisibility">toggleNewCatVisibility</a></li><li><a href="global.html#toggleSelection">toggleSelection</a></li><li><a href="global.html#toggleSubtaskCheck">toggleSubtaskCheck</a></li><li><a href="global.html#toggleSubtaskVisibility">toggleSubtaskVisibility</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 19 2023 12:09:07 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

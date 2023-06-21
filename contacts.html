@@ -5,14 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="script.js"></script>
-    <script src="js/storage.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="./script.js"></script>
+    <script src="./js/user.js"></script>
 
-    <link rel="icon" type="image/png" href="img/join-navicon.png">
+    <!-- * for add task -->
+
+    <script src="./js/slideSection.js"></script>
+    <script src="./js/add_task_categories.js"></script>
+    <script src="./js/add_task_assign.js"></script>
+    <script src="./js/add_task_subtasks.js"></script>
+    <script src="./js/add_task.js"></script>
+
+    <script src="./js/storage.js"></script>
+
+    <link rel="stylesheet" href="./css/taskSection.css">
+    <link rel="stylesheet" href="./css/add_task.css">
+
+    <script src="./js/contacts.js"></script>
+    <script src="./js/contactReturnHtml.js"></script>
+    <script src="./js/contactsList.js"></script>
+    <script src="./js/workOnContact.js"></script>
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/contacts.css">
+
+    <link rel="icon" type="image/png" href="./img/join-navicon.png">
     <title>Join</title>
 </head>
-<body>
+<body onload="initContact()" class="contactBody" id="editOutScroll">
+    <header w3-include-html="./templates/header.html" class="header"></header>
+    <section w3-include-html="./templates/sidebar.html" class="sidebar"></section>
+    <main class="leftDirection">
+        <section class="contactsList" id="contactListContainer"> 
+        </section>
+        <section class="contactWindow">
+            <div class="fullContactHeader">
+                <p class="mobilCompanyName">Kanban Project Management Tool</p>
+                <h1>Contacts</h1>
+                <div class="header-line"></div>
+                <p class="header-subtext">Better with a team</p>
+                <img src="./img/blackBackArrow.svg" alt="" onclick="closeFullSite()" class="closeFullSiteBtn">
+            </div>
+            <div class="showFullContact" id="showFullContact" >
+            </div>
+            <button class="focusBtn btnRightBottomPosition btnWithImg" onclick="openAddContact()"><p>New contact</p><img src="./img/addContact.svg" alt=""></button>
+        </section>
+        <section class="addContactWindow addContactSlide workOnContact" id="addContactWindow" onclick="closeAddContact()">
+            <div class="addContactContainer" onclick="event.stopPropagation()">
+                <div class="closeX" onclick="closeAddContact()">&#10006</div>
+                <div class="addContactClaimer">
+                    <img src="./img/join-logo-white.svg" alt="">
+                    <div class="claimerText">
+                        <h1>Add Contact</h1>
+                        <p>Tasks are better with a team!</p>
+                    </div>
+                    <div class="blueLine"></div>
+                </div>
+                <div class="addContactWorkspace">
+                    <div class="circle bgLightGrey" id="circle"><img src="./img/person.svg" alt=""></div>
+                    <form onsubmit="saveNewContact(event); return false" class="inputArea" id="inputArea">
+                        <div class="inputContainer">
+                            <input type="text" id="contactName" placeholder="Name" class="inputField" required><img src="./img/person.svg" alt="">
+                        </div>
+                        <div class="inputContainer">
+                            <input type="email" id="contactEmail" placeholder="Email" class="inputField" required><img src="./img/letter.svg" alt="">
+                        </div>
+                        <div class="inputContainer">
+                            <input type="number" id="contactPhone" placeholder="Phone" class="inputField" required><img src="./img/phone.svg" alt="">
+                        </div>
+                        <div class="addContactWorkespaceBtn" id="contactWorkspaceBtnContainer">
+                           
+                        </div>
+                        <div class="contactColorWrapper"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <div class="addTask addTask-none" id="addTask">
+            <div id="window" class="window">
+                <section w3-include-html="add_task_content.html" class="addTaskContainer"></section>
+                <img class="closeWindow" onclick="closeAdd()" src="./img/icon-cancel.svg" alt="">
+            </div>
+        </div>
+    </main>
     
 </body>
 </html>

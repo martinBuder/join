@@ -1,0 +1,650 @@
+/* Markierung der Auswahl in der Sidebar */
+#navLinkSummary,
+#navLinkSummaryM {
+    background-color: #091931;
+}
+
+#navLinkSummary span,
+#navLinkSummaryM span {
+    color: white;
+}
+
+#navLinkSummary img,
+#navLinkSummaryM img {
+    filter: invert(0%) brightness(1000%) saturate(100%) contrast(106%);
+}
+
+/* ENDE Markierung der Auswahl in der Sidebar */
+
+* {
+    transition: all 0s ease-in-out !important;
+}
+
+.tool {
+    display: none;
+}
+
+.summary {
+    position: relative;
+    margin: 171px auto 0;
+    width: 1078px;
+}
+
+.summary-head {
+    display: flex;
+    align-items: center;
+}
+
+.summary-headline {
+    font-size: 73px;
+    font-weight: 700;
+}
+
+.summary-line {
+    width: 0px;
+    height: 59px;
+    border: 3px solid #29ABE2;
+    border-radius: 6px;
+    margin: 0 30px 0 30px;
+}
+
+.summary-headtext {
+    font-weight: 400;
+    font-size: 32px;
+    color: #2A3647;
+}
+
+.summary-body {
+    display: flex;
+    margin-top: 87px;
+}
+
+.summary-tasks {
+    display: flex;
+    flex-direction: column;
+    width: 580px;
+    margin-right: 67px;
+    gap: 35px;
+}
+
+.greeting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.greet {
+    font-size: 56px;
+    font-weight: 500;
+    color: #2A3647;
+}
+
+.person {
+    font-size: 70px;
+    font-weight: 700;
+    color: #29ABE2;
+}
+
+.top-tasks {
+    display: flex;
+    gap: 35px;
+}
+
+.top-task {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 170px;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: black;
+}
+
+.top-task:hover {
+    background-color: #293546;
+    color: white;
+    transform: scale(1.1);
+}
+
+.top-task:hover .statusText1 {
+    color: white;
+}
+
+.number1 {
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.statusText1 {
+    font-size: 21px;
+    font-weight: 400;
+    text-align: center;
+    color: #2A3647;
+}
+
+.middle-task {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 580px;
+    height: 150px;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: black;
+}
+
+.middle-task:hover {
+    background-color: #293546;
+    color: white;
+    transform: scale(1.1);
+}
+
+.middle-task:hover .statusText2 {
+    color: white !important;
+}
+
+.middle-task-status {
+    margin-left: 19px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.middle-task img {
+    width: 60px;
+    height: 60px;
+}
+
+.number2 {
+    font-size: 56px;
+    font-weight: 600;
+}
+
+.statusText2 {
+    font-size: 19px;
+    font-weight: 400;
+    color: #2A3647;
+}
+
+.middle-task-date {
+    margin-left: 61px;
+    padding: 18px 0px 18px 61px;
+    border-left: 2px solid #D1D1D1;
+}
+
+.date1 {
+    font-size: 25px;
+    font-weight: 700;
+    padding-bottom: 13px;
+}
+
+.bottom-task {
+    display: flex;
+    gap: 35px;
+}
+
+.todo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 272.5px;
+    height: 150px;
+    gap: 18px;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: black;
+}
+
+.todo:hover {
+    background-color: #293546;
+    color: white;
+    transform: scale(1.1);
+}
+
+.todo:hover .statusText1 {
+    color: white;
+}
+
+.todo img {
+    width: 69px;
+    height: 69px;
+}
+
+.bottom-task-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headerContainer {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 1078px;
+    max-width: 100%;
+}
+
+.navbar-icon-mobile {
+    margin: 0 0 8px 0 !important;
+}
+
+.greetingMobile {
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background-color: #F5F5F5;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 1350px) {
+    .main-navigation {
+        width: 200px !important;
+    }
+
+    .header {
+        width: calc(100% - 200px);
+    }
+
+    .headerContainer {
+        width: 700px;
+    }
+
+    .summary {
+        width: 700px;
+    }
+
+    .greeting {
+        display: none;
+    }
+
+    .greetingMobile {
+        display: flex;
+        visibility: visible;
+        animation: greetingGoesAway 800ms ease-in-out 800ms forwards;
+    }
+
+    @keyframes greetingGoesAway {
+        to {
+            visibility: hidden;
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .header {
+        width: 100%;
+    }
+
+    .headerContainer {
+        width: 580px;
+    }
+
+    .summary {
+        width: 580px;
+        margin: 120px auto 110px;
+    }
+
+    .summary-headtext {
+        font-size: 28px;
+    }
+
+    .mobile-navigation {
+        display: block !important;
+        z-index: 1;
+    }
+
+    .main-navigation {
+        display: none !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .headerContainer {
+        width: 420px;
+    }
+
+    .tool {
+        display: block;
+        font-size: 19px;
+    }
+
+    .summary {
+        width: 420px;
+    }
+
+    .summary-headline {
+        font-size: 56px;
+    }
+
+    .summary-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-headtext {
+        font-size: 25px;
+    }
+
+    .summary-line {
+        width: 59px;
+        height: 0px;
+        position: relative;
+        top: 50px;
+        left: -27px;
+    }
+
+    .summary-tasks {
+        gap: 24px;
+    }
+
+    .top-task {
+        width: 123px;
+        height: 123px;
+        border-radius: 20px;
+    }
+
+    .top-tasks {
+        gap: 6%;
+    }
+
+    .number1 {
+        font-size: 56px;
+    }
+
+    .statusText1 {
+        font-size: 17px;
+    }
+
+    .middle-task {
+        width: 420px;
+        height: 123px;
+        border-radius: 20px;
+    }
+
+    .middle-task img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .middle-task-status {
+        margin-left: 12px;
+    }
+
+    .middle-task-date {
+        margin-left: 30px;
+        padding: 4px 0px 4px 30px;
+    }
+
+    .date1 {
+        font-size: 19px;
+        padding-bottom: 8px;
+    }
+
+    .statusText2 {
+        font-size: 17px;
+    }
+
+    .number2 {
+        font-size: 56px;
+    }
+
+    .bottom-task {
+        gap: 6%;
+    }
+
+    .todo {
+        width: 210px;
+        height: 123px;
+        border-radius: 20px;
+    }
+
+    .todo img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 490px) {
+    .headerContainer {
+        width: 360px;
+    }
+
+    .tool {
+        display: block;
+        font-size: 19px;
+    }
+
+    .summary {
+        width: 360px;
+        margin-top: 86px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10vh;
+        height: calc(100vh - 170px)
+    }
+
+    .summary-headline {
+        font-size: 56px;
+    }
+
+    .summary-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-headtext {
+        font-size: 25px;
+    }
+
+    .summary-line {
+        width: 59px;
+        height: 0px;
+        position: relative;
+        top: 50px;
+        left: -27px;
+    }
+
+    .summary-body {
+        margin-top: 0;
+        height: max-content;
+    }
+
+    .summary-tasks {
+        gap: 5vh
+    }
+
+    .top-task {
+        width: 110px;
+        height: 110px;
+        border-radius: 20px;
+    }
+
+    .top-tasks {
+        gap: 4%;
+    }
+
+    .number1 {
+        font-size: 56px;
+    }
+
+    .statusText1 {
+        font-size: 14px;
+    }
+
+    .middle-task {
+        width: 360px;
+        height: 110px;
+        border-radius: 20px;
+    }
+
+    .middle-task img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .middle-task-status {
+        margin-left: 12px;
+    }
+
+    .middle-task-date {
+        margin-left: 20px;
+        padding: 4px 0px 4px 20px;
+    }
+
+    .date1 {
+        font-size: 19px;
+        padding-bottom: 8px;
+    }
+
+    .statusText2 {
+        font-size: 17px;
+    }
+
+    .number2 {
+        font-size: 56px;
+    }
+
+    .bottom-task {
+        gap: 4%;
+    }
+
+    .todo {
+        width: 180px;
+        height: 110px;
+        border-radius: 20px;
+    }
+
+    .todo img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 450px) {
+    .headerContainer {
+        width: 280px;
+    }
+
+    .tool {
+        display: block;
+        font-size: 16px;
+    }
+
+    .summary {
+        width: 280px;
+    }
+
+    .summary-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-headline {
+        font-size: 50px;
+        margin-top: 5px;
+    }
+
+    .summary-headtext {
+        font-size: 20px;
+    }
+
+    .summary-line {
+        width: 59px;
+        height: 0px;
+        position: relative;
+        top: 50px;
+        left: -27px;
+    }
+
+    .summary-tasks {
+        gap: 20px;
+    }
+
+    .top-task {
+        width: 90px;
+        height: 90px;
+        border-radius: 20px;
+    }
+
+    .top-tasks {
+        gap: 1%;
+    }
+
+    .number1 {
+        font-size: 40px;
+    }
+
+    .statusText1 {
+        font-size: 12px;
+    }
+
+    .middle-task {
+        width: 280px;
+        height: 90px;
+        border-radius: 20px;
+    }
+
+    .middle-task img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .middle-task-status {
+        margin-left: 12px;
+    }
+
+    .middle-task-date {
+        margin-left: 12px;
+        padding: 4px 0px 4px 12px;
+    }
+
+    .date1 {
+        font-size: 14px;
+        padding-bottom: 8px;
+    }
+
+    .statusText2 {
+        font-size: 12px;
+    }
+
+    .number2 {
+        font-size: 40px;
+    }
+
+    .bottom-task {
+        gap: 1%;
+    }
+
+    .todo {
+        width: 140px;
+        height: 90px;
+        border-radius: 20px;
+    }
+
+    .todo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .greet {
+        font-size: 40px;
+    }
+
+    .person {
+        font-size: 50px;
+    }
+}

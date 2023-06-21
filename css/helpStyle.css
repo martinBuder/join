@@ -1,0 +1,45 @@
+.helpBtn {
+	display: none;
+}
+
+h2 {
+	margin: 50px 0 10px 0;
+}
+
+.bSite main {
+	width: calc(100% - 232px);
+	padding: 100px 5%;
+}
+
+.contentWrapper {
+	position: relative;
+}
+
+.contentWrapper a {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+li {
+	margin: 10px 0 10px 30px;
+	padding-left: 16px;
+}
+
+li::marker {
+	font-size: 27px;
+	font-weight: 700;
+	line-height: 54px;
+}
+
+li span {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: -10px;
+}
+
+@media(max-width: 760px) {
+	.bSite main {
+		width: 100%;
+	}
+}
